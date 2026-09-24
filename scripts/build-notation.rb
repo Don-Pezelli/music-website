@@ -29,11 +29,11 @@ save('takt',660,144,'Ein vollständiger Takt',%Q{<path fill="#{YELLOW}" d="M0 0H
 def diagram(name,w,h,title,code:nil,count:0,rest:false,numbers:true,eighth:false)
   parts=[]
   parts << %Q{<rect x="0" y="0" width="#{w}" height="#{h}" fill="#{YELLOW}"/>}
-  parts << %Q{<rect x="5" y="5" width="#{w-10}" height="#{h-10}" rx="8" fill="none" stroke="black" stroke-width="8"/>} if rest
-  margin=rest ? w*0.03 : w*0.024
+  parts << %Q{<rect x="5" y="5" width="#{w-10}" height="#{h-10}" rx="8" fill="none" stroke="black" stroke-width="8"/>} if code
+  margin=w*0.024
   gap=w*0.023; block=(w-2*margin-3*gap)/4.0
-  by=rest ? h*0.18 : h*0.097; bh=rest ? h*0.33 : h*0.25
-  font=rest ? h*0.215 : h*0.17
+  by=h*0.097; bh=h*0.25
+  font=h*0.17
   4.times do |i|
     x=margin+i*(block+gap)
     parts << %Q{<rect x="#{x}" y="#{by}" width="#{block}" height="#{bh}" fill="#{BLUE}"/>}
@@ -66,13 +66,13 @@ end
 diagram('vier-schlaege',904,182,'Vier gleichmäßige Schläge in einem Takt',numbers:false)
 [
  ['ganze-note',664,206,'Ganze Note: vier Schläge','E1D2',1],
- ['halbe-noten',670,202,'Zwei halbe Noten: je zwei Schläge','E1D3',2],
- ['viertelnoten',662,202,'Vier Viertelnoten: je ein Schlag','E1D5',4],
- ['achtelnoten',666,200,'Acht Achtelnoten: je ein halber Schlag','E1D7',8],
- ['ganze-pause',918,212,'Ganze Pause unter der Linie: vier Schläge','E4E3',1],
- ['halbe-pausen',1246,284,'Zwei halbe Pausen auf der Linie: je zwei Schläge','E4E4',2],
- ['viertelpausen',1244,278,'Vier Viertelpausen: je ein Schlag','E4E5',4],
- ['achtelpausen',1244,282,'Acht Achtelpausen: je ein halber Schlag','E4E6',8]
+ ['halbe-noten',664,206,'Zwei halbe Noten: je zwei Schläge','E1D3',2],
+ ['viertelnoten',664,206,'Vier Viertelnoten: je ein Schlag','E1D5',4],
+ ['achtelnoten',664,206,'Acht Achtelnoten: je ein halber Schlag','E1D7',8],
+ ['ganze-pause',664,206,'Ganze Pause unter der Linie: vier Schläge','E4E3',1],
+ ['halbe-pausen',664,206,'Zwei halbe Pausen auf der Linie: je zwei Schläge','E4E4',2],
+ ['viertelpausen',664,206,'Vier Viertelpausen: je ein Schlag','E4E5',4],
+ ['achtelpausen',664,206,'Acht Achtelpausen: je ein halber Schlag','E4E6',8]
 ].each{|name,w,h,title,code,count|diagram(name,w,h,title,code:code,count:count,rest:code.start_with?('E4'),eighth:count==8)}
 # Speaker, notation sheet, and arrow, following the source illustration.
 parts=['<path fill="white" d="M0 0H588V224H0Z"/>','<path d="M44 75H64L107 36V188L64 149H44Z" fill="black"/>','<g fill="none" stroke="black" stroke-width="9"><path d="M31 69Q0 112 31 155"/><path d="M18 48Q-26 112 18 176"/></g>','<path d="M460 34L583 112L460 190Z" fill="black"/>','<path d="M108 23H457V201H108Z" fill="white" stroke="black" stroke-width="5"/>']

@@ -1,0 +1,473 @@
+[
+  {
+    "id": "rhythmus-1",
+    "branch": "rhythmus",
+    "title": "Rhythmus 1 · Achtelnoten",
+    "description": "Puls, Takt und 4/4: ganze, halbe, Viertel- und Achtelnoten samt Pausen. Lesen, Schreiben, Hören und inneren Puls verbinden.",
+    "url": "grundlagen.html",
+    "status": "material",
+    "suggested_foundations": [
+
+    ],
+    "modules": [
+      [
+        "Zeitgefühl",
+        "Einen gleichmäßigen Puls mit Körper und Stimme tragen."
+      ],
+      [
+        "Notenwerte",
+        "Ganze, halbe, Viertel- und Achtelnoten lesen und ausführen."
+      ],
+      [
+        "Pausen",
+        "Stille als Teil des Rhythmus verstehen."
+      ],
+      [
+        "Anwenden",
+        "Rhythmen hören, aufschreiben und selbst überprüfen."
+      ]
+    ]
+  },
+  {
+    "id": "rhythmus-2",
+    "branch": "rhythmus",
+    "title": "Rhythmus 2 · Sechzehntelnoten",
+    "description": "Vier Teile pro Schlag: Sechzehntel unterteilen, mit bekannten Werten kombinieren und sicher lesen, schreiben, hören sowie spielen.",
+    "url": "rhythmus-2-einfuehrung.html",
+    "status": "material",
+    "suggested_foundations": [
+      "rhythmus-1"
+    ],
+    "modules": [
+      [
+        "Unterteilung",
+        "Hauptzählzeit, erstes e, & sowie zweites e zuordnen."
+      ],
+      [
+        "Noten",
+        "Die neuen Positionen getrennt üben und danach mischen."
+      ],
+      [
+        "Pausen",
+        "Sechzehntelpausen auf jeder Position verstehen."
+      ],
+      [
+        "Anwenden",
+        "Rhythmen lesen, ergänzen, hören und spielen."
+      ]
+    ]
+  },
+  {
+    "id": "rhythmus-3",
+    "branch": "rhythmus",
+    "title": "Rhythmus 3 · Triolen",
+    "description": "Drei statt zwei: binäre und ternäre Unterteilung unterscheiden. Triolen lesen, hören und bei gleichbleibendem Puls spielen.",
+    "url": "rhythmus-3-einfuehrung.html",
+    "status": "material",
+    "suggested_foundations": [
+      "rhythmus-1"
+    ],
+    "modules": [
+      [
+        "Drei Positionen",
+        "Einen Viertelschlag in drei gleiche Teile teilen."
+      ],
+      [
+        "Achteltriolen",
+        "Triolenkennzeichnung lesen und Positionen wahrnehmen."
+      ],
+      [
+        "Triolenpausen",
+        "Stille innerhalb einer Dreiergruppe zählen."
+      ],
+      [
+        "Anwenden",
+        "Gerade Achtel und Triolen bewusst wechseln."
+      ]
+    ]
+  },
+  {
+    "id": "rhythmus-4",
+    "branch": "rhythmus",
+    "title": "Rhythmus 4 · Besondere rhythmische Mittel",
+    "description": "Punktierte Werte, Haltebögen, Synkopen und Offbeats verstehen und zu komplexeren Rhythmen verbinden.",
+    "url": "kurs-rhythmus-4.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "rhythmus-2",
+      "rhythmus-3"
+    ],
+    "modules": [
+      [
+        "Punktierte Werte",
+        "Verstehe, wie ein Punkt die Dauer eines Notenwerts um die Hälfte verlängert."
+      ],
+      [
+        "Haltebögen",
+        "Verbinde gleiche Tonhöhen über Notenwerte und Taktgrenzen hinweg."
+      ],
+      [
+        "Synkopen und Offbeats",
+        "Untersuche Einsätze und Betonungen abseits der Hauptzählzeiten."
+      ],
+      [
+        "Rhythmen verbinden",
+        "Kombiniere Unterteilungen, Pausen und neue Schreibweisen in vollständigen Takten."
+      ]
+    ]
+  },
+  {
+    "id": "melodie-1",
+    "branch": "melodie",
+    "title": "Melodie 1 · Tonhöhe und Intervalle",
+    "description": "Tonhöhen nachbilden, melodische Richtung erkennen und Schritte von Sprüngen unterscheiden. Intervalle hören und Melodien wiedergeben.",
+    "url": "kurs-melodie-1.html",
+    "status": "draft",
+    "suggested_foundations": [
+
+    ],
+    "modules": [
+      [
+        "Tonhöhen finden",
+        "Höre einen Referenzton und vergleiche ihn mit deiner Stimme oder einem Instrument."
+      ],
+      [
+        "Richtung und Bewegung",
+        "Unterscheide aufsteigende, absteigende und gleichbleibende Tonfolgen."
+      ],
+      [
+        "Schritte und Sprünge",
+        "Beschreibe den Abstand zwischen zwei Tönen als Intervall."
+      ],
+      [
+        "Melodien wiedergeben",
+        "Höre kurze Tonfolgen, merke sie dir und gib sie wieder."
+      ]
+    ]
+  },
+  {
+    "id": "melodie-2",
+    "branch": "melodie",
+    "title": "Melodie 2 · Tonleitern und melodischer Aufbau",
+    "description": "Dur und Moll, Tonstufen und tonales Zentrum. Phrasen und Motive erkennen, Melodien notieren und eigene Ideen entwickeln.",
+    "url": "kurs-melodie-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "melodie-1",
+      "rhythmus-1"
+    ],
+    "modules": [
+      [
+        "Tonleitern und Zentrum",
+        "Ordne Töne in Dur- und Molltonleitern und höre einen Grundton als Bezugspunkt."
+      ],
+      [
+        "Tonstufen",
+        "Beschreibe die Position eines Tons innerhalb einer Tonleiter."
+      ],
+      [
+        "Motive und Phrasen",
+        "Finde kleine musikalische Ideen und größere zusammenhängende Abschnitte."
+      ],
+      [
+        "Hören und Erfinden",
+        "Notiere eine gehörte Melodie und entwickle aus einem Motiv eine eigene."
+      ]
+    ]
+  },
+  {
+    "id": "harmonie-1",
+    "branch": "harmonie",
+    "title": "Harmonie 1 · Akkorde und Tonalität",
+    "description": "Intervalle als Bausteine, Dur- und Molldreiklänge, Akkordaufbau und erste harmonische Funktionen.",
+    "url": "kurs-harmonie-1.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "melodie-1"
+    ],
+    "modules": [
+      [
+        "Vom Intervall zum Akkord",
+        "Verbinde einzelne Töne zu gleichzeitig klingenden Intervallen und Akkorden."
+      ],
+      [
+        "Dreiklänge bauen",
+        "Schichte Terzen und unterscheide Dur- von Molldreiklängen."
+      ],
+      [
+        "Tonalität hören",
+        "Setze Akkorde in Beziehung zu einem tonalen Zentrum."
+      ],
+      [
+        "Erste Funktionen",
+        "Höre Ruhe, Bewegung und Spannung in einfachen harmonischen Zusammenhängen."
+      ]
+    ]
+  },
+  {
+    "id": "harmonie-2",
+    "branch": "harmonie",
+    "title": "Harmonie 2 · Akkordfolgen und harmonische Sprache",
+    "description": "Diatonische Akkorde, Stufenbezeichnungen, Umkehrungen und Kadenzen. Melodien harmonisieren und Songs analysieren.",
+    "url": "kurs-harmonie-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "harmonie-1",
+      "melodie-2"
+    ],
+    "modules": [
+      [
+        "Akkorde einer Tonart",
+        "Baue diatonische Akkorde und benenne sie mit römischen Stufenzahlen."
+      ],
+      [
+        "Verbindungen und Kadenzen",
+        "Erkenne häufige Akkordfolgen und ihre musikalische Wirkung."
+      ],
+      [
+        "Umkehrungen",
+        "Verändere den Basston eines Akkords und beobachte die Stimmführung."
+      ],
+      [
+        "Harmonisieren und Analysieren",
+        "Finde passende Akkorde zu einer Melodie und untersuche einen Song."
+      ]
+    ]
+  },
+  {
+    "id": "gesang-1",
+    "branch": "gesang",
+    "title": "Gesang 1 · Stütze",
+    "description": "Atmung, Druck und Luftstrom, Haltung und effiziente Stütze. Die Grundlagen einer bewussten stimmlichen Koordination.",
+    "url": "kurs-gesang-1.html",
+    "status": "draft",
+    "suggested_foundations": [
+
+    ],
+    "modules": [
+      [
+        "Haltung und Wahrnehmung",
+        "Beobachte, wie du beim Stehen und Singen Körper und Atem koordinierst."
+      ],
+      [
+        "Atem und Luftstrom",
+        "Unterscheide Einatmung, Ausatmung und den Luftstrom beim Tönen."
+      ],
+      [
+        "Stütze koordinieren",
+        "Erkunde das Zusammenspiel von Atemdruck, Luftstrom und Tongebung."
+      ],
+      [
+        "In kurzen Phrasen anwenden",
+        "Übertrage die Wahrnehmung auf einfache Töne und gesungene Phrasen."
+      ]
+    ]
+  },
+  {
+    "id": "gesang-2",
+    "branch": "gesang",
+    "title": "Gesang 2 · Intonation",
+    "description": "Töne treffen und halten, Intervalle und Tonleitern singen. Melodische Genauigkeit entwickeln und Abweichungen selbst korrigieren.",
+    "url": "kurs-gesang-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "gesang-1",
+      "melodie-1"
+    ],
+    "modules": [
+      [
+        "Referenztöne treffen",
+        "Vergleiche einen gesungenen Ton mit einer vorgegebenen Tonhöhe."
+      ],
+      [
+        "Tonhöhe halten",
+        "Höre, ob ein Ton während seiner Dauer steigt, sinkt oder stabil bleibt."
+      ],
+      [
+        "Intervalle und Tonleitern",
+        "Verbinde genaue Einzeltöne zu Intervallen und Tonfolgen."
+      ],
+      [
+        "Sich selbst korrigieren",
+        "Höre eine eigene Aufnahme und korrigiere gezielt einzelne Stellen."
+      ]
+    ]
+  },
+  {
+    "id": "gesang-3",
+    "branch": "gesang",
+    "title": "Gesang 3 · Klang",
+    "description": "Register, Resonanz, Vokale und Dynamik. Klangqualität erkunden, stilistische Entscheidungen treffen und einen vielseitigen eigenen Klang entwickeln.",
+    "url": "kurs-gesang-3.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "gesang-2"
+    ],
+    "modules": [
+      [
+        "Register kennenlernen",
+        "Nimm unterschiedliche stimmliche Einstellungen und ihre Übergänge wahr."
+      ],
+      [
+        "Resonanz und Vokale",
+        "Erkunde, wie Vokalformung den wahrgenommenen Klang verändert."
+      ],
+      [
+        "Klang und Dynamik",
+        "Gestalte Lautstärke, Klangfarbe und Ausdruck in einer Phrase."
+      ],
+      [
+        "Stilistisch entscheiden",
+        "Vergleiche verschiedene Interpretationen und wähle bewusst für deinen Song."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-1",
+    "branch": "gitarre",
+    "title": "Gitarre 1 · Prinzipien",
+    "description": "Spannung, Druck, Haltung, Greifen und Anschlagen. Koordination, Gedächtnis und eine klare Organisation des Übens.",
+    "url": "kurs-gitarre-1.html",
+    "status": "draft",
+    "suggested_foundations": [
+
+    ],
+    "modules": [
+      [
+        "Haltung und Bewegung",
+        "Beobachte deine Spielhaltung sowie Bewegungen von Händen und Armen."
+      ],
+      [
+        "Greifen und Druck",
+        "Finde für einzelne Töne einen klaren Kontakt zur Saite und zum Bund."
+      ],
+      [
+        "Anschlag und Koordination",
+        "Verbinde beide Hände in einfachen, gleichmäßigen Bewegungsfolgen."
+      ],
+      [
+        "Üben und Erinnern",
+        "Teile Aufgaben in kleine Schritte, wiederhole gezielt und organisiere dein Üben."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-2",
+    "branch": "gitarre",
+    "title": "Gitarre 2 · Melodie",
+    "description": "Zwei selbst gewählte Songs als Melodien lernen. Rhythmus und Melodieverständnis direkt auf die Gitarre übertragen.",
+    "url": "kurs-gitarre-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "gitarre-1",
+      "rhythmus-1",
+      "melodie-1"
+    ],
+    "modules": [
+      [
+        "Zwei Songs wählen",
+        "Wähle zwei Songs und finde passende, überschaubare Melodieabschnitte."
+      ],
+      [
+        "Song 1 erarbeiten",
+        "Verbinde Tonhöhen, Rhythmus und Fingersatz zur ersten Melodie."
+      ],
+      [
+        "Song 2 übertragen",
+        "Nutze denselben Arbeitsweg für die zweite Melodie."
+      ],
+      [
+        "Zusammenhängend spielen",
+        "Übe Übergänge, spiele die Melodien durch und höre eine eigene Aufnahme an."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-3",
+    "branch": "gitarre",
+    "title": "Gitarre 3 · Akkorde",
+    "description": "Dieselben zwei Songs mit Akkorden begleiten. Griffbilder, Wechsel und Begleitmuster mit deinen musikalischen Grundlagen verbinden.",
+    "url": "kurs-gitarre-3.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "gitarre-2",
+      "harmonie-1"
+    ],
+    "modules": [
+      [
+        "Akkorde der Songs",
+        "Finde die Akkorde deiner beiden Songs und lerne passende Griffbilder."
+      ],
+      [
+        "Akkordwechsel",
+        "Verbinde die Griffe in kleinen Bewegungsfolgen bei gleichmäßigem Puls."
+      ],
+      [
+        "Begleitung gestalten",
+        "Wähle ein einfaches Anschlagmuster und passe es an den Song an."
+      ],
+      [
+        "Musikalisch verbinden",
+        "Spiele beide Songs mit Akkorden und verbinde dabei Rhythmus, Melodie und Harmonie."
+      ]
+    ]
+  },
+  {
+    "id": "philosophie-1",
+    "branch": "philosophie",
+    "title": "Philosophie 1 · Was ist Musik?",
+    "description": "Warum Menschen Musik machen: Hören, Ausdruck, Schönheit, Bedeutung, Kreativität und Aufführung als offene Fragen erkunden.",
+    "url": "kurs-philosophie-1.html",
+    "status": "draft",
+    "suggested_foundations": [
+
+    ],
+    "modules": [
+      [
+        "Musik und Klang",
+        "Vergleiche Situationen, in denen Klänge als Musik gehört werden."
+      ],
+      [
+        "Ausdruck und Bedeutung",
+        "Frage, was Musik ausdrücken kann und welche Rolle Zuhörende dabei spielen."
+      ],
+      [
+        "Schönheit und Kreativität",
+        "Untersuche unterschiedliche Maßstäbe und Wege, musikalisch Neues zu schaffen."
+      ],
+      [
+        "Musik als Handlung",
+        "Denke über Aufführung, gemeinsames Musizieren und bewusstes Zuhören nach."
+      ]
+    ]
+  },
+  {
+    "id": "philosophie-2",
+    "branch": "philosophie",
+    "title": "Philosophie 2 · Musik in der Menschheitsgeschichte",
+    "description": "Entwicklung und gesellschaftliche Rolle von Musik: historische Traditionen, geistliche und weltliche Musik, Technik, Aufnahme und Gegenwart.",
+    "url": "kurs-philosophie-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "philosophie-1"
+    ],
+    "modules": [
+      [
+        "Musik und Gemeinschaft",
+        "Betrachte musikalische Praktiken in verschiedenen gesellschaftlichen Zusammenhängen."
+      ],
+      [
+        "Traditionen und Weitergabe",
+        "Vergleiche mündliche Überlieferung, Notation und historische Lernwege."
+      ],
+      [
+        "Geistlich und weltlich",
+        "Untersuche Funktionen von Musik in Ritual, Alltag und öffentlichem Leben."
+      ],
+      [
+        "Technik und Gegenwart",
+        "Verfolge, wie Instrumente, Tonaufnahme und digitale Medien das Musizieren verändern."
+      ]
+    ]
+  }
+]
