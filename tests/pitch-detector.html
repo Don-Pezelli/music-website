@@ -1,0 +1,10 @@
+<!doctype html><html><body><script src="../scripts/pitch-detector.js"></script><script>
+try {
+const p=PitchDetector,assert=(x,m)=>{if(!x)throw Error(m)};let cases=0;
+for(const rate of [44100,48000])for(const freq of [65.406,82.407,110,130.813,220,261.626,440,523.251,880,1046.502])for(const type of ['sine','harmonics']){
+ const samples=new Float32Array(8192);for(let i=0;i<samples.length;i++){const phase=2*Math.PI*freq*i/rate;samples[i]=type==='sine'?.2*Math.sin(phase):.07*Math.sin(phase)+.15*Math.sin(phase*2)+.04*Math.sin(phase*3);}
+ const r=p.detect(samples,rate);assert(r,'missing '+freq);assert(Math.abs(1200*Math.log2(r.hz/freq))<8,'pitch error '+freq+' '+r.hz);cases++;
+}
+assert(p.detect(new Float32Array(8192),48000)===null,'silence');let noise=new Float32Array(8192);let seed=12345;for(let i=0;i<noise.length;i++){seed=(seed*1664525+1013904223)>>>0;noise[i]=.2*(seed/4294967296-.5);}assert(p.detect(noise,48000)===null,'noise');assert(p.name(71)==='H4','German H');assert(p.name(60)==='C4','C4');document.body.dataset.test='PASS '+cases+' synthetic pitch cases; silence, noise, German note names';document.body.append(document.body.dataset.test);
+}catch(e){document.body.dataset.test='FAIL '+e.message;document.body.append(document.body.dataset.test)}
+</script></body></html>

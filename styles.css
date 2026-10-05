@@ -86,6 +86,7 @@ html.image-viewer-open{overflow:hidden}
 .position-colors>div>span:nth-of-type(2){background:#f8df69;color:#202e31}
 .position-colors>div>span:nth-of-type(3){background:#f2aaaa;color:#202e31}
 .position-colors>div>span:nth-of-type(4){background:#99cf94;color:#202e31}
+.foot-count-diagram{margin:18px 0 28px}.foot-count-diagram svg{display:block;width:100%;height:auto;max-width:640px;margin-inline:auto}
 @media print{.position-colors>div>span{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
 /* Digital Music School: curriculum overview and individual course drafts. */
@@ -93,3 +94,63 @@ html.image-viewer-open{overflow:hidden}
 @media(max-width:1000px){.school-heading{gap:30px}.school-summary{padding:24px}.school-summary>div{grid-template-columns:auto 1fr;gap:12px 18px}.branch-navigation{grid-template-columns:repeat(3,minmax(0,1fr))}.school-pathways{gap:30px;padding:30px}.school-workflow{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.mock-hero{gap:30px}.mock-layout{grid-template-columns:190px minmax(0,1fr);gap:30px}.mock-practice{grid-template-columns:1fr}}
 @media(max-width:680px){.school-main{padding-top:35px}.school-heading{grid-template-columns:1fr;gap:24px;padding-bottom:30px}.school-heading h1{font-size:46px}.school-summary{padding:22px}.school-summary>div{grid-template-columns:auto 1fr auto 1fr;margin:18px 0}.school-summary strong{font-size:38px}.school-summary>p{max-width:none}.branch-navigation{gap:6px}.branch-navigation a{font-size:11px;padding:10px 7px;gap:5px}.catalog-branch{padding-top:38px}.branch-heading{grid-template-columns:1fr;gap:12px}.branch-heading h2{font-size:30px}.branch-heading-art{display:none}.catalog-grid{grid-template-columns:1fr}.catalog-card{padding:22px}.catalog-card h3{font-size:23px}.catalog-card-meta{margin-bottom:20px}.catalog-chapters>div{grid-template-columns:1fr}.school-pathways{grid-template-columns:1fr;padding:24px;gap:26px;margin-top:40px}.school-workflow{grid-template-columns:1fr 1fr;gap:22px 18px}.school-method{padding:36px 0}.school-method h2,.school-pathways h2{font-size:26px}.mock-course{padding-top:26px}.mock-hero{grid-template-columns:1fr;padding:30px 0;gap:24px}.mock-hero h1{font-size:38px;overflow-wrap:break-word}.mock-art{padding:24px}.mock-art .branch-motif{height:100px}.mock-art strong{font-size:54px}.mock-layout{grid-template-columns:1fr;gap:0}.mock-sidebar{position:static;padding-top:16px}.mock-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.mock-sidebar>p{display:none}.mock-content>section{padding:28px 0}.mock-content h2{font-size:25px}.mock-module summary{padding:16px;gap:10px}.mock-module summary small{display:none}.mock-module summary strong{font-size:14px}.mock-module>div{padding:16px}.mock-foundations{padding:20px}.mock-next{padding:24px}}
 @media print{.branch-navigation,.school-summary,.mock-sidebar,.catalog-open,.catalog-chapters{display:none}.school-heading,.mock-hero{display:block;padding:20px 0}.school-main{padding-top:20px}.catalog-branch{padding-top:25px}.catalog-grid{grid-template-columns:1fr 1fr}.catalog-card{break-inside:avoid;padding:16px}.branch-heading-art{display:none}.branch-heading{display:block}.school-pathways{display:block;margin-top:20px}.parallel-path{margin-top:20px}.mock-art{display:none}.mock-layout{display:block}.mock-content{max-width:none}.school-workflow{grid-template-columns:repeat(3,1fr)}.mock-module,.mock-practice>div{break-inside:avoid}.mock-art,.catalog-topics>span,.mock-practice>div{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+/* Interactive completion exercise: values use real Bravura outlines. */
+.bar-completion { margin: 24px 0 40px; padding: 24px; border: 1px solid #b9c6be; border-radius: 16px; background: #f0f4ee; }
+.bar-completion h5, .bar-completion h6 { margin: 0 0 12px; font-size: 1.1rem; }
+.bar-completion button { font: inherit; color: #202e31; cursor: pointer; border: 1px solid #aebbb3; background: white; border-radius: 8px; padding: 10px 14px; }
+.bar-completion button:focus-visible { outline: 3px solid #c44929; outline-offset: 3px; }
+.bar-completion button:hover { background: #e2eadd; }
+.bar-completion button:disabled { opacity: .45; cursor: default; }
+.completion-tabs, .completion-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+.completion-tabs button[aria-pressed="true"], .completion-actions [data-check] { background: #202e31; color: white; }
+.completion-palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; margin-bottom: 24px; }
+.completion-palette button { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; font-size: .8rem; }
+.completion-palette svg, .completion-note svg { display: block; width: 42px; height: 66px; }
+.completion-sequence { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 100px; background: white; border: 1px dashed #7d8f80; border-radius: 8px; padding: 12px; }
+.completion-sequence p { color: #53645a; margin: 0; }
+.completion-sequence .completion-note { padding: 2px; }
+.bar-completion .completion-hint { font-size: .85rem; margin-top: 8px; }
+.completion-feedback[data-result] { padding: 12px; border-radius: 8px; background: #fff2da; }
+.completion-feedback[data-result="correct"] { background: #dcebd8; }
+.completion-summary:empty, .completion-feedback:empty { display: none; }
+@media (max-width: 500px) { .bar-completion { padding: 16px; } .completion-palette { grid-template-columns: repeat(3, minmax(0, 1fr)); } .completion-tabs button { flex: 1; padding: 10px; } }
+
+.completion-score { position: relative; width: 100%; min-width: 720px; line-height: 0; }
+.completion-score > img { display: block; width: 100%; height: auto; }
+.completion-gap { position: absolute; display: flex; align-items: center; justify-content: center; gap: 0; padding: 2px; background: #f4f7ed; color: #202e31; border: 2px dashed #65796b; border-radius: 5px; cursor: pointer; font: 22px Arial, sans-serif; }
+.completion-gap:hover { background: #e2eadd; border-color: #c44929; }
+.completion-gap:focus-visible { outline: 3px solid #c44929; outline-offset: 3px; }
+.completion-gap[data-result="correct"] { background: #dcebd8; border-style: solid; }
+.completion-gap span { flex: 1; min-width: 0; height: 100%; max-width: 42px; }
+.completion-gap svg { width: 100%; height: 100%; }
+.completion-dialog { box-sizing: border-box; width: min(640px, calc(100vw - 24px)); max-height: 85vh; overflow: auto; margin: auto; padding: 24px; border: 1px solid #aebbb3; }
+.completion-dialog::backdrop { background: rgb(20 30 25 / .45); }
+.completion-close { display: block; margin: 0 0 20px auto; }
+.completion-dialog .completion-palette { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 500px) { .completion-dialog { padding: 16px; } .completion-dialog .completion-palette { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.completion-sequence { overflow-x: auto; }
+.completion-sequence > .completion-notation { flex: 0 0 auto; max-width: none; }
+.completion-notation [data-note] { cursor: pointer; }
+.completion-notation [data-note]:hover .completion-hit { fill: #dcebd8; }
+.completion-notation [data-note]:focus { outline: none; }
+.completion-notation [data-note]:focus-visible .completion-hit { stroke: #c44929; stroke-width: 2; }
+.completion-gap { padding: 0; }
+/* Preserve the source score coordinates, including the full gap viewport. */
+.completion-gap { border: 0; outline: 2px dashed #65796b; outline-offset: -2px; }
+.completion-gap[data-result="correct"] { outline-style: solid; }
+.completion-gap:focus-visible { outline: 3px solid #c44929; outline-offset: 3px; }
+.completion-gap > .completion-notation { display: block; flex: none; overflow: hidden; }
+/* Long German course titles must wrap on narrow screens. */
+.lesson-heading h1 { overflow-wrap: anywhere; }
+
+/* Reveal the next chapter after every reflection goal is checked. */
+#next-chapter-card[hidden] { display: none; }
+#next-chapter-card.is-celebrating { position: relative; animation: chapter-unlock .7s cubic-bezier(.2,.8,.2,1) both; }
+#next-chapter-card.is-celebrating::after { content: "✦  ✧  ✦"; position: absolute; left: 50%; top: -1.4em; color: #c44929; font-size: 18px; letter-spacing: .2em; white-space: nowrap; pointer-events: none; animation: chapter-sparkle 1.2s ease-out both; }
+.checklist-prompt { color: var(--orange) !important; }
+.exercise-goals[data-unlock-goals] input.checklist-visible:not(:checked) { animation: checkbox-nudge .8s ease-in-out .1s 2; }
+@keyframes chapter-unlock { 0% { opacity: 0; transform: translateY(10px) scale(.94); } 55% { opacity: 1; transform: translateY(-2px) scale(1.04); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes chapter-sparkle { 0% { opacity: 0; transform: translate(-50%, 10px) scale(.65); } 35% { opacity: 1; transform: translate(-50%, 0) scale(1.1); } 100% { opacity: 0; transform: translate(-50%, -18px) scale(1); } }
+@keyframes checkbox-nudge { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196,73,41,0); } 45%, 65% { transform: scale(1.14); box-shadow: 0 0 0 5px rgba(196,73,41,.22); } }
+@media(prefers-reduced-motion:reduce) { #next-chapter-card.is-celebrating, #next-chapter-card.is-celebrating::after, .exercise-goals[data-unlock-goals] input.checklist-visible:not(:checked) { animation: none; } }

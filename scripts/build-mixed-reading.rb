@@ -11,7 +11,7 @@ end
 a=[0.25,0.25,0.5]; b=[0.5,0.25,0.25]; e=[0.5,0.5]; full=[0.25]*4
 scores={
  1=>[[a,b,1,'r1'],[2,a,'r1'],['r2',b,e],[4]],
- 2=>[['r4'],[e,a,'r0.5',0.5,1],[b,'r1',a,1],[2,'r1',e]],
+ 2=>[[a,b,e,1],[e,a,'r0.5',0.5,1],[b,'r1',a,1],[2,'r1',e]],
  3=>[[a,'r0.5',0.5,b,1],['r2',a,b],[4],['r1',e,full,0.5,'r0.5']]
 }
 names={4=>'ganze Note',2=>'halbe Note',1=>'Viertelnote',0.5=>'Achtelnote',0.25=>'Sechzehntelnote','r4'=>'ganze Pause','r2'=>'halbe Pause','r1'=>'Viertelpause','r0.5'=>'Achtelpause'}
