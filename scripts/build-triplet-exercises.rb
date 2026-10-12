@@ -104,6 +104,12 @@ end
   b=[focus]*4;reading<<b;draw("k#{chapter}-l#{lesson}-lesen-5",[b],"Kapitel #{chapter}, Lektion #{lesson}: alle vier Schläge")
   if chapter==1
    b=[focus,n(6),focus,n(6)]
+  elsif chapter==2 && lesson==1
+   b=[t('.xx'),e,t('.xx'),n(6)]
+  elsif chapter==2 && lesson==2
+   b=[t('.xx'),r(6),t('..x'),t('..x')]
+  elsif chapter==2 && lesson==3
+   b=[e,t('xxx'),t('xx.'),t('xx.')]
   else
    isolated={1=>'.x.',2=>'x..',3=>'.x.'}[lesson];b=[t(isolated)]*4
   end
@@ -114,7 +120,17 @@ end
  patterns=chapter==1 ? [t('xxx',accent:0),t('xxx',accent:1),t('xxx',accent:2)] : [t('.xx'),t('x.x'),t('xx.')]
  a,b,c=patterns
  readings={1=>[[a,e,n(6),b],[n(12),c,r(6)],[b,a,e,r(6)],[n(24)]],2=>[[e,c,b,n(6)],[r(12),a,e],[r(24)],[b,e,c,a]],3=>[[c,a,b,e],[n(12),r(6),a],[e,b,n(6),c],[r(6),a,c,n(6)]]}
- readings.each{|i,bars|draw("k#{chapter}-l4-lesen-#{i}",bars,"Gemischte Triolen, Leseübung #{i}: vier Takte")}
+ readings[2][2]=[n(6),t('x.x'),e,n(6)] if chapter==2
+ readings.each do |i,bars|
+  if chapter==2
+   bars.each_slice(2).with_index do |pair,part|
+    number=(i-1)*2+part+1
+    draw("k#{chapter}-l4-lesen-#{number}",pair,"Gemischte Triolen, Leseübung #{number}: zwei Takte")
+   end
+  else
+   draw("k#{chapter}-l4-lesen-#{i}",bars,"Gemischte Triolen, Leseübung #{i}: vier Takte")
+  end
+ end
  [[b,r(6),e,a],[e,a,n(12)],[r(6),c,e,b]].each_with_index{|bar,i|raise 'Copied reading' if readings.values.flatten(1).include?(bar);draw("k#{chapter}-l4-hoeren-#{i+1}",[bar],"Gemischte Triolen, Lösung Höraufgabe #{i+1}: ein Takt")}
  {
  1=>[[a,gap(6),n(6),r(6)],[n(12),gap(6),b],[gap(12),c,e],[b,n(6),gap(12)]],

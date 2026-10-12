@@ -5094,36 +5094,32 @@
   },
   "k2-l1-lesen-6": {
     "height": 190,
-    "description": "Takt 1: Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3",
+    "description": "Takt 1: Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 1; Viertelnote",
     "bars": [
       [
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": ".x.",
+          "pattern": ".xx",
           "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
         },
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": ".x.",
+          "pattern": ".xx",
           "accent": null
         },
         {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".x.",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".x.",
-          "accent": null
+          "kind": "note",
+          "duration": 6
         }
       ]
     ],
-    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null}]]",
+    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"note\",\"duration\":6}]]",
     "events": [
       {
         "bar": 1,
@@ -5145,32 +5141,24 @@
         "bar": 1,
         "onset": 4,
         "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 6,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 8,
-        "duration": 2,
         "kind": "note",
         "triplet": true,
         "accent": false
       },
       {
         "bar": 1,
-        "onset": 10,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
+        "onset": 6,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 9,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
         "accent": false
       },
       {
@@ -5193,33 +5181,16 @@
         "bar": 1,
         "onset": 16,
         "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 18,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 20,
-        "duration": 2,
         "kind": "note",
         "triplet": true,
         "accent": false
       },
       {
         "bar": 1,
-        "onset": 22,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
+        "onset": 18,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
       }
     ]
   },
@@ -5901,42 +5872,40 @@
   },
   "k2-l2-lesen-6": {
     "height": 190,
-    "description": "Takt 1: Achteltriole mit Pause auf Position 2 und 3; Achteltriole mit Pause auf Position 2 und 3; Achteltriole mit Pause auf Position 2 und 3; Achteltriole mit Pause auf Position 2 und 3",
+    "description": "Takt 1: Achteltriole mit Pause auf Position 1; Viertelpause; Achteltriole mit Pause auf Position 1 und 2; Achteltriole mit Pause auf Position 1 und 2",
     "bars": [
       [
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": "x..",
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "rest",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "..x",
           "accent": null
         },
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": "x..",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x..",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x..",
+          "pattern": "..x",
           "accent": null
         }
       ]
     ],
-    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x..\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x..\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x..\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x..\",\"accent\":null}]]",
+    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"rest\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"..x\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"..x\",\"accent\":null}]]",
     "events": [
       {
         "bar": 1,
         "onset": 0,
         "duration": 2,
-        "kind": "note",
+        "kind": "rest",
         "triplet": true,
         "accent": false
       },
@@ -5944,7 +5913,7 @@
         "bar": 1,
         "onset": 2,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -5952,39 +5921,22 @@
         "bar": 1,
         "onset": 4,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
       {
         "bar": 1,
         "onset": 6,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 8,
-        "duration": 2,
+        "duration": 6,
         "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 10,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
+        "triplet": false
       },
       {
         "bar": 1,
         "onset": 12,
         "duration": 2,
-        "kind": "note",
+        "kind": "rest",
         "triplet": true,
         "accent": false
       },
@@ -6000,7 +5952,7 @@
         "bar": 1,
         "onset": 16,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -6008,7 +5960,7 @@
         "bar": 1,
         "onset": 18,
         "duration": 2,
-        "kind": "note",
+        "kind": "rest",
         "triplet": true,
         "accent": false
       },
@@ -6024,7 +5976,7 @@
         "bar": 1,
         "onset": 22,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       }
@@ -6708,66 +6660,56 @@
   },
   "k2-l3-lesen-6": {
     "height": 190,
-    "description": "Takt 1: Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3; Achteltriole mit Pause auf Position 1 und 3",
+    "description": "Takt 1: zwei gerade Achtelnoten; Achteltriole; Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 3",
     "bars": [
       [
         {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
           "kind": "triplet",
           "duration": 6,
-          "pattern": ".x.",
+          "pattern": "xxx",
           "accent": null
         },
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": ".x.",
+          "pattern": "xx.",
           "accent": null
         },
         {
           "kind": "triplet",
           "duration": 6,
-          "pattern": ".x.",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".x.",
+          "pattern": "xx.",
           "accent": null
         }
       ]
     ],
-    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".x.\",\"accent\":null}]]",
+    "signature": "[[{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xxx\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null}]]",
     "events": [
       {
         "bar": 1,
         "onset": 0,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 2,
-        "duration": 2,
+        "duration": 3,
         "kind": "note",
-        "triplet": true,
+        "triplet": false,
         "accent": false
       },
       {
         "bar": 1,
-        "onset": 4,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
+        "onset": 3,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
         "accent": false
       },
       {
         "bar": 1,
         "onset": 6,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -6783,7 +6725,7 @@
         "bar": 1,
         "onset": 10,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -6791,7 +6733,7 @@
         "bar": 1,
         "onset": 12,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -6815,7 +6757,7 @@
         "bar": 1,
         "onset": 18,
         "duration": 2,
-        "kind": "rest",
+        "kind": "note",
         "triplet": true,
         "accent": false
       },
@@ -7079,910 +7021,6 @@
       },
       {
         "bar": 1,
-        "onset": 18,
-        "duration": 6,
-        "kind": "note",
-        "triplet": false
-      }
-    ]
-  },
-  "k2-l4-lesen-1": {
-    "height": 380,
-    "description": "Takt 1: Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten; Viertelnote; Achteltriole mit Pause auf Position 2. Takt 2: Halbenote; Achteltriole mit Pause auf Position 3; Viertelpause. Takt 3: Achteltriole mit Pause auf Position 2; Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten; Viertelpause. Takt 4: Ganzenote",
-    "bars": [
-      [
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        },
-        {
-          "kind": "eighths",
-          "duration": 6
-        },
-        {
-          "kind": "note",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        }
-      ],
-      [
-        {
-          "kind": "note",
-          "duration": 12
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        },
-        {
-          "kind": "rest",
-          "duration": 6
-        }
-      ],
-      [
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        },
-        {
-          "kind": "eighths",
-          "duration": 6
-        },
-        {
-          "kind": "rest",
-          "duration": 6
-        }
-      ],
-      [
-        {
-          "kind": "note",
-          "duration": 24
-        }
-      ]
-    ],
-    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"note\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null}],[{\"kind\":\"note\",\"duration\":12},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"rest\",\"duration\":6}],[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"rest\",\"duration\":6}],[{\"kind\":\"note\",\"duration\":24}]]",
-    "events": [
-      {
-        "bar": 1,
-        "onset": 0,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 2,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 4,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 6,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 9,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 12,
-        "duration": 6,
-        "kind": "note",
-        "triplet": false
-      },
-      {
-        "bar": 1,
-        "onset": 18,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 20,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 22,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 0,
-        "duration": 12,
-        "kind": "note",
-        "triplet": false
-      },
-      {
-        "bar": 2,
-        "onset": 12,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 14,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 16,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 18,
-        "duration": 6,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 3,
-        "onset": 0,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 2,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 4,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 6,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 8,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 10,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 12,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 15,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 18,
-        "duration": 6,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 4,
-        "onset": 0,
-        "duration": 24,
-        "kind": "note",
-        "triplet": false
-      }
-    ]
-  },
-  "k2-l4-lesen-2": {
-    "height": 380,
-    "description": "Takt 1: zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 2; Viertelnote. Takt 2: Halbepause; Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten. Takt 3: Ganzepause. Takt 4: Achteltriole mit Pause auf Position 2; zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 1",
-    "bars": [
-      [
-        {
-          "kind": "eighths",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        },
-        {
-          "kind": "note",
-          "duration": 6
-        }
-      ],
-      [
-        {
-          "kind": "rest",
-          "duration": 12
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        },
-        {
-          "kind": "eighths",
-          "duration": 6
-        }
-      ],
-      [
-        {
-          "kind": "rest",
-          "duration": 24
-        }
-      ],
-      [
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        },
-        {
-          "kind": "eighths",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        }
-      ]
-    ],
-    "signature": "[[{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"note\",\"duration\":6}],[{\"kind\":\"rest\",\"duration\":12},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6}],[{\"kind\":\"rest\",\"duration\":24}],[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null}]]",
-    "events": [
-      {
-        "bar": 1,
-        "onset": 0,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 3,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 6,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 8,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 10,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 12,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 14,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 16,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 18,
-        "duration": 6,
-        "kind": "note",
-        "triplet": false
-      },
-      {
-        "bar": 2,
-        "onset": 0,
-        "duration": 12,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 2,
-        "onset": 12,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 14,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 16,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 18,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 21,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 0,
-        "duration": 24,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 4,
-        "onset": 0,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 2,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 4,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 6,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 9,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 12,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 14,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 16,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 18,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 20,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 22,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      }
-    ]
-  },
-  "k2-l4-lesen-3": {
-    "height": 380,
-    "description": "Takt 1: Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 1; Achteltriole mit Pause auf Position 2; zwei gerade Achtelnoten. Takt 2: Halbenote; Viertelpause; Achteltriole mit Pause auf Position 1. Takt 3: zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 2; Viertelnote; Achteltriole mit Pause auf Position 3. Takt 4: Viertelpause; Achteltriole mit Pause auf Position 1; Achteltriole mit Pause auf Position 3; Viertelnote",
-    "bars": [
-      [
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        },
-        {
-          "kind": "eighths",
-          "duration": 6
-        }
-      ],
-      [
-        {
-          "kind": "note",
-          "duration": 12
-        },
-        {
-          "kind": "rest",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        }
-      ],
-      [
-        {
-          "kind": "eighths",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "x.x",
-          "accent": null
-        },
-        {
-          "kind": "note",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        }
-      ],
-      [
-        {
-          "kind": "rest",
-          "duration": 6
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": ".xx",
-          "accent": null
-        },
-        {
-          "kind": "triplet",
-          "duration": 6,
-          "pattern": "xx.",
-          "accent": null
-        },
-        {
-          "kind": "note",
-          "duration": 6
-        }
-      ]
-    ],
-    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6}],[{\"kind\":\"note\",\"duration\":12},{\"kind\":\"rest\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null}],[{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"note\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null}],[{\"kind\":\"rest\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"note\",\"duration\":6}]]",
-    "events": [
-      {
-        "bar": 1,
-        "onset": 0,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 2,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 4,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 6,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 8,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 10,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 12,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 14,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 16,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 18,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 1,
-        "onset": 21,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 0,
-        "duration": 12,
-        "kind": "note",
-        "triplet": false
-      },
-      {
-        "bar": 2,
-        "onset": 12,
-        "duration": 6,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 2,
-        "onset": 18,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 20,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 2,
-        "onset": 22,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 0,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 3,
-        "duration": 3,
-        "kind": "note",
-        "triplet": false,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 6,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 8,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 10,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 12,
-        "duration": 6,
-        "kind": "note",
-        "triplet": false
-      },
-      {
-        "bar": 3,
-        "onset": 18,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 20,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 3,
-        "onset": 22,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 0,
-        "duration": 6,
-        "kind": "rest",
-        "triplet": false
-      },
-      {
-        "bar": 4,
-        "onset": 6,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 8,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 10,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 12,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 14,
-        "duration": 2,
-        "kind": "note",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
-        "onset": 16,
-        "duration": 2,
-        "kind": "rest",
-        "triplet": true,
-        "accent": false
-      },
-      {
-        "bar": 4,
         "onset": 18,
         "duration": 6,
         "kind": "note",
@@ -9764,6 +8802,998 @@
       },
       {
         "bar": 1,
+        "onset": 18,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      }
+    ]
+  },
+  "k2-l4-lesen-1": {
+    "height": 190,
+    "description": "Takt 1: Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten; Viertelnote; Achteltriole mit Pause auf Position 2. Takt 2: Halbenote; Achteltriole mit Pause auf Position 3; Viertelpause",
+    "bars": [
+      [
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "note",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        }
+      ],
+      [
+        {
+          "kind": "note",
+          "duration": 12
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        },
+        {
+          "kind": "rest",
+          "duration": 6
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"note\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null}],[{\"kind\":\"note\",\"duration\":12},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"rest\",\"duration\":6}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 2,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 4,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 9,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 20,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 22,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 12,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 12,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 14,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 16,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 18,
+        "duration": 6,
+        "kind": "rest",
+        "triplet": false
+      }
+    ]
+  },
+  "k2-l4-lesen-2": {
+    "height": 190,
+    "description": "Takt 1: Achteltriole mit Pause auf Position 2; Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten; Viertelpause. Takt 2: Ganzenote",
+    "bars": [
+      [
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "rest",
+          "duration": 6
+        }
+      ],
+      [
+        {
+          "kind": "note",
+          "duration": 24
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"rest\",\"duration\":6}],[{\"kind\":\"note\",\"duration\":24}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 2,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 4,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 8,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 10,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 15,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 6,
+        "kind": "rest",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 24,
+        "kind": "note",
+        "triplet": false
+      }
+    ]
+  },
+  "k2-l4-lesen-3": {
+    "height": 190,
+    "description": "Takt 1: zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 2; Viertelnote. Takt 2: Halbepause; Achteltriole mit Pause auf Position 1; zwei gerade Achtelnoten",
+    "bars": [
+      [
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "note",
+          "duration": 6
+        }
+      ],
+      [
+        {
+          "kind": "rest",
+          "duration": 12
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"note\",\"duration\":6}],[{\"kind\":\"rest\",\"duration\":12},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 3,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 8,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 10,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 14,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 16,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 12,
+        "kind": "rest",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 12,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 14,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 16,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 18,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 21,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      }
+    ]
+  },
+  "k2-l4-lesen-4": {
+    "height": 190,
+    "description": "Takt 1: Viertelnote; Achteltriole mit Pause auf Position 2; zwei gerade Achtelnoten; Viertelnote. Takt 2: Achteltriole mit Pause auf Position 2; zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 1",
+    "bars": [
+      [
+        {
+          "kind": "note",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "note",
+          "duration": 6
+        }
+      ],
+      [
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"note\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"note\",\"duration\":6}],[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 8,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 10,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 15,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 2,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 4,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 6,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 9,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 12,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 14,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 16,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 18,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 20,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 22,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      }
+    ]
+  },
+  "k2-l4-lesen-5": {
+    "height": 190,
+    "description": "Takt 1: Achteltriole mit Pause auf Position 3; Achteltriole mit Pause auf Position 1; Achteltriole mit Pause auf Position 2; zwei gerade Achtelnoten. Takt 2: Halbenote; Viertelpause; Achteltriole mit Pause auf Position 1",
+    "bars": [
+      [
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "eighths",
+          "duration": 6
+        }
+      ],
+      [
+        {
+          "kind": "note",
+          "duration": 12
+        },
+        {
+          "kind": "rest",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"eighths\",\"duration\":6}],[{\"kind\":\"note\",\"duration\":12},{\"kind\":\"rest\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 2,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 4,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 8,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 10,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 14,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 16,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 21,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 12,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 12,
+        "duration": 6,
+        "kind": "rest",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 18,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 20,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 22,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      }
+    ]
+  },
+  "k2-l4-lesen-6": {
+    "height": 190,
+    "description": "Takt 1: zwei gerade Achtelnoten; Achteltriole mit Pause auf Position 2; Viertelnote; Achteltriole mit Pause auf Position 3. Takt 2: Viertelpause; Achteltriole mit Pause auf Position 1; Achteltriole mit Pause auf Position 3; Viertelnote",
+    "bars": [
+      [
+        {
+          "kind": "eighths",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "x.x",
+          "accent": null
+        },
+        {
+          "kind": "note",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        }
+      ],
+      [
+        {
+          "kind": "rest",
+          "duration": 6
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": ".xx",
+          "accent": null
+        },
+        {
+          "kind": "triplet",
+          "duration": 6,
+          "pattern": "xx.",
+          "accent": null
+        },
+        {
+          "kind": "note",
+          "duration": 6
+        }
+      ]
+    ],
+    "signature": "[[{\"kind\":\"eighths\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"x.x\",\"accent\":null},{\"kind\":\"note\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null}],[{\"kind\":\"rest\",\"duration\":6},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\".xx\",\"accent\":null},{\"kind\":\"triplet\",\"duration\":6,\"pattern\":\"xx.\",\"accent\":null},{\"kind\":\"note\",\"duration\":6}]]",
+    "events": [
+      {
+        "bar": 1,
+        "onset": 0,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 3,
+        "duration": 3,
+        "kind": "note",
+        "triplet": false,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 6,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 8,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 10,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 12,
+        "duration": 6,
+        "kind": "note",
+        "triplet": false
+      },
+      {
+        "bar": 1,
+        "onset": 18,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 20,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 1,
+        "onset": 22,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 0,
+        "duration": 6,
+        "kind": "rest",
+        "triplet": false
+      },
+      {
+        "bar": 2,
+        "onset": 6,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 8,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 10,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 12,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 14,
+        "duration": 2,
+        "kind": "note",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
+        "onset": 16,
+        "duration": 2,
+        "kind": "rest",
+        "triplet": true,
+        "accent": false
+      },
+      {
+        "bar": 2,
         "onset": 18,
         "duration": 6,
         "kind": "note",
