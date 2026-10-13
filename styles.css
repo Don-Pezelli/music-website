@@ -234,4 +234,5 @@ html.image-viewer-open{overflow:hidden}
 .builder-score [role="button"]:focus-visible { outline: none; stroke: #c44929; stroke-width: 2; }
 .builder-tie-symbol svg { width: 48px; height: 36px; }
 
-.fretboard-orientation { border: 0; font: inherit; cursor: pointer; margin: 0 0 14px; }
+.fretboard-controls { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 14px; }
+.fretboard-controls .button { border: 0; font: inherit; cursor: pointer; margin: 0; }
