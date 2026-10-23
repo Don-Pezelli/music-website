@@ -88,7 +88,7 @@
     "id": "rhythmus-4",
     "branch": "rhythmus",
     "title": "Rhythmus 4 · Besondere rhythmische Mittel",
-    "description": "Punktierte Werte, Haltebögen, Synkopen und Offbeats verstehen und zu komplexeren Rhythmen verbinden.",
+    "description": "Punktierte Werte, Haltebögen und Akzentzeichen verstehen und in Rhythmen anwenden.",
     "url": "kurs-rhythmus-4.html",
     "status": "draft",
     "suggested_foundations": [
@@ -105,8 +105,8 @@
         "Verbinde gleiche Tonhöhen über Notenwerte und Taktgrenzen hinweg."
       ],
       [
-        "Synkopen und Offbeats",
-        "Untersuche Einsätze und Betonungen abseits der Hauptzählzeiten."
+        "Akzentzeichen",
+        "Lies Akzente auf Hauptschlägen sowie auf Achtel- und Sechzehntelpositionen und führe sie mit einem klareren Anschlag aus."
       ],
       [
         "Rhythmen verbinden",
@@ -116,28 +116,45 @@
   },
   {
     "id": "melodie-1",
-    "branch": "melodie",
-    "title": "Melodie 1 · Tonhöhe und Intervalle",
-    "description": "Tonhöhen nachbilden, melodische Richtung erkennen und Schritte von Sprüngen unterscheiden. Intervalle hören und Melodien wiedergeben.",
+    "branch": "gehoertraining",
+    "title": "Gehörbildung 1 · Tonhöhe und Richtung",
+    "description": "Einzelne Tonhöhen hören und nachbilden. Melodische Bewegungen als höher, tiefer oder gleich erkennen.",
     "url": "kurs-melodie-1.html",
     "status": "draft",
     "suggested_foundations": [],
     "modules": [
       [
         "Tonhöhen finden",
-        "Höre einen Referenzton und vergleiche ihn mit deiner Stimme oder einem Instrument."
+        "Höre einzelne Töne und bilde sie mit deiner Stimme nach."
       ],
       [
         "Richtung und Bewegung",
-        "Unterscheide aufsteigende, absteigende und gleichbleibende Tonfolgen."
+        "Erkenne, ob der zweite Ton höher, tiefer oder gleich bleibt."
+      ]
+    ]
+  },
+  {
+    "id": "gehoerbildung-2",
+    "branch": "gehoertraining",
+    "title": "Gehörbildung 2 · Intervalle",
+    "description": "Intervalle innerhalb einer vertrauten Tonleiter hören und mit ihrem tonalen Zentrum sowie den Tonstufen verbinden.",
+    "url": "kurs-gehoerbildung-2.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "melodie-2"
+    ],
+    "modules": [
+      [
+        "Das tonale Zentrum halten",
+        "Eine vertraute Tonleiter und ihren Grundton innerlich behalten."
       ],
       [
-        "Schritte und Sprünge",
-        "Beschreibe den Abstand zwischen zwei Tönen als Intervall."
+        "Stufen verbinden",
+        "Auf- und absteigende Abstände innerhalb der Tonleiter hören."
       ],
       [
-        "Melodien wiedergeben",
-        "Höre kurze Tonfolgen, merke sie dir und gib sie wieder."
+        "Abstände vergleichen",
+        "Schritte und Sprünge erkennen und Tonstufen zuordnen."
       ]
     ]
   },
@@ -168,6 +185,35 @@
       [
         "Hören und Erfinden",
         "Notiere eine gehörte Melodie und entwickle aus einem Motiv eine eigene."
+      ]
+    ]
+  },
+  {
+    "id": "melodie-3",
+    "branch": "melodie",
+    "title": "Melodie 3 · Klangbilder hören und beschreiben",
+    "description": "Verbinde Hören und Vorstellen: Verfolge Tonbewegungen, Echos und Klangräume und beschreibe sie zunächst mit Nomen und Verben.",
+    "url": "kurs-melodie-3.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "melodie-1"
+    ],
+    "modules": [
+      [
+        "Aufmerksam hören",
+        "Tonhöhe, Klangfarbe, Lautstärke, Echo und Hall bewusst wahrnehmen."
+      ],
+      [
+        "Klang in Bewegung übersetzen",
+        "Aufsteigende, absteigende und gehaltene Töne mit räumlichen Vorstellungen verbinden."
+      ],
+      [
+        "Wiederholung und Raum hören",
+        "Echos verfolgen und Veränderungen von Lautstärke und Frequenz wahrnehmen."
+      ],
+      [
+        "Mit Nomen und Verben beschreiben",
+        "Musik zunächst ohne Adjektive beschreiben und die Worte mit dem Gehörten verbinden."
       ]
     ]
   },
@@ -412,7 +458,7 @@
     "id": "philosophie-1",
     "branch": "philosophie",
     "title": "Philosophie 1 · Was ist Musik?",
-    "description": "Warum Menschen Musik machen: Hören, Ausdruck, Schönheit, Bedeutung, Kreativität und Aufführung als offene Fragen erkunden.",
+    "description": "Warum Menschen Musik machen und wie Klänge Bedeutung annehmen: Ausdruck, Wahrnehmung, musikalische Symbolsprache, Kreativität und Aufführung erkunden.",
     "url": "kurs-philosophie-1.html",
     "status": "draft",
     "suggested_foundations": [],
@@ -432,6 +478,10 @@
       [
         "Musik als Handlung",
         "Denke über Aufführung, gemeinsames Musizieren und bewusstes Zuhören nach."
+      ],
+      [
+        "Musikalische Symbolsprache",
+        "Erkunde, wie aufsteigende, gehaltene und absteigende Töne räumliche Bilder und Bedeutungen entstehen lassen."
       ]
     ]
   },
