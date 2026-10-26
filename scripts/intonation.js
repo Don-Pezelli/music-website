@@ -43,7 +43,7 @@
       timers.push(setTimeout(()=>{if(generation!==soundGeneration)return;done?.();if(hasVoice && !stream)status('Singe den Zielton nach. Schalte dafür das Mikrofon ein.');},(muteUntil-ctx.currentTime)*1000));
     }catch(error){if(where==='ear')$('ear-feedback').textContent=error.message;else status(error.message);cancelSound();}
   }
-  const ranges={low:[36,60],middle:[48,72],high:[60,84]};
+  const ranges={low:[36,60],middle:[48,72],high:[60,84],octave:[60,72]};
   if(hasVoice){
   function setTarget(note){target=note;history=[];heldSince=0;$('target-name').textContent=pitch.name(target);$('target-note').value=String(target);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;$('voice-detail').textContent='Noch keine Messung.';status('Höre zuerst den Zielton.');}
   function populate(){const [low,high]=ranges[$('voice-range').value];$('target-note').replaceChildren();for(let n=low;n<=high;n++){const option=document.createElement('option');option.value=n;option.textContent=pitch.name(n);$('target-note').append(option);}setTarget(Math.min(high,Math.max(low,target)));}
@@ -53,11 +53,47 @@
   $('target-play').addEventListener('click',()=>play([target],'voice'));
   populate();
   }
+  const hasLargeInterval=$('large-interval-trainer');
+  let intervalStream=null,intervalSource=null,intervalAnalyser=null,intervalFrame=0,intervalHistory=[],intervalLastFrame=0,largeInterval=null,largeFirst=null;
+  function intervalStatus(message){if($('large-interval-mic-status'))$('large-interval-mic-status').textContent=message;}
+  function stopLargeIntervalMic(message='Mikrofon aus. Die Auswertung erfolgt auf deinem Gerät.'){
+    if(intervalFrame)cancelAnimationFrame(intervalFrame);intervalFrame=0;
+    if(intervalStream)intervalStream.getTracks().forEach(track=>track.stop());intervalStream=null;
+    if(intervalSource)intervalSource.disconnect();if(intervalAnalyser)intervalAnalyser.disconnect();intervalSource=intervalAnalyser=null;
+    intervalHistory=[];
+    if(hasLargeInterval){$('large-interval-mic-start').disabled=false;$('large-interval-mic-stop').disabled=true;$('large-interval-capture-first').disabled=true;$('large-interval-capture-second').disabled=true;}
+    intervalStatus(message);
+  }
+  function listenLargeInterval(time){
+    if(!intervalStream||!intervalAnalyser)return;intervalFrame=requestAnimationFrame(listenLargeInterval);if(time-intervalLastFrame<100)return;intervalLastFrame=time;
+    if(context.currentTime<muteUntil){intervalHistory=[];return;}
+    const samples=new Float32Array(intervalAnalyser.fftSize);intervalAnalyser.getFloatTimeDomainData(samples);const result=pitch.detect(samples,context.sampleRate);
+    if(!result){intervalHistory=[];return;}
+    intervalHistory.push(pitch.midi(result.hz));if(intervalHistory.length>9)intervalHistory.shift();
+  }
+  if(hasLargeInterval){
+    const firstOutput=$('large-interval-first'),secondOutput=$('large-interval-second');
+    function nextLargeInterval(){const distance=7+Math.floor(Math.random()*5),first=60+Math.floor(Math.random()*7);largeInterval={first,second:first+distance,distance,heard:false};largeFirst=null;firstOutput.textContent=secondOutput.textContent='—';$('large-interval-capture-first').disabled=true;$('large-interval-capture-second').disabled=true;$('large-interval-result').textContent='Höre das Intervall und singe die beiden Töne nacheinander.';$('large-interval-prompt').textContent='Quinte bis Septime · aufwärts';play([first,first+distance],'sequence',()=>{largeInterval.heard=true;$('large-interval-prompt').textContent='Jetzt beide Töne einzeln nachsingen und übernehmen.';$('large-interval-replay').disabled=false;$('large-interval-capture-first').disabled=!intervalStream;$('large-interval-new').disabled=false;});}
+    $('large-interval-new').addEventListener('click',()=>{if(intervalStream)intervalHistory=[];$('large-interval-replay').disabled=true;$('large-interval-new').disabled=true;nextLargeInterval();});
+    $('large-interval-replay').addEventListener('click',()=>{if(!largeInterval)return;largeInterval.heard=false;intervalHistory=[];$('large-interval-capture-first').disabled=true;$('large-interval-capture-second').disabled=true;play([largeInterval.first,largeInterval.second],'sequence',()=>{largeInterval.heard=true;$('large-interval-capture-first').disabled=!intervalStream;$('large-interval-prompt').textContent='Singe beide Töne einzeln und übernimm sie.';});});
+    $('large-interval-mic-start').addEventListener('click',async()=>{
+      if(intervalStream)return;
+      if(!navigator.mediaDevices?.getUserMedia){intervalStatus('Mikrofon nicht verfügbar. Öffne die Seite über HTTPS oder localhost.');return;}
+      $('large-interval-mic-start').disabled=true;intervalStatus('Bitte erlaube den Mikrofonzugriff im Browser.');
+      try{await audio();intervalStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});intervalSource=context.createMediaStreamSource(intervalStream);intervalAnalyser=context.createAnalyser();intervalAnalyser.fftSize=8192;intervalSource.connect(intervalAnalyser);intervalStream.getAudioTracks().forEach(track=>track.addEventListener('ended',()=>{if(intervalStream)stopLargeIntervalMic('Die Mikrofonverbindung wurde beendet.');}));intervalStatus('Mikrofon aktiv · Auswertung nur auf deinem Gerät.');$('large-interval-mic-stop').disabled=false;if(largeInterval?.heard)$('large-interval-capture-first').disabled=false;intervalFrame=requestAnimationFrame(listenLargeInterval);}
+      catch(error){stopLargeIntervalMic(error.name==='NotAllowedError'?'Mikrofonzugriff nicht erlaubt. Erlaube ihn in den Website-Einstellungen.':'Das Mikrofon konnte nicht gestartet werden. Prüfe Verbindung und Mikrofon.');}
+    });
+    $('large-interval-mic-stop').addEventListener('click',()=>stopLargeIntervalMic());
+    function captureLargeTone(){if(intervalHistory.length<3){$('large-interval-result').textContent='Ton noch nicht sicher erkannt. Singe ihn kurz und stabil, dann übernimm ihn.';return null;}const values=[...intervalHistory].sort((a,b)=>a-b),tone=values[Math.floor(values.length/2)],spread=values[values.length-1]-values[0];if(spread>1.2){$('large-interval-result').textContent='Dein Ton schwankt noch. Halte ihn kurz stabil und übernimm ihn erneut.';return null;}intervalHistory=[];return tone;}
+    $('large-interval-capture-first').addEventListener('click',()=>{if(!largeInterval?.heard)return;const tone=captureLargeTone();if(tone===null)return;largeFirst=tone;firstOutput.textContent=pitch.name(Math.round(tone));$('large-interval-capture-first').disabled=true;$('large-interval-capture-second').disabled=false;$('large-interval-result').textContent='Grundton erfasst. Singe jetzt den zweiten Ton und übernimm ihn.';});
+    $('large-interval-capture-second').addEventListener('click',()=>{if(largeFirst===null)return;const tone=captureLargeTone();if(tone===null)return;const sung=tone-largeFirst,error=sung-largeInterval.distance,hit=Math.abs(error)<=.75,detail=hit?'Richtig erkannt! Dein gesungener Abstand liegt nah genug am Zielintervall.':error<0?'Der gesungene Abstand war kleiner als das Zielintervall. Höre noch einmal hin und versuche es erneut.':'Der gesungene Abstand war größer als das Zielintervall. Höre noch einmal hin und versuche es erneut.';secondOutput.textContent=pitch.name(Math.round(tone));$('large-interval-result').textContent=`${detail} Gemessen: ${Math.abs(sung).toFixed(1).replace('.',',')} Halbtonschritte; Ziel: ${largeInterval.distance}.`;$('large-interval-capture-second').disabled=true;$('large-interval-capture-first').disabled=false;});
+  }
   if(hasEar){
   function resetEar(){cancelSound();ear=null;answered=correct=0;answers.forEach(b=>b.disabled=true);$('ear-replay').disabled=true;$('ear-feedback').textContent='Starte ein neues Tonpaar.';$('ear-progress').textContent='0 von 10 Tonpaaren beantwortet.';$('ear-new').textContent='Neues Tonpaar spielen';}
   function replay(){if(!ear)return;ear.heard=false;play(ear.notes,'ear',()=>{ear.heard=true;$('ear-new').disabled=false;$('ear-replay').disabled=false;answers.forEach(b=>b.disabled=ear.answered);$('ear-feedback').textContent=ear.feedback || 'Ist der zweite Ton höher, tiefer oder gleich?';});}
-  $('ear-new').addEventListener('click',()=>{if(answered>=10)resetEar();const distances=[5,7,12],distance=$('interval-stage')?Number($('interval-stage').value):distances[Math.floor(Math.random()*distances.length)],direction=Math.random()<.2?0:Math.random()<.5?-1:1;const first=55+Math.floor(Math.random()*13);ear={notes:[first,first+direction*distance],direction,distance,answered:false,heard:false};replay();});
+  $('ear-new').addEventListener('click',()=>{if(answered>=10)resetEar();const distances=[5,7,12];let distance;if($('interval-stage')){const range=$('interval-stage').value.split('-').map(Number);const low=range[0],high=range[1]??range[0];distance=low+Math.floor(Math.random()*(high-low+1));}else distance=distances[Math.floor(Math.random()*distances.length)];const direction=Math.random()<.2?0:Math.random()<.5?-1:1;const first=55+Math.floor(Math.random()*13);ear={notes:[first,first+direction*distance],direction,distance,answered:false,heard:false};replay();});
   $('ear-replay').addEventListener('click',replay);$('ear-reset').addEventListener('click',resetEar);if($('interval-stage'))$('interval-stage').addEventListener('change',resetEar);
+  document.querySelectorAll('[data-play-sequence]').forEach(button=>button.addEventListener('click',()=>{const notes=button.dataset.playSequence.split(',').map(Number).filter(Number.isFinite);if(notes.length)play(notes,'sequence');}));
   const intervalNames={1:'kleine Sekunde',2:'große Sekunde',3:'kleine Terz',4:'große Terz',5:'reine Quarte',7:'reine Quinte',12:'reine Oktave'};
   answers.forEach(button=>button.addEventListener('click',()=>{
     if(!ear || !ear.heard || ear.answered)return;
@@ -109,6 +145,6 @@
   $('mic-stop').addEventListener('click',()=>stopMicImpl());
   stopMic=stopMicImpl;
   }
-  function suspend(){cancelSound();if(hasVoice)stopMic();if(context?.state==='running')context.suspend().catch(()=>{});}
+  function suspend(){cancelSound();if(hasVoice)stopMic();if(hasLargeInterval)stopLargeIntervalMic('Mikrofon pausiert, weil die Seite verlassen wurde.');if(context?.state==='running')context.suspend().catch(()=>{});}
   document.addEventListener('visibilitychange',()=>{if(document.hidden)suspend();});window.addEventListener('pagehide',suspend);
 })();
