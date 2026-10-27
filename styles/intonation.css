@@ -27,3 +27,6 @@
 .melody-tuner .figure-hint{padding-top:12px;border-top:1px solid #c5d0c1}
 @media(max-width:500px){.melody-tuner .voice-settings,.melody-tuner .voice-readout{grid-template-columns:1fr}.melody-tuner .intonation-actions button{flex-basis:100%}.melody-tuner .pitch-meter{gap:6px;font-size:11px}}
 .direction-prompt{margin:0 0 14px;font-size:14px;font-weight:600;color:#48654a}
+#learning-path-cards>[aria-current="step"]{outline:3px solid #48654a;outline-offset:3px;border-radius:10px}
+#learning-path-results td,#learning-path-results th{vertical-align:top}#learning-path-results tr[data-state="retry"] td:last-child{color:#8b3823;font-weight:600}#learning-path-results tr[data-state="ready"] td:last-child{color:#48654a;font-weight:600}#learning-path-results tr[data-state="pending"] td:last-child{color:#64705e}
+.ear-station{padding:18px 0;border-top:1px solid #b6c3b5}.ear-station:first-child{border-top:0}.ear-station h3{margin-top:0}
