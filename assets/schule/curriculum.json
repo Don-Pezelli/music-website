@@ -115,11 +115,11 @@
     ]
   },
   {
-    "id": "melodie-1",
+    "id": "gehoerbildung-1",
     "branch": "gehoertraining",
     "title": "Gehörbildung 1 · Tonhöhe und Richtung",
     "description": "Einzelne Tonhöhen hören und nachbilden. Melodische Bewegungen als höher, tiefer oder gleich erkennen.",
-    "url": "kurs-melodie-1.html",
+    "url": "kurs-gehoerbildung-1.html",
     "status": "draft",
     "suggested_foundations": [],
     "modules": [
@@ -141,7 +141,7 @@
     "url": "kurs-gehoerbildung-2.html",
     "status": "draft",
     "suggested_foundations": [
-      "melodie-2"
+      "melodie-1"
     ],
     "modules": [
       [
@@ -159,14 +159,14 @@
     ]
   },
   {
-    "id": "melodie-2",
+    "id": "melodie-1",
     "branch": "melodie",
-    "title": "Melodie 2 · Tonleitern und melodischer Aufbau",
+    "title": "Melodie 1 · Tonleitern und melodischer Aufbau",
     "description": "Dur und Moll, Tonstufen und tonales Zentrum. Phrasen und Motive erkennen, Melodien notieren und eigene Ideen entwickeln.",
-    "url": "kurs-melodie-2.html",
+    "url": "kurs-melodie-1.html",
     "status": "draft",
     "suggested_foundations": [
-      "melodie-1",
+      "gehoerbildung-1",
       "rhythmus-1"
     ],
     "modules": [
@@ -183,20 +183,52 @@
         "Finde kleine musikalische Ideen und größere zusammenhängende Abschnitte."
       ],
       [
-        "Hören und Erfinden",
-        "Notiere eine gehörte Melodie und entwickle aus einem Motiv eine eigene."
+        "Hören",
+        "Höre genau hin und notiere eine Melodie, die du hörst."
+      ],
+      [
+        "Selber schreiben",
+        "Schreibe eigene Melodien aus den Tonstufen, die du kennst."
       ]
     ]
   },
   {
-    "id": "melodie-3",
+    "id": "notenschrift-1",
     "branch": "melodie",
-    "title": "Melodie 3 · Klangbilder hören und beschreiben",
+    "title": "Notenschrift 1 · Noten lesen",
+    "description": "Notensystem, Violinschlüssel, Notennamen, Vorzeichen und Bassschlüssel lesen. Als freiwillige Grundlage parallel zu Melodie 1.",
+    "url": "kurs-notenschrift-1.html",
+    "status": "draft",
+    "suggested_foundations": [],
+    "modules": [
+      [
+        "Notensystem und Violinschlüssel",
+        "Notenlinien, Zwischenräume, Tonbuchstaben und Oktaven lesen."
+      ],
+      [
+        "Noten lesen und schreiben",
+        "Tonfolgen im Violinschlüssel verfolgen und selbst notieren."
+      ],
+      [
+        "Vorzeichen und Tonarten",
+        "Kreuz, Be, Auflösungszeichen und erste Tonartvorzeichnungen verstehen."
+      ],
+      [
+        "Bassschlüssel und weitere Schlüssel",
+        "Den Bassschlüssel lesen und C-Schlüssel als Orientierung kennenlernen."
+      ]
+    ]
+  },
+  {
+    "id": "melodie-2",
+    "branch": "melodie",
+    "title": "Melodie 2 · Klangbilder hören und beschreiben",
     "description": "Verbinde Hören und Vorstellen: Verfolge Tonbewegungen, Echos und Klangräume und beschreibe sie zunächst mit Nomen und Verben.",
-    "url": "kurs-melodie-3.html",
+    "url": "kurs-melodie-2.html",
     "status": "draft",
     "suggested_foundations": [
-      "melodie-1"
+      "melodie-1",
+      "notenschrift-1"
     ],
     "modules": [
       [
@@ -255,7 +287,7 @@
     "status": "draft",
     "suggested_foundations": [
       "harmonie-1",
-      "melodie-2"
+      "melodie-1"
     ],
     "modules": [
       [

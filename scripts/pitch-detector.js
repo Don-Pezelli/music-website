@@ -14,7 +14,7 @@
     mean/=size;
     for(let i=0;i<size;i++){data[i]-=mean;energy+=data[i]*data[i];}
     const rms=Math.sqrt(energy/size);
-    if(rms<0.008) return null;
+    if(rms<0.003) return null;
     const min=Math.max(2,Math.floor(rate/1200)),max=Math.min(Math.ceil(rate/60),Math.floor(size/2)-1),window=size-max;
     const diff=new Float64Array(max+1);let cumulative=0;
     for(let lag=1;lag<=max;lag++){
@@ -22,7 +22,7 @@
       cumulative+=sum;diff[lag]=cumulative ? sum*lag/cumulative : 1;
     }
     for(let lag=min;lag<max;lag++){
-      if(diff[lag]>=0.12)continue;
+      if(diff[lag]>=0.16)continue;
       while(lag+1<max && diff[lag+1]<diff[lag])lag++;
       const a=diff[lag-1],b=diff[lag],c=diff[lag+1];
       const denominator=a-2*b+c;

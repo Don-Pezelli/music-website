@@ -76,13 +76,13 @@
   const recommendationLink = document.getElementById('learning-path-link');
   const totalEar = Object.entries(progress.earTraining).filter(([stage]) => stage !== 'all').reduce((total, [, score]) => ({ attempts: total.attempts + score.attempts, correct: total.correct + score.correct }), { attempts: 0, correct: 0 });
   const stages = [
-    { key: 'direction', label: 'Höher, tiefer oder gleich?', score: totalEar, minimum: 30, threshold: .8, href: 'melodie-1-kapitel-1.html#hoertraining', details: ['7-11', '3-7', '2-4'].map(stage => { const score = progress.earTraining[stage]; return score?.attempts ? `${earLabels[stage]} ${score.correct}/${score.attempts}` : null; }).filter(Boolean).join(' · ') },
-    { key: 'singleTones', label: 'Einzelne Töne nachsingen', score: { attempts: progress.singleTones.attempts, correct: progress.singleTones.hits }, minimum: 5, threshold: .7, href: 'melodie-1-kapitel-2.html#voice-trainer' },
-    { key: 'largeIntervals', label: 'Große Intervalle · Quinte bis Septime', score: progress.largeIntervals, minimum: 3, threshold: .75, href: 'melodie-1-kapitel-2.html#large-interval-trainer' },
-    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'melodie-1-kapitel-2.html#sequence-middleIntervals' },
-    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'melodie-1-kapitel-2.html#sequence-smallIntervals' },
-    { key: 'simpleMelodies', label: 'Einfache Melodien', score: progress.sequences.simpleMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'melodie-1-kapitel-2.html#sequence-simpleMelodies' },
-    { key: 'advancedMelodies', label: 'Anspruchsvollere Melodien', score: progress.sequences.advancedMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'melodie-1-kapitel-2.html#sequence-advancedMelodies' }
+    { key: 'direction', label: 'Höher, tiefer oder gleich?', score: totalEar, minimum: 30, threshold: .8, href: 'gehoerbildung-1-kapitel-1.html#hoertraining', details: ['7-11', '3-7', '2-4'].map(stage => { const score = progress.earTraining[stage]; return score?.attempts ? `${earLabels[stage]} ${score.correct}/${score.attempts}` : null; }).filter(Boolean).join(' · ') },
+    { key: 'singleTones', label: 'Einzelne Töne nachsingen', score: { attempts: progress.singleTones.attempts, correct: progress.singleTones.hits }, minimum: 5, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#voice-trainer' },
+    { key: 'largeIntervals', label: 'Große Intervalle · Quinte bis Septime', score: progress.largeIntervals, minimum: 3, threshold: .75, href: 'gehoerbildung-1-kapitel-2.html#large-interval-trainer' },
+    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-middleIntervals' },
+    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-smallIntervals' },
+    { key: 'simpleMelodies', label: 'Einfache Melodien', score: progress.sequences.simpleMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-simpleMelodies' },
+    { key: 'advancedMelodies', label: 'Anspruchsvollere Melodien', score: progress.sequences.advancedMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-advancedMelodies' }
   ];
   const addCell = (row, value) => { const cell = document.createElement('td'); cell.textContent = value; row.append(cell); };
   stages.forEach(stage => {

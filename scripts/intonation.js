@@ -1,9 +1,9 @@
 (() => {
   'use strict';
   const $=id=>document.getElementById(id), pitch=window.PitchDetector;
-  const hasVoice=!!$('voice-trainer'),hasEar=!!document.querySelector('[data-ear-trainer]');
+  const hasVoice=!!$('voice-trainer'),hasEar=!!document.querySelector('[data-ear-trainer]'),centerTrainer=document.querySelector('[data-tonal-center-trainer]');
   if((!hasVoice && !hasEar) || !pitch)return;
-  let context, stream, source, analyser, frame=0, request=0, pending=false, history=[],lastFrame=0,heldSince=0,stopMic=()=>{},singleToneAttemptActive=false,singleToneHitRecorded=false;
+  let context, stream, source, analyser, frame=0, request=0, pending=false, history=[],lastFrame=0,heldSince=0,stopMic=()=>{},singleToneAttemptActive=false,singleToneHitRecorded=false,centerIntervalOscillator=null,centerIntervalGain=null,centerIntervalActive=false,centerIntervalButton=null,centerScaleButton=null,centerScalePlaying=false,centerCents=null,setCenterSaveEnabled=()=>{};
   let target=60, muteUntil=0, soundGeneration=0, timers=[],oscillators=[];
   const calibration=$('tuner-calibration'),calibrationOutput=$('tuner-calibration-output');
   function calibrationCents(){return calibration ? Number(calibration.value) : 0;}
@@ -20,36 +20,64 @@
   function cancelSound(){
     soundGeneration++;timers.forEach(clearTimeout);timers=[];
     oscillators.forEach(osc=>{try{osc.stop();}catch(_){} });oscillators=[];
+    centerIntervalOscillator=null;centerIntervalGain=null;centerIntervalActive=false;if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}centerScalePlaying=false;if(centerScaleButton){centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');}centerTrainer?.querySelector('[data-center-save]')?.setAttribute('disabled','');
     muteUntil=context ? context.currentTime+.25 : 0;
   }
-  async function play(notes,where,done){
+  async function play(notes,where,done,options={}){
     cancelSound();const generation=soundGeneration;
     history=[];heldSince=0;
     try{
       const ctx=await audio();if(generation!==soundGeneration)return;
-      const start=ctx.currentTime+.05,duration=.85,gap=.35;
+      const start=ctx.currentTime+(options.startDelay??.05),duration=options.duration??.85,lastDuration=options.lastDuration??duration,gap=options.gap??.35;
       notes.forEach((note,i)=>{
         const at=start+i*(duration+gap),osc=ctx.createOscillator(),gain=ctx.createGain();
-        osc.type='sine';osc.frequency.value=pitch.frequency(note);
-        gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.16,at+.04);gain.gain.setValueAtTime(.16,at+duration-.12);gain.gain.linearRampToValueAtTime(0,at+duration);
-        osc.connect(gain);gain.connect(ctx.destination);osc.start(at);osc.stop(at+duration+.02);oscillators.push(osc);
+        const noteDuration=i===notes.length-1?lastDuration:duration;
+        osc.type=options.type??'sine';osc.frequency.value=pitch.frequency(note);
+        const volume=options.volume??.16,attack=options.attack??.04,release=options.release??.12;
+        gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(volume,at+attack);gain.gain.setValueAtTime(volume,at+noteDuration-release);gain.gain.linearRampToValueAtTime(0,at+noteDuration);
+        osc.connect(gain);gain.connect(ctx.destination);osc.start(at);osc.stop(at+noteDuration+.02);oscillators.push(osc);
         osc.onended=()=>{osc.disconnect();gain.disconnect();oscillators=oscillators.filter(o=>o!==osc);};
       });
-      muteUntil=start+(notes.length-1)*(duration+gap)+duration+.3;
+      muteUntil=start+(notes.length-1)*(duration+gap)+lastDuration+(options.muteTail??.3);
       if(hasVoice){$('detected-note').textContent='—';$('pitch-pointer').hidden=true;status('Zuhören – die Messung pausiert.');$('voice-detail').textContent='Singe erst nach dem vorgespielten Ton.';}
       if(where instanceof HTMLElement && where.matches('[data-ear-trainer]')){where.querySelector('[data-ear-new]').disabled=true;where.querySelector('[data-ear-replay]').disabled=true;where.querySelectorAll('[data-answer]').forEach(button=>button.disabled=true);where.querySelector('[data-ear-feedback]').textContent='Höre beide Töne an …';}
-      timers.push(setTimeout(()=>{if(generation!==soundGeneration)return;done?.();if(hasVoice && !stream)status('Singe den Zielton nach. Schalte dafür das Mikrofon ein.');},(muteUntil-ctx.currentTime)*1000));
+      timers.push(setTimeout(()=>{if(generation!==soundGeneration)return;done?.();if(hasVoice && !stream && !done)status(centerTrainer?`Jetzt ${pitch.name(target)} singen. Schalte dafür das Mikrofon ein.`:'Singe den Zielton nach. Schalte dafür das Mikrofon ein.');},(muteUntil-ctx.currentTime)*1000));
     }catch(error){if(where instanceof HTMLElement && where.matches('[data-ear-trainer]'))where.querySelector('[data-ear-feedback]').textContent=error.message;else status(error.message);cancelSound();}
   }
-  const ranges={low:[36,60],'octave-c2-c3':[36,48],'octave-c3-c4':[48,60],middle:[48,72],high:[60,84],octave:[60,72]};
+  const ranges={low:[36,60],'octave-c2-c3':[36,48],'octave-c3-c4':[48,60],'octave-c4-c5':[60,72],'octave-c5-c6':[72,84],middle:[48,72],high:[60,84],octave:[60,72]};
   if(hasVoice){
-  function setTarget(note){target=note;history=[];heldSince=0;singleToneAttemptActive=false;singleToneHitRecorded=false;$('target-name').textContent=pitch.name(target);$('target-note').value=String(target);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;$('voice-detail').textContent='Noch keine Messung.';status('Höre zuerst den Zielton.');}
-  function populate(){const [low,high]=ranges[$('voice-range').value];$('target-note').replaceChildren();for(let n=low;n<=high;n++){const option=document.createElement('option');option.value=n;option.textContent=pitch.name(n);$('target-note').append(option);}setTarget(Math.min(high,Math.max(low,target)));}
-  $('voice-range').addEventListener('change',()=>{cancelSound();populate();});
+  let centerPair=null,lastCenterInterval=-1,centerNextTimer=0,centerResults={total:0,byOctave:{},byInterval:{}};
+  const centerStorageKey='music-method-gehoerbildung2-tonal-center-v1';
+  const centerSteps=[2,4,5,7,9,11];
+  const centerSound={type:'triangle',duration:.48,gap:.12,volume:.14,attack:.025,release:.08,startDelay:.08,muteTail:.3};
+  try{centerResults={...centerResults,...JSON.parse(localStorage.getItem(centerStorageKey)||'{}')};}catch{}
+  setCenterSaveEnabled=enabled=>{const button=centerTrainer?.querySelector('[data-center-save]');if(button)button.disabled=!enabled;};
+  function updateCenterResults(){if(!centerTrainer)return;const octave=$('voice-range').selectedOptions[0]?.textContent||'gewählte Oktave',count=Number(centerResults.byOctave?.[$('voice-range').value])||0;centerTrainer.querySelector('[data-center-progress]').textContent=`Gespeichert: ${count} richtige Grundtöne in ${octave}. Insgesamt: ${Number(centerResults.total)||0}.`;}
+  function saveCenterResult(root,pair){const interval=Math.abs(pair[0]-pair[1]),octave=$('voice-range').value;centerResults.total=(Number(centerResults.total)||0)+1;centerResults.byOctave=centerResults.byOctave||{};centerResults.byInterval=centerResults.byInterval||{};centerResults.byOctave[octave]=(Number(centerResults.byOctave[octave])||0)+1;centerResults.byInterval[interval]=(Number(centerResults.byInterval[interval])||0)+1;centerResults.last={target:pitch.name(root),interval,octave,at:new Date().toISOString()};try{localStorage.setItem(centerStorageKey,JSON.stringify(centerResults));}catch{}updateCenterResults();}
+  function chooseCenterPair(){const root=target,available=centerSteps.map((step,index)=>index).filter(index=>index!==lastCenterInterval);const index=available[Math.floor(Math.random()*available.length)];lastCenterInterval=index;centerPair=[root+centerSteps[index],root];return centerPair;}
+  function stopCenterInterval(){if(!centerIntervalActive)return;centerIntervalActive=false;const oscillator=centerIntervalOscillator,gain=centerIntervalGain;centerIntervalOscillator=null;centerIntervalGain=null;if(oscillator){try{gain?.gain.setTargetAtTime(0,context.currentTime,.015);oscillator.stop(context.currentTime+.06);}catch{} }muteUntil=context?context.currentTime+.25:0;history=[];heldSince=0;centerCents=null;singleToneAttemptActive=true;singleToneHitRecorded=false;setCenterSaveEnabled(true);if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}const root=target;$('voice-detail').textContent=`Zielton: ${pitch.name(root)} · Halte ihn möglichst ruhig.`;status(stream?`Jetzt ${pitch.name(root)} singen und den Grundton halten.`:`Jetzt ${pitch.name(root)} singen. Schalte dafür das Mikrofon ein.`);}
+  async function playCenterInterval(){if(!centerTrainer)return;if(centerIntervalActive){stopCenterInterval();return;}if(centerNextTimer){clearTimeout(centerNextTimer);centerNextTimer=0;}if(!centerPair)chooseCenterPair();centerTrainer.querySelector('[data-center-result]').dataset.state='ready';centerTrainer.querySelector('[data-center-result]').textContent='Höre den neuen Ton und singe danach den Grundton.';cancelSound();const note=centerPair[0],root=target;singleToneAttemptActive=false;singleToneHitRecorded=false;setCenterSaveEnabled(false);try{const ctx=await audio(),osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+.08;osc.type='triangle';osc.frequency.value=pitch.frequency(note);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(.14,start+.025);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);oscillators.push(osc);osc.onended=()=>{osc.disconnect();gain.disconnect();oscillators=oscillators.filter(item=>item!==osc);};centerIntervalOscillator=osc;centerIntervalGain=gain;centerIntervalActive=true;muteUntil=Infinity;centerIntervalButton.textContent='■ Intervall stoppen';centerIntervalButton.setAttribute('aria-pressed','true');$('voice-detail').textContent=`Intervallton: ${pitch.name(note)} · Stoppe den Ton, wenn du bereit bist.`;status(`Der Ton ${pitch.name(note)} erklingt. Drücke den Knopf erneut, um ihn zu stoppen.`);}catch(error){status(error.message);cancelSound();}}
+  function recordCenterSuccess(){if(!centerTrainer||!centerPair)return;const completed=[...centerPair],root=target;saveCenterResult(root,completed);centerPair=null;if(centerIntervalButton)centerIntervalButton.textContent='▶ Neues Intervall abspielen';status('Richtig gehalten und gespeichert. Ein neues Intervall ist bereit.','hit');}
+  function setTarget(note){target=note;history=[];heldSince=0;singleToneAttemptActive=false;singleToneHitRecorded=false;$('target-name').textContent=pitch.name(target);$('target-note').value=String(target);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;$('voice-detail').textContent='Noch keine Messung.';status(document.querySelector('[data-tonal-center-trainer]')?'Höre zuerst die Tonleiter und das Intervallpaar.':'Höre zuerst den Zielton.');}
+  function populate(){const [low,high]=ranges[$('voice-range').value];$('target-note').replaceChildren();for(let n=low;n<=high;n++){const option=document.createElement('option');option.value=n;option.textContent=pitch.name(n);$('target-note').append(option);}setTarget(document.querySelector('[data-tonal-center-trainer]')?low:Math.min(high,Math.max(low,target)));}
+  $('voice-range').addEventListener('change',()=>{cancelSound();centerPair=null;populate();updateCenterResults();});
   $('target-note').addEventListener('change',()=>{cancelSound();setTarget(Number($('target-note').value));});
   $('target-random').addEventListener('click',()=>{cancelSound();const [low,high]=ranges[$('voice-range').value];let n;do{n=low+Math.floor(Math.random()*(high-low+1));}while(n===target);setTarget(n);});
   $('target-play').addEventListener('click',()=>{singleToneAttemptActive=true;singleToneHitRecorded=false;if(window.recordSingleToneAttempt)window.recordSingleToneAttempt();play([target],'voice');});
   populate();
+  updateCenterResults();
+  if(centerTrainer){
+    const feedback=centerTrainer.querySelector('[data-center-result]');
+    const showCenterFeedback=(state,message)=>{feedback.dataset.state=state;feedback.textContent=message;};
+    centerTrainer.querySelector('[data-center-save]').addEventListener('click',()=>{
+      if(!singleToneAttemptActive||singleToneHitRecorded)return;
+      if(centerCents===null){showCenterFeedback('incorrect','Noch kein Ton erkannt. Singe einen einzelnen, kräftigen Ton und versuche es erneut.');status('Noch kein Ton erkannt. Singe einen ruhigen Ton und versuche es erneut.');return;}
+      if(Math.abs(centerCents)>40){showCenterFeedback('incorrect',centerCents<0?'Noch zu tief. Singe etwas höher und speichere, wenn der Zeiger mittig steht.':'Noch zu hoch. Singe etwas tiefer und speichere, wenn der Zeiger mittig steht.');status('Der Ton liegt noch außerhalb des Zielbereichs. Korrigiere die Tonhöhe und versuche es erneut.');return;}
+      singleToneHitRecorded=true;singleToneAttemptActive=false;setCenterSaveEnabled(false);showCenterFeedback('correct','Richtig! Der Grundton sitzt. Dein Treffer wurde gespeichert.');recordCenterSuccess();
+    });
+    centerScaleButton=centerTrainer.querySelector('[data-center-scale]');centerScaleButton.setAttribute('aria-pressed','false');centerScaleButton.addEventListener('click',()=>{if(centerScalePlaying){cancelSound();singleToneAttemptActive=false;status('Tonleiter gestoppt. Du kannst sie erneut abspielen oder das Intervall starten.');return;}const root=target,centerScale=[root,root+2,root+4,root+5,root+7,root+9,root+11,root+12,root];singleToneAttemptActive=false;singleToneHitRecorded=false;centerCents=null;setCenterSaveEnabled(false);centerTrainer.querySelector('[data-center-result]').dataset.state='ready';centerTrainer.querySelector('[data-center-result]').textContent='Höre die Tonleiter und präge dir den Grundton ein.';play(centerScale,'voice',()=>{centerScalePlaying=false;centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');status('Tonleiter und Grundton gehört. Spiele jetzt das Intervall.');},{...centerSound,lastDuration:.9});centerScalePlaying=true;centerScaleButton.textContent='■ Tonleiter stoppen';centerScaleButton.setAttribute('aria-pressed','true');});
+    centerIntervalButton=centerTrainer.querySelector('[data-center-interval]');centerIntervalButton.setAttribute('aria-pressed','false');centerIntervalButton.addEventListener('click',playCenterInterval);
+  }
   }
   const hasLargeInterval=$('large-interval-trainer');
   let intervalStream=null,intervalSource=null,intervalAnalyser=null,intervalFrame=0,intervalHistory=[],intervalLastFrame=0,largeInterval=null,largeFirst=null;
@@ -259,23 +287,23 @@
     request++;pending=false;cancelAnimationFrame(frame);frame=0;
     if(stream)stream.getTracks().forEach(track=>track.stop());stream=null;
     if(source)source.disconnect();if(analyser)analyser.disconnect();source=analyser=null;
-    history=[];heldSince=0;$('mic-start').disabled=false;$('mic-stop').disabled=true;$('mic-status').textContent=message;
+    history=[];heldSince=0;setCenterSaveEnabled(false);$('mic-start').disabled=false;$('mic-stop').disabled=true;$('mic-status').textContent=message;
     $('detected-note').textContent='—';$('pitch-pointer').hidden=true;$('voice-detail').textContent='Keine laufende Messung.';status('Mikrofon ausgeschaltet.');
   }
   function listen(time){
     if(!stream || !analyser)return;frame=requestAnimationFrame(listen);if(time-lastFrame<100)return;lastFrame=time;
-    if(context.currentTime<muteUntil){history=[];heldSince=0;return;}
+    if(centerIntervalActive||context.currentTime<muteUntil){history=[];heldSince=0;return;}
     if(context.state!=='running'){status('Audio pausiert. Schalte das Mikrofon erneut ein.');return;}
     const samples=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(samples);const result=pitch.detect(samples,context.sampleRate);
-    if(!result){history=[];heldSince=0;$('detected-note').textContent='—';$('pitch-pointer').hidden=true;status('Ton noch nicht sicher erkannt.');$('voice-detail').textContent='Singe einen einzelnen, ruhigen Ton.';return;}
+    if(!result){history=[];heldSince=0;centerCents=null;setCenterSaveEnabled(centerTrainer&&singleToneAttemptActive&&!singleToneHitRecorded);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;status(centerTrainer?'Ton noch nicht sicher erkannt. Singe etwas kräftiger und halte einen einzelnen Ton.':'Ton noch nicht sicher erkannt.');$('voice-detail').textContent='Singe einen einzelnen, ruhigen Ton.';return;}
     history.push(pitch.midi(result.hz));if(history.length>5)history.shift();
     if(history.length<3){status('Ton wird erkannt …');return;}
-    const sorted=[...history].sort((a,b)=>a-b),note=sorted[Math.floor(sorted.length/2)],cents=100*(note-target)+calibrationCents(),adjustedNote=target+cents/100;
+    const sorted=[...history].sort((a,b)=>a-b),note=sorted[Math.floor(sorted.length/2)],cents=100*(note-target)+calibrationCents(),adjustedNote=target+cents/100;centerCents=cents;if(centerTrainer)setCenterSaveEnabled(singleToneAttemptActive&&!singleToneHitRecorded);
     $('detected-note').textContent=pitch.name(Math.round(adjustedNote));
     $('voice-detail').textContent=`${pitch.frequency(adjustedNote).toFixed(1).replace('.',',')} Hz · ${cents>0?'+':''}${Math.round(cents)} Cent zum Zielton`;
     $('pitch-pointer').hidden=false;$('pitch-pointer').style.left=`${50+Math.max(-100,Math.min(100,cents))/2}%`;
-    if(Math.abs(cents)<=40){if(!heldSince)heldSince=time;if(time-heldSince>=2000&&singleToneAttemptActive&&!singleToneHitRecorded){singleToneHitRecorded=true;singleToneAttemptActive=false;if(window.recordSingleToneHit)window.recordSingleToneHit();}status(time-heldSince>=2000?'Gut gehalten! Mache eine kurze Pause.':'Im Zielbereich – halte den Ton ruhig.','hit');}
-    else{heldSince=0;status(cents<0?'Etwas höher singen ↑':'Etwas tiefer singen ↓');}
+    if(Math.abs(cents)<=40){if(!heldSince)heldSince=time;if(centerTrainer){const canSave=singleToneAttemptActive&&!singleToneHitRecorded,feedback=centerTrainer.querySelector('[data-center-result]');if(canSave&&feedback.dataset.state==='incorrect'){feedback.dataset.state='ready';feedback.textContent='Der Ton ist jetzt in der Mitte. Drücke „Treffer speichern“. ';}status(canSave?'Ton in der Mitte. Drücke „Treffer speichern“.':'Im Zielbereich – halte den Ton ruhig.','hit');}else{if(time-heldSince>=2000&&singleToneAttemptActive&&!singleToneHitRecorded){singleToneHitRecorded=true;singleToneAttemptActive=false;if(window.recordSingleToneHit)window.recordSingleToneHit();}status(time-heldSince>=2000?'Gut gehalten! Mache eine kurze Pause.':'Im Zielbereich – halte den Ton ruhig.','hit');}}
+    else{heldSince=0;setCenterSaveEnabled(centerTrainer&&singleToneAttemptActive&&!singleToneHitRecorded);status(cents<0?'Etwas höher singen ↑':'Etwas tiefer singen ↓');}
   }
   $('mic-start').addEventListener('click',async()=>{
     if(stream || pending)return;
