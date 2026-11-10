@@ -72,6 +72,11 @@
 
   const summary = document.getElementById('learning-path-summary');
   if (!summary) return;
+  document.getElementById('learning-path-reset')?.addEventListener('click', () => {
+    if (!window.confirm('Alle gespeicherten Ergebnisse aus Gehörbildung 1 löschen und die Auswertung neu beginnen?')) return;
+    try { localStorage.removeItem(KEY); } catch { /* Storage can be disabled. */ }
+    window.location.reload();
+  });
   const table = document.getElementById('learning-path-results');
   const recommendationLink = document.getElementById('learning-path-link');
   const totalEar = Object.entries(progress.earTraining).filter(([stage]) => stage !== 'all').reduce((total, [, score]) => ({ attempts: total.attempts + score.attempts, correct: total.correct + score.correct }), { attempts: 0, correct: 0 });

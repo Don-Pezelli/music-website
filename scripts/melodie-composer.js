@@ -12,6 +12,7 @@
   const measurePlayButtons = [...composer.querySelectorAll('[data-play-measure]')];
   const clearButtons = [...composer.querySelectorAll('[data-clear-measure]')];
   const semitones = [0, 2, 4, 5, 7, 9, 11];
+  const noteColors = semitones.map(semitone => `var(--pitch-${semitone})`);
   const noteY = {1:100, 2:95, 3:90, 4:85, 5:80, 6:75, 7:70};
   const bars = [Array(8).fill(null)];
   let eraseMode = false;
@@ -36,13 +37,13 @@
     const down = degree === 7;
     const stemX = x + (down ? -5 : 5);
     const stemEnd = y + (down ? 26 : -26);
-    const color = ghost ? '#48654a' : '#263438';
+    const color = noteColors[degree - 1];
     const opacity = ghost ? ' opacity=".48"' : '';
     let svg = '';
     if (degree === 1) svg += `<path d="M${x-9} 100H${x+9}" stroke="${color}" stroke-width="1.2"${opacity}/>`;
     svg += `<text x="${x}" y="27" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="${color}"${opacity}>${degree}</text>`;
     svg += `<ellipse cx="${x}" cy="${y}" rx="5.7" ry="3.8" transform="rotate(-20 ${x} ${y})" fill="${color}"${opacity}/><path d="M${stemX} ${y}V${stemEnd}" stroke="${color}" stroke-width="1.4"${opacity}/>`;
-    return {svg, stemX, stemEnd, down, x, y, duration};
+    return {svg, stemX, stemEnd, down, x, y, duration, color};
   };
 
   const renderBar = barIndex => {
@@ -69,12 +70,12 @@
         if (drawn.length === 2 && drawn[0].down === drawn[1].down) {
           const [a,b] = drawn;
           const thickness = a.down ? -4 : 4;
-          layer.insertAdjacentHTML('beforeend', `<path d="M${a.stemX} ${a.stemEnd}L${b.stemX} ${b.stemEnd}l0 ${thickness}L${a.stemX} ${a.stemEnd+thickness}Z" fill="#263438"/>`);
+        layer.insertAdjacentHTML('beforeend', `<path d="M${a.stemX} ${a.stemEnd}L${b.stemX} ${b.stemEnd}l0 ${thickness}L${a.stemX} ${a.stemEnd+thickness}Z" fill="#263438"/>`);
         } else {
           drawn.forEach(note => {
             const flag = note.down
-              ? `<path d="M${note.stemX} ${note.stemEnd}c-10 -5 -13 -10 -13 -16c4 5 8 7 13 8Z" fill="#263438"/>`
-              : `<path d="M${note.stemX} ${note.stemEnd}c10 5 13 10 13 16c-4-5-8-7-13-8Z" fill="#263438"/>`;
+              ? `<path d="M${note.stemX} ${note.stemEnd}c-10 -5 -13 -10 -13 -16c4 5 8 7 13 8Z" fill="${note.color}"/>`
+              : `<path d="M${note.stemX} ${note.stemEnd}c10 5 13 10 13 16c-4-5-8-7-13-8Z" fill="${note.color}"/>`;
             layer.insertAdjacentHTML('beforeend', flag);
           });
         }
@@ -152,8 +153,8 @@
     layer.insertAdjacentHTML('beforeend', note.svg);
     if (duration === 8) {
       const flag = note.down
-        ? `<path d="M${note.stemX} ${note.stemEnd}c-10 -5 -13 -10 -13 -16c4 5 8 7 13 8Z" fill="#48654a" opacity=".48"/>`
-        : `<path d="M${note.stemX} ${note.stemEnd}c10 5 13 10 13 16c-4-5-8-7-13-8Z" fill="#48654a" opacity=".48"/>`;
+        ? `<path d="M${note.stemX} ${note.stemEnd}c-10 -5 -13 -10 -13 -16c4 5 8 7 13 8Z" fill="${note.color}" opacity=".48"/>`
+        : `<path d="M${note.stemX} ${note.stemEnd}c10 5 13 10 13 16c-4-5-8-7-13-8Z" fill="${note.color}" opacity=".48"/>`;
       layer.insertAdjacentHTML('beforeend', flag);
     }
   };

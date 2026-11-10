@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const names=['C','Cis/Des','D','Dis/Es','E','F','Fis/Ges','G','Gis/As','A','Ais/B','H'];
+  const names=['C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B'];
   const frequency = midi => 440 * 2 ** ((midi - 69) / 12);
   const midi = hz => 69 + 12 * Math.log2(hz / 440);
   const name = note => names[((note % 12)+12)%12] + (Math.floor(note/12)-1);

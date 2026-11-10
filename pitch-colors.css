@@ -1,0 +1,15 @@
+/* Canonical pitch-class colors shared by the website and standalone SVG diagrams. */
+:root{
+  --pitch-0:hsl(0 78% 55%);
+  --pitch-1:hsl(30 78% 55%);
+  --pitch-2:hsl(60 78% 55%);
+  --pitch-3:hsl(90 78% 55%);
+  --pitch-4:hsl(120 78% 55%);
+  --pitch-5:hsl(165 100% 25%);
+  --pitch-6:hsl(180 78% 55%);
+  --pitch-7:hsl(210 78% 55%);
+  --pitch-8:hsl(240 78% 55%);
+  --pitch-9:hsl(270 78% 55%);
+  --pitch-10:hsl(300 78% 55%);
+  --pitch-11:hsl(330 78% 55%);
+}

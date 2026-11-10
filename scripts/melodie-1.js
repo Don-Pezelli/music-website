@@ -7,7 +7,7 @@
   if (!scaleButtons.length && !semitoneButtons.length && !degreeButtons.length && !patternButtons.length && !trainingPanels.length) return;
   const scalePitches = [60, 62, 64, 65, 67, 69, 71, 72];
   const degreeNames = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
-  const pitchNames = {59:'B',60:'C',62:'D',64:'E',65:'F',67:'G',69:'A',70:'B♭',71:'B',72:'C'};
+  const pitchNames = {59:'B',60:'C',62:'D',64:'E',65:'F',67:'G',69:'A',70:'Bb',71:'B',72:'C'};
   let context, activeOscillators = [];
   const stopAudio = () => {
     activeOscillators.forEach(oscillator => { try { oscillator.stop(); } catch {} });

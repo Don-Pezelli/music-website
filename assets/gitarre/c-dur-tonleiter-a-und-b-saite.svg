@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480" role="img" aria-labelledby="title desc">
+<style>:root{--pitch-0:hsl(0 78% 55%);--pitch-1:hsl(30 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-3:hsl(90 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-5:hsl(165 100% 25%);--pitch-6:hsl(180 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-8:hsl(240 78% 55%);--pitch-9:hsl(270 78% 55%);--pitch-10:hsl(300 78% 55%);--pitch-11:hsl(330 78% 55%);}</style>
+<title id="title">C-Dur-Tonleiter auf der A- und B-Saite</title>
+<desc id="desc">Gitarrengriffbrett mit sechs Saiten und den Noten C, D, E, F, G, A, B und C auf der A- und B-Saite. Auf der A-Saite reicht die Folge von C im dritten bis zum fünfzehnten Bund; auf der B-Saite von C im ersten bis zum dreizehnten Bund.</desc>
+<rect width="1000" height="480" rx="12" fill="#fff"/>
+<text x="30" y="38" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">C-Dur auf A- und B-Saite</text>
+<text x="30" y="64" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Zwei Einstiege in dieselbe Tonleiter</text>
+
+<text x="165" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">0</text>
+<text x="215" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">1</text>
+<text x="265" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">2</text>
+<text x="315" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">3</text>
+<text x="365" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">4</text>
+<text x="415" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">5</text>
+<text x="465" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">6</text>
+<text x="515" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">7</text>
+<text x="565" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">8</text>
+<text x="615" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">9</text>
+<text x="665" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">10</text>
+<text x="715" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">11</text>
+<text x="765" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">12</text>
+<text x="815" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">13</text>
+<text x="865" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">14</text>
+<text x="915" y="96" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="12">15</text>
+<path d="M165 112V414" stroke="#202e31" stroke-width="6"/>
+<path d="M215 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M265 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M315 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M365 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M415 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M465 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M515 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M565 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M615 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M665 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M715 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M765 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M815 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M865 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M915 112V414" stroke="#c9cec7" stroke-width="2"/>
+<path d="M165 125H915" stroke="#53645a" stroke-width="1.2"/>
+<path d="M165 180H915" stroke="#53645a" stroke-width="1.5"/>
+<path d="M165 235H915" stroke="#53645a" stroke-width="1.8"/>
+<path d="M165 290H915" stroke="#53645a" stroke-width="2.1"/>
+<path d="M165 345H915" stroke="#53645a" stroke-width="2.4"/>
+<path d="M165 400H915" stroke="#53645a" stroke-width="2.8"/>
+<text x="135" y="130" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="16" font-weight="400">e</text>
+<text x="135" y="185" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="16" font-weight="400">B</text>
+<text x="135" y="240" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="16" font-weight="400">G</text>
+<text x="135" y="295" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="16" font-weight="400">D</text>
+<text x="135" y="350" text-anchor="middle" fill="#896025" font-family="Arial,sans-serif" font-size="16" font-weight="700">A</text>
+<text x="135" y="405" text-anchor="middle" fill="#65706e" font-family="Arial,sans-serif" font-size="16" font-weight="400">E</text>
+<circle cx="315" cy="262" r="4" fill="#d0d5ce"/>
+<circle cx="415" cy="262" r="4" fill="#d0d5ce"/>
+<circle cx="515" cy="262" r="4" fill="#d0d5ce"/>
+<circle cx="615" cy="262" r="4" fill="#d0d5ce"/>
+<circle cx="765" cy="235" r="4" fill="#d0d5ce"/><circle cx="765" cy="290" r="4" fill="#d0d5ce"/>
+<circle cx="915" cy="262" r="4" fill="#d0d5ce"/>
+<circle cx="315" cy="345" r="17" fill="var(--pitch-0)" stroke="#657c67" stroke-width="1.5"/><text x="315" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">C</text>
+<circle cx="415" cy="345" r="17" fill="var(--pitch-2)" stroke="#657c67" stroke-width="1.5"/><text x="415" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">D</text>
+<circle cx="515" cy="345" r="17" fill="var(--pitch-4)" stroke="#657c67" stroke-width="1.5"/><text x="515" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">E</text>
+<circle cx="565" cy="345" r="17" fill="var(--pitch-5)" stroke="#657c67" stroke-width="1.5"/><text x="565" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">F</text>
+<circle cx="665" cy="345" r="17" fill="var(--pitch-7)" stroke="#657c67" stroke-width="1.5"/><text x="665" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">G</text>
+<circle cx="765" cy="345" r="17" fill="var(--pitch-9)" stroke="#657c67" stroke-width="1.5"/><text x="765" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#202e31" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">A</text>
+<circle cx="865" cy="345" r="17" fill="var(--pitch-11)" stroke="#657c67" stroke-width="1.5"/><text x="865" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">B</text>
+<circle cx="915" cy="345" r="17" fill="var(--pitch-0)" stroke="#657c67" stroke-width="1.5"/><text x="915" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">C</text>
+<circle cx="215" cy="180" r="17" fill="var(--pitch-0)" stroke="#16788a" stroke-width="3"/><text x="215" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">C</text><circle cx="315" cy="180" r="17" fill="var(--pitch-2)" stroke="#16788a" stroke-width="3"/><text x="315" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">D</text><circle cx="415" cy="180" r="17" fill="var(--pitch-4)" stroke="#16788a" stroke-width="3"/><text x="415" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">E</text><circle cx="465" cy="180" r="17" fill="var(--pitch-5)" stroke="#16788a" stroke-width="3"/><text x="465" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">F</text><circle cx="565" cy="180" r="17" fill="var(--pitch-7)" stroke="#16788a" stroke-width="3"/><text x="565" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#202e31">G</text><circle cx="665" cy="180" r="17" fill="var(--pitch-9)" stroke="#16788a" stroke-width="3"/><text x="665" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#202e31" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">A</text><circle cx="765" cy="180" r="17" fill="var(--pitch-11)" stroke="#16788a" stroke-width="3"/><text x="765" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">B</text><circle cx="815" cy="180" r="17" fill="var(--pitch-0)" stroke="#16788a" stroke-width="3"/><text x="815" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" stroke="#fff" stroke-width="1.1" paint-order="stroke" stroke-linejoin="round" fill="#ffffff">C</text>
+<rect x="165" y="426" width="750" height="38" rx="5" fill="#ede4ce"/><text x="540" y="442" text-anchor="middle" fill="#896025" font-family="Arial,sans-serif" font-size="12" font-weight="700">A-Saite · C (3) – D (5) – E (7) – F (8) – G (10) – A (12) – B (14) – C (15)</text><text x="540" y="458" text-anchor="middle" fill="#16788a" font-family="Arial,sans-serif" font-size="12" font-weight="700">B-Saite · C (1) – D (3) – E (5) – F (6) – G (8) – A (10) – B (12) – C (13)</text>
+</svg>

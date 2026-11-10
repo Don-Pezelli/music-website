@@ -3,9 +3,15 @@
   if (!buttons.length) return;
   let context;
   let activeOscillators = [];
+  let activeToggleButton = null;
   const stopAudio = () => {
     activeOscillators.forEach(oscillator => { try { oscillator.stop(); } catch {} });
     activeOscillators = [];
+    if (activeToggleButton) {
+      activeToggleButton.textContent = activeToggleButton.dataset.melodyIdleText || '▶ Tonleiter';
+      activeToggleButton.setAttribute('aria-pressed', 'false');
+      activeToggleButton = null;
+    }
   };
   const playMelody = async (button) => {
     stopAudio();
@@ -52,6 +58,11 @@
             oscillator.disconnect();
             gain.disconnect();
             activeOscillators = activeOscillators.filter(item => item !== oscillator);
+            if (!activeOscillators.length && activeToggleButton) {
+              activeToggleButton.textContent = activeToggleButton.dataset.melodyIdleText || '▶ Tonleiter';
+              activeToggleButton.setAttribute('aria-pressed', 'false');
+              activeToggleButton = null;
+            }
           };
           activeOscillators.push(oscillator);
           elapsed += rhythmicSpacing;
@@ -59,11 +70,25 @@
         });
         if (barIndex < bars.length - 1) elapsed += barPause;
       });
+      if (button.hasAttribute('data-melody-toggle')) {
+        button.dataset.melodyIdleText ||= button.textContent;
+        activeToggleButton = button;
+        button.textContent = '■ Tonleiter stoppen';
+        button.setAttribute('aria-pressed', 'true');
+      }
       if (status) status.textContent = button.dataset.melodyLabel ? `Spiele ${button.dataset.melodyLabel} ab.` : part === '0' ? 'Höre Takt 1 und singe ihn anschließend mit.' : part === '1' ? 'Höre Takt 2 und singe ihn anschließend mit.' : 'Höre beide Takte und singe sie anschließend mit.';
     } catch {
       if (status) status.textContent = 'Das Hörbeispiel konnte nicht abgespielt werden. Versuche es noch einmal.';
     }
   };
-  buttons.forEach(button => button.addEventListener('click', () => playMelody(button)));
+  buttons.forEach(button => button.addEventListener('click', () => {
+    if (button === activeToggleButton) {
+      stopAudio();
+      const status = button.closest('.intonation-panel, .lesson-section')?.querySelector('[data-melody-status]') || document.querySelector('[data-melody-status]');
+      if (status) status.textContent = 'Tonleiter gestoppt.';
+      return;
+    }
+    playMelody(button);
+  }));
   window.addEventListener('pagehide', stopAudio);
 })();
