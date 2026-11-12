@@ -14,6 +14,7 @@
 <g stroke="#59635e"><path d="M140 120H940" stroke-width="2.02"/><path d="M140 175H940" stroke-width="1.94"/><path d="M140 230H940" stroke-width="1.86"/><path d="M140 285H940" stroke-width="1.78"/><path d="M140 340H940" stroke-width="1.70"/><path d="M140 395H940" stroke-width="1.62"/></g>
 <g fill="#202e31" font-family="Arial,sans-serif" font-size="14" font-weight="700"><text x="20" y="125">E · hoch</text><text x="20" y="180">B</text><text x="20" y="235">G</text><text x="20" y="290">D</text><text x="20" y="345">A</text><text x="20" y="400">E · tief</text></g>
 <path data-position5-octave-route="true" d="M390 205 H440 V260 H540 V375 H550 V380 H590 V440 H540 V380 H390 Z" fill="none" stroke="#d43f3a" stroke-width="3.5" stroke-linejoin="round"/>
+<path data-position3-route="true" d="M190 150 H240 V210 H285 V315 H290 V320 H340 V385 H290 V330 H145 V210 H190 Z" fill="none" stroke="#d43f3a" stroke-width="3.5" stroke-linejoin="round"/>
 <g aria-label="Zusätzliche Töne aus Dur-Position 3" font-family="Arial,sans-serif" text-anchor="middle" font-size="14" font-weight="700">
 <circle cx="165" cy="285" r="17" fill="var(--pitch-2)" stroke="#657c67" stroke-width="1.5"/><text x="165" y="290" fill="#202e31">D</text>
 <circle cx="165" cy="230" r="17" fill="var(--pitch-7)" stroke="#195b7a" stroke-width="1.5"/><text x="165" y="235" fill="#fff">G</text>
@@ -49,6 +50,7 @@
 </g>
 
 <g aria-label="Dur-Positionen">
+<rect x="142" y="553" width="196" height="19" rx="4" fill="#4d5e87" fill-opacity=".17" stroke="#4d5e87" stroke-width="1.2"/><text x="240" y="567" text-anchor="middle" fill="#4d5e87" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 3</text>
 <rect x="242" y="453" width="196" height="19" rx="4" fill="#935065" fill-opacity=".17" stroke="#935065" stroke-width="1.2"/><text x="340" y="467" text-anchor="middle" fill="#935065" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 4</text>
 <rect x="492" y="478" width="196" height="19" rx="4" fill="#b3482e" fill-opacity=".17" stroke="#b3482e" stroke-width="1.2"/><text x="590" y="492" text-anchor="middle" fill="#b3482e" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 1</text>
 <rect x="592" y="503" width="246" height="19" rx="4" fill="#48654a" fill-opacity=".17" stroke="#48654a" stroke-width="1.2"/><text x="715" y="517" text-anchor="middle" fill="#48654a" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 2</text>

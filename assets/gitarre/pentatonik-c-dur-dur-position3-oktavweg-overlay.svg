@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="575" viewBox="0 0 1000 575" role="img" aria-labelledby="title desc">
+<style>:root{--pitch-0:hsl(0 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-9:hsl(270 78% 55%);}</style>
+<title id="title">Dur-Position 3: C-D-E-G-A-C mit Fingersatz</title>
+<desc id="desc">Die rote Umrandung umfasst genau A15, D12 und D14, G12 und G14 sowie B13. Sie entspricht der unteren Dur-Position 3.</desc>
+<path d="M790 150 H840 V210 H885 V315 H890 V320 H940 V385 H890 V330 H745 V210 H790 Z" fill="none" stroke="#d43f3a" stroke-width="3.5" stroke-linejoin="round"/>
+<g aria-label="Dur-Position 3 in hoher Lage: A15, D12 und D14, G12 und G14, B13" font-family="Arial,sans-serif" text-anchor="middle" font-size="14" font-weight="700">
+<circle cx="915" cy="340" r="17" fill="var(--pitch-0)" stroke="#9e351c" stroke-width="1.5"/><text x="915" y="345" fill="#fff">C</text><text x="915" y="372" font-size="12" fill="#202e31">K</text>
+<circle cx="765" cy="285" r="17" fill="var(--pitch-2)" stroke="#657c67" stroke-width="1.5"/><text x="765" y="290" fill="#202e31">D</text><text x="765" y="317" font-size="12" fill="#202e31">Z</text>
+<circle cx="865" cy="285" r="17" fill="var(--pitch-4)" stroke="#657c67" stroke-width="1.5"/><text x="865" y="290" fill="#202e31">E</text><text x="865" y="317" font-size="12" fill="#202e31">K</text>
+<circle cx="765" cy="230" r="17" fill="var(--pitch-7)" stroke="#195b7a" stroke-width="1.5"/><text x="765" y="235" fill="#fff">G</text><text x="765" y="262" font-size="12" fill="#202e31">Z</text>
+<circle cx="865" cy="230" r="17" fill="var(--pitch-9)" stroke="#655381" stroke-width="1.5"/><text x="865" y="235" fill="#fff">A</text><text x="865" y="262" font-size="12" fill="#202e31">K</text>
+<circle cx="815" cy="175" r="17" fill="var(--pitch-0)" stroke="#9e351c" stroke-width="1.5"/><text x="815" y="180" fill="#fff">C</text><text x="815" y="207" font-size="12" fill="#202e31">M</text>
+</g>
+<g aria-label="Dur-Positionen">
+<rect x="742" y="533" width="196" height="19" rx="4" fill="#4d5e87" fill-opacity=".17" stroke="#4d5e87" stroke-width="1.2"/><text x="840" y="547" text-anchor="middle" fill="#4d5e87" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 3</text>
+</g></svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
+<title id="title">Ein Ton bewegt sich nach unten</title>
+<desc id="desc">Auf weißem Hintergrund markieren zwei gleich große Punkte Ausgangs- und Zielton. Ein Pfeil führt dazwischen im 45-Grad-Winkel nach unten rechts: Der zweite Ton ist tiefer.</desc>
+<rect width="760" height="300" fill="#fff"/>
+<path d="M250 65L456 271" fill="none" stroke="#48654a" stroke-width="8" stroke-linecap="round"/>
+<path d="M456 271L424 261M456 271L446 239" fill="none" stroke="#48654a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="250" cy="65" r="13" fill="#48654a"/>
+<circle cx="465" cy="280" r="13" fill="#48654a"/>
+</svg>

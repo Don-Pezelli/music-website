@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="0 0 1000 460" role="img" aria-labelledby="title desc">
+<style>:root{--pitch-0:hsl(0 78% 55%);--pitch-1:hsl(30 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-3:hsl(90 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-5:hsl(165 100% 25%);--pitch-6:hsl(180 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-8:hsl(240 78% 55%);--pitch-9:hsl(270 78% 55%);--pitch-10:hsl(300 78% 55%);--pitch-11:hsl(330 78% 55%);}</style>
+<title id="title">G-Dur-Tonleiter auf dem Gitarrengriffbrett</title>
+<desc id="desc">Eine Oktave der G-Dur-Tonleiter, eingetragen in derselben Griffwegform wie das C-Dur-Beispiel. Die Töne liegen auf der tiefen E-, A- und D-Saite.</desc>
+<rect width="1000" height="460" fill="#fff"/>
+<text x="30" y="35" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">G-Dur-Tonleiter · verschobener Griffweg</text>
+<text x="30" y="61" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Eine Oktave · G–G</text>
+<g fill="#65706e" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">
+<text x="165" y="91">0</text>
+<text x="215" y="91">1</text>
+<text x="265" y="91">2</text>
+<text x="315" y="91">3</text>
+<text x="365" y="91">4</text>
+<text x="415" y="91">5</text>
+<text x="465" y="91">6</text>
+<text x="515" y="91">7</text>
+<text x="565" y="91">8</text>
+<text x="615" y="91">9</text>
+<text x="665" y="91">10</text>
+<text x="715" y="91">11</text>
+<text x="765" y="91">12</text>
+<text x="815" y="91">13</text>
+<text x="865" y="91">14</text>
+<text x="915" y="91">15</text>
+</g>
+<path d="M140 104V411" stroke="#202e31" stroke-width="5"/>
+<g stroke="#aeb7b0" stroke-width="1.2"><path d="M190 104V411"/> <path d="M240 104V411"/> <path d="M290 104V411"/> <path d="M340 104V411"/> <path d="M390 104V411"/> <path d="M440 104V411"/> <path d="M490 104V411"/> <path d="M540 104V411"/> <path d="M590 104V411"/> <path d="M640 104V411"/> <path d="M690 104V411"/> <path d="M740 104V411"/> <path d="M790 104V411"/> <path d="M840 104V411"/> <path d="M890 104V411"/> <path d="M940 104V411"/></g>
+<g fill="#e5e9e4"><circle cx="315" cy="257.5" r="5"/><circle cx="415" cy="257.5" r="5"/><circle cx="515" cy="257.5" r="5"/><circle cx="615" cy="257.5" r="5"/><circle cx="915" cy="257.5" r="5"/><circle cx="765" cy="202" r="5"/><circle cx="765" cy="313" r="5"/></g>
+<g stroke="#59635e"><path d="M140 120H940" stroke-width="2.02"/><path d="M140 175H940" stroke-width="1.94"/><path d="M140 230H940" stroke-width="1.86"/><path d="M140 285H940" stroke-width="1.78"/><path d="M140 340H940" stroke-width="1.70"/><path d="M140 395H940" stroke-width="1.62"/></g>
+<g fill="#202e31" font-family="Arial,sans-serif" font-size="14" font-weight="700"><text x="20" y="125">E · hoch</text><text x="20" y="180">B</text><text x="20" y="235">G</text><text x="20" y="290">D</text><text x="20" y="345">A</text><text x="20" y="400">E · tief</text></g>
+<g font-family="Arial,sans-serif" text-anchor="middle" font-size="14" font-weight="700">
+<circle cx="315" cy="395" r="17" fill="var(--pitch-7)" stroke="#657c67" stroke-width="1.5"/><text x="315" y="400" fill="#fff">1</text><text x="315" y="427" font-size="12" fill="#202e31">M</text>
+<circle cx="415" cy="395" r="17" fill="var(--pitch-9)" stroke="#657c67" stroke-width="1.5"/><text x="415" y="400" fill="#fff">2</text><text x="415" y="427" font-size="12" fill="#202e31">K</text>
+<circle cx="265" cy="340" r="17" fill="var(--pitch-11)" stroke="#657c67" stroke-width="1.5"/><text x="265" y="345" fill="#fff">3</text><text x="265" y="372" font-size="12" fill="#202e31">Z</text>
+<circle cx="315" cy="340" r="17" fill="var(--pitch-0)" stroke="#657c67" stroke-width="1.5"/><text x="315" y="345" fill="#fff">4</text><text x="315" y="372" font-size="12" fill="#202e31">M</text>
+<circle cx="415" cy="340" r="17" fill="var(--pitch-2)" stroke="#657c67" stroke-width="1.5"/><text x="415" y="345" fill="#202e31">5</text><text x="415" y="372" font-size="12" fill="#202e31">K</text>
+<circle cx="265" cy="285" r="17" fill="var(--pitch-4)" stroke="#657c67" stroke-width="1.5"/><text x="265" y="290" fill="#202e31">6</text><text x="265" y="317" font-size="12" fill="#202e31">Z</text>
+<circle cx="365" cy="285" r="17" fill="var(--pitch-6)" stroke="#657c67" stroke-width="1.5"/><text x="365" y="290" fill="#202e31">7</text><text x="365" y="317" font-size="12" fill="#202e31">R</text>
+<circle cx="415" cy="285" r="17" fill="var(--pitch-7)" stroke="#657c67" stroke-width="1.5"/><text x="415" y="290" fill="#fff">1</text><text x="415" y="317" font-size="12" fill="#202e31">K</text>
+</g>
+<text x="30" y="449" fill="#202e31" font-family="Arial,sans-serif" font-size="13" font-weight="700">Jeder Finger behält seinen Bund und wechselt die Saite</text>
+</svg>

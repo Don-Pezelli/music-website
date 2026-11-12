@@ -62,7 +62,9 @@
   function populate(){const [low,high]=ranges[$('voice-range').value];$('target-note').replaceChildren();for(let n=low;n<=high;n++){const option=document.createElement('option');option.value=n;option.textContent=pitch.name(n);$('target-note').append(option);}setTarget(document.querySelector('[data-tonal-center-trainer]')?low:Math.min(high,Math.max(low,target)));}
   $('voice-range').addEventListener('change',()=>{cancelSound();centerPair=null;populate();updateCenterResults();});
   $('target-note').addEventListener('change',()=>{cancelSound();setTarget(Number($('target-note').value));});
-  $('target-random').addEventListener('click',()=>{cancelSound();const [low,high]=ranges[$('voice-range').value];let n;do{n=low+Math.floor(Math.random()*(high-low+1));}while(n===target);setTarget(n);});
+  function chooseDifferentTarget(){const [low,high]=ranges[$('voice-range').value];if(high<=low)return low;let note;do{note=low+Math.floor(Math.random()*(high-low+1));}while(note===target);return note;}
+  $('target-random').addEventListener('click',()=>{cancelSound();setTarget(chooseDifferentTarget());status(`Neuer Zielton: ${pitch.name(target)}. Spiele ihn ab und singe ihn nach.`);});
+  $('single-tone-reset')?.addEventListener('click',()=>{cancelSound();window.resetSingleToneProgress?.();window.location.reload();});
   $('target-play').addEventListener('click',()=>{singleToneAttemptActive=true;singleToneHitRecorded=false;if(window.recordSingleToneAttempt)window.recordSingleToneAttempt();play([target],'voice');});
   populate();
   updateCenterResults();
@@ -263,14 +265,23 @@
 
   if(hasEar){
   const intervalNames={1:'kleine Sekunde',2:'große Sekunde',3:'kleine Terz',4:'große Terz',5:'reine Quarte',7:'reine Quinte',12:'reine Oktave'};
+  const earRegisterToggle=$('ear-register-toggle'),earRegisterStatus=$('ear-register-status');
+  let earRegisterShift=0;
+  earRegisterToggle?.addEventListener('click',()=>{
+    earRegisterShift=earRegisterToggle.getAttribute('aria-pressed')==='true'?0:12;
+    const shifted=earRegisterShift===12;
+    earRegisterToggle.setAttribute('aria-pressed',String(shifted));
+    earRegisterToggle.textContent=shifted?'Tiefe Töne wieder einblenden':'Tiefe Töne ausblenden';
+    if(earRegisterStatus)earRegisterStatus.textContent=shifted?'Neue und erneut abgespielte Tonpaare erklingen eine Oktave höher; die drei Richtungen bleiben unverändert.':'Neue und erneut abgespielte Tonpaare erklingen wieder im normalen Tonbereich.';
+  });
   const earStations=[...document.querySelectorAll('[data-ear-trainer]')];
   earStations.forEach(station=>{
     const stationAnswers=[...station.querySelectorAll('[data-answer]')],stage=station.dataset.stage;
     let ear=null,answered=0,correct=0;
     const find=selector=>station.querySelector(selector);
     function resetEar(){cancelSound();ear=null;answered=correct=0;stationAnswers.forEach(button=>button.disabled=true);find('[data-ear-new]').disabled=false;find('[data-ear-replay]').disabled=true;find('[data-ear-feedback]').textContent='Starte ein Tonpaar und entscheide: höher, tiefer oder gleich.';find('[data-ear-progress]').textContent='0 von 10 Tonpaaren beantwortet.';find('[data-ear-new]').textContent='Neues Tonpaar spielen';}
-    function replay(){if(!ear)return;ear.heard=false;find('[data-ear-new]').disabled=true;find('[data-ear-replay]').disabled=true;stationAnswers.forEach(button=>button.disabled=true);play(ear.notes,station,()=>{ear.heard=true;find('[data-ear-new]').disabled=false;find('[data-ear-replay]').disabled=false;stationAnswers.forEach(button=>button.disabled=ear.answered);find('[data-ear-feedback]').textContent=ear.feedback || 'Ist der zweite Ton höher, tiefer oder gleich?';});}
-    find('[data-ear-new]').addEventListener('click',()=>{if(answered>=10)resetEar();const [low,high]=stage.split('-').map(Number),distance=low+Math.floor(Math.random()*(high-low+1)),direction=Math.random()<.2?0:Math.random()<.5?-1:1,first=55+Math.floor(Math.random()*13);ear={notes:[first,first+direction*distance],direction,distance,answered:false,heard:false};replay();});
+    function replay(){if(!ear)return;if(ear.registerShift!==earRegisterShift){const shift=earRegisterShift-ear.registerShift;ear.notes=ear.notes.map(note=>note+shift);ear.registerShift=earRegisterShift;}ear.heard=false;find('[data-ear-new]').disabled=true;find('[data-ear-replay]').disabled=true;stationAnswers.forEach(button=>button.disabled=true);play(ear.notes,station,()=>{ear.heard=true;find('[data-ear-new]').disabled=false;find('[data-ear-replay]').disabled=false;stationAnswers.forEach(button=>button.disabled=ear.answered);find('[data-ear-feedback]').textContent=ear.feedback || 'Ist der zweite Ton höher, tiefer oder gleich?';});}
+    find('[data-ear-new]').addEventListener('click',()=>{if(answered>=10)resetEar();const [low,high]=stage.split('-').map(Number),distance=low+Math.floor(Math.random()*(high-low+1)),direction=Math.random()<.2?0:Math.random()<.5?-1:1,rangeLow=55+earRegisterShift,rangeHigh=67+earRegisterShift,minFirst=direction<0?rangeLow+distance:rangeLow,maxFirst=direction>0?rangeHigh-distance:rangeHigh,first=minFirst+Math.floor(Math.random()*(maxFirst-minFirst+1));ear={notes:[first,first+direction*distance],direction,distance,registerShift:earRegisterShift,answered:false,heard:false};replay();});
     find('[data-ear-replay]').addEventListener('click',replay);find('[data-ear-reset]').addEventListener('click',resetEar);
     stationAnswers.forEach(button=>button.addEventListener('click',()=>{
       if(!ear || !ear.heard || ear.answered)return;
@@ -302,7 +313,7 @@
     $('detected-note').textContent=pitch.name(Math.round(adjustedNote));
     $('voice-detail').textContent=`${pitch.frequency(adjustedNote).toFixed(1).replace('.',',')} Hz · ${cents>0?'+':''}${Math.round(cents)} Cent zum Zielton`;
     $('pitch-pointer').hidden=false;$('pitch-pointer').style.left=`${50+Math.max(-100,Math.min(100,cents))/2}%`;
-    if(Math.abs(cents)<=40){if(!heldSince)heldSince=time;if(centerTrainer){const canSave=singleToneAttemptActive&&!singleToneHitRecorded,feedback=centerTrainer.querySelector('[data-center-result]');if(canSave&&feedback.dataset.state==='incorrect'){feedback.dataset.state='ready';feedback.textContent='Der Ton ist jetzt in der Mitte. Drücke „Treffer speichern“. ';}status(canSave?'Ton in der Mitte. Drücke „Treffer speichern“.':'Im Zielbereich – halte den Ton ruhig.','hit');}else{if(time-heldSince>=2000&&singleToneAttemptActive&&!singleToneHitRecorded){singleToneHitRecorded=true;singleToneAttemptActive=false;if(window.recordSingleToneHit)window.recordSingleToneHit();}status(time-heldSince>=2000?'Gut gehalten! Mache eine kurze Pause.':'Im Zielbereich – halte den Ton ruhig.','hit');}}
+    if(Math.abs(cents)<=40){if(!heldSince)heldSince=time;if(centerTrainer){const canSave=singleToneAttemptActive&&!singleToneHitRecorded,feedback=centerTrainer.querySelector('[data-center-result]');if(canSave&&feedback.dataset.state==='incorrect'){feedback.dataset.state='ready';feedback.textContent='Der Ton ist jetzt in der Mitte. Drücke „Treffer speichern“. ';}status(canSave?'Ton in der Mitte. Drücke „Treffer speichern“.':'Im Zielbereich – halte den Ton ruhig.','hit');}else{if(time-heldSince>=2000&&singleToneAttemptActive&&!singleToneHitRecorded){singleToneHitRecorded=true;singleToneAttemptActive=false;if(window.recordSingleToneHit)window.recordSingleToneHit();const nextTarget=chooseDifferentTarget();setTarget(nextTarget);status(`Richtig, gespeichert. Neuer Zielton: ${pitch.name(nextTarget)}. Spiele ihn ab und singe ihn nach.`,'hit');}else status('Im Zielbereich – halte den Ton ruhig.','hit');}}
     else{heldSince=0;setCenterSaveEnabled(centerTrainer&&singleToneAttemptActive&&!singleToneHitRecorded);status(cents<0?'Etwas höher singen ↑':'Etwas tiefer singen ↓');}
   }
   $('mic-start').addEventListener('click',async()=>{

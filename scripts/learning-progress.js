@@ -46,6 +46,7 @@
   };
   window.recordSingleToneAttempt = () => { progress.singleTones.attempts += 1; write(); updateToneOutput(); };
   window.recordSingleToneHit = () => { progress.singleTones.hits += 1; write(); updateToneOutput(); };
+  window.resetSingleToneProgress = () => { progress.singleTones = { attempts: 0, hits: 0 }; write(); updateToneOutput(); };
   updateToneOutput();
 
   const intervalOutput = document.getElementById('large-interval-progress');

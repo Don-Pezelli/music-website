@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="0 0 1000 460" role="img" aria-labelledby="title desc">
 <style>:root{--pitch-0:hsl(0 78% 55%);--pitch-1:hsl(30 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-3:hsl(90 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-5:hsl(165 100% 25%);--pitch-6:hsl(180 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-8:hsl(240 78% 55%);--pitch-9:hsl(270 78% 55%);--pitch-10:hsl(300 78% 55%);--pitch-11:hsl(330 78% 55%);}</style>
-<title id="title">C-Dur-Pentatonik, Dur-Position 1 über eine Oktave auf dem ganzen Griffbrett</title>
+<title id="title">C-Dur-Pentatonik, Dur-Position 1, Griffweg 1 über eine Oktave auf dem ganzen Griffbrett</title>
 <desc id="desc">Das gesamte sechssaitige Griffbrett von Bund 0 bis 15. Markiert sind nur C und D auf der tiefen E-Saite, E und G auf der A-Saite sowie A und C auf der D-Saite. Die Folge reicht von C bis zum nächsten C.</desc>
 <rect width="1000" height="460" fill="#fff"/>
-<text x="30" y="35" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">C-Dur-Pentatonik · Dur-Position 1</text>
-<text x="30" y="61" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Eine Oktave · C–D–E–G–A–C auf tiefer E-, A- und D-Saite</text>
+<text x="30" y="35" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">C-Dur-Pentatonik · Dur-Position 1 · Griffweg 1</text>
+<text x="30" y="61" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Eine Oktave · C–D–E–G–A–C</text>
 <g fill="#65706e" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">
 <text x="165" y="91">0</text><text x="215" y="91">1</text><text x="265" y="91">2</text><text x="315" y="91">3</text><text x="365" y="91">4</text><text x="415" y="91">5</text><text x="465" y="91">6</text><text x="515" y="91">7</text><text x="565" y="91">8</text><text x="615" y="91">9</text><text x="665" y="91">10</text><text x="715" y="91">11</text><text x="765" y="91">12</text><text x="815" y="91">13</text><text x="865" y="91">14</text><text x="915" y="91">15</text>
 </g>

@@ -37,3 +37,5 @@
 .center-followup [data-followup-result]{min-height:1.5em;padding:12px 14px;border-left:3px solid #48654a;background:#fff;color:#33413a;border-radius:0 5px 5px 0}
 .center-followup [data-followup-result][data-state="correct"]{border-color:#28512a;background:#e2eee0;color:#28512a;font-weight:700}
 .center-followup [data-followup-result][data-state="incorrect"]{border-color:#a13922;background:#f7e5df;color:#8b3823;font-weight:700}
+
+.ear-equipment{margin:22px 0 26px;padding:18px 20px;background:#f1f3ee;border-left:3px solid #48654a;border-radius:4px}.ear-equipment h3{margin:0 0 10px;font-size:16px}.ear-equipment ul{margin:0 0 10px;padding-left:20px}.ear-equipment li,.ear-equipment p{font-size:13px;line-height:1.7}.ear-equipment p{margin:8px 0}.ear-equipment button{padding:10px 14px;border:1px solid #202e31;border-radius:6px;background:#fff;color:#202e31;font:inherit;cursor:pointer;min-height:42px}.ear-equipment button[aria-pressed="true"]{background:#202e31;color:#fff}.ear-equipment button:focus-visible{outline:3px solid #c44929;outline-offset:3px}#ear-register-status{font-size:12px;color:#53645a}

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="545" viewBox="0 0 1000 545" role="img" aria-labelledby="title desc">
 <style>:root{--pitch-0:hsl(0 78% 55%);--pitch-1:hsl(30 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-3:hsl(90 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-5:hsl(165 100% 25%);--pitch-6:hsl(180 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-8:hsl(240 78% 55%);--pitch-9:hsl(270 78% 55%);--pitch-10:hsl(300 78% 55%);--pitch-11:hsl(330 78% 55%);}</style>
-<title id="title">C-Dur-Pentatonik, Dur-Position 1 mit Positionsmarkierungen auf dem ganzen Griffbrett</title>
-<desc id="desc">Das gesamte sechssaitige Griffbrett von Bund 0 bis 15. Markiert ist eine Oktave C-Dur-Pentatonik in Dur-Position 1. Die Farbbänder darunter kennzeichnen Dur-Position 4 an den Bünden 2 bis 5 und Dur-Position 1 an den Bünden 7 bis 10.</desc>
-<rect width="1000" height="520" fill="#fff"/>
+<title id="title">C-Dur-Pentatonik, Dur-Position 1 mit Positionsmarkierungen auf dem ganzen Griffbrett mit Markierung für Dur-Position 5</title>
+<desc id="desc">Das gesamte sechssaitige Griffbrett von Bund 0 bis 15. Die markierte C-Dur-Pentatonik beginnt in Dur-Position 1. Unter dem Griffbrett sind die Bereiche der Dur-Positionen 4 (Bünde 2 bis 5), 1 (Bünde 7 bis 10) und 5 (Bünde 5 bis 8) markiert.</desc>
+<rect width="1000" height="545" fill="#fff"/>
 <text x="30" y="35" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">C-Dur-Pentatonik · Dur-Position 1</text>
 <text x="30" y="61" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Eine Oktave · C–D–E–G–A–C auf tiefer E-, A- und D-Saite</text>
 <g fill="#65706e" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">
@@ -25,5 +25,5 @@
 <g aria-label="Dur-Positionen">
 <rect x="242" y="453" width="196" height="19" rx="4" fill="#935065" fill-opacity=".17" stroke="#935065" stroke-width="1.2"/><text x="340" y="467" text-anchor="middle" fill="#935065" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 4</text>
 <rect x="492" y="478" width="196" height="19" rx="4" fill="#b3482e" fill-opacity=".17" stroke="#b3482e" stroke-width="1.2"/><text x="590" y="492" text-anchor="middle" fill="#b3482e" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 1</text>
-</g>
+<rect x="392" y="503" width="196" height="19" rx="4" fill="#655381" fill-opacity=".17" stroke="#655381" stroke-width="1.2"/><text x="490" y="517" text-anchor="middle" fill="#655381" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 5</text></g>
 </svg>

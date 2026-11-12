@@ -38,8 +38,10 @@
 .course-audio-player{display:block;flex:0 0 100%;width:100%;max-width:100%;height:120px;border:0;border-radius:5px;background:#fff}.exercise-audio>div{flex:1;min-width:0}.exercise-audio .course-audio-player{margin:10px 0 14px}@media(max-width:680px){.exercise-audio{flex-wrap:wrap}.exercise-audio>div{flex-basis:100%}}@media print{.course-audio-player{display:none}}
 
 /* Follow the reader's current section without shifting the navigation text. */
-.lesson-nav a[aria-current="location"]{background:var(--green);box-shadow:inset 3px 0 var(--orange);border-radius:4px;color:var(--ink)}
+.lesson-nav a[aria-current="location"],.mock-nav a[aria-current="location"]{background:var(--green);box-shadow:inset 3px 0 var(--orange);border-radius:4px;color:var(--ink)}
 .lesson-nav a[aria-current="location"] span{transform:translateX(6px)}
+.mock-nav a[aria-current="location"]{padding-left:9px}
+.mock-nav .mock-nav-lessons a[aria-current="location"]{padding-left:12px;color:var(--ink)}
 
 /* Equal display areas for the note/rest comparisons; preserve symbol proportions. */
 .rest-pair .notation a{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:664 / 206;background:white}
@@ -290,4 +292,47 @@ html.image-viewer-open{overflow:hidden}
   .note-color-steps>li::before{width:32px;height:32px}
 }
 
-.position5-diagram{position:relative;width:100%}.position5-diagram>img:first-child{display:block;width:100%;height:auto}.position5-diagram [data-position5-finger-overlay]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.position5-diagram{position:relative;width:100%}.position5-diagram>img:first-child{display:block;width:100%;height:auto}.position5-diagram [data-position5-finger-overlay],.position5-diagram [data-position1-octave-overlay]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.position5-diagram [hidden]{display:none!important}
+
+/* Guitar faculty learning levels */
+.catalog-track{margin-top:34px}
+.catalog-track-heading{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding:0 0 10px;margin-bottom:18px}
+.catalog-track-heading h3{font-size:21px;font-weight:500;letter-spacing:-.3px;margin:0;color:var(--branch-color)}
+.catalog-track-heading span{font-size:11px;color:var(--muted)}
+
+.course-content-start,.course-content-chapter{scroll-margin-top:28px}
+.course-content-start{border-top:1px solid var(--line);margin-top:46px;padding-top:34px}
+.course-content-start h2{font-size:30px}
+.course-content-chapter{border-top:1px solid var(--line);margin-top:38px;padding-top:30px}
+.course-content-chapter>.eyebrow{color:var(--branch-color);font-size:11px}
+.course-content-chapter>h2{font-size:27px;margin:10px 0 12px}
+.course-content-intro{color:var(--muted);margin:0 0 14px}
+.course-standalone-link{margin-top:30px;padding-top:16px;border-top:1px solid var(--line)}
+
+.position3-octave-diagram{position:relative;width:100%}
+.position3-octave-diagram>img:first-child{display:block;width:100%;height:auto}
+.position3-octave-diagram [data-position3-octave-overlay]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* Keep the current chapter and lesson visible in every course contents list. */
+.lesson-nav a[aria-current="location"],.mock-nav a[aria-current="location"]{background:var(--green);box-shadow:inset 3px 0 var(--orange);border-radius:4px;color:var(--ink)}
+.lesson-nav a[aria-current="location"] span{transform:translateX(6px)}
+.mock-nav a[aria-current="location"]{padding-left:9px}
+.mock-nav .mock-nav-lessons a[aria-current="location"]{padding-left:12px;color:var(--ink)}
+.course-embedded-chapter{scroll-margin-top:24px}
+.course-embedded-body{max-width:none}
+
+.song-research-note{max-width:360px;margin:24px 0 20px auto;padding:20px 24px;background:#c83333;color:#fff;border-radius:4px}.song-research-note strong{display:block;margin-bottom:8px;font-size:13px}.song-research-note p{margin:0;color:inherit;font-size:14px;line-height:1.6}
+@media(max-width:680px){.song-research-note{max-width:none;margin:20px 0;padding:18px}}
+
+.powerchord-view-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px}.powerchord-view-controls>span{font-size:12px;line-height:1.6;color:var(--muted)}.powerchord-position-controls{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.powerchord-position-controls .button{min-width:82px}@media(max-width:560px){.powerchord-view-controls{align-items:flex-start;flex-direction:column;gap:8px}.powerchord-position-controls .button{flex:1 1 calc(50% - 8px)}}
+
+.powerchord-reference{color:var(--orange);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.powerchord-reference:hover{color:var(--ink)}
+
+.guitar-course-chapter{scroll-margin-top:24px}.guitar-course-chapter>p:first-of-type{color:var(--muted)}.guitar-course-chapter ul{padding-left:22px}.guitar-course-chapter li{padding:5px 0;font-size:14px;line-height:1.75}
+
+.course-inline-link{color:var(--branch-color);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.course-inline-link:hover{color:var(--ink)}
+
+.catalog-work-note{display:flex;flex-direction:column;gap:4px;width:fit-content;max-width:100%;margin:0 0 16px auto;padding:12px 15px;border-radius:4px;background:#c83333;color:#fff;font-size:12px;line-height:1.55}.catalog-work-note strong{font-size:11px;letter-spacing:.04em;text-transform:uppercase}.catalog-work-note span{color:inherit}
+
+.direction-diagram-pair{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 26px}.direction-diagram-pair .notation{min-width:0;margin:0}.direction-diagram-pair .notation img{width:100%;height:auto}.direction-diagram-pair .notation figcaption{text-align:center}@media(max-width:520px){.direction-diagram-pair{grid-template-columns:1fr}}

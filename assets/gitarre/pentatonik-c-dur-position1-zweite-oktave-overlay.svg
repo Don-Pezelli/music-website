@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="575" viewBox="0 0 1000 575" role="img" aria-labelledby="title desc">
+<title id="title">Dur-Position 1: zweite Oktave C–D–E–G–A–C</title>
+<desc id="desc">Eine einzelne, unregelmäßige rote Kontur umfasst genau die genannten Bundfelder: D10, G7, G8 und G9, B8, B9 und B10 sowie hohe E8. Die Kontur bezieht zusätzlich G8 und B9 ein, damit sie sich an die anderen Positionsmarkierungen anlehnt. Der Fingersatz lautet K–Z–R–M–K–M.</desc>
+<path d="M537.5 90 L592.5 90 L592.5 145 L692.5 145 L692.5 205 L642.5 205 L642.5 255 L692.5 255 L692.5 315 L637.5 315 L637.5 260 L487.5 260 L487.5 200 L537.5 200 Z" fill="none" stroke="#d43f3a" stroke-width="3.5" stroke-linejoin="round"/>
+<g font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#202e31">
+<text x="665" y="312">K</text>
+<text x="515" y="257">Z</text>
+<text x="615" y="257">R</text>
+<text x="565" y="202">M</text>
+<text x="665" y="202">K</text>
+<text x="565" y="147">M</text>
+</g>
+</svg>

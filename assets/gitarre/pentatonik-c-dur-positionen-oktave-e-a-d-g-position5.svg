@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="575" viewBox="0 0 1000 575" role="img" aria-labelledby="title desc">
 <style>:root{--pitch-0:hsl(0 78% 55%);--pitch-1:hsl(30 78% 55%);--pitch-2:hsl(60 78% 55%);--pitch-3:hsl(90 78% 55%);--pitch-4:hsl(120 78% 55%);--pitch-5:hsl(165 100% 25%);--pitch-6:hsl(180 78% 55%);--pitch-7:hsl(210 78% 55%);--pitch-8:hsl(240 78% 55%);--pitch-9:hsl(270 78% 55%);--pitch-10:hsl(300 78% 55%);--pitch-11:hsl(330 78% 55%);}</style>
-<title id="title">C-Dur-Pentatonik, Vier Griffwege der C-Dur-Pentatonik mit Positionsmarkierungen · Dur-Position 5 hervorgehoben</title>
-<desc id="desc">Das gesamte sechssaitige Griffbrett von Bund 0 bis 15. Gezeigt werden Griffwege derselben C-Dur-Pentatonik-Oktave ab tiefer E-Saite in Dur-Position 1, ab A-Saite in Dur-Position 4, ab D-Saite in Dur-Position 2 und ab G-Saite. Alle Muster behalten dieselben Tonabstände. Das Band Dur-Position 5 ist ergänzt.</desc>
+<title id="title">C-Dur-Pentatonik, C-Dur-Pentatonik mit sichtbarem Griffweg der Dur-Position 3 und markierter Dur-Position 5</title>
+<desc id="desc">Das gesamte sechssaitige Griffbrett von Bund 0 bis 15. Gezeigt werden Griffwege derselben C-Dur-Pentatonik-Oktave ab tiefer E-Saite in Dur-Position 1, ab A-Saite in Dur-Position 4, ab D-Saite in Dur-Position 2 und ab G-Saite. Alle Muster behalten dieselben Tonabstände. Der Griffweg C–D–E–G–A–C der unteren Dur-Position 3 ist mit Fingersatz sichtbar; auch das Positionsband ist markiert.</desc>
 <rect width="1000" height="575" fill="#fff"/>
 <text x="30" y="35" fill="#202e31" font-family="Arial,sans-serif" font-size="22" font-weight="700">C-Dur-Pentatonik · Muster ab D- und G-Saite</text>
 <text x="30" y="61" fill="#53645a" font-family="Arial,sans-serif" font-size="14">Zusätzlich: Muster ab D- und G-Saite</text>
@@ -42,7 +42,16 @@
 <circle cx="565" cy="120" r="17" fill="var(--pitch-0)" stroke="#9e351c" stroke-width="1.5"/><text x="565" y="125" fill="#fff">C</text><text x="565" y="152" font-size="12" fill="#202e31">K</text>
 </g>
 
+<g aria-label="Dur-Position 3, untere Lage: C–D–E–G–A–C mit Fingersatz" font-family="Arial,sans-serif" text-anchor="middle" font-size="14" font-weight="700">
+<circle cx="315" cy="340" r="17" fill="var(--pitch-0)" stroke="#9e351c" stroke-width="1.5"/><text x="315" y="345" fill="#fff">C</text><text x="315" y="372" font-size="12" fill="#202e31">K</text>
+<circle cx="165" cy="285" r="17" fill="var(--pitch-2)" stroke="#657c67" stroke-width="1.5"/><text x="165" y="290" fill="#202e31">D</text><text x="165" y="317" font-size="12" fill="#202e31">0</text>
+<circle cx="265" cy="285" r="17" fill="var(--pitch-4)" stroke="#657c67" stroke-width="1.5"/><text x="265" y="290" fill="#202e31">E</text><text x="265" y="317" font-size="12" fill="#202e31">R</text>
+<circle cx="165" cy="230" r="17" fill="var(--pitch-7)" stroke="#195b7a" stroke-width="1.5"/><text x="165" y="235" fill="#fff">G</text><text x="165" y="262" font-size="12" fill="#202e31">0</text>
+<circle cx="265" cy="230" r="17" fill="var(--pitch-9)" stroke="#655381" stroke-width="1.5"/><text x="265" y="235" fill="#fff">A</text><text x="265" y="262" font-size="12" fill="#202e31">R</text>
+<circle cx="215" cy="175" r="17" fill="var(--pitch-0)" stroke="#9e351c" stroke-width="1.5"/><text x="215" y="180" fill="#fff">C</text><text x="215" y="207" font-size="12" fill="#202e31">M</text>
+</g>
 <g aria-label="Dur-Positionen">
+<rect x="142" y="553" width="196" height="19" rx="4" fill="#4d5e87" fill-opacity=".17" stroke="#4d5e87" stroke-width="1.2"/><text x="240" y="567" text-anchor="middle" fill="#4d5e87" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 3</text>
 <rect x="242" y="453" width="196" height="19" rx="4" fill="#935065" fill-opacity=".17" stroke="#935065" stroke-width="1.2"/><text x="340" y="467" text-anchor="middle" fill="#935065" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 4</text>
 <rect x="492" y="478" width="196" height="19" rx="4" fill="#b3482e" fill-opacity=".17" stroke="#b3482e" stroke-width="1.2"/><text x="590" y="492" text-anchor="middle" fill="#b3482e" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 1</text>
 <rect x="592" y="503" width="246" height="19" rx="4" fill="#48654a" fill-opacity=".17" stroke="#48654a" stroke-width="1.2"/><text x="715" y="517" text-anchor="middle" fill="#48654a" font-family="Arial,sans-serif" font-size="12" font-weight="700">Dur-Position 2</text>

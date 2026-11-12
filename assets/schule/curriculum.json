@@ -428,14 +428,83 @@
   {
     "id": "gitarre-2",
     "branch": "gitarre",
-    "title": "Gitarre 2 · Melodie",
-    "description": "Zwei selbst gewählte Songs als Melodien lernen. Rhythmus und Melodieverständnis direkt auf die Gitarre übertragen.",
+    "title": "Gitarre 2 · Mechanische Grundlagen",
+    "description": "Spielprinzipien anwenden, Fingerkoordination entwickeln und die Spinne langsam aufbauen.",
     "url": "kurs-gitarre-2.html",
+    "status": "ready",
+    "suggested_foundations": [
+      "gitarre-1"
+    ],
+    "modules": [
+      [
+        "Prinzipien und Spinne",
+        "Grundprinzipien des Greifens anwenden, Finger einzeln bewegen und das feste Finger-pro-Bund-Muster über die Saiten führen."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-3",
+    "branch": "gitarre",
+    "title": "Gitarre 3 · Akkorde",
+    "description": "Offene Dur- und Mollakkorde kennenlernen, ein Lied damit begleiten und die Formen später mit dem Zeigefinger verschieben.",
+    "url": "kurs-gitarre-3.html",
     "status": "draft",
     "suggested_foundations": [
-      "gitarre-1",
-      "rhythmus-1",
-      "melodie-1"
+      "gitarre-2",
+      "harmonie-1"
+    ],
+    "modules": [
+      [
+        "Offene Dur- und Mollakkorde kennenlernen",
+        "Die gängigen offenen Formen greifen, vergleichen und ihre unterschiedlichen Klänge hören."
+      ],
+      [
+        "Mit offenen Akkorden ein Lied begleiten",
+        "Akkordwechsel langsam und zunächst trocken üben, dann die offenen Griffe in einem einfachen Lied anwenden."
+      ],
+      [
+        "Der Zeigefinger als beweglicher Sattel",
+        "Mit einem Kapodaster die Sattelfunktion erkunden und offene Griffbilder mit dem Zeigefinger in andere Lagen verschieben."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-4",
+    "branch": "gitarre",
+    "title": "Gitarre 4 · Die Pentatonik-Positionen",
+    "description": "Die fünf Positionen der Dur- und Moll-Pentatonik finden und aus dem jeweiligen Grundton heraus benennen.",
+    "url": "kurs-gitarre-4.html",
+    "status": "ready",
+    "suggested_foundations": [
+      "gitarre-2",
+      "gitarre-7"
+    ],
+    "modules": [
+      [
+        "Dur-Pentatonikpositionen",
+        "Die fünf Griffbilder der Dur-Pentatonik kennenlernen und Grundtöne auf dem Hals finden."
+      ],
+      [
+        "Dur-Tonleiter",
+        "Die fehlenden Tonstufen 4 und 7 in die Pentatonik einordnen."
+      ],
+      [
+        "Moll-Pentatonik",
+        "Die parallele Moll-Pentatonik und ihre Positionen entdecken."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-5",
+    "branch": "gitarre",
+    "title": "Gitarre 5 · Melodiespiel auf der Gitarre",
+    "description": "Zwei selbst gewählte Songs als Melodien lernen. Rhythmus und Melodieverständnis direkt auf die Gitarre übertragen.",
+    "url": "kurs-gitarre-5.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "gitarre-2",
+      "gitarre-7",
+      "rhythmus-1"
     ],
     "modules": [
       [
@@ -457,32 +526,40 @@
     ]
   },
   {
-    "id": "gitarre-3",
+    "id": "gitarre-6",
     "branch": "gitarre",
-    "title": "Gitarre 3 · Akkorde",
-    "description": "Dieselben zwei Songs mit Akkorden begleiten. Griffbilder, Wechsel und Begleitmuster mit deinen musikalischen Grundlagen verbinden.",
-    "url": "kurs-gitarre-3.html",
+    "title": "Gitarre 6 · Noten auf dem Griffbrett finden",
+    "description": "Saitennamen, Notenfolge und Oktavmuster kennenlernen, um Töne auf verschiedenen Stellen des Gitarrenhalses zu finden.",
+    "url": "kurs-gitarre-6.html",
     "status": "draft",
     "suggested_foundations": [
-      "gitarre-2",
-      "harmonie-1"
+      "gitarre-2"
     ],
     "modules": [
       [
-        "Akkorde der Songs",
-        "Finde die Akkorde deiner beiden Songs und lerne passende Griffbilder."
+        "Saiten, Notenfolge und Orientierung",
+        "Saitennamen, internationale Notennamen, Vorzeichen und Besonderheiten des Griffbretts kennenlernen."
       ],
       [
-        "Akkordwechsel",
-        "Verbinde die Griffe in kleinen Bewegungsfolgen bei gleichmäßigem Puls."
-      ],
+        "Oktavmuster über den Hals verfolgen",
+        "C ausgehend von der tiefen E-Saite mit kleinen und großen L-Mustern sowie dem C-Akkord-Muster finden."
+      ]
+    ]
+  },
+  {
+    "id": "gitarre-7",
+    "branch": "gitarre",
+    "title": "Gitarre 7 · Pentatonik – Einstieg",
+    "description": "Die erste Position der Dur-Pentatonik über eine Oktave greifen und den Grundton C auf dem Griffbrett finden.",
+    "url": "kurs-gitarre-7.html",
+    "status": "ready",
+    "suggested_foundations": [
+      "gitarre-2"
+    ],
+    "modules": [
       [
-        "Begleitung gestalten",
-        "Wähle ein einfaches Anschlagmuster und passe es an den Song an."
-      ],
-      [
-        "Musikalisch verbinden",
-        "Spiele beide Songs mit Akkorden und verbinde dabei Rhythmus, Melodie und Harmonie."
+        "Erste Dur-Pentatonikposition",
+        "Eine Oktave greifen, den Grundton C finden und das Muster sicher kennenlernen."
       ]
     ]
   },
@@ -543,6 +620,43 @@
       [
         "Technik und Gegenwart",
         "Verfolge, wie Instrumente, Tonaufnahme und digitale Medien das Musizieren verändern."
+      ]
+    ]
+  },
+  {
+    "id": "philosophie-3",
+    "branch": "philosophie",
+    "title": "Philosophie 3 · Musikalische Variablen",
+    "description": "Ordne Eigenschaften, durch die Musik gestaltet wird: Tonhöhe, Zeit, Lautstärke, Klangfarbe und Zusammenklang.",
+    "url": "kurs-philosophie-3.html",
+    "status": "draft",
+    "suggested_foundations": [
+      "philosophie-1"
+    ],
+    "modules": [
+      [
+        "Tonhöhe und Register",
+        "Tonhöhe, melodische Richtung und Lage."
+      ],
+      [
+        "Zeit und Rhythmus",
+        "Dauer, Pausen, Puls, Tempo, Takt und Unterteilung; Pausen als gestaltete Zeit."
+      ],
+      [
+        "Lautstärke und Dynamik",
+        "Laut-leise-Verhältnisse, Kontraste und Veränderungen."
+      ],
+      [
+        "Klangfarbe, Resonanz und Artikulation",
+        "Klangentstehung, Instrument, Stimme und Spielweise."
+      ],
+      [
+        "Zusammenklang und Dichte",
+        "Harmonie, Mehrstimmigkeit und Klangdichte."
+      ],
+      [
+        "Raum und Architektur",
+        "Der Ort und die Architektur des Hörens prägen die Akustik und Wahrnehmung."
       ]
     ]
   }

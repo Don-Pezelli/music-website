@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
+<title id="title">Ein Ton bleibt gleich</title>
+<desc id="desc">Auf weißem Hintergrund markieren zwei gleich große Punkte Ausgangs- und Zielton. Ein waagerechter Pfeil führt vom ersten zum zweiten Punkt: Beide Töne sind gleich hoch.</desc>
+<rect width="760" height="300" fill="#fff"/>
+<path d="M220 150H517" fill="none" stroke="#48654a" stroke-width="8" stroke-linecap="round"/>
+<path d="M517 150L485 136M517 150L485 164" fill="none" stroke="#48654a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="220" cy="150" r="13" fill="#48654a"/>
+<circle cx="530" cy="150" r="13" fill="#48654a"/>
+</svg>

@@ -210,16 +210,16 @@
     let startsOnAString = false;
     const views = {
       lowE: {
-        src: 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-only.svg',
+        src: 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-only.svg?v=3',
         button: 'A-Saiten-Muster ergänzen',
-        alt: 'Gesamtes Griffbrett mit einer Oktave C-Dur-Pentatonik in Dur-Position 1. Die Positionsbänder markieren Dur-Position 4 und 1.',
-        caption: 'Eine Oktave ab der tiefen E-Saite in Dur-Position 1: C–D–E–G–A–C auf E-, A- und D-Saite. Die Fingerfolge lautet M–K–Z–K–Z–K.'
+        alt: 'Gesamtes Griffbrett mit einer Oktave C-Dur-Pentatonik in Dur-Position 1. Die Positionsbänder markieren Dur-Position 4, 1 und 5.',
+        caption: 'Eine Oktave ab der tiefen E-Saite in Dur-Position 1: C–D–E–G–A–C auf E-, A- und D-Saite. Die Bänder markieren zusätzlich Dur-Position 4 und 5. Die Fingerfolge lautet M–K–Z–K–Z–K.'
       },
       a: {
-        src: 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-und-a-saite.svg',
+        src: 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-und-a-saite.svg?v=3',
         button: 'A-Saiten-Muster ausblenden',
-        alt: 'Gesamtes Griffbrett mit beiden Griffwegen derselben C-Dur-Pentatonik-Oktave. Der Weg ab tiefer E-Saite ist Dur-Position 1; zusätzlich ist dasselbe Muster ab C im dritten Bund der A-Saite in Dur-Position 4 markiert, mit demselben Fingersatz M–K–Z–K–Z–K.',
-        caption: 'Beide Griffwege sind sichtbar: Dur-Position 1 ab tiefer E-Saite und dasselbe Oktavmuster auf A-, D- und G-Saite in Dur-Position 4. Der Fingersatz bleibt M–K–Z–K–Z–K.'
+        alt: 'Gesamtes Griffbrett mit beiden Griffwegen derselben C-Dur-Pentatonik-Oktave. Die Griffwege liegen in Dur-Position 1 und 4; darunter ist zusätzlich Dur-Position 5 markiert.',
+        caption: 'Beide Griffwege sind sichtbar: Dur-Position 1 ab tiefer E-Saite und Dur-Position 4 ab A-Saite. Zusätzlich ist Dur-Position 5 markiert. Der Fingersatz bleibt M–K–Z–K–Z–K.'
       }
     };
     button.addEventListener('click', () => {
@@ -244,11 +244,11 @@
     let showPositionG = false;
     function updatePositionPattern() {
       const source = showPosition2 && showPositionG
-        ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-d-g-saite.svg?v=2'
+        ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-d-g-saite.svg?v=3'
         : showPosition2
-          ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-d-saite.svg?v=2'
+          ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-d-saite.svg?v=3'
           : showPositionG
-            ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-g-saite.svg'
+            ? 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-g-saite.svg?v=3'
             : 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-und-a-saite.svg';
       positionPatternImage.src = source;
       positionPatternImage.alt = showPosition2 && showPositionG
@@ -259,12 +259,12 @@
             ? 'Gesamtes Griffbrett mit Griffwegen derselben C-Dur-Pentatonik-Oktave ab tiefer E-, A- und G-Saite. Am gemeinsamen C am fünften Bund der G-Saite ist K/Z markiert.'
             : 'Gesamtes Griffbrett mit den Griffwegen der C-Dur-Pentatonik-Oktave in Dur-Position 1 ab tiefer E-Saite und Dur-Position 4 ab A-Saite.';
       positionPatternCaption.textContent = showPosition2 && showPositionG
-        ? 'Die Muster ab D- und G-Saite sind ergänzt. Das gemeinsame C auf der G-Saite im fünften Bund trägt den Fingersatz K/Z.'
+        ? 'Die Muster ab D- und G-Saite sind ergänzt. Dur-Position 5 bleibt markiert; das gemeinsame C am fünften Bund der G-Saite trägt K/Z.'
         : showPosition2
-          ? 'Dazu kommt Dur-Position 2 ab C im zehnten Bund der D-Saite. Auch hier ist der Fingersatz M–K–Z–K–Z–K.'
+          ? 'Dazu kommt Dur-Position 2 ab C im zehnten Bund der D-Saite. Dur-Position 5 ist ebenfalls markiert. Auch hier ist der Fingersatz M–K–Z–K–Z–K.'
           : showPositionG
-            ? 'Zusätzlich erscheint das Muster ab C im fünften Bund der G-Saite; das gemeinsame C ist mit K/Z markiert.'
-            : 'Dur-Position 1 ab tiefer E-Saite und Dur-Position 4 ab A-Saite sind sichtbar. Du kannst die Muster ab D- und G-Saite ergänzen.';
+            ? 'Zusätzlich erscheint das Muster ab C im fünften Bund der G-Saite. Dur-Position 5 bleibt markiert; das gemeinsame C trägt K/Z.'
+            : 'Dur-Position 1, 4 und 5 sind markiert. Du kannst die Muster ab D- und G-Saite ergänzen.';
       positionPatternGuidance.hidden = !showPosition2 || showPositionG;
       positionGGuidance.hidden = !showPositionG;
       position2Toggle.textContent = showPosition2 ? 'D-Saiten-Muster ausblenden' : 'Muster ab der D-Saite zeigen';
@@ -293,11 +293,11 @@
         ? 'assets/gitarre/pentatonik-c-dur-positionen-ergaenzt-d-g-position5.svg'
         : 'assets/gitarre/pentatonik-c-dur-positionen-oktave-e-a-d-g-position5.svg';
       extraToneImage.alt = showExtraTones
-        ? 'Die vier Oktav-Griffwege der C-Dur-Pentatonik mit D im dritten Bund der B-Saite und G im dritten Bund der hohen E-Saite ergänzt. Eine rote Umrandung umfasst C auf G5, D auf B3, E auf B5 sowie G, A und C auf der hohen E-Saite in den Bünden 3, 5 und 8.'
-        : 'Die vier Oktav-Griffwege der C-Dur-Pentatonik ab tiefer E-, A-, D- und G-Saite. Dur-Position 5 ist markiert.';
+        ? 'Die vier Oktav-Griffwege der C-Dur-Pentatonik mit der unteren Dur-Position 3 samt Fingersatz sowie D auf B3 und G auf hoher E3 ergänzt. Eine rote Umrandung umfasst außerdem C auf G5, D auf B3, E auf B5 sowie G, A und C auf hoher E3, 5 und 8.'
+        : 'Die vier Oktav-Griffwege der C-Dur-Pentatonik ab tiefer E-, A-, D- und G-Saite. Die untere Dur-Position 3 mit C–D–E–G–A–C und Fingersatz ist ebenfalls sichtbar; Dur-Position 5 ist markiert.';
       extraToneCaption.textContent = showExtraTones
-        ? 'Rot umrandet sind C auf G5, D auf B3, E auf B5 sowie G, A und C auf der hohen E-Saite in den Bünden 3, 5 und 8.'
-        : 'Die vier Oktav-Griffwege sind von Anfang an gemeinsam sichtbar. Dur-Position 5 ist markiert. Der Knopf ergänzt D auf B3 und G auf hoher E3 und umrandet den vollständigen Griffweg.';
+        ? 'Die untere Dur-Position 3 mit C–D–E–G–A–C und Fingersatz bleibt sichtbar. Zusätzlich rot umrandet sind C auf G5, D auf B3, E auf B5 sowie G, A und C auf der hohen E-Saite in den Bünden 3, 5 und 8.'
+        : 'Die vier Oktav-Griffwege und die gelernte tiefe Dur-Position 3 mit C–D–E–G–A–C samt Fingersatz sind sichtbar. Dur-Position 5 ist markiert. Der Knopf ergänzt D auf B3 und G auf hoher E3 und umrandet den vollständigen Griffweg.';
       extraToneToggle.textContent = showExtraTones ? 'Ergänzte Töne ausblenden' : 'Ergänzte Töne anzeigen';
       extraToneToggle.setAttribute('aria-pressed', String(showExtraTones));
     });
@@ -305,12 +305,15 @@
 
   const position5OctaveToggle = document.querySelector('[data-position5-octave-toggle]');
   const position3VariationToggle = document.querySelector('[data-position3-variation-toggle]');
+  const position1OctaveToggle = document.querySelector('[data-position1-octave-toggle]');
   const position5OctaveImage = document.querySelector('[data-position5-octave-image]');
   const position5FingerOverlay = document.querySelector('[data-position5-finger-overlay]');
+  const position1OctaveOverlay = document.querySelector('[data-position1-octave-overlay]');
   const position5OctaveCaption = document.querySelector('[data-position5-octave-caption]');
-  if (position5OctaveToggle && position3VariationToggle && position5OctaveImage && position5FingerOverlay && position5OctaveCaption) {
+  if (position5OctaveToggle && position3VariationToggle && position1OctaveToggle && position5OctaveImage && position5FingerOverlay && position1OctaveOverlay && position5OctaveCaption) {
     let showPosition5Octave = false;
     let showPosition3Variation = false;
+    let showPosition1Octave = false;
     const updatePosition5Tool = () => {
       position5OctaveImage.src = showPosition3Variation
         ? showPosition5Octave
@@ -328,18 +331,25 @@
             : '';
       position5FingerOverlay.hidden = !fingerOverlay;
       if (fingerOverlay) position5FingerOverlay.src = fingerOverlay;
+      else position5FingerOverlay.removeAttribute('src');
+      position1OctaveOverlay.hidden = !showPosition1Octave;
+      position1OctaveOverlay.style.display = showPosition1Octave ? 'block' : 'none';
       position5OctaveImage.alt = showPosition3Variation
-        ? 'Ganzes Griffbrett mit Dur-Position 5 und zusätzlich D auf der D-Saite im offenen Bund, G auf der G-Saite im offenen Bund sowie C auf der B-Saite im ersten Bund.'
+        ? 'Ganzes Griffbrett mit rot umrandetem Griffweg in Dur-Position 3: C auf A3, D offen auf D0, E auf D2, G offen auf G0, A auf G2 und C auf B1.'
         : 'Gesamtes Griffbrett mit den vier C-Dur-Pentatonik-Oktavmustern. Dur-Position 5 ist markiert.';
       const captionParts = [];
       if (showPosition5Octave) captionParts.push('Dur-Position 5: rot umrandeter Griffweg C–D–E–G–A–C mit Fingersatz: tiefe E8 M, A5–A7 Z–R, D5–D7 Z–R und G5 Z.');
       else captionParts.push('Dur-Position 5 ist wie die anderen Positionen markiert.');
-      if (showPosition3Variation) captionParts.push('Dur-Position 3 ergänzt: D0 und G0 offen (0), C auf B1 mit Z.');
+      if (showPosition3Variation) captionParts.push('Dur-Position 3 ist rot umrandet: C auf A3 mit K, D0 offen, E auf D2 mit R, G0 offen, A auf G2 mit R und C auf B1 mit M.');
+      if (showPosition1Octave) captionParts.push('Die zweite Oktave von Dur-Position 1 ist rot umrandet: C auf D10 mit K, D auf G7 mit Z, E auf G9 mit R, G auf B8 mit M, A auf B10 mit K und C auf hoher E8 mit M.');
+      else captionParts.push('Der zusätzliche Knopf zeigt die zweite Oktave von Dur-Position 1 mit Fingersatz.');
       position5OctaveCaption.textContent = captionParts.join(' ');
       position5OctaveToggle.textContent = showPosition5Octave ? 'Dur-Position 5 ausblenden' : 'Dur-Position 5 mit Fingersatz anzeigen';
       position5OctaveToggle.setAttribute('aria-pressed', String(showPosition5Octave));
       position3VariationToggle.textContent = showPosition3Variation ? 'Dur-Position 3 ausblenden' : 'Dur-Position 3 mit Fingersatz ergänzen';
       position3VariationToggle.setAttribute('aria-pressed', String(showPosition3Variation));
+      position1OctaveToggle.textContent = showPosition1Octave ? 'Zweite Oktave ausblenden' : 'Zweite Oktave in Dur-Position 1 anzeigen';
+      position1OctaveToggle.setAttribute('aria-pressed', String(showPosition1Octave));
     };
     position5OctaveToggle.addEventListener('click', () => {
       showPosition5Octave = !showPosition5Octave;
@@ -349,7 +359,31 @@
       showPosition3Variation = !showPosition3Variation;
       updatePosition5Tool();
     });
+    position1OctaveToggle.addEventListener('click', () => {
+      showPosition1Octave = !showPosition1Octave;
+      updatePosition5Tool();
+    });
     updatePosition5Tool();
+  }
+
+  const position3OctaveToggle = document.querySelector('[data-position3-octave-toggle]');
+  const position3OctaveOverlay = document.querySelector('[data-position3-octave-overlay]');
+  const position3OctaveCaption = document.querySelector('[data-position3-octave-caption]');
+  if (position3OctaveToggle && position3OctaveOverlay && position3OctaveCaption) {
+    let showPosition3Octave = false;
+    const updatePosition3Octave = () => {
+      position3OctaveOverlay.hidden = !showPosition3Octave;
+      position3OctaveOverlay.setAttribute('aria-hidden', String(!showPosition3Octave));
+      position3OctaveToggle.textContent = showPosition3Octave ? 'Dur-Position-3-Griffweg ausblenden' : 'Dur-Position-3-Griffweg anzeigen';
+      position3OctaveToggle.setAttribute('aria-pressed', String(showPosition3Octave));
+      position3OctaveCaption.textContent = showPosition3Octave
+        ? 'Die hohe Dur-Position 3 ist präzise markiert: A15, D12 und D14, G12 und G14 sowie B13. Sie entspricht der ebenfalls rot umrandeten tiefen Dur-Position 3. Beide Positionsstreifen sind als Dur-Position 3 gekennzeichnet.'
+        : 'Die tiefe Dur-Position 3 ist bereits rot umrandet. Der Knopf ergänzt die entsprechende Dur-Position 3 ab dem 12. Bund; beide Bereiche werden dann als Dur-Position 3 gekennzeichnet.';
+    };
+    position3OctaveToggle.addEventListener('click', () => {
+      showPosition3Octave = !showPosition3Octave;
+      updatePosition3Octave();
+    });
   }
 
 })();
