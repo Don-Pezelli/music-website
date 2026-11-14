@@ -1,6 +1,6 @@
 (() => {
   const KEY = 'music-method-gehoerbildung1-progress-v1';
-  const empty = () => ({ largeIntervals: { attempts: 0, correct: 0 }, singleTones: { attempts: 0, hits: 0 }, earTraining: {}, sequences: {} });
+  const empty = () => ({ largeIntervals: { attempts: 0, correct: 0 }, singleTones: { attempts: 0, hits: 0 }, earTraining: {}, sequences: {}, intervalStations: {} });
   const read = () => {
     try {
       const value = JSON.parse(localStorage.getItem(KEY) || '{}');
@@ -8,6 +8,7 @@
       data.largeIntervals = { attempts: Number(value.largeIntervals?.attempts) || 0, correct: Number(value.largeIntervals?.correct) || 0 };
       data.singleTones = { attempts: Number(value.singleTones?.attempts) || 0, hits: Number(value.singleTones?.hits) || 0 };
       for (const [group, score] of Object.entries(value.sequences || {})) data.sequences[group] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
+      for (const [group, score] of Object.entries(value.intervalStations || {})) data.intervalStations[group] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
       for (const [stage, score] of Object.entries(value.earTraining || {})) {
         data.earTraining[stage] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
       }
@@ -34,15 +35,20 @@
     if (hit) score.correct += 1;
     write(); updateEarOutput();
   };
+  window.resetEarTrainingStage = stage => {
+    delete progress.earTraining[stage];
+    write(); updateEarOutput();
+  };
   updateEarOutput();
 
   const toneOutput = document.getElementById('single-tone-progress');
   const updateToneOutput = () => {
     if (!toneOutput) return;
     const score = progress.singleTones;
-    toneOutput.textContent = score.attempts
-      ? `Einzeltöne: ${score.hits} von ${score.attempts} Zieltönen mindestens zwei Sekunden im Zielbereich gehalten. Gespeichert auf diesem Gerät.`
-      : 'Zielton-Treffer werden auf diesem Gerät gespeichert.';
+    const hits = toneOutput.querySelector('[data-tone-hits]');
+    const attempts = toneOutput.querySelector('[data-tone-attempts]');
+    if (hits) hits.textContent = String(score.hits);
+    if (attempts) attempts.textContent = String(score.attempts);
   };
   window.recordSingleToneAttempt = () => { progress.singleTones.attempts += 1; write(); updateToneOutput(); };
   window.recordSingleToneHit = () => { progress.singleTones.hits += 1; write(); updateToneOutput(); };
@@ -53,9 +59,7 @@
   const updateIntervalOutput = () => {
     if (!intervalOutput) return;
     const score = progress.largeIntervals;
-    intervalOutput.textContent = score.attempts
-      ? `Bisher geprüft: ${score.attempts} ${score.attempts === 1 ? 'Intervall' : 'Intervalle'} · ${score.correct} richtig (${percent(score)} %). Dein Lernstand wird auf diesem Gerät gespeichert.`
-      : 'Dein Lernstand wird auf diesem Gerät gespeichert.';
+    intervalOutput.textContent = score.attempts ? `${score.correct} / ${score.attempts} · ${percent(score)} %` : '0 / 0';
   };
   window.recordLargeIntervalResult = hit => {
     progress.largeIntervals.attempts += 1;
@@ -65,6 +69,18 @@
   updateIntervalOutput();
 
   const sequenceLabels = { middleIntervals: 'mittlere Intervalle', smallIntervals: 'kleine Intervalle', simpleMelodies: 'einfache Melodien', advancedMelodies: 'anspruchsvollere Melodien' };
+  const sequenceScoreOutputs = [...document.querySelectorAll('[data-sequence-score]')];
+  const updateSequenceScoreOutputs = () => sequenceScoreOutputs.forEach(output => {
+    const score = progress.intervalStations[output.dataset.sequenceScore] || { attempts: 0, correct: 0 };
+    output.textContent = score.attempts ? `${score.correct} / ${score.attempts} · ${percent(score)} %` : '0 / 0';
+  });
+  window.recordIntervalStationResult = (group, hit) => {
+    const score = progress.intervalStations[group] || (progress.intervalStations[group] = { attempts: 0, correct: 0 });
+    score.attempts += 1;
+    if (hit) score.correct += 1;
+    write(); updateSequenceScoreOutputs();
+  };
+  updateSequenceScoreOutputs();
   window.recordSequenceResult = (group, correct, total) => {
     const score = progress.sequences[group] || (progress.sequences[group] = { attempts: 0, correct: 0 });
     score.attempts += total; score.correct += correct; write();
@@ -85,8 +101,8 @@
     { key: 'direction', label: 'Höher, tiefer oder gleich?', score: totalEar, minimum: 30, threshold: .8, href: 'gehoerbildung-1-kapitel-1.html#hoertraining', details: ['7-11', '3-7', '2-4'].map(stage => { const score = progress.earTraining[stage]; return score?.attempts ? `${earLabels[stage]} ${score.correct}/${score.attempts}` : null; }).filter(Boolean).join(' · ') },
     { key: 'singleTones', label: 'Einzelne Töne nachsingen', score: { attempts: progress.singleTones.attempts, correct: progress.singleTones.hits }, minimum: 5, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#voice-trainer' },
     { key: 'largeIntervals', label: 'Große Intervalle · Quinte bis Septime', score: progress.largeIntervals, minimum: 3, threshold: .75, href: 'gehoerbildung-1-kapitel-2.html#large-interval-trainer' },
-    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-middleIntervals' },
-    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-smallIntervals' },
+    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.intervalStations.middleIntervals || progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-middleIntervals' },
+    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.intervalStations.smallIntervals || progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-smallIntervals' },
     { key: 'simpleMelodies', label: 'Einfache Melodien', score: progress.sequences.simpleMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-simpleMelodies' },
     { key: 'advancedMelodies', label: 'Anspruchsvollere Melodien', score: progress.sequences.advancedMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-advancedMelodies' }
   ];

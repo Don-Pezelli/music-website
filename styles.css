@@ -313,6 +313,7 @@ html.image-viewer-open{overflow:hidden}
 .position3-octave-diagram{position:relative;width:100%}
 .position3-octave-diagram>img:first-child{display:block;width:100%;height:auto}
 .position3-octave-diagram [data-position3-octave-overlay]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.position3-octave-diagram [data-position3-octave-overlay][hidden]{display:none!important}
 
 /* Keep the current chapter and lesson visible in every course contents list. */
 .lesson-nav a[aria-current="location"],.mock-nav a[aria-current="location"]{background:var(--green);box-shadow:inset 3px 0 var(--orange);border-radius:4px;color:var(--ink)}

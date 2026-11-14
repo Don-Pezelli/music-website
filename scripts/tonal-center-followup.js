@@ -6,8 +6,11 @@
 
   const ranges = {
     'octave-c2-c3': [36, 48],
+    'octave-g2-g3': [43, 55],
     'octave-c3-c4': [48, 60],
+    'octave-g3-g4': [55, 67],
     'octave-c4-c5': [60, 72],
+    'octave-g4-g5': [67, 79],
     'octave-c5-c6': [72, 84]
   };
   const steps = [2, 4, 5, 7, 9, 11];
