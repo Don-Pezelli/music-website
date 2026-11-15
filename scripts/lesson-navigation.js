@@ -3,10 +3,14 @@
   if (!navs.length) return;
 
   navs.forEach((nav) => {
+    const melodieNav = nav.getAttribute('aria-label') === 'Kapitel und Lektionen in Melodie 1';
     const entries = [...nav.querySelectorAll('a[href^="#"]')]
       .map((link) => ({ link, section: document.getElementById(link.hash.slice(1)) }))
       .filter((entry) => entry.section);
-    if (!entries.length) return;
+    if (!entries.length) {
+      if (melodieNav) nav.querySelector('.mock-nav-chapter[aria-current="page"]')?.closest('.mock-nav-group')?.classList.add('is-current');
+      return;
+    }
 
     let scheduled = false;
     function update() {
@@ -36,6 +40,11 @@
         if (chapterSection) chapterLink = entries.find((entry) => entry.section === chapterSection)?.link;
       }
       if (chapterLink && chapterLink !== current.link) chapterLink.setAttribute('aria-current', 'location');
+      if (melodieNav) {
+        const activeGroup = (chapterLink || current.link).closest('.mock-nav-group');
+        nav.querySelectorAll('.mock-nav-group.is-current').forEach((group) => group.classList.toggle('is-current', group === activeGroup));
+        activeGroup?.classList.add('is-current');
+      }
     }
     function schedule() {
       if (scheduled) return;

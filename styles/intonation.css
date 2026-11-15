@@ -118,6 +118,26 @@
 #learning-path-results td,#learning-path-results th{vertical-align:top}#learning-path-results tr[data-state="retry"] td:last-child{color:#8b3823;font-weight:600}#learning-path-results tr[data-state="ready"] td:last-child{color:#48654a;font-weight:600}#learning-path-results tr[data-state="pending"] td:last-child{color:#64705e}
 .ear-station{padding:18px 0;border-top:1px solid #b6c3b5}.ear-station:first-child{border-top:0}.ear-station h3{margin-top:0}
 .tonal-center-trainer [hidden]{display:none!important}
+
+/* Melodie 1 · Tonstufen-Hörtool mit sichtbarer Klaviatur */
+.degree-reference-tool{margin-top:24px}
+.degree-reference-tool .tuner-heading{padding-right:0}
+.degree-display-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,.45fr);gap:12px;margin:18px 0}
+.degree-reference-screen{min-height:76px;padding:12px 15px;border:1px solid #53645a;border-radius:6px;background:repeating-linear-gradient(0deg,rgba(165,255,177,.045) 0,rgba(165,255,177,.045) 1px,transparent 1px,transparent 4px),linear-gradient(145deg,#1c2a20,#0e1712);color:#c6f7ce;box-shadow:inset 0 0 20px rgba(83,255,125,.07),inset 0 1px 0 rgba(225,255,232,.08)}
+.degree-reference-screen>span{display:block;margin-bottom:7px;color:#8fb99a;font:700 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em}
+.degree-reference-screen p{margin:0;color:#c6f7ce;font-size:14px;line-height:1.5}
+.degree-current-screen{display:flex;flex-direction:column;justify-content:center}
+.degree-reference-screen strong{font:700 clamp(20px,3vw,30px)/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;text-shadow:0 0 8px rgba(112,255,142,.32)}
+.degree-choices button[aria-pressed="true"]{border-color:#a33025;background:linear-gradient(180deg,#f05b49,#b82e25);color:#fff}
+.degree-keyboard-figure{margin:20px 0 0;padding:14px 16px 8px;border:1px solid #9ea7a8;border-radius:8px;background:linear-gradient(180deg,#edf0f1,#d2d7d9);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(33,44,48,.1)}
+.degree-keyboard{display:block;width:100%;height:auto;max-height:220px}
+.degree-white-keys rect{fill:#fff;stroke:#38464a;stroke-width:1.6;transition:fill .18s ease,filter .18s ease}
+.degree-white-keys rect.is-pressed{fill:#ef6350;stroke:#8f261d;stroke-width:2.5;filter:drop-shadow(0 0 7px rgba(239,99,80,.78))}
+.degree-black-keys rect{fill:#263438;stroke:#111c1f;stroke-width:1}
+.degree-key-labels{fill:#263438;font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;text-anchor:middle}
+.degree-keyboard-figure figcaption{margin-top:3px;color:#5a666a;font-size:11px;text-align:center}
+.degree-eyes-closed{max-width:680px;margin:14px 0 24px;padding:12px 15px;border-left:3px solid var(--branch-color);background:var(--branch-tint);font-size:14px;line-height:1.7}
+@media(max-width:520px){.degree-display-layout{grid-template-columns:1fr}.degree-reference-screen{min-height:62px}.degree-keyboard-figure{padding:10px 7px 6px}}
 .tonal-center-trainer [data-center-result]{min-height:1.5em;padding:12px 14px;border-left:3px solid #48654a;background:#fff;color:#33413a;border-radius:0 5px 5px 0}
 .tonal-center-trainer [data-center-result][data-state="correct"]{border-color:#28512a;background:#e2eee0;color:#28512a;font-weight:700}
 .tonal-center-trainer [data-center-result][data-state="incorrect"]{border-color:#a13922;background:#f7e5df;color:#8b3823;font-weight:700}
@@ -230,3 +250,94 @@
 :is(#large-interval-trainer,.large-interval-trainer) .large-interval-display[data-state="hit"] .large-interval-score>span{color:#28512a}
 :is(#large-interval-trainer,.large-interval-trainer) .large-interval-display[data-state="hit"] .large-interval-score strong{color:#17451d;text-shadow:none}
 @media(prefers-reduced-motion:reduce){:is(#large-interval-trainer,.large-interval-trainer) .large-interval-display[data-state="hit"]{animation:none}}
+
+/* Kapitel 02, Lektion 03 · Die Melodietools nutzen dieselbe Metall- und CRT-Geräteoptik. */
+.melody-sequence-trainer .melody-tool-titlebar{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 42px;align-items:center;gap:12px;margin:0 0 14px}
+.melody-sequence-trainer .melody-tool-titlebar h3{margin:0;font-size:14px;font-weight:900;letter-spacing:.19em;text-transform:uppercase;color:#26363a;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.melody-sequence-trainer .melody-options-toggle{display:flex;align-items:center;justify-content:center;width:42px;height:42px;min-height:42px;padding:0;border:1px solid #3f4d52;border-radius:50%;background:linear-gradient(180deg,#718087,#46545a);color:#f1f4f5;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 3px rgba(15,23,26,.35),0 2px 5px rgba(32,46,49,.3);cursor:pointer}
+.melody-sequence-trainer .melody-options-toggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.melody-sequence-trainer .melody-options-toggle[aria-expanded="true"]{background:linear-gradient(180deg,#536168,#354248);box-shadow:inset 0 2px 4px rgba(15,23,26,.38),0 1px 2px rgba(32,46,49,.2)}
+.melody-sequence-trainer .melody-options-panel{position:absolute;z-index:80;top:calc(100% + 8px);right:0;width:min(300px,calc(100vw - 48px));box-sizing:border-box;padding:14px;border:1px solid #748186;border-radius:8px;background:repeating-linear-gradient(0deg,rgba(255,255,255,.15) 0,rgba(255,255,255,.15) 1px,rgba(45,57,63,.035) 1px,rgba(45,57,63,.035) 2px),linear-gradient(145deg,#e5e9ea,#b8c1c4);color:#26363a;box-shadow:0 10px 24px rgba(25,36,39,.3),inset 0 1px 0 rgba(255,255,255,.8)}
+.melody-sequence-trainer .melody-options-panel[hidden]{display:none!important}
+.melody-sequence-trainer .melody-options-panel label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 10px;font-size:13px;font-weight:700}
+.melody-sequence-trainer .melody-options-panel label strong{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;white-space:nowrap}
+.melody-sequence-trainer .melody-options-panel input{width:100%;margin:4px 0 7px;accent-color:#34494f;cursor:pointer}
+.melody-sequence-trainer .melody-options-panel small{display:block;color:#536168;font-size:11px;line-height:1.4}
+.melody-sequence-trainer .large-interval-play-actions button{min-height:48px;font-size:14px}
+.melody-sequence-trainer .melody-sequence-display{grid-template-columns:minmax(0,1fr) minmax(145px,220px);min-height:132px}
+.melody-sequence-trainer .melody-sequence-guidance{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0}
+.melody-sequence-trainer .melody-sequence-guidance p{margin:0;padding:0;border:0;border-radius:0;background:transparent;color:#c6f7ce;font-size:13px;line-height:1.5;text-shadow:0 0 7px rgba(112,255,142,.2)}
+.melody-sequence-trainer .melody-sequence-guidance [data-sequence-prompt]{font-size:15px;font-weight:800}
+.melody-sequence-trainer .melody-live-readout{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;margin-top:8px;padding:7px 10px;border:1px solid rgba(135,255,166,.34);border-radius:5px;background:rgba(8,18,13,.42);box-shadow:inset 0 0 12px rgba(83,255,125,.06)}
+.melody-sequence-trainer .melody-live-readout>span:first-child{grid-column:1/-1;color:#96bd9c;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.melody-sequence-trainer .melody-live-readout strong{display:flex;align-items:center;gap:7px;color:#c6f7ce;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:22px;text-shadow:0 0 8px rgba(112,255,142,.24)}
+.melody-sequence-trainer .melody-live-readout strong span:nth-child(2){color:#75927b;font-size:16px}
+.melody-sequence-trainer .melody-live-readout strong span:last-child{color:#a8ffae;font-size:18px}
+.melody-sequence-trainer .melody-sequence-score{align-items:flex-end;justify-content:center;min-width:0;padding-left:12px}
+.melody-sequence-trainer .melody-sequence-score>span{font-size:11px}
+.melody-sequence-trainer .melody-sequence-score [data-sequence-progress]{margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.melody-sequence-trainer .melody-reset-actions{justify-content:flex-start;margin-top:14px}
+.melody-sequence-trainer button[data-melody-reset]{flex:0 0 auto;min-width:100px;padding:11px 25px;border:2px solid #7d211e;border-radius:10px;background:linear-gradient(180deg,#ff7161 0%,#df3028 34%,#b91f1b 100%);color:#fff;font-weight:900;letter-spacing:.08em;text-shadow:0 1px 1px rgba(80,12,10,.55);box-shadow:inset 0 2px 1px rgba(255,255,255,.48),inset 0 -4px 5px rgba(92,10,8,.32),0 5px 0 #741d19,0 7px 12px rgba(32,16,15,.24);transition:transform .08s ease,box-shadow .08s ease,filter .12s ease}
+.melody-sequence-trainer button[data-melody-reset]:hover{filter:brightness(1.08)}
+.melody-sequence-trainer button[data-melody-reset]:active{transform:translateY(4px);box-shadow:inset 0 2px 2px rgba(70,10,8,.35),0 1px 0 #741d19,0 2px 5px rgba(32,16,15,.2)}
+.melody-sequence-trainer .melody-sequence-display[data-state="miss"]{border-color:#a94b48;border-left-color:#ef7067;background-image:repeating-linear-gradient(0deg,rgba(255,145,135,.055) 0,rgba(255,145,135,.055) 1px,transparent 1px,transparent 4px),linear-gradient(145deg,#2b1c1c,#171010);color:#ffd0cc;text-shadow:0 0 8px rgba(255,112,103,.2)}
+.melody-sequence-trainer .melody-sequence-display[data-state="miss"] .melody-sequence-guidance p{color:#ffd0cc;text-shadow:0 0 7px rgba(255,112,103,.2)}
+.melody-sequence-trainer .melody-sequence-display.flow-step-active{outline:3px solid #ffd45c;outline-offset:4px;box-shadow:inset 0 1px 0 rgba(225,255,232,.08),inset 0 0 22px rgba(83,255,125,.08),0 0 0 4px rgba(255,212,92,.24),0 0 20px rgba(255,196,57,.68)}
+@media(max-width:600px){.melody-sequence-trainer .melody-sequence-display{grid-template-columns:minmax(0,1fr);gap:10px}.melody-sequence-trainer .melody-sequence-score{align-items:flex-start;padding:10px 0 0;border-left:0;border-top:1px solid rgba(135,255,166,.3);text-align:left}}
+/* Melodie 1 · station-based degree trainer */
+.degree-training-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,250px);gap:16px;align-items:start;margin:20px 0}
+.degree-training-layout>.melody-tuner{min-width:0;margin:0}
+.degree-training-tool .tuner-heading .eyebrow{font-size:clamp(16px,2.5vw,21px);letter-spacing:.12em}
+.degree-training-readouts{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.42fr);gap:12px;margin:18px 0}
+.degree-training-instructions,.degree-training-score{min-height:92px;box-sizing:border-box;padding:13px 15px;border:1px solid #667a70;border-radius:6px;background-image:repeating-linear-gradient(0deg,rgba(139,255,172,.045) 0,rgba(139,255,172,.045) 1px,transparent 1px,transparent 4px),linear-gradient(145deg,#182a23,#101a16);color:#a9f5bd;box-shadow:inset 0 1px 0 rgba(232,255,239,.08),inset 0 0 18px rgba(75,255,128,.055),0 2px 5px rgba(28,39,34,.2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.degree-training-instructions>span,.degree-training-score>span{display:block;color:#8bb99a;font-size:10px;font-weight:800;letter-spacing:.15em}
+.degree-training-instructions p{margin:8px 0 0;color:#d5ffe0;font-size:14px;line-height:1.5}
+.degree-training-score{display:flex;flex-direction:column;justify-content:space-between}
+.degree-training-score strong{display:block;color:#c8ffd4;font-size:clamp(28px,4vw,38px);line-height:1;text-shadow:0 0 10px rgba(107,255,143,.32)}
+.degree-training-tool .intonation-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.degree-training-tool .intonation-actions button{min-width:0;border:1px solid #69777c;border-radius:5px;background:linear-gradient(180deg,#68777c,#39474c);color:#f5f7f7;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 3px rgba(10,18,20,.28),0 3px 0 #263237,0 5px 8px rgba(32,46,49,.2)}
+.degree-training-tool .intonation-actions button:hover{filter:brightness(1.12)}
+.degree-training-tool .intonation-actions button:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(10,18,20,.3),0 1px 0 #263237}
+.degree-training-tool .intonation-actions button[aria-pressed="true"]{background:linear-gradient(180deg,#3e5a50,#263b34);border-color:#4e7563}
+.degree-training-tool .intonation-answers button{border:1px solid #758287;border-radius:5px;background:linear-gradient(180deg,#e8ecec,#c4cccf);color:#26363a;font-weight:800}
+.degree-training-tool .intonation-answers button:not(:disabled):hover{background:linear-gradient(180deg,#f8fafa,#d2d9db)}
+.degree-training-layout>.catalog-work-note{align-self:start;padding:16px;border:1px solid #a92924;border-radius:8px;background:linear-gradient(145deg,#d94c42,#aa2924);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 12px rgba(70,24,22,.2)}
+.degree-training-layout>.catalog-work-note strong{display:block;margin-bottom:7px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.degree-training-layout>.catalog-work-note span{font-size:14px;line-height:1.5}
+@media(max-width:700px){.degree-training-layout{grid-template-columns:1fr}.degree-training-layout>.catalog-work-note{grid-row:2}.degree-training-readouts{grid-template-columns:minmax(0,1fr) minmax(100px,.38fr)}}
+@media(max-width:460px){.degree-training-tool .intonation-actions{grid-template-columns:1fr}.degree-training-readouts{grid-template-columns:1fr}.degree-training-score{min-height:70px}}
+
+/* Hearing exercises use the same metallic console and display language as the ear-training tools. */
+.melody-level-group.melody-tuner{margin:26px 0;padding:clamp(16px,3vw,26px);border:1px solid #78848a;border-top:5px solid #68777c;border-radius:11px;background-color:#c9ced1;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.2) 0,rgba(255,255,255,.2) 1px,rgba(45,57,63,.05) 1px,rgba(45,57,63,.05) 3px),linear-gradient(120deg,#eef1f2,#c2c9cc 48%,#e3e6e7);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 5px rgba(33,44,48,.16),0 7px 20px rgba(32,46,49,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-3"]{border-color:#8f5b3c;border-top-color:#a83532;background-color:#efc351;background-image:linear-gradient(135deg,#e8473c 0 33.33%,#ffd447 33.33% 66.66%,#43b45d 66.66% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),inset 0 -2px 5px rgba(80,48,20,.12),0 7px 20px rgba(60,45,25,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-4"]{border-color:#398f8b;border-top-color:#29c8c6;background-color:#72d9cf;background-image:linear-gradient(135deg,#e8473c 0 25%,#ffd447 25% 50%,#43b45d 50% 75%,#28d9dc 75% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.44),inset 0 -2px 5px rgba(20,70,68,.12),0 7px 20px rgba(32,70,66,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-5"]{border-color:#3975a8;border-top-color:#368fe8;background-color:#70aee0;background-image:linear-gradient(135deg,#e8473c 0 20%,#ffd447 20% 40%,#43b45d 40% 60%,#28d9dc 60% 80%,#368fe8 80% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.44),inset 0 -2px 5px rgba(24,48,74,.12),0 7px 20px rgba(32,52,72,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-6"]{border-color:#7143a8;border-top-color:#9837ed;background-color:#a889d1;background-image:linear-gradient(135deg,#e8473c 0 16.66%,#ffd447 16.66% 33.33%,#43b45d 33.33% 50%,#28d9dc 50% 66.66%,#368fe8 66.66% 83.33%,#9837ed 83.33% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.44),inset 0 -2px 5px rgba(38,28,64,.12),0 7px 20px rgba(40,35,65,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-7"]{border-color:#a23a75;border-top-color:#ef3298;background-color:#d67fb1;background-image:linear-gradient(135deg,#e8473c 0 14.28%,#ffd447 14.28% 28.57%,#43b45d 28.57% 42.85%,#28d9dc 42.85% 57.14%,#368fe8 57.14% 71.42%,#9837ed 71.42% 85.71%,#ef3298 85.71% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.44),inset 0 -2px 5px rgba(62,27,49,.12),0 7px 20px rgba(65,35,54,.12)}
+.melody-level-group.melody-tuner[aria-labelledby="melody-level-8"]{border-color:#a24462;border-top-color:#e8473c;background-color:#db8490;background-image:linear-gradient(135deg,#e8473c 0 12.5%,#ffd447 12.5% 25%,#43b45d 25% 37.5%,#28d9dc 37.5% 50%,#368fe8 50% 62.5%,#9837ed 62.5% 75%,#ef3298 75% 87.5%,#f35b50 87.5% 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.44),inset 0 -2px 5px rgba(62,27,49,.12),0 7px 20px rgba(65,35,54,.12)}
+.melody-level-group.melody-tuner .flow-step-active:not(:disabled){position:relative;z-index:2;outline:3px solid #f8fcff;outline-offset:4px;animation:melody-silver-flow-pulse 1.15s ease-in-out infinite}
+.melody-level-group.melody-tuner .intonation-link.flow-step-active:not(:disabled){border-color:#fff;box-shadow:0 0 0 4px rgba(244,250,255,.45),0 0 24px rgba(233,247,255,.95),inset 0 1px 0 rgba(255,255,255,.55),0 3px 0 #263237}
+@keyframes melody-silver-flow-pulse{0%,100%{outline-color:#f8fcff;box-shadow:0 0 0 3px rgba(248,252,255,.5),0 0 12px rgba(233,247,255,.72)}50%{outline-color:#d9e8ef;box-shadow:0 0 0 6px rgba(248,252,255,.82),0 0 28px rgba(233,247,255,1)}}
+@media(prefers-reduced-motion:reduce){.melody-level-group.melody-tuner .flow-step-active:not(:disabled){animation:none}}
+.melody-level-group.melody-tuner .melody-level-heading{margin:0 0 16px;padding:0 0 14px;border-bottom:1px solid #aab4b5}
+.melody-level-group.melody-tuner .melody-level-heading .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#405056;font-size:11px;font-weight:900;letter-spacing:.16em}
+.melody-level-group.melody-tuner .melody-level-heading h3{font-size:clamp(20px,2.8vw,27px);color:#26363a}
+.melody-level-group.melody-tuner .melody-level-tools{display:grid;gap:10px;margin:12px 0 18px;padding:0;border:0;background:transparent;box-shadow:none}
+.melody-level-group.melody-tuner .melody-guidance-display{min-height:55px;box-sizing:border-box;padding:10px 13px;border:1px solid #687a71;border-radius:6px;background-image:repeating-linear-gradient(0deg,rgba(139,255,172,.035) 0,rgba(139,255,172,.035) 1px,transparent 1px,transparent 4px),linear-gradient(145deg,#1b2a24,#111a16);color:#baf6c9;box-shadow:inset 0 1px 0 rgba(232,255,239,.08),inset 0 0 16px rgba(75,255,128,.05);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.melody-level-group.melody-tuner .melody-guidance-display>span{display:block;color:#8fbc99;font-size:10px;font-weight:800;letter-spacing:.15em}
+.melody-level-group.melody-tuner .melody-guidance-display p{margin:5px 0 0;color:#d3ffdf;font-size:14px;line-height:1.45}
+.melody-level-group.melody-tuner .melody-task-play,.melody-level-group.melody-tuner .melody-task-solution-toggle{box-sizing:border-box;width:100%;min-height:48px;border:1px solid #46575d;border-radius:5px;background:linear-gradient(180deg,#64747a,#344248);color:#f7f9f9;font-weight:900;letter-spacing:.03em;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 3px rgba(10,18,20,.25),0 3px 0 #263237,0 5px 8px rgba(32,46,49,.16)}
+.melody-level-group.melody-tuner .melody-task-play:hover,.melody-level-group.melody-tuner .melody-task-solution-toggle:hover,.melody-level-group.melody-tuner .melody-task-next:hover{filter:brightness(1.12)}
+.melody-level-group.melody-tuner .melody-level-tasks[hidden]{display:none!important}
+.melody-level-group.melody-tuner .melody-current-solution{margin-top:12px;padding:14px;border:1px solid #77858a;border-radius:7px;background:linear-gradient(145deg,#e7ebec,#cbd2d4);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 5px rgba(32,46,49,.1)}
+.melody-level-group.melody-tuner .melody-current-solution{max-height:0;box-sizing:border-box;margin-top:0;padding:0 14px;overflow:hidden;opacity:0;border-color:transparent;transition:max-height .42s cubic-bezier(.22,.75,.25,1),margin .42s ease,padding .42s ease,opacity .28s ease,border-color .28s ease}
+.melody-level-group.melody-tuner .melody-current-solution.is-open{max-height:1000px;margin-top:12px;padding:14px;opacity:1;border-color:#77858a}
+.melody-level-group.melody-tuner .melody-current-solution .answer-score{margin:0 auto}
+.melody-level-group.melody-tuner .melody-current-solution .melody-task-next{display:flex;box-sizing:border-box;width:100%;min-height:42px;margin:14px 0 2px;align-items:center;justify-content:center;border:1px solid #46575d;border-radius:5px;background:linear-gradient(180deg,#64747a,#344248);color:#f7f9f9;font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 3px rgba(10,18,20,.25),0 3px 0 #263237,0 5px 8px rgba(32,46,49,.16)}
+.melody-level-group.melody-tuner .melody-listen-task{padding:16px;border:1px solid #77858a;border-radius:7px;background:linear-gradient(145deg,#e7ebec,#cbd2d4);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 5px rgba(32,46,49,.1)}
+.melody-level-group.melody-tuner .melody-listen-task h4{color:#26363a;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
+.melody-level-group.melody-tuner .melody-listen-task>.intonation-link,.melody-level-group.melody-tuner .melody-task-buttons .intonation-link{border:1px solid #46575d;border-radius:5px;background:linear-gradient(180deg,#64747a,#344248);color:#f7f9f9;font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 3px rgba(10,18,20,.25),0 3px 0 #263237,0 5px 8px rgba(32,46,49,.16)}
+.melody-level-group.melody-tuner .melody-listen-task>.intonation-link:hover,.melody-level-group.melody-tuner .melody-task-buttons .intonation-link:hover{filter:brightness(1.12)}
+.melody-level-group.melody-tuner .melody-listen-task details{margin-top:12px;padding:10px;border:1px solid #8b999d;border-radius:5px;background:rgba(255,255,255,.55)}
+@media(max-width:620px){.melody-level-group.melody-tuner{padding:15px}}
+@media(prefers-reduced-motion:reduce){.melody-level-group.melody-tuner .melody-current-solution{transition:none}}

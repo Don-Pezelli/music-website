@@ -7,7 +7,7 @@
       const data = empty();
       data.largeIntervals = { attempts: Number(value.largeIntervals?.attempts) || 0, correct: Number(value.largeIntervals?.correct) || 0 };
       data.singleTones = { attempts: Number(value.singleTones?.attempts) || 0, hits: Number(value.singleTones?.hits) || 0 };
-      for (const [group, score] of Object.entries(value.sequences || {})) data.sequences[group] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
+      for (const [group, score] of Object.entries(value.sequences || {})) data.sequences[group] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0, attemptedTasks: Array.isArray(score.attemptedTasks) ? score.attemptedTasks : [], completedTasks: Array.isArray(score.completedTasks) ? score.completedTasks : [], taskTotal: Number(score.taskTotal) || 0 };
       for (const [group, score] of Object.entries(value.intervalStations || {})) data.intervalStations[group] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
       for (const [stage, score] of Object.entries(value.earTraining || {})) {
         data.earTraining[stage] = { attempts: Number(score.attempts) || 0, correct: Number(score.correct) || 0 };
@@ -86,6 +86,22 @@
     score.attempts += total; score.correct += correct; write();
     return `Gespeichert: ${score.correct} von ${score.attempts} Tönen in ${sequenceLabels[group] || group} getroffen.`;
   };
+  window.recordMelodyTaskResult = (group, taskIndex, hit, totalTasks) => {
+    const score = progress.sequences[group] || (progress.sequences[group] = { attempts: 0, correct: 0, attemptedTasks: [], completedTasks: [], taskTotal: totalTasks });
+    score.attemptedTasks ||= []; score.completedTasks ||= []; score.taskTotal = totalTasks;
+    if (!score.attemptedTasks.includes(taskIndex)) score.attemptedTasks.push(taskIndex);
+    if (hit && !score.completedTasks.includes(taskIndex)) score.completedTasks.push(taskIndex);
+    write();
+    return `${score.completedTasks.length} / ${totalTasks}`;
+  };
+  window.sequenceTaskSummary = (group, totalTasks) => {
+    const score = progress.sequences[group];
+    return `${score?.completedTasks?.length || 0} / ${totalTasks}`;
+  };
+  window.resetSequenceResults = group => {
+    delete progress.sequences[group];
+    write(); updateSequenceScoreOutputs();
+  };
 
   const summary = document.getElementById('learning-path-summary');
   if (!summary) return;
@@ -97,14 +113,18 @@
   const table = document.getElementById('learning-path-results');
   const recommendationLink = document.getElementById('learning-path-link');
   const totalEar = Object.entries(progress.earTraining).filter(([stage]) => stage !== 'all').reduce((total, [, score]) => ({ attempts: total.attempts + score.attempts, correct: total.correct + score.correct }), { attempts: 0, correct: 0 });
+  const melodyTaskScore = (group, total) => {
+    const score = progress.sequences[group] || {};
+    return { attempts: score.attemptedTasks?.length || 0, correct: score.completedTasks?.length || 0, total };
+  };
   const stages = [
-    { key: 'direction', label: 'Höher, tiefer oder gleich?', score: totalEar, minimum: 30, threshold: .8, href: 'gehoerbildung-1-kapitel-1.html#hoertraining', details: ['7-11', '3-7', '2-4'].map(stage => { const score = progress.earTraining[stage]; return score?.attempts ? `${earLabels[stage]} ${score.correct}/${score.attempts}` : null; }).filter(Boolean).join(' · ') },
-    { key: 'singleTones', label: 'Einzelne Töne nachsingen', score: { attempts: progress.singleTones.attempts, correct: progress.singleTones.hits }, minimum: 5, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#voice-trainer' },
-    { key: 'largeIntervals', label: 'Große Intervalle · Quinte bis Septime', score: progress.largeIntervals, minimum: 3, threshold: .75, href: 'gehoerbildung-1-kapitel-2.html#large-interval-trainer' },
-    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.intervalStations.middleIntervals || progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-middleIntervals' },
-    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.intervalStations.smallIntervals || progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-smallIntervals' },
-    { key: 'simpleMelodies', label: 'Einfache Melodien', score: progress.sequences.simpleMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-simpleMelodies' },
-    { key: 'advancedMelodies', label: 'Anspruchsvollere Melodien', score: progress.sequences.advancedMelodies || { attempts: 0, correct: 0 }, minimum: 10, threshold: .7, href: 'gehoerbildung-1-kapitel-2.html#sequence-advancedMelodies' }
+    { key: 'direction', label: 'Höher, tiefer oder gleich?', score: totalEar, minimum: 30, threshold: .8, href: 'kurs-gehoerbildung-1.html#course-chapter-01#hoertraining', details: ['7-11', '3-7', '2-4'].map(stage => { const score = progress.earTraining[stage]; return score?.attempts ? `${earLabels[stage]} ${score.correct}/${score.attempts}` : null; }).filter(Boolean).join(' · ') },
+    { key: 'singleTones', label: 'Einzelne Töne nachsingen', score: { attempts: progress.singleTones.attempts, correct: progress.singleTones.hits }, minimum: 5, threshold: .7, href: 'kurs-gehoerbildung-1.html#course-chapter-02#voice-trainer' },
+    { key: 'largeIntervals', label: 'Große Intervalle · Quinte bis Septime', score: progress.largeIntervals, minimum: 3, threshold: .75, href: 'kurs-gehoerbildung-1.html#course-chapter-02#large-interval-trainer' },
+    { key: 'middleIntervals', label: 'Mittlere Intervalle · Terz bis Quinte', score: progress.intervalStations.middleIntervals || progress.sequences.middleIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'kurs-gehoerbildung-1.html#course-chapter-02#sequence-middleIntervals' },
+    { key: 'smallIntervals', label: 'Kleine Intervalle · Sekunde bis Terz', score: progress.intervalStations.smallIntervals || progress.sequences.smallIntervals || { attempts: 0, correct: 0 }, minimum: 6, threshold: .7, href: 'kurs-gehoerbildung-1.html#course-chapter-02#sequence-smallIntervals' },
+    { key: 'simpleMelodies', label: 'Einfache Melodien', score: melodyTaskScore('simpleMelodies', 7), minimum: 7, threshold: .7, href: 'kurs-gehoerbildung-1.html#course-chapter-02#sequence-simpleMelodies' },
+    { key: 'advancedMelodies', label: 'Anspruchsvollere Melodien', score: melodyTaskScore('advancedMelodies', 6), minimum: 6, threshold: .7, href: 'kurs-gehoerbildung-1.html#course-chapter-02#sequence-advancedMelodies' }
   ];
   const addCell = (row, value) => { const cell = document.createElement('td'); cell.textContent = value; row.append(cell); };
   stages.forEach(stage => {

@@ -7,7 +7,7 @@
     notes: {
       name: 'Noten lesen', field: 'assessment-notes',
       course: {title: 'Notenschrift 1 · Noten lesen', href: 'kurs-notenschrift-1.html', description: 'Notenlinien, Violinschlüssel und Notennamen lernen.'},
-      testLink: {title: 'Notenschrift-Grundkurs ansehen', href: 'notenschrift-1-kapitel-1.html'}
+      testLink: {title: 'Notenschrift-Grundkurs ansehen', href: 'kurs-notenschrift-1.html#course-chapter-01'}
     },
     quarter: {
       name: 'Viertelnoten', field: 'assessment-quarter',
@@ -32,7 +32,7 @@
     scale: {
       name: 'Durtonleitern und Tonstufen', field: 'assessment-scale',
       course: {title: 'Melodie 1 · Tonleitern und melodischer Aufbau', href: 'kurs-melodie-1.html', description: 'Tonleitern, Tonstufen und Melodien kennenlernen.'},
-      testLink: {title: 'Melodie 1 · Kapitel 1 ansehen', href: 'melodie-1-kapitel-1.html'}
+      testLink: {title: 'Melodie 1 · Kapitel 1 ansehen', href: 'kurs-melodie-1.html#course-chapter-01'}
     },
     pitch: {
       name: 'Einzelne Töne präzise nachsingen', field: 'assessment-pitch',

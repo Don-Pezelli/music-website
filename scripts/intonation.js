@@ -3,7 +3,7 @@
   const $=id=>document.getElementById(id), pitch=window.PitchDetector;
   const hasVoice=!!$('voice-trainer'),hasEar=!!document.querySelector('[data-ear-trainer]'),centerTrainer=document.querySelector('[data-tonal-center-trainer]');
   if((!hasVoice && !hasEar) || !pitch)return;
-  let context, stream, source, analyser, frame=0, request=0, pending=false, history=[],lastFrame=0,heldSince=0,singleToneLastInRange=0,stopMic=()=>{},singleToneAttemptActive=false,singleToneHitRecorded=false,singleToneAdvanceReady=false,singleToneSuccessMessage='',singleToneNeedsAdvance=false,centerIntervalOscillator=null,centerIntervalGain=null,centerIntervalActive=false,centerIntervalButton=null,centerScaleButton=null,centerScalePlaying=false,centerCents=null,setCenterSaveEnabled=()=>{};
+let context, stream, source, analyser, frame=0, request=0, pending=false, history=[],lastFrame=0,heldSince=0,singleToneLastInRange=0,stopMic=()=>{},singleToneAttemptActive=false,singleToneHitRecorded=false,singleToneAdvanceReady=false,singleToneSuccessMessage='',singleToneNeedsAdvance=false,centerIntervalOscillator=null,centerIntervalGain=null,centerIntervalActive=false,centerIntervalButton=null,centerScaleButton=null,centerScalePlaying=false,centerCents=null,setCenterSaveEnabled=()=>{},stopCenterRepetitions=()=>{},centerSequenceActive=false,centerResponseWindow=false,centerSequenceTimer=0,centerResponseSamples=[],centerResponses=[],centerRepetition=0;
   const singleToneSuccessMessages=['Treffer!','Gut gemacht!','Richtig!','Bingo!','Yes!','Korrekt!','Super!','Weiter so!','Genau richtig!','Juppie!','Juhu','Wow!','Nailed it!','Oh yeah!'];
   const singleToneMessageIndexKey='music-method-single-tone-message-index-v1';
   let singleToneMessageIndex=0;
@@ -79,7 +79,7 @@
     soundGeneration++;timers.forEach(clearTimeout);timers=[];
     oscillators.forEach(osc=>{try{osc.stop();}catch(_){} });oscillators=[];
     celebrationOscillators.forEach(osc=>{try{osc.stop();}catch(_){} });celebrationOscillators=[];
-    centerIntervalOscillator=null;centerIntervalGain=null;centerIntervalActive=false;if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}centerScalePlaying=false;if(centerScaleButton){centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');}centerTrainer?.querySelector('[data-center-save]')?.setAttribute('disabled','');
+    centerIntervalOscillator=null;centerIntervalGain=null;centerIntervalActive=false;if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall viermal abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}centerScalePlaying=false;if(centerScaleButton){centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');}centerTrainer?.querySelector('[data-center-save]')?.setAttribute('disabled','');
     muteUntil=context ? context.currentTime+.25 : 0;
   }
   async function play(notes,where,done,options={}){
@@ -114,13 +114,57 @@
   function updateCenterResults(){if(!centerTrainer)return;const octave=$('voice-range').selectedOptions[0]?.textContent||'gewählte Oktave',count=Number(centerResults.byOctave?.[$('voice-range').value])||0;centerTrainer.querySelector('[data-center-progress]').textContent=`Gespeichert: ${count} richtige Grundtöne in ${octave}. Insgesamt: ${Number(centerResults.total)||0}.`;}
   function saveCenterResult(root,pair){const interval=Math.abs(pair[0]-pair[1]),octave=$('voice-range').value;centerResults.total=(Number(centerResults.total)||0)+1;centerResults.byOctave=centerResults.byOctave||{};centerResults.byInterval=centerResults.byInterval||{};centerResults.byOctave[octave]=(Number(centerResults.byOctave[octave])||0)+1;centerResults.byInterval[interval]=(Number(centerResults.byInterval[interval])||0)+1;centerResults.last={target:pitch.name(root),interval,octave,at:new Date().toISOString()};try{localStorage.setItem(centerStorageKey,JSON.stringify(centerResults));}catch{}updateCenterResults();}
   function chooseCenterPair(){const root=target,available=centerSteps.map((step,index)=>index).filter(index=>index!==lastCenterInterval);const index=available[Math.floor(Math.random()*available.length)];lastCenterInterval=index;centerPair=[root+centerSteps[index],root];return centerPair;}
-  function stopCenterInterval(){if(!centerIntervalActive)return;centerIntervalActive=false;const oscillator=centerIntervalOscillator,gain=centerIntervalGain;centerIntervalOscillator=null;centerIntervalGain=null;if(oscillator){try{gain?.gain.setTargetAtTime(0,context.currentTime,.015);oscillator.stop(context.currentTime+.06);}catch{} }muteUntil=context?context.currentTime+.25:0;history=[];heldSince=0;centerCents=null;singleToneAttemptActive=true;singleToneHitRecorded=false;setCenterSaveEnabled(true);if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}const root=target;$('voice-detail').textContent=`Zielton: ${pitch.name(root)} · Halte ihn möglichst ruhig.`;status(stream?`Jetzt ${pitch.name(root)} singen und den Grundton halten.`:`Jetzt ${pitch.name(root)} singen. Schalte dafür das Mikrofon ein.`);}
-  async function playCenterInterval(){if(!centerTrainer)return;if(centerIntervalActive){stopCenterInterval();return;}if(centerNextTimer){clearTimeout(centerNextTimer);centerNextTimer=0;}if(!centerPair)chooseCenterPair();centerTrainer.querySelector('[data-center-result]').dataset.state='ready';centerTrainer.querySelector('[data-center-result]').textContent='Höre den neuen Ton und singe danach den Grundton.';cancelSound();const note=centerPair[0],root=target;singleToneAttemptActive=false;singleToneHitRecorded=false;setCenterSaveEnabled(false);try{const ctx=await audio(),osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+.08;osc.type='triangle';osc.frequency.value=pitch.frequency(note);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(.14,start+.025);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);oscillators.push(osc);osc.onended=()=>{osc.disconnect();gain.disconnect();oscillators=oscillators.filter(item=>item!==osc);};centerIntervalOscillator=osc;centerIntervalGain=gain;centerIntervalActive=true;muteUntil=Infinity;centerIntervalButton.textContent='■ Intervall stoppen';centerIntervalButton.setAttribute('aria-pressed','true');$('voice-detail').textContent=`Intervallton: ${pitch.name(note)} · Stoppe den Ton, wenn du bereit bist.`;status(`Der Ton ${pitch.name(note)} erklingt. Drücke den Knopf erneut, um ihn zu stoppen.`);}catch(error){status(error.message);cancelSound();}}
-  function recordCenterSuccess(){if(!centerTrainer||!centerPair)return;const completed=[...centerPair],root=target;saveCenterResult(root,completed);centerPair=null;if(centerIntervalButton)centerIntervalButton.textContent='▶ Neues Intervall abspielen';status('Richtig gehalten und gespeichert. Ein neues Intervall ist bereit.','hit');}
+  stopCenterRepetitions=(message='Wiederholung gestoppt. Du kannst erneut starten.')=>{
+    if(centerSequenceTimer){clearTimeout(centerSequenceTimer);centerSequenceTimer=0;}
+    centerSequenceActive=false;centerResponseWindow=false;centerResponseSamples=[];cancelSound();
+    if(centerIntervalButton){centerIntervalButton.textContent=centerPair?'▶ Intervall viermal abspielen':'▶ Neues Intervall viermal abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}
+    setCenterSaveEnabled(false);status(message);
+  };
+  async function playCenterInterval(){
+    if(!centerTrainer)return;
+    if(centerSequenceActive){stopCenterRepetitions();return;}
+    if(!stream){status('Schalte zuerst das Mikrofon ein.');return;}
+    if(centerNextTimer){clearTimeout(centerNextTimer);centerNextTimer=0;}
+    if(!centerPair)chooseCenterPair();
+    const note=centerPair[0],feedback=centerTrainer.querySelector('[data-center-result]');
+    centerSequenceActive=true;centerResponseWindow=false;centerResponseSamples=[];centerResponses=[];centerRepetition=0;singleToneAttemptActive=false;singleToneHitRecorded=false;centerCents=null;setCenterSaveEnabled(false);
+    feedback.dataset.state='ready';feedback.textContent='Höre den neuen Ton. Singe in jeder Pause den Grundton.';
+    centerTrainer.querySelector('[data-center-response-progress]').textContent='0 / 4 Grundton-Antworten';
+    if(centerIntervalButton){centerIntervalButton.textContent='■ Wiederholungen stoppen';centerIntervalButton.setAttribute('aria-pressed','true');}
+    const repeat=()=>{
+      if(!centerSequenceActive)return;
+      centerRepetition++;centerResponseSamples=[];centerResponseWindow=false;
+      centerTrainer.querySelector('[data-center-response-progress]').textContent=`${centerResponses.length} / 4 Grundton-Antworten · Runde ${centerRepetition} von 4`;
+      centerTrainer.querySelector('[data-center-guidance]')?.replaceChildren(document.createTextNode(`Höre den neuen Ton ${centerRepetition} von 4. Danach singst du den Grundton.`));
+      play([note],'voice',()=>{
+        if(!centerSequenceActive)return;
+        centerResponseWindow=true;centerResponseSamples=[];
+        centerTrainer.querySelector('[data-center-guidance]')?.replaceChildren(document.createTextNode(`Jetzt den Grundton singen · Antwort ${centerRepetition} von 4`));
+        status(`Jetzt den Grundton singen · Antwort ${centerRepetition} von 4.`);
+        centerSequenceTimer=setTimeout(()=>{
+          centerSequenceTimer=0;centerResponseWindow=false;
+          const values=centerResponseSamples.slice().sort((a,b)=>a-b),heard=values.length>=3?values[Math.floor(values.length/2)]:null;
+          const correct=heard!==null&&Math.abs(heard-target)<=.5;centerResponses.push(correct);
+          centerTrainer.querySelector('[data-center-response-progress]').textContent=`${centerResponses.filter(Boolean).length} / 4 Grundton-Antworten richtig`;
+          if(centerResponses.length<4){centerSequenceTimer=setTimeout(repeat,450);return;}
+          centerSequenceActive=false;
+          if(centerIntervalButton){centerIntervalButton.textContent='▶ Intervall viermal abspielen';centerIntervalButton.setAttribute('aria-pressed','false');}
+          setCenterSaveEnabled(true);
+          const hits=centerResponses.filter(Boolean).length;
+          feedback.dataset.state=hits===4?'ready':'incorrect';feedback.textContent=`${hits} von 4 Grundton-Antworten richtig. ${hits===4?'Speichere dein Ergebnis.':'Versuche es noch einmal.'}`;
+          centerTrainer.querySelector('[data-center-guidance]')?.replaceChildren(document.createTextNode(hits===4?'Alle vier Antworten waren richtig. Speichere dein Ergebnis.':'Nicht alle Antworten waren richtig. Starte die vier Wiederholungen erneut.'));
+          status(hits===4?'Alle vier Grundton-Antworten waren richtig.':'Wiederhole die Aufgabe und singe den Grundton in jeder Pause.');
+        },1050);
+      },{...centerSound,duration:.5,lastDuration:.5,gap:0,muteTail:.12});
+      if(centerIntervalButton){centerIntervalButton.textContent='■ Wiederholungen stoppen';centerIntervalButton.setAttribute('aria-pressed','true');}
+    };
+    repeat();
+  }
+  function recordCenterSuccess(){if(!centerTrainer||!centerPair)return;const completed=[...centerPair],root=target;saveCenterResult(root,completed);centerPair=null;if(centerIntervalButton)centerIntervalButton.textContent='▶ Neues Intervall viermal abspielen';status('Richtig gehalten und gespeichert. Ein neues Intervall ist bereit.','hit');}
   const targetSelector=$('target-note');
   function setTarget(note){target=note;history=[];heldSince=0;singleToneLastInRange=0;singleToneAttemptActive=false;singleToneHitRecorded=false;$('target-name').textContent=pitch.name(target);if(targetSelector)targetSelector.value=String(target);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;$('voice-detail').textContent='';status(document.querySelector('[data-tonal-center-trainer]')?'Höre zuerst die Tonleiter und das Intervallpaar.':'Höre zuerst den Zielton.');}
   function populate(){const [low,high]=ranges[$('voice-range').value];if(targetSelector){targetSelector.replaceChildren();for(let n=low;n<=high;n++){const option=document.createElement('option');option.value=n;option.textContent=pitch.name(n);targetSelector.append(option);}}setTarget(document.querySelector('[data-tonal-center-trainer]')?low:Math.min(high,Math.max(low,target)));}
-  $('voice-range').addEventListener('change',()=>{cancelSound();centerPair=null;singleToneNeedsAdvance=false;singleToneAdvanceReady=false;$('target-play').textContent='▶ Zielton hören';populate();updateCenterResults();if(!centerTrainer){$('mic-start').disabled=false;$('target-play').disabled=!stream;status(stream?'Höre dir jetzt den Zielton an.':'Schalte jetzt das Mikrofon ein.');setSingleToneFlowStep(stream?'target-play':'mic-start');}});
+  $('voice-range').addEventListener('change',()=>{if(centerSequenceActive)stopCenterRepetitions('Stimmlage geändert. Starte die Aufgabe erneut.');cancelSound();centerPair=null;singleToneNeedsAdvance=false;singleToneAdvanceReady=false;$('target-play').textContent='▶ Zielton hören';populate();updateCenterResults();if(!centerTrainer){$('mic-start').disabled=false;$('target-play').disabled=!stream;status(stream?'Höre dir jetzt den Zielton an.':'Schalte jetzt das Mikrofon ein.');setSingleToneFlowStep(stream?'target-play':'mic-start');}});
   targetSelector?.addEventListener('change',()=>{cancelSound();singleToneNeedsAdvance=false;singleToneAdvanceReady=false;$('target-play').textContent='▶ Zielton hören';setTarget(Number(targetSelector.value));});
   function chooseDifferentTarget(){const [low,high]=ranges[$('voice-range').value];if(high<=low)return low;let note;do{note=low+Math.floor(Math.random()*(high-low+1));}while(note===target);return note;}
   $('target-random').addEventListener('click',()=>{cancelSound();singleToneNeedsAdvance=false;singleToneAdvanceReady=false;$('target-play').textContent='▶ Zielton hören';setTarget(chooseDifferentTarget());if(!centerTrainer){status(stream?'Neuer Zielton gewählt. Höre ihn jetzt an.':'Neuer Zielton gewählt. Schalte jetzt das Mikrofon ein.');setSingleToneFlowStep(stream?'target-play':'mic-start');}else status(`Neuer Zielton: ${pitch.name(target)}. Spiele ihn ab und singe ihn nach.`);});
@@ -133,12 +177,13 @@
     const feedback=centerTrainer.querySelector('[data-center-result]');
     const showCenterFeedback=(state,message)=>{feedback.dataset.state=state;feedback.textContent=message;};
     centerTrainer.querySelector('[data-center-save]').addEventListener('click',()=>{
-      if(!singleToneAttemptActive||singleToneHitRecorded)return;
-      if(centerCents===null){showCenterFeedback('incorrect','Noch kein Ton erkannt. Singe einen einzelnen, kräftigen Ton und versuche es erneut.');status('Noch kein Ton erkannt. Singe einen ruhigen Ton und versuche es erneut.');return;}
-      if(Math.abs(centerCents)>40){showCenterFeedback('incorrect',centerCents<0?'Noch zu tief. Singe etwas höher und speichere, wenn der Zeiger mittig steht.':'Noch zu hoch. Singe etwas tiefer und speichere, wenn der Zeiger mittig steht.');status('Der Ton liegt noch außerhalb des Zielbereichs. Korrigiere die Tonhöhe und versuche es erneut.');return;}
-      singleToneHitRecorded=true;singleToneAttemptActive=false;setCenterSaveEnabled(false);showCenterFeedback('correct','Richtig! Der Grundton sitzt. Dein Treffer wurde gespeichert.');recordCenterSuccess();
+      if(centerSequenceActive)return;
+      if(centerResponses.length!==4){showCenterFeedback('incorrect','Spiele zuerst alle vier Wiederholungen und singe den Grundton in jeder Pause.');status('Die vier Wiederholungen sind noch nicht abgeschlossen.');return;}
+      const hits=centerResponses.filter(Boolean).length;
+      if(hits!==4){showCenterFeedback('incorrect',`${hits} von 4 Antworten waren richtig. Starte die Wiederholungen erneut und singe den Grundton in jeder Pause.`);setCenterSaveEnabled(false);centerResponses=[];centerTrainer.querySelector('[data-center-response-progress]').textContent='0 / 4 Grundton-Antworten';status('Noch nicht alle Antworten richtig. Versuche es erneut.');return;}
+      singleToneHitRecorded=true;setCenterSaveEnabled(false);showCenterFeedback('correct','Richtig! Du hast den Grundton in allen vier Pausen gehalten. Dein Ergebnis wurde gespeichert.');recordCenterSuccess();centerResponses=[];centerTrainer.querySelector('[data-center-response-progress]').textContent='4 / 4 Grundton-Antworten richtig · Gespeichert';
     });
-    centerScaleButton=centerTrainer.querySelector('[data-center-scale]');centerScaleButton.setAttribute('aria-pressed','false');centerScaleButton.addEventListener('click',()=>{if(centerScalePlaying){cancelSound();singleToneAttemptActive=false;status('Tonleiter gestoppt. Du kannst sie erneut abspielen oder das Intervall starten.');return;}const root=target,centerScale=[root,root+2,root+4,root+5,root+7,root+9,root+11,root+12,root];singleToneAttemptActive=false;singleToneHitRecorded=false;centerCents=null;setCenterSaveEnabled(false);centerTrainer.querySelector('[data-center-result]').dataset.state='ready';centerTrainer.querySelector('[data-center-result]').textContent='Höre die Tonleiter und präge dir den Grundton ein.';play(centerScale,'voice',()=>{centerScalePlaying=false;centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');status('Tonleiter und Grundton gehört. Spiele jetzt das Intervall.');},{...centerSound,lastDuration:.9});centerScalePlaying=true;centerScaleButton.textContent='■ Tonleiter stoppen';centerScaleButton.setAttribute('aria-pressed','true');});
+    centerScaleButton=centerTrainer.querySelector('[data-center-scale]');centerScaleButton.setAttribute('aria-pressed','false');centerScaleButton.addEventListener('click',()=>{if(centerSequenceActive)stopCenterRepetitions('Wiederholung gestoppt.');if(centerScalePlaying){cancelSound();singleToneAttemptActive=false;status('Tonleiter gestoppt. Du kannst sie erneut abspielen oder das Intervall starten.');return;}const root=target,centerScale=[root,root+2,root+4,root+5,root+7,root+9,root+11,root+12,root];singleToneAttemptActive=false;singleToneHitRecorded=false;centerCents=null;setCenterSaveEnabled(false);centerTrainer.querySelector('[data-center-result]').dataset.state='ready';centerTrainer.querySelector('[data-center-result]').textContent='Höre die Tonleiter und präge dir den Grundton ein.';play(centerScale,'voice',()=>{centerScalePlaying=false;centerScaleButton.textContent='▶ Tonleiter abspielen';centerScaleButton.setAttribute('aria-pressed','false');status('Tonleiter und Grundton gehört. Spiele jetzt das Intervall.');},{...centerSound,lastDuration:.9});centerScalePlaying=true;centerScaleButton.textContent='■ Tonleiter stoppen';centerScaleButton.setAttribute('aria-pressed','true');});
     centerIntervalButton=centerTrainer.querySelector('[data-center-interval]');centerIntervalButton.setAttribute('aria-pressed','false');centerIntervalButton.addEventListener('click',playCenterInterval);
   }
   }
@@ -196,8 +241,8 @@
   const sequenceGroups = [
     { match: 'Mittlere Intervalle', key: 'middleIntervals', minDistance: 3, maxDistance: 7 },
     { match: 'Kleine Intervalle', key: 'smallIntervals', minDistance: 2, maxDistance: 4 },
-    { match: 'Einfache Melodien', key: 'simpleMelodies', items: [['Folge 1 · C4–D4–E4–G4–E4','60,62,64,67,64'],['Folge 2 · G3–C4–D4–C4–G3','55,60,62,60,55'],['Folge 3 · E4–G4–A4–G4–E4','64,67,69,67,64']] },
-    { match: 'Anspruchsvollere Melodien', key: 'advancedMelodies', items: [['Folge 1 · C4–G4–E4–F4–D4','60,67,64,65,62'],['Folge 2 · D4–B3–F#4–A4–G4','62,59,66,69,67'],['Folge 3 · A3–E4–C4–F4–D4','57,64,60,65,62']] }
+    { match: 'Einfache Melodien', key: 'simpleMelodies', items: [['Folge 1 · 1–2–3–4–5','1,2,3,4,5'],['Folge 2 · 5–4–3–2–1','5,4,3,2,1'],['Folge 3 · 1–4–5–4','1,4,5,4'],['Folge 4 · 1–2–1','1,2,1'],['Folge 5 · 1–2–3–2–1','1,2,3,2,1'],['Folge 6 · 1–4–3–2–1','1,4,3,2,1'],['Folge 7 · 1–4–5–1','1,4,5,8']] },
+    { match: 'Anspruchsvollere Melodien', key: 'advancedMelodies', items: [['Folge 1 · 1–5–3–4–2–3–1','1,5,3,4,2,3,1'],['Folge 2 · 1–2–3–4–5–6–7–8','1,2,3,4,5,6,7,8'],['Folge 3 · 1–2–1–7 (unter der 1)–1','1,2,1,0,1'],['Folge 4 · 1–5–8','1,5,8'],['Folge 5 · 1–6–5–8','1,6,5,8'],['Folge 6 · 8–7–6–5–4–3–2–1','8,7,6,5,4,3,2,1']] }
   ];
   if (hasVoice) sequenceGroups.forEach(group => {
     const section = [...document.querySelectorAll('.lesson-section')].find(item => item.querySelector('h2')?.textContent.includes(group.match));
@@ -335,23 +380,236 @@
     panel.dataset.sequenceTrainer = group.key;
     panel.id = `sequence-${group.key}`;
     const isMelody = group.key.includes('Melodies');
-    const options = group.items?.map(([label, sequence]) => `<option value="${sequence}">${label}</option>`).join('') || '';
-    const intervalInfo = group.minDistance ? `<p>Bei jedem neuen Intervall wird ein zufälliges Zweiton-Beispiel erzeugt (${group.minDistance} bis ${group.maxDistance} Halbtonschritte).</p>` : `<label>Tonfolge<select data-sequence-choice>${options}</select></label>`;
-    const playLabel = group.minDistance ? '▶ Neues Intervall hören' : '▶ Folge hören';
-    panel.innerHTML = `<h3>Nachsingen und prüfen</h3>${intervalInfo}<div class="intonation-actions"><button type="button" data-sequence-play>${playLabel}</button><button type="button" class="secondary" data-sequence-replay disabled>Folge erneut hören</button></div>${isMelody ? '<div class="intonation-actions"><button type="button" data-melody-record disabled>● Ganze Melodie aufnehmen</button><button type="button" class="secondary" data-melody-finish disabled>Aufnahme auswerten</button></div>' : ''}<p data-sequence-prompt role="status" aria-live="polite">Höre das Intervall an und singe es nach.</p><div class="intonation-actions"><button type="button" data-sequence-mic-start>Mikrofon einschalten</button><button type="button" class="secondary" data-sequence-mic-stop disabled>Mikrofon ausschalten</button><button type="button" data-sequence-capture disabled>Ton 1 übernehmen</button></div><p data-sequence-status role="status">Mikrofon aus. Die Auswertung erfolgt auf deinem Gerät.</p><p data-sequence-result role="status" aria-live="polite">Übernimm die gesungenen Töne nacheinander.</p><p data-sequence-progress role="status" aria-live="polite">Treffer werden nach jeder vollständigen Folge gespeichert.</p>`;
+    let melodyBpm = 50;
+    if (isMelody) { try { const savedBpm = Number(localStorage.getItem('music-method-melody-bpm-v1')); if (savedBpm >= 40 && savedBpm <= 140) melodyBpm = savedBpm; } catch {} }
+    const intervalInfo = group.minDistance ? `<p>Bei jedem neuen Intervall wird ein zufälliges Zweiton-Beispiel erzeugt (${group.minDistance} bis ${group.maxDistance} Halbtonschritte).</p>` : '';
+    const playLabel = group.minDistance ? '▶ Neues Intervall hören' : isMelody ? `▶ Folge hören · 1/${group.items.length}` : '▶ Folge hören';
+    const secondaryLabel = isMelody ? 'Neue Tonfolge abspielen' : 'Folge erneut hören';
+    panel.innerHTML = `<h3>Nachsingen und prüfen</h3>${intervalInfo}<div class="intonation-actions"><button type="button" data-sequence-play>${playLabel}</button><button type="button" class="secondary" data-sequence-replay disabled>${secondaryLabel}</button></div>${isMelody ? '' : '<p data-sequence-prompt role="status" aria-live="polite">Höre das Intervall an und singe es nach.</p>'}${isMelody ? '<div class="intonation-actions"><button type="button" data-sequence-mic-start>Mikrofon</button></div>' : '<div class="intonation-actions"><button type="button" data-sequence-mic-start>Mikrofon einschalten</button><button type="button" class="secondary" data-sequence-mic-stop disabled>Mikrofon ausschalten</button><button type="button" data-sequence-capture disabled>Ton 1 übernehmen</button></div>'}${isMelody ? '<p data-sequence-prompt role="status" aria-live="polite">Wähle zuerst deine Stimmlage.</p>' : '<p data-sequence-status role="status">Mikrofon aus. Die Auswertung erfolgt auf deinem Gerät.</p><p data-sequence-result role="status" aria-live="polite">Übernimm die gesungenen Töne nacheinander.</p>'}<p data-sequence-progress role="status" aria-live="polite">Treffer werden nach jeder vollständigen Folge gespeichert.</p>`;
+    let melodyRangeSelect = null, melodyRangeButton = null, melodyRangeValue = null, melodyRangeMenu = null, melodyMicButton = null, melodyOnAir = null;
+    if (isMelody) {
+      panel.classList.add('melody-sequence-trainer', 'large-interval-trainer');
+      const melodyRanges = [
+        ['octave-c2-c3', 'C2–C3 · Sehr tiefe Männerstimme'],
+        ['octave-g2-g3', 'G2–G3 · Tiefe Männerstimme'],
+        ['octave-c3-c4', 'C3–C4 · Mittlere Männerstimme'],
+        ['octave-g3-g4', 'G3–G4 · Höhere Männerstimme'],
+        ['octave-c4-c5', 'C4–C5 · Viele Frauenstimmen'],
+        ['octave-g4-g5', 'G4–G5 · Hohe Frauenstimme']
+      ];
+      const rangeControl = document.createElement('div');
+      rangeControl.className = 'voice-range-control';
+      const rangeButtons = melodyRanges.map(([value, label]) => '<button type="button" class="voice-range-option" role="option" data-melody-range-option="' + value + '" aria-selected="false">' + label + '</button>').join('');
+      const rangeSelectOptions = melodyRanges.map(([value, label]) => '<option value="' + value + '">' + label + '</option>').join('');
+      rangeControl.innerHTML = '<button type="button" class="voice-range-button" data-melody-range-button aria-haspopup="listbox" aria-expanded="false" aria-label="Stimmlage wählen"><span data-melody-range-value>Stimmlage wählen</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5"/></svg></button><div class="voice-range-menu" data-melody-range-menu hidden><div class="voice-range-hint">Grobe Orientierung; Stimmumfänge überschneiden sich.</div><div class="voice-range-listbox" role="listbox" aria-label="Stimmlage wählen">' + rangeButtons + '</div></div><select class="voice-range-native" data-melody-range aria-hidden="true" tabindex="-1"><option value="" selected disabled>Stimmlage wählen</option>' + rangeSelectOptions + '</select>';
+      melodyRangeSelect = rangeControl.querySelector('[data-melody-range]');
+      melodyRangeButton = rangeControl.querySelector('[data-melody-range-button]');
+      melodyRangeValue = rangeControl.querySelector('[data-melody-range-value]');
+      melodyRangeMenu = rangeControl.querySelector('[data-melody-range-menu]');
+      const oldMicButton = panel.querySelector('[data-sequence-mic-start]');
+      oldMicButton.className = 'mic-toggle-button';
+      oldMicButton.setAttribute('aria-label', 'Mikrofon einschalten');
+      oldMicButton.setAttribute('title', 'Mikrofon einschalten');
+      oldMicButton.setAttribute('aria-pressed', 'false');
+      oldMicButton.disabled = true;
+      oldMicButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"></path><path data-mic-slash d="M4 4l16 16"></path></svg>';
+      melodyMicButton = oldMicButton;
+      oldMicButton.closest('.intonation-actions')?.remove();
+      const stopButton = panel.querySelector('[data-sequence-mic-stop]');
+      if (stopButton) stopButton.remove();
+      melodyOnAir = document.createElement('span');
+      melodyOnAir.className = 'mic-on-air';
+      melodyOnAir.dataset.active = 'false';
+      melodyOnAir.setAttribute('role', 'status');
+      melodyOnAir.setAttribute('aria-live', 'polite');
+      melodyOnAir.setAttribute('aria-label', 'Mikrofon aus');
+      melodyOnAir.innerHTML = '<i aria-hidden="true"></i><span>ON AIR</span>';
+      const toolbar = document.createElement('div');
+      toolbar.className = 'interval-voice-settings melody-voice-settings';
+      toolbar.append(rangeControl, melodyMicButton, melodyOnAir);
+      panel.querySelectorAll('.intonation-actions').forEach(actions => actions.classList.add('large-interval-play-actions'));
+      const captureButton = panel.querySelector('[data-sequence-capture]');
+      captureButton?.closest('.intonation-actions')?.classList.add('melody-capture-actions');
+      const heading = panel.querySelector('h3');
+      const titleBar = document.createElement('div');
+      titleBar.className = 'melody-tool-titlebar';
+      const optionsButton = document.createElement('button');
+      optionsButton.type = 'button'; optionsButton.className = 'melody-options-toggle';
+      optionsButton.setAttribute('aria-label', 'Optionen'); optionsButton.setAttribute('aria-expanded', 'false'); optionsButton.setAttribute('aria-controls', 'melody-options-' + group.key);
+      optionsButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 2h3.4l.5 2.2a7.8 7.8 0 0 1 1.7 1l2.1-.8 1.7 3-1.6 1.7a8 8 0 0 1 0 2l1.6 1.7-1.7 3-2.1-.8a7.8 7.8 0 0 1-1.7 1l-.5 2.2h-3.4l-.5-2.2a7.8 7.8 0 0 1-1.7-1l-2.1.8-1.7-3 1.6-1.7a8 8 0 0 1 0-2L4.3 7.4l1.7-3 2.1.8a7.8 7.8 0 0 1 1.7-1L10.3 2Z"/><circle cx="12" cy="10.1" r="3.1"/></svg>';
+      const optionsPanel = document.createElement('div');
+      optionsPanel.className = 'melody-options-panel'; optionsPanel.id = 'melody-options-' + group.key; optionsPanel.hidden = true;
+      optionsPanel.innerHTML = '<label for="melody-bpm-' + group.key + '"><span>Melodiegeschwindigkeit</span><strong data-melody-bpm-output>' + melodyBpm + ' BPM</strong></label><input id="melody-bpm-' + group.key + '" type="range" min="40" max="140" step="5" value="' + melodyBpm + '" data-melody-bpm><small>Langsamer üben oder das Tempo steigern.</small>';
+      heading.replaceWith(titleBar);
+      titleBar.append(heading, optionsButton, optionsPanel);
+      const bpmInput = optionsPanel.querySelector('[data-melody-bpm]');
+      const bpmOutput = optionsPanel.querySelector('[data-melody-bpm-output]');
+      optionsButton.addEventListener('click', () => {
+        const expanded = optionsButton.getAttribute('aria-expanded') !== 'true';
+        optionsButton.setAttribute('aria-expanded', String(expanded)); optionsPanel.hidden = !expanded;
+      });
+      bpmInput.addEventListener('input', () => {
+        melodyBpm = Number(bpmInput.value); bpmOutput.textContent = melodyBpm + ' BPM';
+        try { localStorage.setItem('music-method-melody-bpm-v1', String(melodyBpm)); } catch {}
+      });
+      document.addEventListener('click', event => {
+        if (!titleBar.contains(event.target)) { optionsPanel.hidden = true; optionsButton.setAttribute('aria-expanded', 'false'); }
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !optionsPanel.hidden) { optionsPanel.hidden = true; optionsButton.setAttribute('aria-expanded', 'false'); optionsButton.focus(); }
+      });
+      titleBar.insertAdjacentElement('afterend', toolbar);
+      const playActions = panel.querySelector('[data-sequence-play]').closest('.intonation-actions');
+      toolbar.insertAdjacentElement('afterend', playActions);
+      const display = document.createElement('div');
+      display.className = 'large-interval-display melody-sequence-display';
+      const guidance = document.createElement('div');
+      guidance.className = 'melody-sequence-guidance';
+      const score = document.createElement('div');
+      score.className = 'large-interval-score melody-sequence-score';
+      score.innerHTML = isMelody ? '<span>Aufgaben korrekt</span>' : '<span>Ergebnis</span>';
+      (isMelody ? ['[data-sequence-prompt]'] : ['[data-sequence-prompt]', '[data-sequence-status]', '[data-sequence-result]']).forEach(selector => {
+        const item = panel.querySelector(selector);
+        if (item) guidance.append(item);
+      });
+      if (isMelody) {
+        const liveReadout = document.createElement('div');
+        liveReadout.className = 'melody-live-readout';
+        liveReadout.innerHTML = '<span>Erkannter Ton / Tonstufe</span><strong><span data-melody-live-note>—</span><span aria-hidden="true"> / </span><span data-melody-live-degree>—</span></strong>';
+        guidance.append(liveReadout);
+      }
+      const progress = panel.querySelector('[data-sequence-progress]');
+      if (progress) {
+        if (isMelody) {
+          const taskCount = document.createElement('strong');
+          taskCount.dataset.sequenceProgress = '';
+          taskCount.setAttribute('role', 'status'); taskCount.setAttribute('aria-live', 'polite');
+          taskCount.textContent = window.sequenceTaskSummary?.(group.key, group.items.length) || `0 / ${group.items.length}`;
+          progress.replaceWith(taskCount);
+          score.append(taskCount);
+        }
+        else score.append(progress);
+      }
+      display.append(guidance, score);
+      if (isMelody) playActions.insertAdjacentElement('afterend', display);
+      else panel.append(display);
+      const melodyFlowItems = [melodyRangeButton, melodyMicButton, panel.querySelector('[data-sequence-play]'), display];
+      const setMelodyFlowStep = active => melodyFlowItems.forEach(item => item?.classList.toggle('flow-step-active', item === active));
+      panel.dataset.melodyFlowStep = 'range';
+      setMelodyFlowStep(melodyRangeButton);
+      panel._setMelodyFlowStep = setMelodyFlowStep;
+      melodyRangeButton.addEventListener('click', () => {
+        const open = melodyRangeButton.getAttribute('aria-expanded') !== 'true';
+        melodyRangeButton.setAttribute('aria-expanded', String(open));
+        melodyRangeMenu.hidden = !open;
+      });
+      melodyRangeMenu.addEventListener('click', event => {
+        const option = event.target.closest('[data-melody-range-option]');
+        if (!option) return;
+        melodyRangeSelect.value = option.dataset.melodyRangeOption;
+        melodyRangeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        melodyRangeMenu.hidden = true;
+        melodyRangeButton.setAttribute('aria-expanded', 'false');
+      });
+    }
     description.insertAdjacentElement('afterend', panel);
     const $panel = selector => panel.querySelector(selector);
-    let notes = [], index = 0, heard = false, samples = [], mic = null, micSource = null, micAnalyser = null, micFrame = 0, micLastFrame = 0, noteHits = 0, melodyRecording = false, melodyFrames = [];
+    let notes = [], index = 0, heard = false, samples = [], mic = null, micSource = null, micAnalyser = null, micFrame = 0, micLastFrame = 0, noteHits = 0, melodyRecording = false, melodyFrames = [], melodySawVoice = false, melodyLastVoiceAt = 0, melodyOrder = [], melodyOrderPosition = 0, currentMelodyTaskNumber = 0, currentMelodyTaskIndex = null, melodyPlaybackActive = false, melodyPlaybackButton = null, melodyTonic = null;
+    const playButton = $panel('[data-sequence-play]'), replayButton = $panel('[data-sequence-replay]');
     const prompt = message => { $panel('[data-sequence-prompt]').textContent = message; };
-    const micStatus = message => { $panel('[data-sequence-status]').textContent = message; };
-    const resultStatus = message => { $panel('[data-sequence-result]').textContent = message; };
+    const updateMelodyLiveReadout = midi => {
+      const noteOutput = $panel('[data-melody-live-note]');
+      const degreeOutput = $panel('[data-melody-live-degree]');
+      if (!noteOutput || !degreeOutput || melodyTonic === null) return;
+      noteOutput.textContent = pitch.name(Math.round(midi)).replace(/-?\d+$/, '');
+      let nearest = { distance: Infinity, degree: null };
+      [{ semitones: -1, degree: 7 }, ...[0, 2, 4, 5, 7, 9, 11, 12].map((semitones, index) => ({ semitones, degree: index + 1 }))].forEach(({ semitones, degree }) => {
+        const distance = Math.abs(midi - (melodyTonic + semitones));
+        if (distance < nearest.distance) nearest = { distance, degree };
+      });
+      degreeOutput.textContent = nearest.distance <= .5 ? String(nearest.degree) : '—';
+    };
+    const updateMelodyButtonLabels = () => {
+      if (!isMelody) return;
+      playButton.textContent = currentMelodyTaskNumber
+        ? `▶ Folge erneut hören · ${currentMelodyTaskNumber}/${group.items.length}`
+        : `▶ Folge hören · 1/${group.items.length}`;
+      replayButton.textContent = 'Neue Tonfolge abspielen';
+    };
+    const stopMelodyPlayback = () => {
+      if (!melodyPlaybackActive) return;
+      cancelSound(); melodyPlaybackActive = false; melodyPlaybackButton = null;
+      melodyFrames = []; melodySawVoice = false; melodyLastVoiceAt = 0;
+      heard = true; melodyRecording = !!mic; updateMelodyButtonLabels();
+      playButton.disabled = !mic; replayButton.disabled = !mic || !notes.length;
+      $panel('.melody-sequence-display').dataset.state = '';
+      panel.dataset.melodyFlowStep = mic ? 'sing' : 'play';
+      panel._setMelodyFlowStep(mic ? $panel('.melody-sequence-display') : playButton);
+      prompt(mic ? 'Folge gestoppt. Singe sie jetzt nach.' : 'Folge gestoppt. Du kannst sie erneut abspielen.');
+    };
+    const startMelodyPlayback = (button, newSequence) => {
+      if (melodyPlaybackActive) { stopMelodyPlayback(); return; }
+      melodyPlaybackActive = true; melodyPlaybackButton = button;
+      button.textContent = '■ Folge stoppen'; button.disabled = false;
+      if (button === playButton) replayButton.disabled = true;
+      else playButton.disabled = true;
+      if (newSequence) playSequence(); else playCurrentSequence();
+    };
+    if (isMelody) {
+      playButton.disabled = true;
+      melodyRangeSelect.addEventListener('change', () => {
+        if (melodyPlaybackActive) { cancelSound(); melodyPlaybackActive = false; melodyPlaybackButton = null; }
+        const selected = melodyRangeSelect.selectedOptions[0];
+        melodyRangeValue.textContent = selected?.value ? selected.textContent.split(' · ')[0] : 'Stimmlage wählen';
+        melodyRangeButton.setAttribute('aria-label', selected?.value ? 'Stimmlage: ' + melodyRangeValue.textContent : 'Stimmlage wählen');
+        melodyRangeMenu.querySelectorAll('[data-melody-range-option]').forEach(option => option.setAttribute('aria-selected', String(option.dataset.melodyRangeOption === melodyRangeSelect.value)));
+        melodyMicButton.disabled = !melodyRangeSelect.value;
+        heard = false; notes = []; samples = []; melodyTonic = null; melodyOrder = []; melodyOrderPosition = 0; currentMelodyTaskNumber = 0;
+        $panel('[data-melody-live-note]').textContent = '—'; $panel('[data-melody-live-degree]').textContent = '—';
+        updateMelodyButtonLabels();
+        replayButton.disabled = true;
+        display.dataset.state = '';
+        const nextStep = !melodyRangeSelect.value ? melodyRangeButton : mic ? playButton : melodyMicButton;
+        panel.dataset.melodyFlowStep = !melodyRangeSelect.value ? 'range' : mic ? 'play' : 'mic';
+        panel._setMelodyFlowStep(nextStep);
+        playButton.disabled = !mic;
+        prompt(!melodyRangeSelect.value ? 'Wähle zuerst deine Stimmlage.' : mic ? 'Folge hören.' : 'Schalte jetzt das Mikrofon ein.');
+      });
+      const resetRow = document.createElement('div');
+      resetRow.className = 'intonation-actions melody-reset-actions';
+      resetRow.innerHTML = '<button type="button" class="secondary" data-melody-reset>Reset</button>';
+      panel.append(resetRow);
+    }
+    const micStatus = message => { const status = $panel('[data-sequence-status]'); if (status) status.textContent = message; else if (message) prompt(message); };
+    const resultStatus = (message, state = '') => { const result = $panel('[data-sequence-result]'); if (result) result.textContent = message; else { prompt(message); const display = $panel('.melody-sequence-display'); if (display) display.dataset.state = state; } };
     const playCurrentSequence = () => {
       index = noteHits = 0; samples = []; heard = false;
-      $panel('[data-sequence-capture]').disabled = true;
-      $panel('[data-sequence-replay]').disabled = true;
-      prompt('Höre aufmerksam an.');
-      resultStatus('Singe die Töne nacheinander und übernimm sie einzeln.');
-      play(notes, 'sequence', () => { heard = true; prompt('Jetzt nachsingen und Ton für Ton übernehmen.');$panel('[data-sequence-capture]').disabled = !mic;$panel('[data-sequence-replay]').disabled = false;if (isMelody) $panel('[data-melody-record]').disabled = !mic; });
+      if (!isMelody) $panel('[data-sequence-capture]').disabled = true;
+      if (isMelody) {
+        playButton.disabled = melodyPlaybackButton !== playButton;
+        replayButton.disabled = melodyPlaybackButton !== replayButton;
+      } else replayButton.disabled = true;
+      if (!isMelody) $panel('[data-sequence-capture]').disabled = true;
+      if (isMelody) {
+        melodyRecording = false; melodyFrames = []; melodySawVoice = false; melodyLastVoiceAt = 0;
+        $panel('[data-melody-live-note]').textContent = '—'; $panel('[data-melody-live-degree]').textContent = '—';
+        $panel('.melody-sequence-display').dataset.state = '';
+        panel.dataset.melodyFlowStep = 'play'; panel._setMelodyFlowStep(playButton);
+        prompt('Die Folge wird abgespielt.');
+      } else { prompt('Höre aufmerksam an.'); resultStatus('Singe die Töne nacheinander und übernimm sie einzeln.'); }
+      const melodyTiming = isMelody ? { duration: 60 / melodyBpm * .72, lastDuration: 60 / melodyBpm * .72, gap: 60 / melodyBpm * .28 } : {};
+      play(notes, 'sequence', () => {
+        heard = true;
+        if (isMelody) {
+          melodyPlaybackActive = false; melodyPlaybackButton = null; updateMelodyButtonLabels();
+          playButton.disabled = !mic; replayButton.disabled = !mic;
+          melodyFrames = []; melodySawVoice = false; melodyLastVoiceAt = 0; melodyRecording = !!mic;
+          panel.dataset.melodyFlowStep = 'sing'; panel._setMelodyFlowStep($panel('.melody-sequence-display'));
+          prompt(mic ? 'Folge jetzt nachsingen.' : 'Schalte das Mikrofon ein und singe die Folge nach.');
+        } else {
+          prompt('Jetzt nachsingen und Ton für Ton übernehmen.'); $panel('[data-sequence-capture]').disabled = !mic; replayButton.disabled = false;
+        }
+      }, melodyTiming);
     };
     const playSequence = () => {
       if (group.minDistance) {
@@ -361,7 +619,18 @@
         notes = [first, first + distance];
         prompt('Höre das neue Intervall aufmerksam an.');
       } else {
-        notes = $panel('[data-sequence-choice]').value.split(',').map(Number);
+        if (melodyOrderPosition >= group.items.length) melodyOrderPosition = 0;
+        if (!melodyOrder.length) melodyOrder = Array.from({ length: group.items.length }, (_, i) => i);
+        const melodyIndex = melodyOrder[melodyOrderPosition++];
+        currentMelodyTaskIndex = melodyIndex;
+        currentMelodyTaskNumber = melodyOrderPosition;
+        if (melodyPlaybackButton !== playButton) playButton.textContent = `▶ Folge erneut hören · ${currentMelodyTaskNumber}/${group.items.length}`;
+        const motif = group.items[melodyIndex][1].split(',').map(Number);
+        const [rangeLow, rangeHigh] = ranges[melodyRangeSelect.value];
+        const tonic = rangeLow;
+        melodyTonic = tonic;
+        const majorScaleSemitones = [0, 2, 4, 5, 7, 9, 11, 12];
+        notes = motif.map(degree => tonic + (degree === 0 ? -1 : majorScaleSemitones[degree - 1]));
         index = noteHits = 0; samples = [];
       }
       playCurrentSequence();
@@ -374,27 +643,52 @@
       if (context.currentTime < muteUntil) { samples = []; if (melodyRecording) melodyFrames.push(null); return; }
       const buffer = new Float32Array(micAnalyser.fftSize);
       micAnalyser.getFloatTimeDomainData(buffer);
-      const detected = pitch.detect(buffer, context.sampleRate);
-      if (!detected) { samples = []; if (melodyRecording) melodyFrames.push(null); return; }
+      const [melodyLow, melodyHigh] = ranges[melodyRangeSelect.value] || [60, 72];
+      const detected = pitch.detect(buffer, context.sampleRate, {
+        minRms: .0012,
+        minFrequency: pitch.frequency(melodyLow - 1),
+        maxFrequency: pitch.frequency(melodyHigh + 1)
+      });
+      if (!detected) {
+        samples = [];
+        if (melodyRecording) {
+          melodyFrames.push(null);
+          if (melodySawVoice && time - melodyLastVoiceAt > 1200) finishMelodyRecording();
+        }
+        return;
+      }
       const midi = pitch.midi(detected.hz);
-      if (melodyRecording) melodyFrames.push(midi);
+      if (melodyRecording) { melodyFrames.push(midi); melodySawVoice = true; melodyLastVoiceAt = time; updateMelodyLiveReadout(midi); }
       samples.push(midi);
       if (samples.length > 9) samples.shift();
     };
     const startMic = async () => {
-      if (mic) return;
+      if (mic) { stopMic(); return; }
+      if (isMelody && !melodyRangeSelect.value) { prompt('Wähle zuerst deine Stimmlage.'); return; }
       if (!navigator.mediaDevices?.getUserMedia) { micStatus('Mikrofon benötigt HTTPS oder localhost.'); return; }
       $panel('[data-sequence-mic-start]').disabled = true;
       micStatus('Bitte erlaube den Mikrofonzugriff im Browser.');
       try {
         await audio();
         mic = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
+        if (isMelody) {
+          melodyMicButton.disabled = false;
+          melodyMicButton.setAttribute('aria-pressed', 'true');
+          melodyMicButton.setAttribute('aria-label', 'Mikrofon ausschalten');
+          melodyMicButton.title = 'Mikrofon ausschalten';
+          melodyMicButton.querySelector('[data-mic-slash]').hidden = true;
+          melodyOnAir.dataset.active = 'true';
+          melodyOnAir.setAttribute('aria-label', 'Mikrofon aktiv');
+          playButton.disabled = false;
+          prompt('Mikrofon ist an. Spiele jetzt die Folge ab.');
+          panel.dataset.melodyFlowStep = 'play'; panel._setMelodyFlowStep(playButton);
+        }
         micSource = context.createMediaStreamSource(mic); micAnalyser = context.createAnalyser(); micAnalyser.fftSize = 8192; micSource.connect(micAnalyser);
         mic.getAudioTracks().forEach(track => track.addEventListener('ended', () => stopMic('Mikrofonverbindung beendet.')));
         micStatus('');
-        $panel('[data-sequence-mic-stop]').disabled = false;
-        if (heard) $panel('[data-sequence-capture]').disabled = false;
-        if (isMelody && heard) $panel('[data-melody-record]').disabled = false;
+        const micStopButton = $panel('[data-sequence-mic-stop]');
+        if (micStopButton) micStopButton.disabled = false;
+        if (!isMelody && heard) $panel('[data-sequence-capture]').disabled = false;
         micFrame = requestAnimationFrame(listen);
       } catch (error) {
         stopMic(error.name === 'NotAllowedError' ? 'Mikrofonzugriff nicht erlaubt.' : 'Mikrofon konnte nicht gestartet werden.');
@@ -403,8 +697,6 @@
     const finishMelodyRecording = () => {
       if (!melodyRecording) return;
       melodyRecording = false;
-      $panel('[data-melody-record]').disabled = !mic;
-      $panel('[data-melody-finish]').disabled = true;
       const runs = []; let run = [], previous = null;
       const saveRun = () => { if (run.length >= 3) runs.push(run.reduce((sum, value) => sum + value, 0) / run.length); run = []; };
       melodyFrames.forEach(value => {
@@ -414,34 +706,65 @@
         run.push(value); previous = rounded;
       });
       saveRun(); melodyFrames = [];
-      const hits = notes.reduce((sum, expected, i) => sum + (runs[i] !== undefined && Math.abs(runs[i] - expected) <= .75 ? 1 : 0), 0);
-      resultStatus(`Aufnahme ausgewertet: ${runs.length} von ${notes.length} Tönen erkannt, ${hits} richtig getroffen.`);
-      prompt('Wähle eine weitere Folge oder nimm die Melodie noch einmal auf.');
-      if (window.recordSequenceResult) $panel('[data-sequence-progress]').textContent = window.recordSequenceResult(group.key, hits, notes.length);
+      const hits = notes.reduce((sum, expected, i) => sum + (runs[i] !== undefined && Math.abs(runs[i] - expected) <= .9 ? 1 : 0), 0);
+      const correct = runs.length === notes.length && hits === notes.length;
+      resultStatus(correct ? `Richtig! Alle ${notes.length} Töne stimmen.` : `${hits} von ${notes.length} Tönen getroffen. Höre die Folge noch einmal und versuche es erneut.`, correct ? 'hit' : 'miss');
+      panel.dataset.melodyFlowStep = 'result'; panel._setMelodyFlowStep(null);
+      if (window.recordMelodyTaskResult) $panel('[data-sequence-progress]').textContent = window.recordMelodyTaskResult(group.key, currentMelodyTaskIndex, correct, group.items.length);
     };
+    if (isMelody) $panel('[data-melody-reset]').addEventListener('click', () => {
+      cancelSound(); melodyPlaybackActive = false; melodyPlaybackButton = null;
+      melodyRecording = false; melodyFrames = []; melodySawVoice = false; melodyLastVoiceAt = 0;
+      heard = false; notes = []; samples = []; index = noteHits = 0; melodyTonic = null;
+      $panel('[data-melody-live-note]').textContent = '—'; $panel('[data-melody-live-degree]').textContent = '—';
+      melodyOrder = []; melodyOrderPosition = 0; currentMelodyTaskNumber = 0; currentMelodyTaskIndex = null;
+      $panel('.melody-sequence-display').dataset.state = '';
+      updateMelodyButtonLabels();
+      playButton.disabled = !mic; replayButton.disabled = true;
+      $panel('[data-sequence-progress]').textContent = `0 / ${group.items.length}`;
+      window.resetSequenceResults?.(group.key);
+      const step = !melodyRangeSelect.value ? melodyRangeButton : !mic ? melodyMicButton : playButton;
+      panel._setMelodyFlowStep(step);
+      prompt(!melodyRangeSelect.value ? 'Wähle zuerst deine Stimmlage.' : !mic ? 'Schalte jetzt das Mikrofon ein.' : 'Folge hören.');
+    });
     const stopMic = message => {
+      if (isMelody && melodyPlaybackActive) stopMelodyPlayback();
       if (melodyRecording) finishMelodyRecording();
       if (micFrame) cancelAnimationFrame(micFrame); micFrame = 0;
       if (mic) mic.getTracks().forEach(track => track.stop()); mic = null;
       if (micSource) micSource.disconnect(); if (micAnalyser) micAnalyser.disconnect(); micSource = micAnalyser = null; samples = [];
-      $panel('[data-sequence-mic-start]').disabled = false; $panel('[data-sequence-mic-stop]').disabled = true; $panel('[data-sequence-capture]').disabled = true;
-      micStatus(message || 'Mikrofon aus. Die Auswertung erfolgt auf deinem Gerät.');
+      if (isMelody) {
+        melodyMicButton.disabled = !melodyRangeSelect.value;
+        melodyMicButton.setAttribute('aria-pressed', 'false');
+        melodyMicButton.setAttribute('aria-label', 'Mikrofon einschalten');
+        melodyMicButton.title = 'Mikrofon einschalten';
+        melodyMicButton.querySelector('[data-mic-slash]').hidden = false;
+        melodyOnAir.dataset.active = 'false';
+        melodyOnAir.setAttribute('aria-label', 'Mikrofon aus');
+        playButton.disabled = true;
+        replayButton.disabled = true;
+        panel.dataset.melodyFlowStep = 'mic'; panel._setMelodyFlowStep(melodyMicButton);
+        prompt('Mikrofon einschalten.');
+      } else {
+        $panel('[data-sequence-mic-start]').disabled = false;
+        const micStopButton = $panel('[data-sequence-mic-stop]');
+        if (micStopButton) micStopButton.disabled = true;
+      }
+      if (!isMelody) $panel('[data-sequence-capture]').disabled = true;
+      if (isMelody) { if (message) prompt(message); }
+      else micStatus(message || 'Mikrofon aus. Die Auswertung erfolgt auf deinem Gerät.');
     };
-    if (isMelody) {
-      $panel('[data-melody-record]').addEventListener('click', () => {
-        if (!heard || !mic) return;
-        melodyFrames = []; melodyRecording = true;
-        $panel('[data-melody-record]').disabled = true;
-        $panel('[data-melody-finish]').disabled = false;
-        resultStatus('Aufnahme läuft. Singe die ganze Melodie und beende die Aufnahme danach.');
-      });
-      $panel('[data-melody-finish]').addEventListener('click', finishMelodyRecording);
-    }
-    $panel('[data-sequence-play]').addEventListener('click', playSequence);
-    $panel('[data-sequence-replay]').addEventListener('click', playCurrentSequence);
+    $panel('[data-sequence-play]').addEventListener('click', () => {
+      if (isMelody) startMelodyPlayback(playButton, !notes.length);
+      else playSequence();
+    });
+    $panel('[data-sequence-replay]').addEventListener('click', () => {
+      if (isMelody) startMelodyPlayback(replayButton, true);
+      else playCurrentSequence();
+    });
     $panel('[data-sequence-mic-start]').addEventListener('click', startMic);
-    $panel('[data-sequence-mic-stop]').addEventListener('click', () => stopMic());
-    $panel('[data-sequence-capture]').addEventListener('click', () => {
+    $panel('[data-sequence-mic-stop]')?.addEventListener('click', () => stopMic());
+    if (!isMelody) $panel('[data-sequence-capture]').addEventListener('click', () => {
       if (!heard || index >= notes.length) return;
       if (samples.length < 3) { resultStatus('Ton noch nicht sicher erkannt. Singe ihn kurz und stabil und übernimm ihn erneut.'); return; }
       const sorted = [...samples].sort((a,b) => a-b), tone = sorted[Math.floor(sorted.length/2)], spread = sorted[sorted.length-1] - sorted[0];
@@ -461,7 +784,7 @@
         if (window.recordSequenceResult) $panel('[data-sequence-progress]').textContent = window.recordSequenceResult(group.key, noteHits, total);
       }
     });
-    $panel('[data-sequence-choice]')?.addEventListener('change', () => { heard = false; $panel('[data-sequence-capture]').disabled = true;if (isMelody) $panel('[data-melody-record]').disabled = true; $panel('[data-sequence-replay]').disabled = true; prompt('Ausgewählt. Spiele die Folge ab, bevor du sie nachsingst.'); });
+    $panel('[data-sequence-choice]')?.addEventListener('change', () => { heard = false; $panel('[data-sequence-capture]').disabled = true; $panel('[data-sequence-replay]').disabled = true; prompt('Ausgewählt. Spiele die Folge ab, bevor du sie nachsingst.'); });
     window.addEventListener('pagehide', () => stopMic('Mikrofon aus.'));
   });
 
@@ -499,6 +822,7 @@
   const singleToneMicToggle=!$('mic-stop');
   function setSingleToneMicButton(state){const button=$('mic-start'),slash=button.querySelector('[data-mic-slash]'),indicator=$('mic-on-air'),label=state==='on'?'Mikrofon ausschalten':state==='pending'?'Mikrofon wird eingeschaltet':'Mikrofon einschalten';if(slash)slash.hidden=state==='on';button.disabled=state==='pending';button.setAttribute('aria-label',label);button.title=label;button.setAttribute('aria-pressed',String(state==='on'));if(indicator){indicator.dataset.active=String(state==='on');indicator.setAttribute('aria-label',state==='on'?'Mikrofon eingeschaltet':'Mikrofon ausgeschaltet');}}
   function stopMicImpl(message=singleToneMicToggle?'':'Mikrofon aus.'){
+    if(centerSequenceActive)stopCenterRepetitions('Mikrofon ausgeschaltet. Starte die Aufgabe erneut.');
     request++;pending=false;cancelAnimationFrame(frame);frame=0;
     if(stream)stream.getTracks().forEach(track=>track.stop());stream=null;
     if(source)source.disconnect();if(analyser)analyser.disconnect();source=analyser=null;
@@ -514,7 +838,7 @@
     if(!result){history=[];if(heldSince&&time-singleToneLastInRange>400){heldSince=0;singleToneLastInRange=0;}centerCents=null;setCenterSaveEnabled(centerTrainer&&singleToneAttemptActive&&!singleToneHitRecorded);$('detected-note').textContent='—';$('pitch-pointer').hidden=true;status(centerTrainer?'Ton noch nicht sicher erkannt. Singe etwas kräftiger und halte einen einzelnen Ton.':'Ton noch nicht sicher erkannt.');$('voice-detail').textContent='Singe einen einzelnen, ruhigen Ton.';return;}
     history.push(pitch.midi(result.hz));if(history.length>5)history.shift();
     if(history.length<3){status('Ton wird erkannt …');return;}
-    const sorted=[...history].sort((a,b)=>a-b),note=sorted[Math.floor(sorted.length/2)],cents=100*(note-target)+calibrationCents(),adjustedNote=target+cents/100;centerCents=cents;if(centerTrainer)setCenterSaveEnabled(singleToneAttemptActive&&!singleToneHitRecorded);
+    const sorted=[...history].sort((a,b)=>a-b),note=sorted[Math.floor(sorted.length/2)],cents=100*(note-target)+calibrationCents(),adjustedNote=target+cents/100;centerCents=cents;if(centerTrainer){setCenterSaveEnabled(singleToneAttemptActive&&!singleToneHitRecorded);if(centerResponseWindow)centerResponseSamples.push(note);}
     $('detected-note').textContent=pitch.name(Math.round(adjustedNote));
     $('voice-detail').textContent=`${pitch.frequency(adjustedNote).toFixed(1).replace('.',',')} Hz · ${cents>0?'+':''}${Math.round(cents)} Cent zum Zielton`;
     $('pitch-pointer').hidden=false;$('pitch-pointer').style.left=`${50+Math.max(-100,Math.min(100,cents))/2}%`;

@@ -6,7 +6,7 @@
   const name = note => names[((note % 12)+12)%12] + (Math.floor(note/12)-1);
   // YIN-style cumulative normalized difference. Downsample for efficient
   // fundamental detection; reject silence and weak periodicity, not just peaks.
-  function detect(input, sampleRate) {
+  function detect(input, sampleRate, options={}) {
     const step=Math.max(1,Math.floor(sampleRate/12000)),rate=sampleRate/step;
     const size=Math.floor(input.length/step),data=new Float32Array(size);
     let mean=0,energy=0;
@@ -14,8 +14,9 @@
     mean/=size;
     for(let i=0;i<size;i++){data[i]-=mean;energy+=data[i]*data[i];}
     const rms=Math.sqrt(energy/size);
-    if(rms<0.003) return null;
-    const min=Math.max(2,Math.floor(rate/1200)),max=Math.min(Math.ceil(rate/60),Math.floor(size/2)-1),window=size-max;
+    const minRms=options.minRms??0.003,minHz=options.minFrequency??60,maxHz=options.maxFrequency??1200;
+    if(rms<minRms) return null;
+    const min=Math.max(2,Math.floor(rate/maxHz)),max=Math.min(Math.ceil(rate/minHz),Math.floor(size/2)-1),window=size-max;
     const diff=new Float64Array(max+1);let cumulative=0;
     for(let lag=1;lag<=max;lag++){
       let sum=0;for(let i=0;i<window;i++){const d=data[i]-data[i+lag];sum+=d*d;}
@@ -28,7 +29,7 @@
       const denominator=a-2*b+c;
       const refined=lag+(denominator ? .5*(a-c)/denominator : 0);
       const hz=rate/refined;
-      return hz>=60 && hz<=1200 ? {hz,confidence:1-b,rms} : null;
+      return hz>=minHz && hz<=maxHz ? {hz,confidence:1-b,rms} : null;
     }
     return null;
   }
