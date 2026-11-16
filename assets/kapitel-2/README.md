@@ -4,7 +4,7 @@ Source: `Main/Deutsch/Kapitel 2/Rhythmus Kurs 1 Kapitel 2 - Notenwerte.pdf` (19 
 
 ## Content and navigation
 
-All five lessons, reading exercises, hearing exercises, supplied solutions and final learning goals are in `../../kapitel-2.html`. Course navigation includes chapter 2; chapter 1 links forward to it. Solutions are native, keyboard-accessible HTML details elements; checklists use labeled native checkboxes. No audio or exercises were invented. Google Drive links open externally; their recording contents and public-access settings are not independently verified.
+All five lessons, reading exercises, hearing exercises, supplied solutions and final learning goals are now part of `../../grundlagen.html` under Kapitel 02. All three chapters can be reached by scrolling the single course page. Solutions are native, keyboard-accessible HTML details elements; checklists use labeled native checkboxes. No audio or exercises were invented. Google Drive links open externally; their recording contents and public-access settings are not independently verified.
 
 Minor spelling/grammar errors are corrected. The missing beat number in lesson 2's play-along instruction is restored to “Schlag 2,” consistent with the two-beat half note. Lesson 1 has no separate hearing exercise in the PDF, so none was added.
 

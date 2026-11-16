@@ -2,7 +2,7 @@
 
 Source: `Main/Deutsch/Kapitel 3/Rhythmus Kurs 1 Kapitel 3.pdf`, 22 pages.
 
-The website page `../../kapitel-3.html` contains all five lessons, reading exercises, listening tasks, available solutions, final assignments and chapter goals. Chapter 2 links forward to it, and the course overview and homepage reflect three available chapters.
+All five lessons, reading exercises, listening tasks, available solutions, final assignments and chapter goals are now part of `../../grundlagen.html` under Kapitel 03. The three course chapters are available on that single scrollable page.
 
 ## Source fidelity
 

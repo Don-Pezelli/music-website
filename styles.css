@@ -323,6 +323,31 @@ html.image-viewer-open{overflow:hidden}
 .mock-nav .mock-nav-lessons a[aria-current="location"]{padding-left:12px;color:var(--ink)}
 .course-embedded-chapter{scroll-margin-top:24px}
 .course-embedded-body{max-width:none}
+.rhythmus-course-nav details.lesson-subnav{margin-top:2px}
+.rhythmus-course-nav details.lesson-subnav>summary{padding:8px 0;color:var(--muted);font-size:11px;cursor:pointer}
+.rhythmus-course-nav details.lesson-subnav>div{padding-left:10px}
+.rhythmus-course-nav{max-height:calc(100vh - 90px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.rhythmus-course-nav details.lesson-subnav[open]>summary{color:var(--ink)}
+@media(max-width:680px){.rhythmus-course-nav{max-height:none;overflow:visible}}
+.exercise-audio.drive-audio-card{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px;margin:16px 0;background:var(--green);border-radius:5px}
+.drive-audio-card .course-audio-player{height:176px;margin:0}
+.drive-audio-access{display:inline-flex;align-items:center;gap:7px;width:fit-content;font-size:12px;line-height:1.5;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.drive-audio-access span{font-size:16px}
+.pulse-pattern-ellipsis{flex:0 0 100%;text-align:center;color:var(--muted);font-size:24px;letter-spacing:.3em;line-height:1}
+.whole-note-count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;row-gap:10px}
+.whole-note-count>span:not(.whole-note-duration){grid-row:1}
+.whole-note-count .whole-note-duration{position:relative;grid-column:1/-1;justify-self:center;width:75%;height:3px;background:#d34238;border-radius:3px}
+.whole-note-count .whole-note-duration::before{content:"";position:absolute;left:0;top:-5px;width:3px;height:13px;background:#d34238;border-radius:2px}
+.whole-note-test{margin:16px 0 24px;padding:16px 18px;background:var(--green);border-radius:4px}
+.whole-note-test>.eyebrow{margin:0 0 10px;font-size:10px}
+.whole-note-count-copy{margin:0}
+.clap-hands{position:relative;height:46px;margin:8px 12px 0;overflow:hidden;font-size:32px}
+.clap-pair{position:absolute;left:12.5%;top:50%;display:flex;align-items:center;gap:16px;transform:translate(-50%,-50%);animation:clap-travel 5.2s linear infinite,clap-gap 5.2s ease-in-out infinite}
+.clap-hand{display:inline-block;line-height:1}
+.clap-hand-right{margin-left:-4px}
+@keyframes clap-travel{0%,10%{left:12.5%}85%,100%{left:87.5%}}
+@keyframes clap-gap{0%,4%{gap:16px}10%,100%{gap:0}}
+@media(prefers-reduced-motion:reduce){.clap-pair{animation:none;gap:0;left:12.5%}}
 
 .song-research-note{max-width:360px;margin:24px 0 20px auto;padding:20px 24px;background:#c83333;color:#fff;border-radius:4px}.song-research-note strong{display:block;margin-bottom:8px;font-size:13px}.song-research-note p{margin:0;color:inherit;font-size:14px;line-height:1.6}
 @media(max-width:680px){.song-research-note{max-width:none;margin:20px 0;padding:18px}}
@@ -336,6 +361,31 @@ html.image-viewer-open{overflow:hidden}
 .course-inline-link{color:var(--branch-color);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.course-inline-link:hover{color:var(--ink)}
 
 .catalog-work-note{display:flex;flex-direction:column;gap:4px;width:fit-content;max-width:100%;margin:0 0 16px auto;padding:12px 15px;border-radius:4px;background:#c83333;color:#fff;font-size:12px;line-height:1.55}.catalog-work-note strong{font-size:11px;letter-spacing:.04em;text-transform:uppercase}.catalog-work-note span{color:inherit}
+
+.catalog-work-note.course-workboard{display:block;box-sizing:border-box;width:100%;max-width:none;margin:0 0 16px;padding:8px;border:1px solid #9f2020;border-radius:8px;background:#c83333;color:#fff}
+.workboard-hazard{display:flex;align-items:center;gap:8px;padding:1px 4px 8px;font-size:1rem;line-height:1.2}
+.workboard-hazard span{font-size:1.5rem;line-height:1}
+.workboard-hazard strong{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.workboard-sign{padding:12px;border:2px solid #263438;border-radius:4px;background:#fff;color:#263438;font-size:.82rem;line-height:1.45}
+.workboard-title-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.catalog-work-note.course-workboard .workboard-title{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+.catalog-work-note.course-workboard .workboard-percent{flex:none;color:#263438;font-size:1rem;font-weight:800}
+.catalog-work-note.course-workboard .workboard-summary{margin:0 0 8px;color:#263438;font-size:.84rem;font-weight:650}
+.workboard-meter{height:9px;overflow:hidden;border:1px solid #7f8984;border-radius:99px;background:#e8ece7}
+.workboard-meter-fill{display:block;height:100%;border-radius:inherit;background:#c83333;transition:width .2s ease}
+.workboard-active{margin:7px 0 4px;color:#263438;font-size:.77rem}
+.catalog-work-note.course-workboard .workboard-estimate-note{margin:5px 0 0;color:#56625e;font-size:.7rem}
+.workboard-details{margin-top:8px;border-top:1px solid #c9ceca;color:#263438}
+.workboard-details>summary{padding:8px 0 1px;color:#263438;font-weight:700;cursor:pointer}
+.workboard-phase-list{display:grid;gap:8px;margin-top:9px}
+.workboard-phase{padding:9px;border:1px solid #d8ddd8;border-radius:5px;background:#f7f8f6}
+.workboard-phase-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.workboard-phase-header h4{margin:0;font-size:.78rem;line-height:1.4}
+.workboard-phase-weight{flex:none;color:#5a6661;font-size:.72rem;font-weight:700}
+.workboard-control-label{display:grid;gap:3px;margin-top:6px;color:#394440;font-size:.7rem;font-weight:650}
+.workboard-control-label select,.workboard-control-label textarea{box-sizing:border-box;width:100%;padding:6px 7px;border:1px solid #aeb8b2;border-radius:4px;background:white;color:#263438;font:inherit;font-size:.76rem}
+.workboard-control-label textarea{resize:vertical;min-height:43px;font-weight:400}
+.workboard-save-message{min-height:1.1em;margin:7px 0 0;color:#394440;font-size:.7rem}
 
 .direction-diagram-pair{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 26px}.direction-diagram-pair .notation{min-width:0;margin:0}.direction-diagram-pair .notation img{width:100%;height:auto}.direction-diagram-pair .notation figcaption{text-align:center}@media(max-width:520px){.direction-diagram-pair{grid-template-columns:1fr}}
 

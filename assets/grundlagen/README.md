@@ -18,7 +18,7 @@ All 11 raster images were extracted directly from PDF image streams, without res
 | viertelpausen.png | 1244 × 278 | 64 |
 | achtelpausen.png | 1244 × 282 | 65 |
 
-`uhr.svg` preserves the original vector clock path from page 3. The simple timeline on page 1 is represented as scalable inline SVG. Text from all five pages is transcribed as HTML in grundlagen.html, with spelling and grammar corrected.
+`uhr.svg` preserves the original vector clock path from page 3. The simple timeline on page 1 is represented as scalable inline SVG. The introduction and all three Rhythmus-1 chapters are combined in `../../grundlagen.html` so the complete course is available by scrolling on one page. Text is transcribed as HTML with spelling and grammar corrected.
 
 ## Sharp vector replacements
 

@@ -54,7 +54,7 @@ legacy.each do |old,bars|
  end
  path='assets/'+old.sub('.png','-interaktiv.svg')
  File.write(B+'/'+path,%(<svg xmlns="http://www.w3.org/2000/svg" width="960" height="#{height}" viewBox="0 0 960 #{height}" role="img"><title>Takte vervollständigen</title><desc>#{desc.join('. ')}</desc>#{parts.join}</svg>))
- page=B+'/'+old.split('/')[0]+'.html';s=File.read(page)
+ page=B+(old.start_with?('kapitel-2/','kapitel-3/') ? '/grundlagen.html' : '/'+old.split('/')[0]+'.html');s=File.read(page)
  s=s.gsub(/<figure class="score-figure"[^>]*>(?:(?!<\/figure>).)*assets\/#{Regexp.escape(old)}(?:(?!<\/figure>).)*<\/figure>/m){|figure|figure.gsub('assets/'+old,path).sub(/width="\d+" height="\d+"/,"width=\"960\" height=\"#{height}\"").sub(/alt="[^"]*"/,"alt=\"#{desc.join('. ')}\"")}
  File.write(page,s)
 end
@@ -73,7 +73,7 @@ Dir[B+'/*.html'].each do |page|
    {x:x,y:tri ? y-12 : y,width:width,height:tri ? height+12 : height,baseline:tri ? 62 : 44,onset:onset,duration:duration,bar:row*2+col+1}
   end
   course=path.include?('rhythmus-3') ? 3 : path.include?('rhythmus-2') ? 2 : 1
-  rests=File.basename(page).include?('kapitel-2') && course>1 || File.basename(page)=='kapitel-3.html'
+  rests=File.basename(page).include?('kapitel-2') && course>1 || File.basename(page)=='kapitel-3.html' || course==1 && path.include?('assets/kapitel-3/')
   configs[path]={width:w,height:h,step:step,gaps:gaps,course:course,rests:rests}
   instruction=rests ? 'Noten oder Pausen' : 'Noten'
   widget=%(<section class="bar-completion" data-completion="#{path}" aria-label="Interaktive Ergänzungsaufgabe"><p>Klicke auf ein Fragezeichen und ergänze die Lücke mit #{instruction}. Mit „Lücke prüfen“ kontrollierst du deine Eingabe.</p><div class="completion-palette" role="group" aria-label="#{instruction} hinzufügen"></div><div class="completion-bars"></div><p class="completion-summary" role="status" aria-live="polite"></p><noscript>Aktiviere JavaScript für die interaktive Eingabe oder bearbeite die Aufgabe auf Papier.</noscript></section>)

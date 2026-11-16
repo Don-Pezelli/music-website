@@ -2,7 +2,7 @@
 
 Source: `Main/Deutsch/Kapitel 1/Rhythmus Kurs 1 Kapitel 1 - Das Zeitgefühl.pdf`, seven pages.
 
-All prose, five exercises, fifteen learning goals, audible/silent patterns, and the conclusion are transcribed in `../../kapitel-1.html`. Spelling and punctuation are lightly corrected. Repeated patterns in exercises 4 and 5 retain all five pairs of measures. Counts are accessible HTML/CSS; there are no rasterized text or notation diagrams.
+All prose, five exercises, fifteen learning goals, audible/silent patterns, and the conclusion are now part of `../../grundlagen.html` under Kapitel 01. Spelling and punctuation are lightly corrected. Repeated patterns in exercises 4 and 5 retain all five pairs of measures. Counts are accessible HTML/CSS; there are no rasterized text or notation diagrams.
 
 The downloadable PDF is a byte-identical copy of the source. Four original 490 × 490 QR bitmaps were extracted losslessly. Their SVG equivalents reconstruct every black/white module exactly; all 960,400 source pixels were checked against the corresponding SVG modules. No QR content was regenerated or changed.
 

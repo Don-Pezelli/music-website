@@ -32,7 +32,7 @@ scores.each do |id,bars|
   y=80+r*135; start=86.0; finish=940;bw=(finish-start)/row.length
   parts<<%Q{<path d="M18 #{y}H#{finish}" stroke="black" stroke-width="1"/><path d="M29 #{y-11}v22M38 #{y-11}v22" stroke="black" stroke-width="5"/>}
   if r==0
-   parts<<%Q{<text x="51" y="#{y-1}" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text><text x="51" y="#{y+19}" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text>}
+   parts<<%Q{<text x="51" y="#{y-6}" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text><text x="51" y="#{y+14}" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text>}
   else
    parts<<%Q{<text x="20" y="#{y-40}" font-family="Georgia,serif" font-style="italic" font-size="13">#{r*4+1}</text>}
   end

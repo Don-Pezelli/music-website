@@ -4,6 +4,14 @@
 
   navs.forEach((nav) => {
     const melodieNav = nav.getAttribute('aria-label') === 'Kapitel und Lektionen in Melodie 1';
+    const manuallyToggledChapters = new Set();
+    if (nav.classList.contains('rhythmus-course-nav')) {
+      nav.querySelectorAll('[data-chapter-subnav] > summary').forEach((summary) => {
+        summary.addEventListener('click', () => {
+          manuallyToggledChapters.add(summary.parentElement.dataset.chapterSubnav);
+        });
+      });
+    }
     const entries = [...nav.querySelectorAll('a[href^="#"]')]
       .map((link) => ({ link, section: document.getElementById(link.hash.slice(1)) }))
       .filter((entry) => entry.section);
@@ -40,6 +48,13 @@
         if (chapterSection) chapterLink = entries.find((entry) => entry.section === chapterSection)?.link;
       }
       if (chapterLink && chapterLink !== current.link) chapterLink.setAttribute('aria-current', 'location');
+      if (nav.classList.contains('rhythmus-course-nav')) {
+        const currentChapterNav = chapterId
+          ? nav.querySelector(`[data-chapter-subnav="${chapterId}"]`)
+          : null;
+        if (currentChapterNav && !manuallyToggledChapters.has(chapterId)) currentChapterNav.open = true;
+        current.link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
       if (melodieNav) {
         const activeGroup = (chapterLink || current.link).closest('.mock-nav-group');
         nav.querySelectorAll('.mock-nav-group.is-current').forEach((group) => group.classList.toggle('is-current', group === activeGroup));
@@ -56,7 +71,9 @@
     window.addEventListener('resize', schedule);
     window.addEventListener('hashchange', schedule);
     window.addEventListener('pageshow', schedule);
-    document.addEventListener('toggle', schedule, true);
+    document.addEventListener('toggle', (event) => {
+      if (!nav.contains(event.target)) schedule();
+    }, true);
     const content = document.querySelector('.lesson-content, .mock-content, main');
     if ('ResizeObserver' in window && content) new ResizeObserver(schedule).observe(content);
     update();
