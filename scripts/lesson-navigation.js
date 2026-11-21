@@ -5,10 +5,15 @@
   navs.forEach((nav) => {
     const melodieNav = nav.getAttribute('aria-label') === 'Kapitel und Lektionen in Melodie 1';
     const manuallyToggledChapters = new Set();
+    let pendingManualChapter = null;
     if (nav.classList.contains('rhythmus-course-nav')) {
       nav.querySelectorAll('[data-chapter-subnav] > summary').forEach((summary) => {
         summary.addEventListener('click', () => {
-          manuallyToggledChapters.add(summary.parentElement.dataset.chapterSubnav);
+          const subnav = summary.parentElement;
+          const chapterId = subnav.dataset.chapterSubnav;
+          manuallyToggledChapters.add(chapterId);
+          pendingManualChapter = subnav.open ? null : chapterId;
+          schedule();
         });
       });
     }
@@ -53,7 +58,12 @@
           ? nav.querySelector(`[data-chapter-subnav="${chapterId}"]`)
           : null;
         if (currentChapterNav && !manuallyToggledChapters.has(chapterId)) currentChapterNav.open = true;
-        current.link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        const manuallyOpenedNav = pendingManualChapter
+          ? nav.querySelector(`[data-chapter-subnav="${pendingManualChapter}"]`)
+          : null;
+        pendingManualChapter = null;
+        if (manuallyOpenedNav?.open) revealChapterLessons(manuallyOpenedNav, true);
+        else if (currentChapterNav?.open) revealChapterLessons(currentChapterNav);
       }
       if (melodieNav) {
         const activeGroup = (chapterLink || current.link).closest('.mock-nav-group');
@@ -65,6 +75,50 @@
       if (scheduled) return;
       scheduled = true;
       requestAnimationFrame(update);
+    }
+
+    function revealChapterLessons(subnav, manualOpen = false) {
+      if (!subnav) return;
+      let nextChapter = subnav.nextElementSibling;
+      while (nextChapter && !nextChapter.matches('[data-course-chapter-link]')) nextChapter = nextChapter.nextElementSibling;
+      if (window.innerWidth <= 680) {
+        nav.style.removeProperty('max-height');
+        nav.style.removeProperty('overflow-y');
+        if (!manualOpen) return;
+        const targetBounds = (nextChapter || subnav.querySelector('a:last-of-type'))?.getBoundingClientRect();
+        if (targetBounds && targetBounds.bottom > window.innerHeight - 16) {
+          window.scrollBy({ top: targetBounds.bottom - window.innerHeight + 28, behavior: 'smooth' });
+        }
+        return;
+      }
+      const initialBounds = nav.getBoundingClientRect();
+      const availableHeight = window.innerHeight - Math.max(24, initialBounds.top) - 16;
+      if (availableHeight > 80) {
+        nav.style.maxHeight = `${availableHeight}px`;
+        nav.style.overflowY = 'auto';
+      }
+      const navBounds = nav.getBoundingClientRect();
+      const subnavBounds = subnav.getBoundingClientRect();
+      const targetBounds = (nextChapter || subnav).getBoundingClientRect();
+      const bottomBoundary = Math.min(navBounds.bottom, window.innerHeight - 12);
+      const bottomOverflow = targetBounds.bottom - bottomBoundary;
+      const topOverflow = navBounds.top - subnavBounds.top;
+      const offset = bottomOverflow > 0 ? bottomOverflow + 22 : topOverflow > 0 ? -topOverflow - 12 : 0;
+      if (offset && nav.scrollHeight > nav.clientHeight) nav.scrollBy({ top: offset, behavior: 'smooth' });
+    }
+
+    if (nav.classList.contains('rhythmus-course-nav')) {
+      nav.querySelectorAll('[data-course-chapter-link]').forEach((link) => {
+        link.addEventListener('click', () => {
+          const chapterId = link.dataset.courseChapterLink;
+          const subnav = nav.querySelector(`[data-chapter-subnav="${chapterId}"]`);
+          if (!subnav) return;
+          manuallyToggledChapters.delete(chapterId);
+          subnav.open = true;
+          requestAnimationFrame(() => revealChapterLessons(subnav, true));
+          schedule();
+        });
+      });
     }
 
     window.addEventListener('scroll', schedule, { passive: true });

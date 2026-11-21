@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" role="img" aria-labelledby="title desc">
+  <title id="title">Vom Same zum Baum: eine musikalische Idee wächst und verändert ihre Umgebung</title>
+  <desc id="desc">Fünf Stationen zeigen Same und Idee, Boden und Lebensumstände, Nährstoffe und Beweggründe, Wurzeln und Entwicklung sowie Früchte und Folgen. Der wachsende Baum verändert den Boden und schafft neue Möglichkeiten.</desc>
+  <defs>
+    <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b98558"/><stop offset="1" stop-color="#76523d"/></linearGradient>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 9 4.5 0 9Z" fill="#927e9f"/></marker>
+  </defs>
+  <rect x="10" y="10" width="1080" height="340" rx="22" fill="#faf9f6" stroke="#ded8e5" stroke-width="2"/>
+  <path d="M67 257H1032" stroke="#927e9f" stroke-width="3" stroke-dasharray="5 8" marker-end="url(#arrow)"/>
+  <g fill="#655381" font-family="Arial,sans-serif" text-anchor="middle">
+    <text x="117" y="52" font-size="18" font-weight="700">1 · SAME</text><text x="117" y="75" font-size="14">Idee</text>
+    <text x="330" y="52" font-size="18" font-weight="700">2 · BODEN</text><text x="330" y="75" font-size="14">Lebensumstände</text>
+    <text x="546" y="52" font-size="18" font-weight="700">3 · NÄHRSTOFFE</text><text x="546" y="75" font-size="14">Beweggründe</text>
+    <text x="766" y="52" font-size="18" font-weight="700">4 · BAUM</text><text x="766" y="75" font-size="14">Entwicklung</text>
+    <text x="984" y="52" font-size="18" font-weight="700">5 · FRÜCHTE</text><text x="984" y="75" font-size="14">Folgen</text>
+  </g>
+  <!-- seed -->
+  <ellipse cx="117" cy="207" rx="22" ry="13" transform="rotate(-30 117 207)" fill="#81583f"/>
+  <path d="M110 208q9-9 18-9" fill="none" stroke="#d6b082" stroke-width="2" stroke-linecap="round"/>
+  <path d="M117 226v25" stroke="#927e9f" stroke-width="2"/>
+  <!-- soil and circumstances -->
+  <path d="M260 194q70-35 140 0v60H260Z" fill="url(#soil)"/>
+  <path d="M276 208q55-25 108 0" fill="none" stroke="#d9b68f" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="290" cy="226" r="5" fill="#e7c596"/><circle cx="330" cy="238" r="4" fill="#e7c596"/><circle cx="365" cy="219" r="5" fill="#e7c596"/>
+  <path d="M330 253v-34m0 20-16-13m16 4 17-15" fill="none" stroke="#5e8b53" stroke-width="4" stroke-linecap="round"/>
+  <path d="M314 220q-11-13 0-17 12 2 12 15M346 207q12-13 20-4-3 13-18 14" fill="#89ad68" stroke="#5e8b53" stroke-width="2"/>
+  <!-- nutrients -->
+  <path d="M522 145c-9 14-12 19-12 25a12 12 0 0 0 24 0c0-6-3-11-12-25Z" fill="#d7a746"/><path d="M570 169c-8 12-10 16-10 22a10 10 0 0 0 20 0c0-6-2-10-10-22Z" fill="#bf7a6d"/><path d="M542 197c-7 10-9 14-9 19a9 9 0 0 0 18 0c0-5-2-9-9-19Z" fill="#789b78"/>
+  <path d="M546 232v20" stroke="#927e9f" stroke-width="2"/>
+  <!-- developed tree and roots -->
+  <path d="M766 246V150" stroke="#77543b" stroke-width="13" stroke-linecap="round"/>
+  <path d="M765 184 728 143m39 26 39-43m-39 57 52-6" fill="none" stroke="#77543b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="730" cy="132" r="31" fill="#82a86a"/><circle cx="768" cy="119" r="38" fill="#739b5e"/><circle cx="804" cy="143" r="31" fill="#91b475"/><circle cx="762" cy="151" r="33" fill="#80a765"/>
+  <path d="M766 252q-10 18-25 25m25-25q10 19 27 25m-27-25v31m-25-6-14 8m66-8 13 8" fill="none" stroke="#77543b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M692 260q-25-9-42 5m130-5q31-14 55 1" fill="none" stroke="#719264" stroke-width="3" stroke-linecap="round"/>
+  <path d="M766 298v20" stroke="#927e9f" stroke-width="2"/>
+  <!-- fruit -->
+  <circle cx="963" cy="173" r="13" fill="#d27357"/><circle cx="1000" cy="193" r="13" fill="#d7a746"/><circle cx="1022" cy="157" r="13" fill="#d27357"/>
+  <path d="M963 160q1-10 8-11m29 31q-1-9 6-11m16-25q1-9 8-10" fill="none" stroke="#5d7f50" stroke-width="3" stroke-linecap="round"/>
+  <path d="M984 214q-15 20-33 26m39-19q18 12 35 7" fill="none" stroke="#9a6742" stroke-width="3" stroke-linecap="round"/>
+  <text x="550" y="330" fill="#46564c" font-family="Arial,sans-serif" font-size="15" text-anchor="middle">Wachstum verändert auch den Boden: Es entstehen neue Orte, Gewohnheiten und Möglichkeiten.</text>
+</svg>

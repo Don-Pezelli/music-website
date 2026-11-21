@@ -9,25 +9,55 @@
       course: {title: 'Notenschrift 1 · Noten lesen', href: 'kurs-notenschrift-1.html', description: 'Notenlinien, Violinschlüssel und Notennamen lernen.'},
       testLink: {title: 'Notenschrift-Grundkurs ansehen', href: 'kurs-notenschrift-1.html#course-chapter-01'}
     },
-    quarter: {
-      name: 'Viertelnoten', field: 'assessment-quarter',
-      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Puls und Viertelnoten üben.'},
+    'note-whole': {
+      name: 'Ganze Noten', field: 'assessment-note-whole',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
       testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
     },
-    eighth: {
-      name: 'Achtelnoten', field: 'assessment-eighth',
-      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Puls und Achtelnoten üben.'},
+    'note-half': {
+      name: 'Halbe Noten', field: 'assessment-note-half',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
       testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
     },
-    rests: {
-      name: 'Pausen', field: 'assessment-rests',
-      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Pausenwerte erkennen und im Puls zählen.'},
+    'note-quarter': {
+      name: 'Viertelnoten', field: 'assessment-note-quarter',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
       testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
     },
-    sixteenth: {
-      name: 'Sechzehntelnoten', field: 'assessment-sixteenth',
-      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte bis zur Sechzehntel im Puls üben.'},
+    'note-eighth': {
+      name: 'Achtelnoten', field: 'assessment-note-eighth',
+      course: {title: 'Rhythmus 2 · Achtelnoten und Achtelpausen', href: 'rhythmus-2-achtel.html', description: 'Achtelnoten und Achtelpausen bei gleichmäßigem Puls lesen, hören, schreiben und spielen.'},
+      testLink: {title: 'Achtelnoten und Achtelpausen ansehen', href: 'rhythmus-2-achtel.html'}
+    },
+    'note-sixteenth': {
+      name: 'Sechzehntelnoten', field: 'assessment-note-sixteenth',
+      course: {title: 'Rhythmus 3 · Sechzehntelnoten', href: 'rhythmus-2-einfuehrung.html', description: 'Sechzehntel unterteilen, lesen und bei gleichbleibendem Puls spielen.'},
+      testLink: {title: 'Sechzehntelnoten ansehen', href: 'rhythmus-2-einfuehrung.html'}
+    },
+    'rest-whole': {
+      name: 'Ganze Pausen', field: 'assessment-rest-whole',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
       testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
+    },
+    'rest-half': {
+      name: 'Halbe Pausen', field: 'assessment-rest-half',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
+      testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
+    },
+    'rest-quarter': {
+      name: 'Viertelpausen', field: 'assessment-rest-quarter',
+      course: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Notenwerte und Pausen im Puls lesen und spielen.'},
+      testLink: {title: 'Rhythmus-Grundlagen ansehen', href: 'grundlagen.html'}
+    },
+    'rest-eighth': {
+      name: 'Achtelpausen', field: 'assessment-rest-eighth',
+      course: {title: 'Rhythmus 2 · Achtelnoten und Achtelpausen', href: 'rhythmus-2-achtel.html', description: 'Achtelnoten und Achtelpausen bei gleichmäßigem Puls lesen, hören, schreiben und spielen.'},
+      testLink: {title: 'Achtelnoten und Achtelpausen ansehen', href: 'rhythmus-2-achtel.html'}
+    },
+    'rest-sixteenth': {
+      name: 'Sechzehntelpausen', field: 'assessment-rest-sixteenth',
+      course: {title: 'Rhythmus 3 · Sechzehntelnoten', href: 'rhythmus-2-einfuehrung.html', description: 'Sechzehntel unterteilen, lesen und bei gleichbleibendem Puls spielen.'},
+      testLink: {title: 'Sechzehntelpausen ansehen', href: 'rhythmus-2-einfuehrung.html'}
     },
     scale: {
       name: 'Durtonleitern und Tonstufen', field: 'assessment-scale',
@@ -55,15 +85,27 @@
       testLink: {title: 'Gehörbildung 1 ansehen', href: 'kurs-gehoerbildung-1.html'}
     }
   };
-  const instruments = {
-    gesang: {title: 'Gesang 1', href: 'kurs-gesang-1.html', description: 'Atem, Stimme und Intonation als Einstieg.'},
-    gitarre: {title: 'Gitarre 1', href: 'kurs-gitarre-1.html', description: 'Instrument, Bewegung und erste musikalische Grundlagen.'}
+  const focusCourses = {
+    gesang: {title: 'Gesang 1', href: 'kurs-gesang-1.html', description: 'Atem, Stimme und Intonation als Einstieg.', label: 'Gesang'},
+    gitarre: {title: 'Gitarre 1', href: 'kurs-gitarre-1.html', description: 'Instrument, Bewegung und erste musikalische Grundlagen.', label: 'Gitarre'},
+    gehoerbildung: {title: 'Gehörbildung 1', href: 'kurs-gehoerbildung-1.html', description: 'Töne hören und die Intonation entwickeln.', label: 'Gehörbildung'},
+    rhythmus: {title: 'Rhythmus 1', href: 'grundlagen.html', description: 'Puls, Notenwerte und Pausen kennenlernen.', label: 'Rhythmus'},
+    melodie: {title: 'Melodie 1 · Tonleitern und melodischer Aufbau', href: 'kurs-melodie-1.html', description: 'Tonleitern und melodische Zusammenhänge erkunden.', label: 'Melodie'},
+    harmonie: {title: 'Harmonie 1', href: 'kurs-harmonie-1.html', description: 'Akkorde und ihre Beziehungen untersuchen.', label: 'Harmonie'},
+    biomechanik: {title: 'Training für Musiker', href: 'kurs-musikertraining-1.html', description: 'Bewegung und körperliche Grundlagen beim Musizieren.', label: 'Biomechanik'}
   };
 
   form.querySelectorAll('input[name="known"]').forEach(input => {
     input.addEventListener('change', () => {
       const select = form.elements[`assessment-${input.value}`];
       if (!select) return;
+      if (input.dataset.followup !== undefined) {
+        const followup = input.closest('.pathway-known-item')?.querySelector('.pathway-followup');
+        if (followup) followup.hidden = !input.checked;
+        select.required = input.checked;
+        if (!input.checked) select.value = '';
+        return;
+      }
       if (input.checked) select.value = 'sure';
       else if (select.value === 'sure') select.value = '';
     });
@@ -72,6 +114,14 @@
   form.addEventListener('reset', () => {
     result.hidden = true;
     result.replaceChildren();
+    window.setTimeout(() => {
+      form.querySelectorAll('input[data-followup]').forEach(input => {
+        const followup = input.closest('.pathway-known-item')?.querySelector('.pathway-followup');
+        const select = form.elements[`assessment-${input.value}`];
+        if (followup) followup.hidden = true;
+        if (select) select.required = false;
+      });
+    }, 0);
   });
 
   form.addEventListener('submit', event => {
@@ -79,14 +129,14 @@
     if (!form.reportValidity()) return;
 
     const focus = form.querySelector('input[name="learning-focus"]:checked')?.value;
-    const chosenCourses = [instruments[focus]];
-    const addedCourseHrefs = new Set([instruments[focus].href]);
+    const chosenCourses = [focusCourses[focus]];
+    const addedCourseHrefs = new Set([focusCourses[focus].href]);
     const tests = [];
 
     Object.values(skills).forEach(skill => {
       const answer = form.elements[skill.field].value;
       if (answer === 'unsure') tests.push(skill);
-      else if (answer === 'learn' && !addedCourseHrefs.has(skill.course.href)) {
+      else if ((answer === 'learn' || answer === '') && !addedCourseHrefs.has(skill.course.href)) {
         chosenCourses.push(skill.course);
         addedCourseHrefs.add(skill.course.href);
       }
@@ -97,9 +147,7 @@
     heading.textContent = 'Dein vorgeschlagener Lernweg';
     result.append(heading);
     const intro = document.createElement('p');
-    intro.textContent = focus === 'gesang'
-      ? 'Du möchtest Gesang lernen. Die Kursfolge startet mit deiner Stimme und ergänzt Grundlagen, die du noch lernen möchtest.'
-      : 'Du möchtest Gitarre lernen. Die Kursfolge startet mit deinem Instrument und ergänzt Grundlagen, die du noch lernen möchtest.';
+    intro.textContent = `Du möchtest ${focusCourses[focus].label} lernen. Die Kursfolge startet dort und ergänzt Grundlagen, die du noch lernen möchtest.`;
     result.append(intro);
 
     if (tests.length) {

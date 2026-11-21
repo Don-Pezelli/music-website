@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1410" height="340" viewBox="0 0 1410 340" role="img" aria-labelledby="title desc">
+  <title id="title">Schreibvorlage · Acht leere 4/4-Takte</title>
+  <desc id="desc">Zwei Systeme mit jeweils vier leeren 4/4-Takten zum Abzeichnen und Eintragen der gehörten Rhythmen.</desc>
+  <rect width="1410" height="340" fill="#fff"/>
+  <text x="18" y="44" fill="#263536" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Schreibvorlage · 8 Takte</text>
+  <g fill="none" stroke="#111" stroke-width="1.5">
+    <path d="M42 130H1380M42 285H1380"/>
+    <path d="M460 105V155M760 105V155M1060 105V155M1380 105V155"/>
+    <path d="M460 260V310M760 260V310M1060 260V310M1380 260V310"/>
+  </g>
+  <g fill="#111">
+    <path d="M56 114V146M68 114V146" stroke="#111" stroke-width="5"/>
+    <text x="91" y="124" font-family="Georgia,serif" font-size="25" font-weight="700">4</text>
+    <text x="91" y="150" font-family="Georgia,serif" font-size="25" font-weight="700">4</text>
+    <text x="34" y="226" font-family="Georgia,serif" font-size="19" font-style="italic">5</text>
+    <path d="M56 269V301M68 269V301" stroke="#111" stroke-width="5"/>
+  </g>
+</svg>

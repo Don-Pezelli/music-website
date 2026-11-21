@@ -1,9 +1,363 @@
+## 2026-11-20
+- Rhythmus 1 auf Puls, Takt sowie ganze, halbe und Viertelnoten/-pausen begrenzt; Lektionen zu Achtelnoten und Achtelpausen in Rhythmus 2 verschoben. Die folgenden Rhythmuskurse in der Übersicht auf 3–7 weitergezählt.
+- Rhythmus 1, Kapitel 1: Neben der Erklärung zu Metronom und Puls ein Uhrsymbol ergänzt.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Den oberen Abstand vor der Überschrift vergrößert.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Den hervorgehobenen Satz zu „Das stärkt unser Zeitgefühl“ geändert.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Den Satz zur körperlichen Wahrnehmung des Pulses angepasst.
+- Rhythmus 1: Die Formulierung „Ich empfehle den Fuß“ entfernt.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Die Erklärung zur körperlichen Markierung des Pulses durch zwei kürzere Sätze ersetzt.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: „So entwickeln wir dein Zeitgefühl“ durch „So stärken wir unser Zeitgefühl“ ersetzt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Das Herz pulsiert einmal beim Erreichen von „Inneres Zeitgefühl“ und bleibt anschließend statisch.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Die blauen Tempo-Punkte stoppen, sobald „Inneres Zeitgefühl“ in den Lesebereich kommt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Die Herzanimation neben „Inneres Zeitgefühl“ auf 30 BPM verlangsamt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Das pulsierende Herz näher neben „Inneres Zeitgefühl“ platziert.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Die drei Punkte in den Tempo-Animationen auf das tiefe Blau des Ikonenhimmels umgefärbt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Neben „Inneres Zeitgefühl“ ein rotes, mit 80 BPM schlagendes Herz ergänzt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Laufenden Menschen, Pferd, Rennauto, Flugzeug, Rakete und Sonne neben der Tempo-Überschrift ergänzt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Den Abschnitt über die Geschwindigkeit mit „Die Geschwindigkeit (Tempo, BPM)“ überschrieben.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Den hervorgehobenen Schlusssatz gekürzt.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: „mitzuvollziehen“ durch „zu markieren“ ersetzt.
+- Rhythmus 1, Einführung „Der Puls“: Die Überschrift „Probier es aus“ aus dem Klatschfeld entfernt.
+- Rhythmus 1, Kapitel „Inneres Zeitgefühl“: Zwischen den beiden Sätzen einen Zeilenumbruch eingefügt.
+- Rhythmus 1, Einführung „Der Puls“: Das Klatschsymbol in der Übungsaufforderung vergrößert.
+- Rhythmus 1, Einführung „Der Puls“: Die Klatschfrage als deutlich erkennbare Übungsaufforderung gestaltet.
+- Rhythmus 1, Einführung „Der Puls“: Den Übergang zur Geschwindigkeit einer musikalischen Geschichte angepasst.
+- Rhythmus 1, Einführung „Der Puls“: Eine Klatschfrage direkt unter der Erklärung des gleichmäßigen Pulses ergänzt.
+- Rhythmus 1, Einführung „Der Puls“: Den Satz über die menschliche Wahrnehmung von Geschichten neu formuliert.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Den langsamen roten Puls von 10 auf 2 BPM reduziert.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Der beschleunigende rote Punkt wird nach dem Erreichen von 1.200 BPM statisch.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Den transparenten Hof um die roten Puls-Kreise entfernt.
+- Rhythmus 1, Kapitel „Zeit & Puls“: Rote Kreise für langsamen Puls (10 BPM), beschleunigenden Puls (70 bis 1.200 BPM) und unregelmäßigen Puls ergänzt; die Animationen starten beim Scrollen in den sichtbaren Bereich.
+- Rhythmus 1, Einführung „Der Puls“: Auch den Satz über ein zu schnelles Tempo als eigenen Absatz gesetzt.
+- Rhythmus 1, Einführung „Der Puls“: Den Satz über ein zu langsames Tempo als eigenen Absatz gesetzt.
+- Rhythmus 1, Einführung „Der Puls“: „einen zeitlichen Bezugspunkt zu haben“ zu „einen zeitlichen Bezugspunkt zu wahren“ geändert.
+- Rhythmus 1, Einführung „Der Puls“: „gleichmäßige Schläge“ durch „gleichmäßige Abstände“ ersetzt und die Satzbeugung angepasst.
+- Rhythmus 1, Einführung: Die Überschrift „Wir brauchen einen gleichmäßigen Puls“ zu „Der Puls“ gekürzt.
+- Inhaltsverzeichnis: Automatisches `scrollIntoView()` des aktiven Eintrags entfernt, damit Scrollen und Zoomen nicht mehr die ganze Seite zum Inhaltsverzeichnis ziehen.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Für die Auswahl „Nein“ eine eigene Rückmeldung ergänzt.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Den Satz zur zeitlichen Ordnung aus der Achievement-Karte herausgenommen und darunter platziert.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Abstand oberhalb der Achievement-Karte leicht verkleinert.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Achievement-Karte etwas nach unten verschoben, passend zur Unterkante des Ikonenbildes.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Achievement-Karte mit blauem Außenrand und dezent blauem Innenrahmen versehen.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Das Siegel der Achievement-Karte farblich an das tiefe Blau des Ikonenhimmels angepasst.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Rückmeldung als tiefer platzierte Achievement-Karte mit dezentem Siegel gestaltet.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Glückwunsch- und Erklärungstext erscheint erst bei „Ja“; Antwortzettel erhält einen dezenten Lichtschein und zeigt beim Hover ein Häkchen.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Ja/Nein-Zettel mit dezenter Gestaltung und klaren Auswahlzuständen verfeinert.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Eine anklickbare Ja/Nein-Antwort auf einem Zettel neben der Reflexionsfrage ergänzt.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Den Satz zur zeitlichen Ordnung von Ereignissen direkt unter den Glückwunsch verschoben.
+- Rhythmus 1, Einführung „Musik als Geschichte“: „eigene“ aus der Erzählaufforderung gestrichen.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Den Satz über das Erzählen vergangener Ereignisse angepasst.
+- Rhythmus 1, Einführung „Musik als Geschichte“: Den Satz zur zeitlichen Ordnung von Ereignissen in Worten angepasst.
+- Rhythmus 1, Notenwerte-Vergleich: Doppelt gezeichnete Hälse der halben Noten entfernt; die Bravura-Glyphen enthalten den Hals bereits.
+- Rhythmus 1, Einführung „Die Notenwerte“: Vergleichsnotation auf den Bravura-Notenzeichenstil der Rhythminator-Grafiken umgestellt.
+- Rhythmus 1, Einführung „Die Notenwerte“: Vergleichsnotation ergänzt: ganze Note, zwei halbe, vier Viertel und acht paarweise gebalkte Achtel in je einem 4/4-Takt.
+- Rhythmus 1, Einführung „Die Notenwerte“: Beide Grafiken unter der Einführung zu den Notenwerten entfernt.
+- Rhythmus 1, Einführung „Die Notenwerte“: Raketen-und-Lautsprecher-Grafik als klare, horizontale Konturzeichnung überarbeitet.
+- Rhythmus 1, Einführung „Die Notenwerte“: Eine zweite Grafik im Stil der bestehenden Lautsprecher-Skizze ergänzt; Schallwellen treiben darin eine Rakete an.
+- Rhythmus 1, Kapitel 1: Die Ziffern 1 bis 4 in den blauen Schlagfeldern erneut weiter nach links verschoben.
+- Rhythmus 1, Kapitel 1: Die Ziffern 1 bis 4 in den blauen Schlagfeldern weiter nach links verschoben.
+- Rhythmus 1, Kapitel 1: Die Ziffern 1 bis 4 in den blauen Schlagfeldern etwas nach links verschoben.
+- Rhythmus 1, Kapitel 1: Die vier blauen Schlagfelder der 4/4-Takt-Grafik mit 1 bis 4 beschriftet.
+- Rhythmus 1, Kapitel 1, Lektion 3: Zählanimation auf 120 BPM erhöht; Taktstriche und Auslassungspunkte zeitlich angepasst.
+- Rhythmus 1, Einführung, Lektion 01: Ikone und Erzählabsatz nebeneinander angeordnet; auf schmalen Bildschirmen stehen sie untereinander.
+- Rhythmus 1, Einführung, Lektion 01: Erzähltext nach dem einleitenden Gedanken in zwei Absätze gegliedert.
+- Rhythmus 1, Einführung, Lektion 01: Den Glückwunsch und den Vergleich zwischen Bild, Sprache und Musik als eigenen Absatz abgesetzt.
+- Rhythmus 1, Einführung, Lektion 01: Den abschließenden Satz über Musik als Ereignisordnung in einen eigenen Absatz gesetzt.
+- Rhythmus 1, Einführung, Lektion 01: Satz über das Aneinanderreihen von Sätzen und das zeitliche Ordnen von Ereignissen überarbeitet.
+- Rhythmus 1, Einführung, Lektion 01: Vergleichssatz über die simultane Bilddarstellung und sequenzielle Sprache entfernt.
+- Rhythmus 1, Einführung, Lektion 01: Abschließenden Satz über Musik als Ereignisordnung entfernt.
+- Rhythmus 1, Einführung, Lektion 02: Vergleichspanel „Musik: sequenziell / Bild: simultan“ direkt unter die Überschrift verschoben.
+- Rhythmus 1, Einführung, Lektion 01: Bildunterschrift von Altersvermerk und Bildquellen-Link bereinigt.
+- Rhythmus 1, Einführung, Lektion 01: Zeilenumbruch nach dem Doppelpunkt vor „Wir erzählen …“ eingefügt.
+- Rhythmus 1, Einführung, Lektion 02: Formulierung zu den im Bild sichtbaren Ereignissen präzisiert.
+- Rhythmus 1, Einführung, Lektion 02: Zeitstrahl-Ereignispunkt am linken Rand des übrigen Inhalts ausgerichtet.
+- Rhythmus 1, Einführung, Lektion 02: Unter dem statischen Zeitstrahl eine animierte Kopie ergänzt, in der Pfeil und Ereignispunkte Schritt für Schritt erscheinen; reduzierte Bewegung wird berücksichtigt.
+- Rhythmus 1, Einführung, Lektion 02: Zwischenstopps der Animation entfernt; die Spitze läuft kontinuierlich weiter, während neue Ereignispunkte erscheinen.
+- Rhythmus 1, Einführung, Lektion 02: Am Ende des Zeitstrahls wird die ankommende Pfeilspitze durch einen fünften Ereignispunkt ersetzt, bevor die Animation neu beginnt.
+- Rhythmus 1, Einführung, Lektion 02: Animation wartet nach dem letzten Punkt etwa drei Sekunden vor dem Neustart und startet erst beim ersten Sichtkontakt durch Scrollen.
+- Rhythmus 1, Einführung, Lektion 02: Animierter Zeitstrahl auf die volle Inhaltsbreite gesetzt und den Endpunkt bis zum rechten Rand geführt.
+- Rhythmus 1, Einführung, Lektion 02: Startpunkt der Animation bündig am linken Rand ausgerichtet; der Schluss-Punkt bleibt am rechten Rand vollständig sichtbar.
+- Rhythmus 1, Einführung, Lektion 02: Pfeilspitze wächst beim Animationsstart klein aus dem ersten Ereignispunkt heraus.
+- Rhythmus 1, Einführung, Lektion 02: Die Schenkel der Pfeilspitze klappen an den Zwischenpunkten kurz ein und entfalten sich während der Bewegung wieder.
+- Rhythmus 1, Einführung, Lektion 02: Pfeilbewegung und Einklappen getrennt animiert; die Schenkel falten sich weich nach dem Kontakt mit jedem Zwischenpunkt ein und danach wieder auf.
+- Rhythmus 1, Einführung, Lektion 02: Pfeilschenkel klappen jetzt senkrecht in die Zeitlinie ein und entfalten sich nach dem Passieren des Punkts.
+- Rhythmus 1, Einführung, Lektion 02: Erklärung des gleichmäßigen Pulses als zeitlichen Bezugspunkt überarbeitet.
+- Rhythmus 1, Einführung, Lektion 02: Den Puls als Zentrum beschrieben, um das sich weitere Ereignisse entfalten.
+- Rhythmus 1, Einführung, Lektion 02: Zählfolge läuft beim Scrollen linksbündig ab 1 mit 60 BPM und wächst bis zur maximal passenden Zahl; danach erscheinen die Auslassungspunkte am rechten Panelrand.
+- Rhythmus 1, Einführung, Lektion 02: Gedankenstriche erscheinen gemeinsam mit der jeweils folgenden Zahl.
+- Rhythmus 1, Einführung, Lektion 02: Maximale Zahl bis zu den Auslassungspunkten ohne unnötigen Zusatzabstand berechnet, damit weitere passende Zahlen wie 16 und 17 Platz finden.
+- Rhythmus 1, Einführung, Lektion 02: Breitenmessung der Zählfolge auf ein unabhängiges Textelement umgestellt, damit alle tatsächlich passenden Ziffern angezeigt werden.
+- Rhythmus 1, Einführung, Lektion 02: Zählanimation startet erst nach einer Scrollbewegung im Sichtbereich; die Ziffernreihe nutzt etwas weniger Buchstabenabstand, damit mehr Zahlen passen.
+- Rhythmus 1, Einführung, Lektion 02: Zeichenabstand der Zählreihe weiter reduziert, damit auch die 17 vor den Auslassungspunkten Platz findet.
+- Rhythmus 1, Einführung, Lektion 02: Nach den Auslassungspunkten wartet die Zählanimation drei Sekunden und beginnt anschließend wieder bei 1.
+- Rhythmus 1, Einführung, Lektion 02: Zählreihe auf maximal 16 begrenzt und die Auslassungspunkte mit kleinem Abstand direkt dahinter gesetzt.
+- Rhythmus 1, Kapitel 1, Lektion 3: Das Wort „TAKT“ groß in das gelbe Takt-Rechteck gesetzt.
+- Rhythmus 1, Kapitel 1, Lektion 3: Zählreihe „1 2 3 4 | 1 2 3 4“ erscheint beim Scrollen mit 70 BPM und startet nach kurzer Pause erneut.
+- Rhythmus 1, Kapitel 1, Lektion 3: Zählreihe linksbündig ausgerichtet und auf sieben 4/4-Takte erweitert, damit sie nicht umbrechen.
+- Rhythmus 1, Kapitel 1, Lektion 3: Auslassungspunkte nach dem letzten Zähl-Takt ergänzt; sie erscheinen nach dem abschließenden Schlag.
+- Rhythmus 1, Kapitel 1, Lektion 3: Taktstriche erscheinen zusammen mit dem letzten Schlag jedes Taktes; die drei Auslassungspunkte blenden sich nacheinander ein.
+- Rhythmus 1, Kapitel 1, Lektion 3: Zählanimation auf 80 BPM erhöht; Taktstriche und Auslassungspunkte entsprechend zeitlich angepasst.
+- Rhythmus 1, Einführung, Lektion 02: Unter der Zählreihe ergänzt, dass Tempo zur menschlichen Wahrnehmung passen muss, damit Ereignisse weder unbewegt noch ununterscheidbar wirken.
+- Rhythmus 1, Einführung, Lektion 02: Ergänzt, dass zu unregelmäßiges Tempo den Eindruck einer zusammenhängenden musikalischen Geschichte stören kann.
+- Rhythmus 1, Einführung, Lektion 02: Statische Kopie des Zeitstrahls entfernt; die animierte Fassung bleibt bestehen.
+- Rhythmus 1, Einführung, Lektion 02: Die erste Zeitstrahlgrafik mit Beschriftungen für Ereignis, Dauer bis zum nächsten Ereignis sowie Ende/Anfang am Übergang versehen.
+- Rhythmus 1, Einführung, Lektion 01: Die Geschichte als Übung ergänzt: Bild betrachten, Ereignisse in Sätzen ordnen und den sequenziellen Aufbau mit Musik verknüpfen. Bildunterschrift mit Name, Quelle und verfügbarem Veröffentlichungsdatum ergänzt.
+- Rhythmus 1, Einführung: Eigenständige Lektion 01 „Musik als Geschichte“ ergänzt. Die bisherigen Einführungsthemen sind fortlaufend von Lektion 02 bis 05 nummeriert.
+- Rhythmus 1, Einführung, Lektion 01: Die vom Nutzer bereitgestellte Georgsikone aus images/rhythmus_kurs_1 eingesetzt.
+- Rhythmus 1, Kapitel 1: Die extern verlinkte OCA-Ikone wegen ungeklärter Nutzungsrechte wieder entfernt.
+- Rhythmus 1, Einführung: Unter der Erklärung zur zeitlichen Abfolge in der Musik einen Zeitstrahl mit rotem Startpunkt und offener Pfeilspitze ergänzt.
+- Rhythmus 1: Unter den Kompetenzen eine responsive Notenbildgrafik ergänzt: Metronom, 4/4-Takt, Ohr, Buch, Feder, Musiknote und schließender Taktstrich.
+- Rhythmus 1: Lernziele konkretisiert. Der Puls wird ausdrücklich mit Metronom entwickelt; Notenwerte und Pausen lesen, schreiben, nach Gehör erkennen und klatschen, während der Fuß den Puls hält.
+- Rhythmusbereich: Den Kursentwurf „Groove Camp“ als Kurs 06 ergänzt. Die Kursseite skizziert drei Kapitel zur Anwendung der Grundlagen und zur schrittweisen Entwicklung innerer Zeit; selbstständiges Takthalten ohne Metronom bleibt einem späteren Aufbaukurs vorbehalten.
+- Kursübersicht: Rhythmus-Kurszahl und Gesamtzahl aktualisiert; Baustellentafel für Groove Camp ergänzt.
+- Inhaltsverzeichnis Rhythmus 1: Beim manuellen Öffnen einer Kapitelliste wird auch der Link zum Folgekapitel am unteren Rand sichtbar. Die Scrollhöhe passt sich an den verfügbaren Bildschirmplatz an; auf kleinen Displays wird die Seite bis zum Folgekapitel nachgeführt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 3: „Weiter geht’s!“ stoppt laufende Radio-Wiedergabe vor dem Sprung zu Aufgabe 4; die externen Drive-Audioeinbettungen zu 3.2 und 3.3 entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 3: Die Aufgaben 3.1–3.3 in einer Rhythm-Radio-Fehlerfinder-Instanz gebündelt. Fehlerhafte und korrigierte Notationen erscheinen über die Faxlösung; die drei einzelnen Aufgabenbilder und Lösungspanels außerhalb des Radios entfallen.
+- Rhythmus 1, Kapitel 3, Lektion 4, Leseübungen: Alle sieben Lesetafeln in einer Rhythminator-Instanz gebündelt; „Nächste Aufgabe“ wechselt der Reihe nach durch Notation und HELP!-Wiedergabe. Externe Notationen, Drive-Lösungen und zusätzliche Rhythminator-Instanzen werden entfernt.
+- Rhythmus 1, Kapitel 3, Lektionen 3–4, Höraufgaben: Alle Aufgaben je Lektion in einer Rhythm-Radio-Instanz gebündelt und Navigation sowie Faxlösungen an Lektion 2 angeglichen; separate Aufgaben-Radios werden entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 3, Leseübungen: Leseübung 2 in die erste Rhythminator-Instanz übernommen. „Nächste Aufgabe“ wechselt zwischen beiden Lesetafeln; externe Notationen, Drive-Lösungen und die zweite Rhythminator-Instanz werden entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 3: Die vier Mitspielübungen in einer Rhythm-Radio-Instanz gebündelt. „Nächster Rhythmus“ wechselt nach jedem selbst beendeten Durchgang zur nächsten Aufgabe und aktualisiert Rhythmusdaten und Radioanzeige.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 3: Beispielnotation im Rhythminator auf die Bravura-Notenglyphen, Notenköpfe und Halsstärken der übrigen Kursnotationen umgestellt.
+- Rhythmus 1, Kapitel 3, Lektionen 1–2: Leseübungen in den Rhythminator integriert und doppelte Notationen sowie Drive-Lösungen darunter entfernt; Lektion 2 zeigt die acht Takte als zwei aufeinanderfolgende Vier-Takt-Aufgaben. Höraufgaben je Lektion im gemeinsamen Rhythm Radio zusammengeführt.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 3: Über dem Rhythminator einen Zwei-Takt-Editor für eigene Rhythmen ergänzt. Vollständig geprüfte Takte werden in einem eigenen lokalen Rhythmusbereich samt Notenlängen gespeichert und erscheinen danach zur Klatschprüfung und akustischen Hilfe im darunterliegenden Rhythminator; das Arbeitsblatt wird zuvor auf Papier vorbereitet.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 3: Rhythminator-Station ergänzt, die eigene Rhythmen aus dem Takt-Editor zur Klatschprüfung lädt und bei Bedarf einen Beispielrhythmus zum Ausprobieren zeigt.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Die separaten Drive-Audios sowie die Aufgaben- und Lösungsgrafiken 2.1–2.3 unter dem Rhythm Radio entfernt. Das Radio erzeugt seine Notationsblätter jetzt direkt aus den vorhandenen SVG-Dateien.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Beim Wechsel mit „Nächste Notation“ wird der Lösungsbutton ausdrücklich auf „Lösung“ und den geschlossenen Zustand zurückgesetzt.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Beim Wechsel zu 2.2/2.3 wird die Faxhöhe ausdrücklich auf den geschlossenen Zustand zurückgesetzt und alte Lösungsinhalte werden entfernt. Beim Öffnen wächst die korrekte Notation in den Faxbogen hinein und schiebt die fehlerhafte darunter. Nach jeder geöffneten Lösung leuchtet der Radioschalter kräftig als Hinweis zum erneuten Abspielen.
+
+## 2026-11-19
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Nach dem Öffnen der Lösung und beim Wechsel zur nächsten Notation leuchtet der Radioschalter erneut als Wiedergabehinweis; beim Aufgabenwechsel stoppt laufendes Audio zuerst.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Beim Aufgabenwechsel bleibt zunächst nur die fehlerhafte Notation auf dem Faxblatt. Erst „Lösung“ lässt die korrekte Notation darüber aus dem Faxschlitz gleiten; 2.2 und 2.3 wechseln samt Audio und Notenbild in derselben Radio-Instanz.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Beim Einschalten des Radios mit geöffneter Lösung laufen Einzähler und bewegliche 1-&-Zählhilfe synchron über fehlerhafter und korrekter Notation.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Separaten „Lösung abspielen“-Knopf aus dem Faxblatt entfernt; die Wiedergabe bleibt am Radio, Zählzeiten und Fehlermarkierungen erscheinen statisch.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Titel über dem Radio entfernt. Das Metronom läuft bei der Wiedergabe durchgehend weiter; die Aufgaben-Navigation setzt den aktiven Index und die angezeigte fehlerhafte Notation gemeinsam um.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2: Das Fehlerfinder-Radio führt in einer Instanz durch die fehlerhaften und korrekten Notationen 2.1–2.3; passende Wiedergabemuster wechseln mit. Nach Aufgabe 2.3 wird der Abschlussknopf grün zu „Weiter geht’s!“. Die bestehenden Drive-Audios und Aufgabenlösungen bleiben erhalten.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2.1: Die eingeblendeten Zählzeiten auf dem Notenblatt sind jetzt schwarz; die roten Fehlermarkierungen bleiben unverändert.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2.1: Das fehlerhafte Notenblatt fährt beim Laden sichtbar aus dem Faxschlitz. „Lösung“ blendet nur Zählzeiten und rote Fehlermarkierungen ein; das Blatt bleibt sichtbar liegen.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 2.1: Rhythm Radio ergänzt, das den korrigierten Rhythmus mit halber Note auf Schlag 2 abspielt. Die Fax-Lösung zeigt statische Zählzeiten und markiert die beiden falschen Viertelnoten rot; vorhandene Drive-Audio und Notation bleiben erhalten.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 1: Vier Notensymbole zentriert, Aufgabe 1.4 um eine zusätzliche ausfüllbare Lücke erweitert und nach dem Abschluss die Weiterleitung zu Aufgabe 2 ergänzt.
+- Rhythmus 1, Kapitel 2, Lektion 4, Lösungswiedergabe: In den Metronom-Pausentakten steht der visuelle Einzähler wieder fest links; über die Notation läuft die Zählhilfe nur während der gespielten Takte.
+- Rhythmus 1, Kapitel 2, Lektion 4, Lösungswiedergabe: Bewegliche Zählhilfe zeigt nun auch die „&“-Zwischenzeiten und sitzt auf den vier Schlagpositionen der einzeiligen Notation.
+- Rhythmus 1, Kapitel 2, Lektion 4, Höraufgaben: Das Metronom läuft bei allen Wiederholungen durchgehend weiter, auch während die Noten erklingen.
+- Rhythmus 1, Kapitel 2, Lektion 4, Höraufgaben: Alle vier Aufgaben laufen nacheinander in einer Rhythm-Radio-Instanz; Lösungen, Zurück- und Weiter-Navigation bleiben im Radio.
+- Rhythmus 1, Kapitel 2, Lektion 4: Die separate Notation und Lösung von Leseübung 2 werden nach Übernahme ins erste Rhythminator-Tool direkt entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 4: Die äußeren Überschriften „Leseübung 1“ und „Leseübung 2“ entfernt; die zweite Übung wird im ersten Rhythminator weiterhin über ihre Bildunterschrift erkannt.
+- Rhythmus 1, Kapitel 2, Lektion 4, Leseübungen: Den separaten Rhythminator für Leseübung 2 samt doppelter Notation entfernt; beide Aufgaben bleiben im ersten Rhythminator verfügbar.
+- Gesang: Eine Einführung, Kapitel 4, Lektion 2: Tonhöhenfunktion des Stimmapparats, sein Zusammenspiel mit der Atemabteilung und eine sanfte Erkundungsfolge zu Luftstrom, weichem/deutlichem Stimmlippenschluss, Vocal Fry und Lip Rolls ergänzt.
+- Rhythminator: Fehlerfeedback ist nach Takten gruppiert und listet einzelne Fehler mit Strichpunkten. Während der Rückmeldung stehen feste Zählzeiten 1–4 samt „&“ über der Notation; rote Kreise markieren fehlende Noten, rote Notenzeichen zusätzliche oder verschobene Klatscher.
+- Rhythmus 1, Rhythminator-Leseübungen: Vor einer Aktion bleibt die Notation ruhig. HELP! zeigt Einzähler und beweglichen Marker synchron zur Audiohilfe; „Start“ zeigt beides während des eigenen Versuchs.
+- Rhythmus 1, Kapitel 2, Lektion 4, Leseübungen: doppelte externe Notationen und Drive-MP3-Lösungen entfernt; HELP! und „Nächste Aufgabe“ im ersten Rhythminator zeigen nun die erste und zweite Notation nacheinander. Weitere Aufgaben und Tool-Instanzen bleiben erhalten.
+- Rhythmus 1, Kapitel 2, Lektion 4: Aufforderung zum Weiterspielen ohne vorgegebene Achtel aus der Beschreibung entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 4: Überschrift und Anleitung zu Mitspielübung 2 einschließlich Zählzeile über das gemeinsame Rhythm Radio verschoben.
+- Rhythmus 1, Kapitel 2, Lektion 4: Visueller Einzähler bleibt an fester Position links über der Notation; erst die Zählhilfe während der Übung folgt den Takten.
+- Rhythmus 1, Kapitel 2, Lektion 4: Mitspielübung 2 beginnt nun direkt mit den „&“-Achtelnoten; der erste leere Takt steht am Ende. Abschnittsüberschrift in „3. Mitspielübungen“ geändert.
+- Gesang: Eine Einführung: Kapitel 04 in drei Abteilungslektionen gegliedert; Körperwahrnehmung und sanfte Übungen zu Kontraktion, Entspannung und Expansion ergänzt; „Stimme und Lage“ ans Kursende verschoben.
+- Rhythmus 1, Kapitel 2, Lektion 4, Mitspielübung „Jede Achtelposition“: Notation auf integrierte Notenablage gesetzt und umgestellt, sodass nach dem Einzähler direkt der Achtelnoten-Takt beginnt und der leere Metronomtakt am Ende steht; acht Takte und vier Durchgänge bleiben erhalten.
+- Rhythmus 1, Kapitel 2, Lektion 4, Mitspielübung „Jede Achtelposition“: Einzähler und laufende Zählhilfe einschließlich der „&“-Zwischenzeiten auf der Notenablage ergänzt; Übungsanweisung fordert mindestens zwei Durchgänge, davon einen mit geschlossenen Augen.
+- Rhythmus 1, Kapitel 2, Lektion 4: Schaltfläche „Nächste Aufgabe“ wechselt im selben Rhythm Radio zur Notation und Wiedergabe der Mitspielübung 2; der Radioschalter leuchtet als nächste Bedienaktion auf.
+- Rhythmus 1, Kapitel 2, Lektion 2: Den Lösungsblättern im Rhythm Radio Wiedergabe mit Einzähler und beweglicher Zählhilfe hinzugefügt; die Zählpositionen passen sich den ein- und zweizeiligen Notationen an.
+- Rhythmus 1, Kapitel 2, Lektion 3: Lösungsblätter im Rhythm Radio um eine Wiedergabe mit Einzähler, laufenden Zählzeiten und Stopptaste ergänzt.
+- Rhythmus 1, Kapitel 2, Lektion 3, Höraufgaben: Drei Aufgaben mit ihren vorhandenen Wiedergaben und Lösungen in einer Rhythm-Radio-Instanz gebündelt; Vorige/Nächste-Navigation wie in Lektion 2 ergänzt und Einzelinstanzen entfernt.
+- Rhythminator: Zählzahlen bei der HELP-Wiedergabe nochmals höher gesetzt, damit sie deutlich von Notenhälsen und Taktangabe getrennt sind.
+- Rhythmus 1, Kapitel 2, Lektion 3, Leseübung: Doppelte Notation unter dem Rhythminator, den MP3-Kontrollhinweis und die Drive-MP3-Lösung entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 3, Leseübung: Help-Zählhilfe verkleinert und über die Notensysteme verschoben; zweizeilige Notationen erhalten jetzt passend ausgerichtete Zählzeiten pro Takt.
+- Rhythmus 1, Kapitel 2, Lektion 3: Den Drive-Link und QR-Code zur Leseübung entfernt; die lokale Notation bleibt bestehen.
+- Rhythmus 1, Kapitel 2, Lektion 1, Leseübung: Notation erscheint nur noch im Rhythminator; HELP zeigt beim Vor- und Mitspielen jetzt Einzähler und laufende Zählzeiten.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgaben: Aufgabenüberschrift auf „Höraufgaben 1–3“ geändert, die separate Nummer über dem Radio entfernt und „Vorige Aufgabe“ ergänzt. Die hervorgehobene Navigation führt im selben Rhythm Radio durch Aufgaben 1–3; die separaten Radio-Instanzen für Aufgaben 2 und 3 wurden entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Nach Anzeige der Lösung für Höraufgabe 3 wird der Abschlussknopf grün zu „Nächste Lektion“ und führt zu Lektion 3.
+- Der Abschlussknopf „Nächste Lektion“ leuchtet jetzt vollflächig grün und pulsiert wie eine Lampe.
+- Rhythmus 1, Kapitel 2, Lektion 5, Aufgabe 1: Acht-Takt-Editor durch dasselbe Zwei-Takt-Tool wie in Kapitel 3 ersetzt; vier aufeinanderfolgende Aufgaben nutzen die vorhandenen Noten, Lücken und Notenwerte.
+- Rhythmus 1, Kapitel 3, Abschlussaufgabe 2.1: Gemeinsame Aufgabeninitialisierung an Notenbilder ohne Vergrößerungslinks angepasst; der frühere Abbruch wird verhindert und Lücken, Noten-/Pausenpalette, Wiedergabe und Hilfe werden aufgebaut.
+- Rhythmus 1, Höraufgaben mit vorhandener Notation: Google-Drive-Audioplayer durch The Rhythm Radio ersetzt; bestehende Lösungsinhalte ins animierte Faxblatt verschoben. Ein-Takt-Aufgaben werden nach Einzähler viermal gespielt, jeweils mit einem Metronomtakt dazwischen. Die Notation für Höraufgabe 3 in Kapitel 2 · Lektion 2 ergänzt und ebenfalls in Rhythm Radio und Faxlayout übernommen.
+- Kursübersicht: Philosophie um Kurs 5 „The Art of Practicing – Organizing Your Musical Development“ erweitert; Rhythmus erhält ein Drum-und-Herz-Symbol, Biomechanik ein Bizeps-Symbol. Neuer neunkapiteliger Kurs mit fortlaufendem, lokal gespeichertem Übungsplan ergänzt.
+- Rhythm Radio: Fax-Ausgabe ohne „FAX /“-Präfix beschriftet, Lösungsnotation auf dem ausgegebenen Blatt vergrößert und die Animation so geändert, dass das Papier sichtbar aus dem Schlitz nach unten auf die Ablagen gleitet.
+- Rhythmus 1, Kapitel 2, Lektion 1, Leseübung: The Rhythminator gezielt direkt vor der Notation ergänzt; er übernimmt die vier Takte mit ganzen Noten.
+- Rhythmus 1: The Rhythminator wird automatisch bei allen 15 Leseübungen mit der jeweiligen Notation und daraus abgeleiteten Klatschzeiten eingeblendet; die übrigen Mitspiel-MP3s werden als Rhythm-Radio-Wiedergaben mit Einzähler und passendem Notenmuster ausgegeben.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Das Rhythm Radio druckt die vorhandene Lösungsnotation auf Knopfdruck animiert aus dem Faxschlitz auf zwei Ablagen; der bisherige Lösungsabschnitt bleibt darunter erhalten.
+- Rhythminator und Rhythm Radio unterstützen jetzt Achtel-Offbeats mit präzisen halben Beatpositionen.
+- Notationsbilder in Kursseiten und Lektionen sind nicht mehr anklickbar; Vergrößerungslinks entfernt, Scroll- und Lösungsmarkierungen angepasst.
+
+## 2026-11-18
+- Rhythmus 1, Kapitel 2, Lektion 2: Frequenzkennung in den Rhythm-Radio-Anzeigen breiter vom Skalenbereich getrennt, einschließlich mobiler Ansicht.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Die beiden halben Noten in Takt 7 in der Lösungsnotation näher an den Taktanfang verschoben.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 2: Drive-Player und Drive-Lösung durch ein Rhythm Radio mit passender Wiedergabe sowie eine Notationsgrafik ersetzt; Pausentakte wie bei Aufgabe 1 als zwei halbe Noten notiert.
+- Rhythmus 1, Kapitel 2, Lektion 2: Höraufgaben-Anweisung zur schriftlichen Notation der gehörten Töne angepasst.
+- Rhythmus 1, Kapitel 2, Lektion 2: Die wiederholte 4/4-Angabe ab Takt 5 aus Schreibvorlage und Lösung entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Schalter-Bedienfeld des Rhythm Radio pulsiert im ausgeschalteten Zustand als Klickhinweis und stoppt beim Einschalten.
+- Rhythmus 1, Kapitel 2, Lektion 2: Unter den Höraufgaben-Hinweisen eine Schreibvorlage mit acht leeren 4/4-Takten zum Abzeichnen ergänzt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Überholte Beschreibung der Pausenstruktur der Höraufgaben entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Die vier Pausentakte in Notation und Rhythm Radio durch jeweils zwei halbe Noten ersetzt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Höraufgaben-Anweisung auf „Starte das Rhythm Radio“ angepasst.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Google-Drive-Lösung durch eine Notationsgrafik mit acht Takten ersetzt; unter dem MP3-Player ein Rhythm Radio ergänzt, das nach dem Einzähler die notierten halben und ganzen Noten, Pausen und den durchlaufenden Puls wiedergibt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Höraufgabe 1: Den Google-Drive-MP3-Player samt Zugriffslink entfernt; Rhythm Radio und Notationslösung bleiben erhalten.
+- Rhythminator: Sollzahl der Klatscher in der festen Leseübung direkt aus den Notenanfängen berechnet und auf den gewählten Taktbereich beschränkt; einzelne Takte zeigen dadurch nur ihre tatsächlichen Klatschimpulse.
+- Rhythminator: Hover-Zustand der Takt-Tasten kontrastreicher gestaltet; nicht ausgewählte Tasten bleiben metallisch dunkel, gewählte goldfarben.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Erläuterungstexte um das Bedienfeld und sichtbare Zusatzbeschriftungen der Taktwahl entfernt; jede Takt-Taste sitzt nun direkt unter dem zugehörigen Takt und hat dessen Breite.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Takt-Auswahltasten unter die Notation in die gemeinsame Notationskarte verschoben; Bedienung und Auswahlstatus bleiben erhalten.
+- Startseite: Nummerierungen aus den drei Lernprinzipien entfernt, Texte zentriert und die acht Kursbereiche als responsives Vier-Spalten-Raster angeordnet.
+- Kursübersicht: Evaluation um reine Lernwege für Gehörbildung, Rhythmus, Melodie, Harmonie und Biomechanik erweitert.
+- Kursübersicht: Kenntnisse zu ganzen, halben, Viertel-, Achtel- und Sechzehntelnoten sowie den entsprechenden Pausen ergänzt; passende 40-BPM-Fragen zum Vom-Blatt-Spielen mit gleichmäßigem Viertelpuls erscheinen nach Auswahl des jeweiligen Werts.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Vierknopf-Taktauswahl ergänzt. Einzelne Takte und beliebige zusammenhängende Gruppen sind möglich, Lücken werden abgewiesen. HELP!, Zähler und Aufnahme verwenden denselben Umfang; die Auswahl funktioniert auch für Takte 5–8.
+- Rhythmus 1, Kapitel 2, Lektion 2: Punkt am Hinweis zum Rhythminator statt Ausrufezeichen gesetzt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Unter der Klatschanweisung ergänzt, dass der Rhythminator zum Prüfen der Ausführung dient.
+- Rhythmus 1, Kapitel 2, Lektion 2: Den Verweis auf die separate Leseübung entfernt, da die Notation jetzt im Rhythminator erscheint.
+- Rhythmus 1, Kapitel 2, Lektion 2: Separate Notationsgrafik samt Player unter der Leseübung entfernt; nach korrekten Takten 1–8 gratuliert das Rhythminator-Display und verweist auf die Höraufgabe.
+- Rhythminator-Hilfetexte: „Hälfte“ durch die konkrete Bezeichnung „Takte“ ersetzt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Info-Schalter oben rechts ergänzt. Im Hilfemodus erscheinen anklick- und hoverbare „i“-Marker an Display, Notation und Bedienelementen mit kontextbezogenen Erklärungen.
+- Rhythminator: Anweisungstext in den Displays leicht verkleinert.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Unten links einen umschaltbaren Kopfhörerknopf und eine AUX-Buchse ergänzt; die Buchse leuchtet bei aktiviertem Kopfhörerzustand.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Klatscher werden jetzt in zeitlicher Reihenfolge den erwarteten Schlägen zugeordnet; verschobene Klatscher erzeugen keine doppelten Fehl-/Zusatzmeldungen mehr und werden mit Schlagnummer, Takt sowie „zu früh/zu spät“ benannt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Standardtempo auf 80 BPM gesetzt; andere Rhythminator-Instanzen behalten 50 BPM. Wenn der Kopfhörerschalter aktiv ist, läuft das Metronom nach HELP! synchron weiter und begleitet den nächsten Aufnahmeversuch.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Klatscherkennung empfindlicher eingestellt; bei deutlich abweichenden erkannten Klatschern nennt das Ergebnis nun auch „zu früh“ oder „zu spät“.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Live-Klatschzähler im Display ergänzt; er zeigt erkannte Klatscher während der Aufnahme als Anzahl im Verhältnis zu den erwarteten Impulsen.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: HELP! zeigt den Einzähler und den synchronen Schlagzähler über der Notation; nach Hilfe-Wiedergabe bleibt der visuelle Zähler im nächsten Aufnahmeversuch aktiv.
+- Rhythmus 1, Kapitel 2, Lektion 2, Rhythminator: Leseübung in zwei Vier-Takt-Hälften geteilt; erste Hälfte erscheint vor der Mikrofonfreigabe, nach korrektem Klatschen folgt die zweite. HELP!-Taste spielt die aktuelle Hälfte mit Einzähler vor.
+- Rhythmus 1, Kapitel 2, Lektion 2: Rhythminator zeigt statt „Eigener Rhythmus“ fest die acht Takte der Leseübung und prüft die Klatscher auf den Anfängen der ganzen und halben Noten; andere Instanzen bleiben dynamisch.
+- Rhythmus 1, Kapitel 2, Lektion 2: The Rhythminator unter die Leseübung kopiert und die Initialisierung so angepasst, dass beide Tool-Instanzen funktionieren.
+- Rhythmus 1, Kapitel 2, Lektion 2, Leseübung: Laufenden Zähler über beiden Notensystemen höher gesetzt, damit er nicht mit den Notenhälsen kollidiert; Pulsringe bleiben auf den Notenköpfen.
+- Rhythmus 1, Kapitel 2, Lektion 2, Leseübung: sichtbare Statuskommentare ausgeblendet, Play/Stop nach unten rechts gesetzt, Einzähler und laufender Zähler über den Takten ergänzt; Notenköpfe pulsen beim Erklingen kurz.
+- Rhythmus 1, Kapitel 2, Lektion 2, Leseübung „Ganze und halbe Noten“: Abspielknopf direkt in der Notationsgrafik ergänzt; nach einem 4/4-Einzähler spielt eine Browser-Wiedergabe alle acht Takte bei 50 BPM mit gehaltenen Noten ab. Drive-Lösung und zugehörigen Hinweis entfernt.
+- Rhythmus-Radio: Logo-Beleuchtung abgestuft; Stamm bleibt dezent, Baumkrone leuchtet stärker und die Note erhält den hellsten, pulsierenden Schein.
+- Startseite: Lernansatz auf „Verstehen durch: Hören und sehen, spielen und spüren“ gekürzt und den Abschnitt auf drei gleichwertige Schritte ausgerichtet; den zusätzlichen „So lernst du hier“-Lead entfernt.
+- Alle 39 Kursseiten-Footer zeigen jetzt links neben „The Tree of Music“ das Baumlogo. Auf der Startseite wurden der Footer-Slogan entfernt und „Kurse entdecken“ durch einen Kontakt-Hinweis mit Platzhalter-Mail-Symbol ersetzt.
+- Rhythmus 1, Kapitel 2, Lektion 1: Tonname aus Beschreibung und Radiodisplay entfernt; nur die ganze Note wird benannt.
+- Rhythmus 1, Kapitel 2, Lektion 2, Mitspielübung 3: Drive-Player durch ein Radio mit 4/4-Einzähler und durchlaufendem Metronom mit Akzenten auf 1 und 3 ersetzt.
+- Rhythmus 1, Kapitel 1–2: Tree-of-Music-Logos leuchten auf, solange das jeweilige Radio eingeschaltet ist.
+- Rhythmus 1, Kapitel 1, Übung 5: Drive-Audio durch ein Radio mit 50-BPM-Muster aus vollem Takt und nur Klick auf 1 ersetzt.
+- Rhythmus 1, Kapitel 2, Lektion 1: Statische Zählgrafik in der Körperübung entfernt, „Testkopie“-Beschriftung gelöscht und die animierte Klatschgrafik als einzige Darstellung belassen.
+- Rhythmus 1, Kapitel 2, Lektion 1, Mitspielübung 3: Radio ergänzt; nach vier hörbaren Einzählschlägen erklingt wiederholt eine gehaltene C4-Ganznote über durchlaufendem Metronom, gefolgt von einem Metronomtakt ohne Ton (50 BPM, etwa 1:07).
+- Rhythmus 1, Kapitel 1, Übung 4: Radio-Player ergänzt. Er wechselt 15 Takte lang bei 50 BPM zwischen vollständigen Takten und Takten mit Klicks auf 1 und 3; die Kursfrequenz zeigt K01L04 · Ü04.
+- Rhythmus 1, Kapitel 1, Übungen 2–3: Kippschalter mit festem Drehpunkt in der Schlitzmitte neu aufgebaut; der silberne Arm klappt mit roter Spitze von der unteren OFF- in die obere ON-Stellung.
+- Rhythmus 1, Kapitel 1, Übungen 2–3: Silbernen Schalterarm mittig im Schlitz fixiert; farbige Spitze gleitet gerade zwischen unterer OFF- und oberer ON-Position.
+- Rhythmus 1, Kapitel 1, Übung 3: Dauerangabe aus dem Einführungssatz zum Einzähler und Backbeat entfernt.
+- Rhythmus 1, Kapitel 1, Übungen 2–3: Kippschalterbewegung von Rotation auf gerade vertikale Verschiebung im Führungsschlitz geändert.
+- Rhythmus 1, Kapitel 1, Übungen 2–3: Laufstatus über den ON-Schaltern visuell entfernt; Statusmeldungen bleiben screenreader-gerecht verfügbar.
+- Rhythmus 1, Kapitel 1, Übungen 2–3: Kippschalter mit vertieftem Führungsschlitz versehen und rote ON-Betriebsleuchte ergänzt, die mit dem Wiedergabezustand schaltet.
+- Rhythmus 1, Kapitel 1, Übung 3: Browser-Radio für den Backbeat ergänzt. Es zählt einen 4/4-Takt ein und spielt anschließend 72 Sekunden bei 50 BPM nur die Schläge 2 und 4; Skala mit Kurskennung K01L03 · Ü03.
+- Rhythmus 1, Kapitel 1, Übung 2: MP3-Verweis und Google-Drive-Einbettung entfernt; das Browser-Radio ist jetzt die einzige Wiedergabe.
+- Rhythmus 1, Kapitel 1, Übung 2: Lautsprecher wieder rechteckig und größer gestaltet, Display/Frequenzskala kompakter gesetzt und den Piloten-Kippschalter verstärkt.
+- Rhythmus 1, Kapitel 1, Übung 2: Kippschalter gekürzt und nach oben verschoben, damit die OFF-Beschriftung unten auch bei ausgeschaltetem Zustand frei bleibt.
+- Rhythmus 1, Kapitel 1, Übung 2: Lautsprecher als braunen Konus-Lautsprecher dargestellt, Tree-of-Music-Metalllogo oben rechts ergänzt und den Kippschalter vertikal mit ON oben und OFF unten gestaltet.
+- Rhythmus 1, Kapitel 1, Übung 2: Modell-/Kanalplakette und anfänglichen Bereit-Text entfernt; Wiedergabesteuerung als ON/OFF-Piloten-Kippschalter gestaltet.
+- Rhythmus 1, Kapitel 1, Übung 2: Radio-Gehäuse und Frequenzskala in Bronze gestaltet; Display und Bedienelemente bleiben unverändert.
+- Rhythmus 1, Kapitel 1, Übung 2: Metronomdetails in ein dunkles Geräte-Display gesetzt; die Skala zeigt nun Kursstelle und Aufgabe (K01L02 · Ü02) mit einem links positionierten frühen Kursmarker.
+- Rhythmus 1, Kapitel 1, Übung 2: Browser-Metronom als kompaktes Metallradio mit Frequenzskala, Lautsprechergitter und geräteartigen Play-/Stopknöpfen gestaltet.
+- Rhythmus 1, Kapitel 1, Übung 2: Direkt unter dem Drive-Player ein stoppbares Browser-Metronom ergänzt. Es läuft 72 Sekunden bei 50 BPM und wechselt zwischen vollständigen 4/4-Takten und Takten mit Klicks nur auf 2 und 4.
+
+## 2026-11-17
+- Rhythmus 1, Kapitel 3, Lektion 5: Bei korrekten Takten mit einer Viertelnote auf einer „&“-Zählzeit erscheint ein Hinweis zur Lesbarkeit und zum Haltebogen. Papierkörbe verschwinden während der Wiedergabe und bei vollständig gefüllten Takten bis zum Überfahren einer Lücke.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgaben 2.2 und 2.3: Bebalkte Achtelnoten werden bei der Wiedergabe als Noten erkannt; die Auswertung meldet die Gesamtdauer eines Takts verständlich statt widersprüchlicher Längenfehler pro Lücke, und doppelte Balken innerhalb einer Lücke entfallen.
+- Rhythmus 1, Kapitel 3, Lektion 5: Aufgaben 2.1–2.3 zu einer Station mit wechselnder Notation zusammengeführt; nach der Auswertung führt ein pulsierender orangefarbener Knopf zur nächsten Aufgabe. Wiedergabe auf 40 BPM gestellt.
+- Startseite: Kursbereich-Links unter „Entdecke die Kursbereiche“ zeigen die jeweiligen Symbole und Farben aus der Kursübersicht.
+- Rhythmus 1, Kapitel 3, Lektion 5: Interaktiven Noten- und Pauseneditor aus Aufgabe 2.1 auf Aufgaben 2.2 und 2.3 übertragen, inklusive eigener Notation; Aufgabe 2.3 unterstützt alle vier Takte und ihre Wiedergabe.
+- Startseite: „Dein Raum zum Musiklernen“ entfernt, „Dort anfangen, wo du stehst“ ergänzt und Hauptbutton in „Zur Evaluation“ mit Link zum Lernweg geändert.
+- Philosophie 04, Kapitel 6: Wurzeln vertiefen sich in einer eigenen einmaligen Wachstumsstufe; einzelne Wachstumspulse und skalierungsfreie Lichtimpulse bleiben erhalten.
+- Philosophie 04: Kurs „Finding Your Reason to Make Music“ mit sechs Kapiteln, Reflexionsfragen, Pflanzenmetapher, SVG-Grafik und lokal speicherbarem Leitbild ergänzt; Kursübersicht und Baustellen-Fortschritt erweitert.
+- Kursübersicht: „Digital Music School“ oberhalb der Hauptüberschrift entfernt.
+- Kursübersicht: Allgemeiner Hinweis zur Materiallage und zu Kursentwürfen entfernt.
+- Kursübersicht: Kleines SVG mit Erdhügel und Keimling neben „Dort anfangen, wo du stehst“ ergänzt.
+- Startseite und Kursübersicht: Kleine Baustellentafel „Logo design finden“ neben der Wortmarke ergänzt.
+- Kurs-Baustellentafeln: Allgemeines, lokal gespeichertes Notizfeld für den letzten Stand und nächste Schritte vor den Entwicklungsphasen ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Ergebnisfelder behalten nach dem Lichtimpuls ein kräftigeres Grün beziehungsweise Rot.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Veralteten Verweis auf die entfernte Zusammenfassungsanzeige beseitigt, der das Rendern der Lücken verhinderte.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Grüne und rote Ergebnisblitze verstärkt; doppelte Ergebnisausgabe unter „Aufgabe auswerten“ entfernt.
+- Rhythmus 1: Beim direkten Kapitelsprung wird die Lektionenliste im Inhaltsverzeichnis geöffnet und in den sichtbaren Bereich gescrollt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Abspielknopf rechts hinter dem Taktende auf Höhe der Notenlinie ausgerichtet; Zählmarkierung über dem Zeitzeichen beziehungsweise den Schlägen höher gesetzt, damit sie die Notation nicht überdeckt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Abspielknopf wartet auf beide vollständig gefüllten Takte und spielt nach einem Takt Metronom-Einzähler beide nacheinander ab.
+
 ## 2026-11-16
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Drag-Vorschau eines gegriffenen Zeichens ohne weißen Hintergrund und Innenabstand dargestellt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Beim Ziehen eines Zeichens aus einer Lücke pulsiert nur der Papierkorb dieser Lücke; beim Ziehen aus der Palette pulsieren die verfügbaren Papierkörbe.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Papierkorb erst bei belegten Lücken gezeigt; Palette auf Desktop auf Drag-and-drop beschränkt und Touch-Einfügen beibehalten; Abspielknopf für Takt 2 mit Metronom-Einzähler ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Überfüllte Lücken werden proportional innerhalb ihrer Breite verdichtet und erst bei fehlendem visuellen Platz abgewiesen; Noten laufen nicht mehr in den nächsten Takt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Horizontalen Scrollbalken am Notenbild entfernt und Notation sowie Steuerbereich responsiv angepasst.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Unteren Innenabstand des Notations-Scrollbereichs vergrößert, damit der herausragende Papierkorbkreis vollständig sichtbar bleibt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Rote Papierkorb-Symbole als separate Elemente über den Lückengrenzen platziert, damit sie sichtbar herausragen.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Beschriftungen „Takt 1“ und „Takt 2“ oberhalb der Notation entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Papierkorb-Symbole vergrößert und unten rechts über die Lückenrahmen gesetzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Takt-leeren-Knöpfe durch Papierkorb-Symbole an jeder Lücke ersetzt und die Rückgängig-Funktion auf einen globalen Knopf reduziert.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Kleine Takt-Steuerknöpfe an den Taktbreiten ausgerichtet; Einzelprüfungen entfernt und eine gemeinsame Auswertung unten rechts ergänzt.
+- Rhythmus 1: Beim Öffnen eines Kapitels im Inhaltsverzeichnis wird die Lektionenliste aufgeklappt und im internen Scroller sichtbar positioniert.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Achtelbalken über den Lückenrahmen gelegt, Takt-Steuerung ohne Panel gestaltet und Rückgängig-Schaltfläche mit Pfeilsymbol ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Takt-Steuerfelder über der Notation platziert und den klickähnlichen Cursor an den Lücken entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Lücken-Klicks und Einzel-Lückenfunktionen durch Drag-and-drop am Computer sowie automatische Einsetzung per Symbol-Tipp auf Touchgeräten ersetzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Aktionen „Rückgängig machen“, „Takt leeren“ und „Takt prüfen“ pro Takt ergänzt; Rückmeldungen benennen Fehler ohne die Lösung vorzugeben.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Achtelnoten werden nur innerhalb desselben Schlages mit einem Balken verbunden.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Statuskommentare unter der Symbolpalette ausgeblendet.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Drag-and-drop-Animation nach dem ersten eingesetzten Zeichen ausgeblendet.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Drag-Vorschau auf das gezogene Noten- oder Pausensymbol begrenzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Rahmen um die Notationsgrafik entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Abstand zwischen Notation und Symbolpalette leicht vergrößert.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Noten- und Pausensymbole als getrennte 2×2-Gruppen angeordnet.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Weißraum unter der Notation vergrößert, Stationshintergrund vereinheitlicht und Palettensymbole leicht nach unten verschoben.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Gemeinsamer Stationshintergrund mit kleinem Abstand zwischen Notation und Symbolpalette gestaltet.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Überflüssigen Leerraum am unteren Rand der Notationsgrafik abgeschnitten und Drag-and-drop-Ziele angepasst.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Abstand zwischen Notationsgrafik und Symbolpalette entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Sichtbare „Takt 1“- und „Takt 2“-Beschriftungen aus der Notationsgrafik entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Notation, Symbolpalette und Drag-and-drop-Hinweis als gemeinsame visuelle Station gruppiert; Vergrößerungsbeschriftung entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Noten- und Pausenpalette mit Desktop-Drag-and-drop, animiertem Mauszeiger und weiterhin antippbarer Touch-Auswahl ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 4: Leseübung 4 mit einer zweitäktigen Notation zu Achtelpausen ergänzt.
 - Rhythmus 1, Kapitel 3: „Bälfte“ zu „Hälfte“ korrigiert.
 - Rhythmus 1, Kapitel 2, Lektion 2: Mitspiel-MP3-Link mit der angegebenen Google-Drive-Datei-ID berichtigt.
+- Rhythmus 1, Kapitel 3, Lektion 4: Audiolösung für Leseübung 4 ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 5: Lösungen zu „Pausenlängen zuordnen“ als Pausensymbol-Gleichungen dargestellt.
 ## 2026-11-15
 - Kursübersicht: wiederverwendbare, gewichtete Baustellentafeln mit editierbaren und lokal gespeicherten Phasenstatus und Kommentaren ergänzt.
 - Baustellentafeln auf alle weiteren Kurse der Übersicht ausgeweitet und mit ersten Entwicklungsschätzungen versehen.
 - Baustellentafel für den individuellen Lernweg ergänzt; offene Arbeit an Einstufung, Speicherung und Kursvernetzung festgehalten.
 - Website-Marke in allen HTML-Seiten zu „The Tree of Music“ geändert; Überschrift der Kursübersicht ersetzt.
 - Rhythmus 1: Einführung und drei Kapitel auf `grundlagen.html` zusammengeführt; Navigation und interne Übergänge auf Scrollziele umgestellt, doppelte Kapiteldateien entfernt.
+## 2026-11-17
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Noten- und Pausenkacheln wieder weiß gestaltet, Aufgabenüberschrift hellgrün hervorgehoben und gemeinsame Bedienhilfe für die Symbolpalette ergänzt.
+- Startseite: Perspektiven-Grafik und Slogan entfernt; Kursbereiche als direkte Links ergänzt.
+- Startseite: Kursbereiche-Galerie mit den Bereichsemblemen der Kursübersicht ergänzt; Bereichskarten rotieren automatisch und lassen sich manuell weiterschalten.
+- Startseite: Bereich „Musik in alle Richtungen entdecken“ entfernt und Baumstamm im Logo holzbraun gefärbt.
+- Startseiten-Teaser auf die kostenlose Evaluation zum Finden des passenden Einstiegs und Lernplans umgestellt.
+- Baustellenhinweis im Kopfbereich durch ein Baum-und-Noten-Logo ersetzt.
+## 2026-11-17
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Hilfe-Schalter mit anklickbaren und per Hover erreichbaren Bedienhinweisen ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 5, Aufgabe 2.1: Hilfemarker mit sichtbarem „i“ versehen und Noten- und Pausensymbole farblich wieder unterschieden.
+- Rhythmus 1, Kapitel 3, Lektion 5: Einleitung zum gemeinsamen Einsetzen von Noten und Pausen präzisiert.
+- Startseite: Begrüßung und Evaluation als zweispaltigen Einstieg neu angeordnet; „Musik verstehen. In deinem Tempo.“ steht über der Evaluation.
+- Kopf-Logo auf Startseite und Kursübersicht zu einem klaren Baum mit Stamm, Krone und Musiknote überarbeitet.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Die Lösungsansicht zeigt den Fehler als 5/4-Takt mit roter Zählung und vergleicht ihn mit der korrigierten 4/4-Fassung ohne die letzte Viertelnote.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Beim Öffnen der Lösung erscheinen die rote 5/4-Zählung direkt über der Originalnotation; ein kurz pulsierender roter Rahmen lenkt den Blick dorthin, bevor die korrigierte Fassung folgt.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Bildunterschrift und Vergrößerungslink unter der Originalnotation entfernt.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Beim Öffnen der Lösung wird die Originalnotation an den oberen Rand gescrollt, damit die Erklärung und Korrektur darunter im Blick bleiben.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Beim automatischen Scrollen bleibt nun ein kleiner oberer Abstand zur Originalnotation.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Das Overlay deckt die ursprüngliche Taktziffer vollständig ab, sodass nur die rote 5 sichtbar bleibt.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Die Overlay-Taktangabe ersetzt jetzt beide Ziffern sauber und zeichnet die Notenlinie dazwischen neu, damit keine Reste der ursprünglichen 4 sichtbar bleiben.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.1: Die korrigierte Notation ist mit einem grünen Rahmen als richtige Fassung markiert.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.2: Audioplayer oberhalb der Aufgaben-Notation platziert.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.2: Das Öffnen der Lösung markiert die abweichende Viertelpause in der Originalnotation rot und zeigt darunter eine grün gerahmte 5/4-Notation der MP3-Abweichung.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.2: Roten Beschriftungstext und Strich aus der Markierung entfernt; Lösung als 4/4 mit Viertelnote, halber Pause und zwei Achtelnoten korrigiert.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.2: Beim Öffnen der Lösung werden Viertelpause und Viertelnote auf Schlag 3 rot markiert; die halbe Pause der MP3-Lösung erhält einen grünen Kreis.
+- Rhythmus 1, Kapitel 3, Aufgabe 3.3: Audioplayer über der Notation platziert; beim Öffnen der Lösung wird die überzählige letzte Achtelnote rot markiert und die 4/4-Fassung mit Achtelpause auf 4 & grün hervorgehoben.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Das interaktive Takt-Ergänzungstool aus Aufgabe 2 als separate Station ergänzt; Aufgabenfolge und Hilfebedienung sind unabhängig beschriftet.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Vorgaben durch vier leere Einsetzfelder ersetzt. Die Hilfe blendet über beiden Takten die Zählzeiten 1 & 2 & 3 & 4 & ein.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Vier Eingabefelder pro Takt ergänzt, Teilwiedergabe vor vollständigem Füllen erlaubt und Auswertungsbutton in „Takte leeren“ geändert.
+
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Nach einer Änderung der Einträge wechselt „Takte leeren“ zurück zu „Aufgabe auswerten“ und alte Prüfrückmeldungen werden entfernt. Eine BPM-Anzeige mit Auf-/Ab-Pfeilen passt das Wiedergabetempo in 5er-Schritten an.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Leere Einsetzfelder gelten bei der Auswertung nicht mehr als Fehler, wenn die eingesetzten Noten- und Pausenwerte den Takt korrekt auf vier Schläge ergänzen.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Nach der Auswertung werden einzelne Achtel in direkt benachbarten Einsetzfeldern als gemeinsame Balkengruppe dargestellt.
+- Rhythmus 1, Kapitel 3, Aufgabe 4–5: Als korrekt bewertete Zwei-Takt-Gruppen werden lokal dauerhaft gespeichert und ihre Notation erscheint in Aufgabe 5. Dort ergänzt ein Klatsch-Check-Entwurf mit Mikrofonfreigabe, Einzähler und zeitlichem Vergleich der Klatschimpulse die Übung.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Falls noch keine eigene Zwei-Takt-Notation aus Aufgabe 4 vorliegt, zeigt der Klatsch-Check einen Beispielrhythmus zum Ausprobieren und weist ausdrücklich auf die eigenen Rhythmen als Hauptaufgabe hin.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Hörbaren Vierer-Einzähler ergänzt. Die Klatscherkennung beginnt nach dem Einzähler; Mikrofon-Echounterdrückung ist aktiviert, sodass der Einzähler über Lautsprecher genutzt werden kann.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Anleitung zum Klatschen eigener Rhythmen aus dem Toolbereich in die Aufgabenbeschreibung oberhalb des Tools verschoben.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Beispielrhythmus wird ohne Auswahlknopf automatisch genutzt, wenn keine eigenen Takte vorliegen. Mikrofonsteuerung und ON-AIR-Anzeige an Gehörbildung 1 angeglichen; Startsteuerung mit sichtbarem Laufstatus und Abbruchmöglichkeit gestaltet.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Bedienpanel des Klatsch-Checks direkt unter die Überschrift und über die Notation verschoben.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: The Rhythminator mit metallischem Gehäuse, CRT-Anweisungsdisplay, geführter Mikrofon-Notation-Start-Reihenfolge und rot/grünem Ergebnisfeedback gestaltet; Erfolgsmeldungen wechseln zufällig durch eine gemischte Liste.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Entwurf-Tag entfernt und das Tool als „THE RHYTHMINATOR“ im Schriftzug-Stil des Intonators gestaltet.
+- Rhythmus 1, Kapitel 3, Aufgabe 4: Je Takt einen Papierkorb gezeigt; ein Klick leert den gesamten Takt, während Drag-and-drop auf den Papierkorb weiterhin einzelne Zeichen löscht.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Den „Ausgewählt“-Knopf an der aktiven Notation entfernt; der gewählte Rhythmus bleibt über die Kartenmarkierung erkennbar.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Den technischen Hinweistext unter dem Rhythminator entfernt.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Rhythminator-Starttempo auf 50 BPM gesetzt, Tempoanzeige mit Pfeilen neben „Start“ ergänzt und den gelben Startknopf entsprechend umbenannt und gestaltet.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: BPM-Anzeige und Startknopf auf gleiche Breite gebracht; Pfeile innerhalb der Anzeige fixiert.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Rechte Bedienelemente auf dieselbe Gesamthöhe wie das Anweisungsdisplay gebracht.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Tempo-Pfeile auf die linke Seite der BPM-Anzeige verschoben.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Tempo-Pfeile vergrößert und den Zwischenraum auf 2 Pixel reduziert.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Startknopf stärker als gelber Druckknopf gestaltet, Mikrofonknopf rot gefärbt, ON-AIR-Anzeige als rote Lampe hervorgehoben und BPM-Feld um eine Glasoptik mit beweglichem Analogzeiger ergänzt.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Mikrofonsymbol durch einen seitlichen Kippschalter mit beweglichem Hebel ersetzt.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: Hover- und Fokuszustand des Mikrofonschalters auf der roten Geräteoptik gehalten, damit Schalter und Beschriftung sichtbar bleiben.
+- Rhythmus 1, Kapitel 3, Aufgabe 5: „MIC“-Text neben dem Kippschalter durch ein Mikrofonsymbol ersetzt.
+## 2026-11-20

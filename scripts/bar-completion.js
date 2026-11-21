@@ -1,6 +1,10 @@
 (() => {
   'use strict';
-  document.querySelectorAll('.bar-completion[data-completion]').forEach(setup);
+  let completionHelpTooltipId = 0;
+  document.querySelectorAll('.bar-completion[data-completion]').forEach(root => {
+    if (root.dataset.interaction === 'bar-editor') setupBarEditor(root);
+    else setup(root);
+  });
   document.querySelectorAll('.bar-completion[data-builder]').forEach(setupRhythmBuilder);
   function setupRhythmBuilder(root) {
     if (!window.completionValues || !window.completionGlyphs) return;
@@ -115,6 +119,367 @@
     root.querySelector('[data-builder-clear]').addEventListener('click',()=>{stopPlayback();bars[0].length=0;bars[1].length=0;ties.clear();accents.clear();selectedPosition=null;selectedTieNote=null;selection.textContent='Wähle zuerst eine Position im Takt.';drawPositions();drawScore();});
     drawPositions();drawScore();
   }
+  function setupBarEditor(root) {
+    const taskSequence=(root.dataset.taskSequence||'').split('|').filter(Boolean);
+    const taskIndex=Number(root.dataset.taskSequenceIndex||0);
+    const sequenceLabel=root.dataset.sequenceLabel||'Aufgabe 2';
+    const station=root.closest('.completion-station')||root;
+    const stationMarkup=station.innerHTML;
+    const config=window.completionExercises?.[root.dataset.completion];
+    if(!config||!window.completionValues||!window.completionGlyphs)return;
+    const isRestCode=code=>String(code||'').startsWith('E4');
+    const values=window.completionValues.filter(value=>(config.rests||value.id.startsWith('n'))&&(config.course>1||value.units>=2))
+      .map(value=>({...value,units:value.units*3,rest:value.id.startsWith('r')}));
+    const palette=root.querySelector('.completion-palette');
+    if(root.dataset.completion.includes('/bild-160-paar-')&&values.length===4)palette.classList.add('completion-palette-centered');
+    let gaps=config.gaps.map((gap,index)=>({...gap,index,notes:[]}));
+    let bars=[...new Set(gaps.map(gap=>gap.bar))].map(number=>({number,gaps:gaps.filter(gap=>gap.bar===number)}));
+    const desktop=window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 700px)').matches;
+    const helpToggle=station.querySelector('.completion-help-toggle');
+    helpToggle?.addEventListener('click',()=>{
+      const active=station.classList.toggle('completion-help-active');
+      helpToggle.setAttribute('aria-pressed',String(active));
+      helpToggle.setAttribute('aria-label',active?'Hilfe ausblenden':'Hilfe anzeigen');
+      helpToggle.title=active?'Hilfe ausblenden':'Hilfe anzeigen';
+      if(root.dataset.showBeatCounts==='true')baseSvg?.querySelector('[data-beat-counts]')?.setAttribute('display',active?'inline':'none');
+      if(!active)station.querySelectorAll('.completion-help-marker').forEach(marker=>{marker.classList.remove('is-open');marker.setAttribute('aria-expanded','false');marker.getAttribute('aria-describedby')&&document.getElementById(marker.getAttribute('aria-describedby'))?.classList.remove('is-visible');});
+    });
+    function addHelpMarker(host,text){
+      const marker=document.createElement('span');marker.className='completion-help-marker';marker.textContent='i';marker.tabIndex=0;marker.setAttribute('role','button');marker.setAttribute('aria-label',`Hilfe: ${text}`);marker.setAttribute('aria-expanded','false');
+      const tooltip=document.createElement('span');tooltip.className='completion-help-tooltip';tooltip.id=`completion-help-tooltip-${++completionHelpTooltipId}`;tooltip.setAttribute('role','tooltip');tooltip.textContent=text;marker.setAttribute('aria-describedby',tooltip.id);document.body.append(tooltip);
+      marker.addEventListener('pointerdown',event=>{event.preventDefault();event.stopPropagation();});
+      const hideTooltip=()=>tooltip.classList.remove('is-visible');
+      const showTooltip=()=>{if(!station.classList.contains('completion-help-active'))return;const rect=marker.getBoundingClientRect();tooltip.style.visibility='hidden';tooltip.classList.add('is-visible');const box=tooltip.getBoundingClientRect(),left=Math.max(10,Math.min(rect.right-box.width,window.innerWidth-box.width-10));let top=rect.bottom+8;if(top+box.height>window.innerHeight-10)top=Math.max(10,rect.top-box.height-8);tooltip.style.left=`${left}px`;tooltip.style.top=`${top}px`;tooltip.style.visibility='visible';};
+      marker.addEventListener('mouseenter',showTooltip);marker.addEventListener('focus',showTooltip);marker.addEventListener('mouseleave',()=>{if(!marker.classList.contains('is-open')&&document.activeElement!==marker)hideTooltip();});marker.addEventListener('blur',()=>{if(!marker.classList.contains('is-open'))hideTooltip();});
+      marker.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const open=marker.classList.toggle('is-open');marker.setAttribute('aria-expanded',String(open));if(open)showTooltip();else hideTooltip();});
+      marker.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();marker.click();}else if(event.key==='Escape'){marker.classList.remove('is-open');marker.setAttribute('aria-expanded','false');hideTooltip();}});
+      host.append(marker);return marker;
+    }
+    root.classList.toggle('drag-drop-enabled',desktop);
+    const figure=root.previousElementSibling;
+    // Score figures no longer wrap their images in zoom links. Replace either
+    // the former link or the current image wrapper so the interactive editor
+    // still gets a stable score container in both markup versions.
+    const scoreSource=figure?.querySelector('a, .score-image-wrap, img');
+    let score=null,baseSvg=null,beamLayer=null;
+    if(scoreSource){
+      const image=scoreSource.matches('img')?scoreSource:scoreSource.querySelector('img');
+      if(image){
+        score=document.createElement('div');score.className='completion-score completion-score--bar-editor';scoreSource.replaceWith(score);
+        score.parentElement?.classList.add('completion-editor-scroll');score.append(image);
+        fetch(root.dataset.completion).then(response=>response.ok?response.text():Promise.reject()).then(source=>{
+          const parsed=new DOMParser().parseFromString(source,'image/svg+xml');baseSvg=parsed.documentElement;
+          baseSvg.querySelectorAll('[data-gap="true"],text').forEach(node=>{if(node.matches('[data-gap="true"]')||node.textContent.trim()==='?')node.remove();});
+          if(root.dataset.showBeatCounts==='true'&&station.classList.contains('completion-help-active'))baseSvg.querySelector('[data-beat-counts]')?.setAttribute('display','inline');
+          baseSvg.querySelectorAll('path[data-bar][data-onset]').forEach(path=>{path.dataset.originalCode=path.dataset.smufl||'';});
+          beamLayer=document.createElementNS('http://www.w3.org/2000/svg','svg');beamLayer.setAttribute('viewBox',`0 0 ${config.width} ${config.height}`);beamLayer.setAttribute('preserveAspectRatio','none');beamLayer.classList.add('completion-beam-layer');
+          score.replaceChildren(baseSvg,beamLayer);render();
+        }).catch(()=>{});
+      }
+    }
+    const container=root.querySelector('.completion-bars');
+    container.classList.add('bar-editor-controls');
+    if(score?.parentElement)score.parentElement.insertBefore(container,score);
+    const demo=root.querySelector('.completion-drag-demo');
+    let history=[],hasStarted=false,draggingGapIndex=null;
+    let playbackContext=null,playbackNodes=[],playbackTimer=null,counterTimers=[],isPlaying=false,playbackBpm=40;
+    const playbackLabel=bars.length>2?'Alle Takte':'Beide Takte';
+    const playbackButton=document.createElement('button');playbackButton.type='button';playbackButton.className='completion-bar-play';playbackButton.setAttribute('aria-label',`${playbackLabel} abspielen`);playbackButton.title=`${playbackLabel} abspielen · ein Takt Metronom-Einzähler`;playbackButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
+    if(root.dataset.adjustableBpm==='true'&&score?.parentElement){
+      const bpmControl=document.createElement('div');bpmControl.className='completion-bpm-control';bpmControl.setAttribute('role','group');bpmControl.setAttribute('aria-label','Wiedergabetempo einstellen');
+      const bpmValue=document.createElement('output');bpmValue.className='completion-bpm-value';bpmValue.setAttribute('aria-live','polite');bpmValue.textContent=`${playbackBpm} BPM`;
+      const arrows=document.createElement('span');arrows.className='completion-bpm-arrows';
+      const changeBpm=(amount)=>{playbackBpm=Math.max(30,Math.min(120,playbackBpm+amount));bpmValue.textContent=`${playbackBpm} BPM`;};
+      const up=document.createElement('button');up.type='button';up.className='completion-bpm-up';up.textContent='▲';up.setAttribute('aria-label','Tempo erhöhen');up.title='Tempo erhöhen';up.addEventListener('click',()=>changeBpm(5));
+      const down=document.createElement('button');down.type='button';down.className='completion-bpm-down';down.textContent='▼';down.setAttribute('aria-label','Tempo verringern');down.title='Tempo verringern';down.addEventListener('click',()=>changeBpm(-5));
+      arrows.append(up,down);bpmControl.append(bpmValue,arrows);score.parentElement.insertBefore(bpmControl,score);
+    }
+    const playbackHelpMarker=addHelpMarker(score||root,`Spielt ${playbackLabel.toLowerCase()} nach einem Metronom-Einzähler ab${root.dataset.playPartial==='true'?' – auch mit leeren Feldern.':' sobald alle Takte vollständig sind.'}`);playbackHelpMarker.classList.add('completion-help-play-marker');
+    const countDisplay=document.createElement('span');countDisplay.className='completion-count-display';countDisplay.hidden=true;countDisplay.setAttribute('aria-hidden','true');
+    const snapshot=()=>gaps.map(gap=>gap.notes.slice());
+    function save(){history.push(snapshot());}
+    let playableBars=bars.slice().sort((a,b)=>a.number-b.number),lastBar=playableBars.at(-1);
+    container.dataset.barCount=String(playableBars.length);
+    function isBarComplete(bar){return !!bar&&bar.gaps.every(gap=>gap.notes.length>0)&&bar.gaps.reduce((sum,gap)=>sum+gap.notes.reduce((noteSum,value)=>noteSum+value.units,0),0)===bar.gaps.reduce((sum,gap)=>sum+gap.duration,0);}
+    function isPlaybackReady(){return !!baseSvg&&(root.dataset.playPartial==='true'||playableBars.length>=2&&playableBars.every(isBarComplete));}
+    function stopBarPlayback(){if(playbackTimer)clearTimeout(playbackTimer);playbackTimer=null;counterTimers.forEach(clearTimeout);counterTimers=[];countDisplay.hidden=true;playbackNodes.forEach(node=>{try{node.stop();}catch{}});playbackNodes=[];isPlaying=false;score?.classList.remove('completion-is-playing');playbackButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';playbackButton.setAttribute('aria-label',`${playbackLabel} abspielen`);playbackButton.title=`${playbackLabel} abspielen · ein Takt Metronom-Einzähler`;}
+    function render(){
+      undoButton.disabled=!history.length;
+      playbackButton.disabled=!isPlaying&&!isPlaybackReady();
+      if(hasStarted)demo?.setAttribute('hidden','');
+      if(score){
+        score.classList.toggle('completion-all-gaps-filled',gaps.every(gap=>gap.notes.length>0));
+        score.querySelectorAll('.completion-gap, .completion-gap-clear').forEach(node=>node.remove());
+        const beamedGapNotes=updateBeams();
+        const clearByBar=root.dataset.evaluateClears==='true';
+        const barTrashButtons=new Map();
+        if(clearByBar){
+          playableBars.forEach(bar=>{
+            if(!bar.gaps.some(gap=>gap.notes.length))return;
+            const right=bar.gaps.reduce((edge,gap)=>Math.max(edge,gap.x+gap.width),0);
+            const bottom=bar.gaps.reduce((edge,gap)=>Math.max(edge,gap.y+gap.height),0);
+            const trash=document.createElement('button');trash.type='button';trash.className='completion-gap-clear completion-bar-clear';trash.dataset.bar=String(bar.number);trash.setAttribute('aria-label',`Takt ${bar.number} leeren`);trash.title=`Takt ${bar.number} leeren`;trash.style.left=`${right/config.width*100}%`;trash.style.top=`${bottom/config.height*100}%`;
+            trash.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v6m4-6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            addHelpMarker(trash,'Leert den ganzen Takt. Ziehst du ein einzelnes Zeichen aus einer Lücke hierher, wird nur dieses Zeichen entfernt.');
+            trash.addEventListener('click',event=>{event.stopPropagation();if(isPlaying)stopBarPlayback();save();bar.gaps.forEach(gap=>{gap.notes=[];});noteContentEdited();render();});
+            trash.addEventListener('dragover',event=>{if(draggingGapIndex===null||!Array.from(event.dataTransfer.types).includes('application/x-completion-gap-note'))return;const source=gaps[draggingGapIndex];if(source?.bar!==bar.number)return;event.preventDefault();event.dataTransfer.dropEffect='move';trash.classList.add('completion-trash-ready');});
+            trash.addEventListener('dragleave',event=>{if(!trash.contains(event.relatedTarget))trash.classList.remove('completion-trash-ready');});
+            trash.addEventListener('drop',event=>{const raw=event.dataTransfer.getData('application/x-completion-gap-note');if(!raw)return;event.preventDefault();const [sourceIndex,noteIndex]=raw.split(':').map(Number),source=gaps[sourceIndex];trash.classList.remove('completion-trash-ready');if(source?.bar!==bar.number||!source.notes[noteIndex])return;if(isPlaying)stopBarPlayback();save();source.notes.splice(noteIndex,1);noteContentEdited();render();});
+            score.append(trash);barTrashButtons.set(bar.number,trash);
+          });
+        }
+        gaps.forEach(gap=>{
+          const target=document.createElement('div');target.className='completion-gap';target.dataset.gap=String(gap.index);
+          target.dataset.bar=String(gap.bar);
+          target.style.cssText=`left:${gap.x/config.width*100}%;top:${gap.y/config.height*100}%;width:${gap.width/config.width*100}%;height:${gap.height/config.height*100}%;`;
+          target.setAttribute('role','group');target.setAttribute('aria-label',`Takt ${gap.bar}, Lücke ${gap.index+1}${gap.notes.length?`: ${gap.notes.map(n=>n.name).join(', ')}`:': leer'}`);
+          if(!gap.notes.length)target.textContent='?';else target.innerHTML=renderGap(gap,beamedGapNotes);
+          target.style.position='absolute';
+          let trash=null;
+          if(gap.notes.length){
+            if(clearByBar){trash=barTrashButtons.get(gap.bar)||null;}
+            else{trash=document.createElement('button');trash.type='button';trash.className='completion-gap-clear';trash.setAttribute('aria-label',`Lücke ${gap.index+1} leeren`);trash.title=`Lücke ${gap.index+1} leeren · Zeichen hierher ziehen oder anklicken`;trash.style.left=`${(gap.x+gap.width)/config.width*100}%`;trash.style.top=`${(gap.y+gap.height)/config.height*100}%`;trash.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v6m4-6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';addHelpMarker(trash,'Leert diese Lücke. Ziehe ein Zeichen aus der Lücke auf den Papierkorb oder klicke darauf.');trash.addEventListener('click',event=>{event.stopPropagation();if(isPlaying)stopBarPlayback();save();gap.notes=[];noteContentEdited();render();});}
+          }
+          if(desktop){
+            if(gap.notes.length){gapLayout(gap).positions.forEach((position,index)=>{const handle=document.createElement('button');handle.type='button';handle.className='completion-note-drag-handle';handle.draggable=true;handle.setAttribute('aria-label',`${gap.notes[index].name} aus Lücke ${gap.index+1} zum Löschen ziehen`);handle.style.left=`${position.x/gap.width*100}%`;handle.style.width=`${Math.max(20,28*position.scale)/gap.width*100}%`;handle.addEventListener('dragstart',event=>{draggingGapIndex=gap.index;event.dataTransfer.setData('application/x-completion-gap-note',`${gap.index}:${index}`);event.dataTransfer.effectAllowed='move';station.classList.add('is-dragging');trash?.classList.add('completion-trash-source');const paletteIndex=values.findIndex(value=>value.id===gap.notes[index].id),icon=palette.children[paletteIndex]?.querySelector('svg');if(icon){const preview=icon.cloneNode(true);preview.setAttribute('width','36');preview.setAttribute('height','54');preview.style.cssText='position:fixed;left:-1000px;top:0;width:36px;height:54px;color:#202e31;background:transparent;padding:0;border:0;box-shadow:none';document.body.append(preview);event.dataTransfer.setDragImage(preview,18,27);handle.addEventListener('dragend',()=>preview.remove(),{once:true});}});handle.addEventListener('dragend',()=>{draggingGapIndex=null;station.classList.remove('is-dragging');trash?.classList.remove('completion-trash-source','completion-trash-ready');});target.append(handle);});}
+            target.addEventListener('dragover',event=>{if(!Array.from(event.dataTransfer.types).includes('application/x-completion-value'))return;event.preventDefault();event.dataTransfer.dropEffect='copy';target.classList.add('completion-drop-ready');});target.addEventListener('dragleave',()=>target.classList.remove('completion-drop-ready'));target.addEventListener('drop',event=>{const raw=event.dataTransfer.getData('application/x-completion-value');if(!raw)return;event.preventDefault();target.classList.remove('completion-drop-ready');const value=values[Number(raw)];if(value)add(value,gap);});
+            if(trash&&!clearByBar){trash.addEventListener('dragover',event=>{if(draggingGapIndex!==gap.index||!Array.from(event.dataTransfer.types).includes('application/x-completion-gap-note'))return;event.preventDefault();event.dataTransfer.dropEffect='move';trash.classList.add('completion-trash-ready');});trash.addEventListener('dragleave',event=>{if(!trash.contains(event.relatedTarget))trash.classList.remove('completion-trash-ready');});trash.addEventListener('drop',event=>{const raw=event.dataTransfer.getData('application/x-completion-gap-note');if(!raw)return;event.preventDefault();const [sourceIndex,noteIndex]=raw.split(':').map(Number),source=gaps[sourceIndex];trash.classList.remove('completion-trash-ready');if(sourceIndex!==gap.index||!source?.notes[noteIndex])return;if(isPlaying)stopBarPlayback();save();source.notes.splice(noteIndex,1);noteContentEdited();render();});}
+          }
+          addHelpMarker(target,'Setze hier ein Noten- oder Pausenzeichen ein. Am Computer ziehst du es aus der Palette in die Lücke; auf Touchgeräten tippst du ein Zeichen an, um es in die nächste Lücke zu setzen.');
+          if(clearByBar&&trash){
+            target.addEventListener('pointerenter',()=>trash.classList.add('completion-trash-visible'));
+            target.addEventListener('pointerleave',event=>{const nextGap=event.relatedTarget?.closest?.('.completion-gap');if(nextGap?.dataset.bar===String(gap.bar)||trash.contains(event.relatedTarget))return;trash.classList.remove('completion-trash-visible');});
+            trash.addEventListener('pointerleave',event=>{const nextGap=event.relatedTarget?.closest?.('.completion-gap');if(nextGap?.dataset.bar===String(gap.bar))return;trash.classList.remove('completion-trash-visible');});
+            trash.addEventListener('focus',()=>trash.classList.add('completion-trash-visible'));
+            trash.addEventListener('blur',()=>trash.classList.remove('completion-trash-visible'));
+          }
+          score.append(target);if(trash&&!clearByBar)score.append(trash);
+        });
+        if(beamLayer)score.append(beamLayer);if(lastBar)score.append(playbackButton,playbackHelpMarker);score.append(countDisplay);
+      }
+      container.replaceChildren();bars.forEach(bar=>{
+        const card=document.createElement('section');card.className='completion-bar bar-editor-card';
+        const feedback=document.createElement('p');feedback.className='completion-feedback';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');card.append(feedback);container.append(card);
+      });
+    }
+    const evaluateWrap=document.createElement('div');evaluateWrap.className='completion-evaluate-wrap';
+    const finalButtons=document.createElement('div');finalButtons.className='completion-final-buttons';
+    const undoButton=document.createElement('button');undoButton.type='button';undoButton.className='completion-undo';undoButton.setAttribute('aria-label','Rückgängig machen');undoButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10h11a6 6 0 1 1-5.6 8M3 10l5-5M3 10l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Rückgängig machen</span>';undoButton.disabled=true;undoButton.addEventListener('click',()=>{if(!history.length)return;if(isPlaying)stopBarPlayback();const previous=history.pop();gaps.forEach((gap,i)=>gap.notes=previous[i]);noteContentEdited();render();});
+    const undoHost=document.createElement('span');undoHost.className='completion-help-host';undoHost.append(undoButton);addHelpMarker(undoHost,'Macht die letzte Änderung rückgängig. Der Knopf wird aktiv, sobald du ein Zeichen eingesetzt oder entfernt hast.');
+    const evaluateButton=document.createElement('button');evaluateButton.type='button';evaluateButton.className='completion-evaluate';evaluateButton.textContent='Aufgabe auswerten';
+    const evaluateHost=document.createElement('span');evaluateHost.className='completion-help-host';evaluateHost.append(evaluateButton);
+    let evaluated=false;
+    function noteContentEdited(){
+      if(!evaluated||root.dataset.evaluateClears!=='true')return;
+      evaluated=false;
+      evaluateButton.textContent='Aufgabe auswerten';
+      evaluateButton.setAttribute('aria-label',evaluateButton.textContent);
+      evaluateButton.disabled=false;
+      evaluateButton.classList.remove('completion-next-ready');
+      container.querySelectorAll('.completion-feedback').forEach(feedback=>{
+        feedback.replaceChildren();
+        feedback.removeAttribute('data-result');
+        feedback.classList.remove('completion-result-flash-correct','completion-result-flash-wrong');
+      });
+    }
+    const evaluateHelp=addHelpMarker(evaluateHost,`Prüft alle ${playableBars.length===2?'beiden Takte':'vier Takte'}. Jeder muss genau vier Schläge enthalten. Bei Fehlern wird beschrieben, was nicht stimmt, ohne die Lösung vorzugeben.`);
+    evaluateButton.addEventListener('click',()=>{
+      if(evaluated){
+        if(root.dataset.evaluateClears==='true'){
+          if(isPlaying)stopBarPlayback();history=[];gaps.forEach(gap=>gap.notes=[]);hasStarted=false;evaluated=false;
+          container.querySelectorAll('.completion-feedback').forEach(feedback=>{feedback.replaceChildren();feedback.removeAttribute('data-result');feedback.classList.remove('completion-result-flash-correct','completion-result-flash-wrong');});
+          evaluateButton.textContent='Aufgabe auswerten';evaluateButton.setAttribute('aria-label',evaluateButton.textContent);evaluateButton.disabled=false;evaluateButton.classList.remove('completion-next-ready');undoButton.disabled=true;render();return;
+        }
+        const nextIndex=taskIndex+1;
+        if(nextIndex>=taskSequence.length){
+          const target=root.dataset.nextSection?document.querySelector(root.dataset.nextSection):null;
+          if(target){if(target.id)window.history.replaceState(null,'',`#${target.id}`);target.scrollIntoView({behavior:'smooth',block:'start'});}
+          return;
+        }
+        if(isPlaying)stopBarPlayback();
+        station.querySelectorAll('.completion-help-marker[aria-describedby]').forEach(marker=>document.getElementById(marker.getAttribute('aria-describedby'))?.remove());
+        const nextStation=station.cloneNode(false);
+        nextStation.classList.remove('completion-help-active');
+        nextStation.innerHTML=stationMarkup;
+        const nextTitle=`${sequenceLabel}.${nextIndex+1} · Takte vervollständigen`;
+        const heading=nextStation.querySelector('.completion-station-heading h4');
+        const nextRoot=nextStation.querySelector('.bar-completion');
+        const figure=nextStation.querySelector('.score-figure');
+        const nextPath=taskSequence[nextIndex];
+        const nextImage=figure?.querySelector('img');
+        const nextCaption=figure?.querySelector('figcaption');
+        if(heading)heading.textContent=nextTitle;
+        if(figure){figure.querySelector('.score-scroll')?.setAttribute('aria-label',`${nextTitle} – bei Bedarf seitlich scrollen`);if(nextImage){nextImage.src=nextPath;nextImage.width=window.completionExercises[nextPath]?.width||960;nextImage.height=window.completionExercises[nextPath]?.height||150;nextImage.alt=`Notation für ${nextTitle}`;}if(nextCaption){nextCaption.textContent=nextTitle;}}
+        if(nextRoot){nextRoot.dataset.completion=nextPath;nextRoot.dataset.taskSequence=taskSequence.join('|');nextRoot.dataset.taskSequenceIndex=String(nextIndex);}
+        station.replaceWith(nextStation);
+        if(nextRoot)setupBarEditor(nextRoot);
+        return;
+      }
+      let allBarsCorrect=true;
+      bars.forEach((bar,index)=>{
+        const errors=checkBar(bar,container.children[index]);
+        if(errors.length)allBarsCorrect=false;
+        showEvaluationEffect(container.children[index].querySelector('.completion-feedback'),!errors.length);
+      });
+      evaluated=true;
+      refreshGapBeams();
+      if(allBarsCorrect&&root.dataset.transferTarget)saveEvaluatedPattern();
+      const hasNext=taskIndex+1<taskSequence.length;
+      const canContinue=Boolean(root.dataset.nextSection)&&!hasNext;
+      evaluateButton.textContent=root.dataset.evaluateClears==='true'?'Takte leeren':hasNext?'Nächste Aufgabe':canContinue?"Weiter geht's!":'Alle Aufgaben erledigt';
+      evaluateButton.setAttribute('aria-label',evaluateButton.textContent);
+      if(root.dataset.evaluateClears==='true'){evaluateButton.disabled=false;}
+      else if(hasNext||canContinue){evaluateButton.classList.add('completion-next-ready');evaluateHelp.setAttribute('aria-label',canContinue?'Hilfe: Weiter zum nächsten Aufgabenabschnitt.':'Hilfe: Klicke hier, um die nächste Aufgabe mit leerem Arbeitsfeld zu öffnen.');const tooltip=document.getElementById(evaluateHelp.getAttribute('aria-describedby'));if(tooltip)tooltip.textContent=canContinue?'Springt zum nächsten Aufgabenabschnitt.':'Öffnet die nächste Aufgabe mit leerem Arbeitsfeld.';}
+      else evaluateButton.disabled=true;
+    });
+    finalButtons.append(undoHost,evaluateHost);evaluateWrap.append(finalButtons);root.append(evaluateWrap);
+    playbackButton.addEventListener('click',async()=>{
+      if(isPlaying){stopBarPlayback();return;}
+      if(!isPlaybackReady())return;
+      const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)return;
+      if(!playbackContext)playbackContext=new AudioContextClass();
+      try{await playbackContext.resume();}catch{return;}
+      const bpm=playbackBpm,beatSeconds=60/bpm,start=playbackContext.currentTime+.15;
+      const tone=(frequency,at,duration,wave='sine',volume=.22)=>{const oscillator=playbackContext.createOscillator(),gain=playbackContext.createGain();oscillator.type=wave;oscillator.frequency.setValueAtTime(frequency,at);gain.gain.setValueAtTime(.0001,at);gain.gain.linearRampToValueAtTime(volume,at+.006);gain.gain.setValueAtTime(volume,Math.max(at+.007,at+duration-.035));gain.gain.linearRampToValueAtTime(.0001,Math.max(at+.03,at+duration));oscillator.connect(gain);gain.connect(playbackContext.destination);oscillator.start(at);oscillator.stop(at+duration+.015);playbackNodes.push(oscillator);};
+      const playbackBeats=4+playableBars.length*4;
+      for(let beat=0;beat<playbackBeats;beat++){const at=start+beat*beatSeconds;tone(beat%4===0?1050:760,at,.075,'triangle',beat%4===0?.25:.16);}
+      const counterDelay=Math.max(0,(start-playbackContext.currentTime)*1000);
+      for(let beat=0;beat<playbackBeats;beat++){counterTimers.push(setTimeout(()=>{if(beat>=playbackBeats){countDisplay.hidden=true;return;}const isCountIn=beat<4,playedBeat=beat-4,barIndex=isCountIn?0:Math.floor(playedBeat/4),bar=playableBars[barIndex],barStart=((bar?.number||1)-1)%2===0?88:510,beatInBar=isCountIn?0:playedBeat%4,gapY=bar?.gaps[0]?.y??61;countDisplay.textContent=String(isCountIn?beat+1:beatInBar+1);countDisplay.classList.toggle('is-count-in',isCountIn);countDisplay.style.left=`${(barStart+(isCountIn?-33:beatInBar*105))/config.width*100}%`;countDisplay.style.top=`${Math.max(8,gapY-41)/config.height*100}%`;countDisplay.hidden=false;},counterDelay+beat*beatSeconds*1000));}
+      const events=[];
+      if(baseSvg)[...baseSvg.querySelectorAll('path[data-bar][data-onset][data-duration]')].forEach(path=>{const barNumber=Number(path.dataset.bar);if(!playableBars.some(bar=>bar.number===barNumber))return;events.push({barNumber,onset:Number(path.dataset.onset),units:Number(path.dataset.duration),rest:isRestCode(path.dataset.originalCode||path.dataset.smufl)});});
+      playableBars.forEach(bar=>bar.gaps.forEach(gap=>{let onset=gap.onset;gap.notes.forEach(value=>{events.push({barNumber:bar.number,onset,units:value.units,rest:value.rest});onset+=value.units;});}));
+      events.filter(event=>!event.rest).forEach(event=>{const barIndex=playableBars.findIndex(bar=>bar.number===event.barNumber);if(barIndex<0)return;const at=start+(4+barIndex*4+event.onset/12)*beatSeconds,duration=event.units/12*beatSeconds;tone(261.63,at,duration);});
+      isPlaying=true;score?.classList.add('completion-is-playing');playbackButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 5h4v14H6zm8 0h4v14h-4z" fill="currentColor"/></svg>';playbackButton.setAttribute('aria-label','Wiedergabe stoppen');playbackButton.title='Wiedergabe stoppen';
+      playbackTimer=setTimeout(stopBarPlayback,playbackBeats*beatSeconds*1000+250);
+    });
+    function updateBeams(){
+      if(!baseSvg||!beamLayer)return new Set();
+      beamLayer.replaceChildren();const events=[];
+      const fixed=[...baseSvg.querySelectorAll('path[data-bar][data-onset][data-duration]')];
+      fixed.forEach(path=>{
+        const transform=path.getAttribute('transform')||'',match=transform.match(/translate\(([-\d.]+)\s+([-\d.]+)\)/),code=path.dataset.originalCode;
+        if(!match)return;const onset=Number(path.dataset.onset),duration=Number(path.dataset.duration),bar=Number(path.dataset.bar);
+        events.push({bar,onset,end:onset+duration,duration,rest:isRestCode(code),path,x:Number(match[1])});
+        path.setAttribute('d',window.completionGlyphs[code]);path.dataset.smufl=code;
+      });
+      gaps.forEach(gap=>{const used=gap.notes.reduce((sum,value)=>sum+value.units,0);if(used>gap.duration)return;let onset=gap.onset;gap.notes.forEach((value,index)=>{events.push({bar:gap.bar,onset,end:onset+value.units,duration:value.units,rest:value.rest,gap,index,x:gap.x+3+(onset-gap.onset)*config.step});onset+=value.units;});});
+      events.sort((a,b)=>a.bar-b.bar||a.onset-b.onset);const groups=[];events.forEach((event,index)=>{
+        if(event.rest||event.duration!==6)return;const previous=groups.at(-1),prior=previous?events[previous.at(-1)]:null;
+        const continuousWithinBeat=prior&&prior.end===event.onset&&Math.floor(prior.onset/12)===Math.floor(event.onset/12);
+        const adjacentSingleGapEighths=evaluated&&prior?.gap&&event.gap&&event.gap.index===prior.gap.index+1&&prior.gap.notes.length===1&&event.gap.notes.length===1;
+        if(previous&&previous.at(-1)===index-1&&prior.bar===event.bar&&(continuousWithinBeat||adjacentSingleGapEighths))previous.push(index);else groups.push([index]);
+      });
+      const selected=new Set();groups.filter(group=>group.length>1&&group.some(index=>events[index].gap)).forEach(group=>{
+        const firstGap=events[group[0]].gap;
+        if(firstGap&&group.every(index=>events[index].gap?.index===firstGap.index))return;
+        group.forEach(index=>{const event=events[index];if(event.gap)selected.add(`${event.gap.index}-${event.index}`);else{event.path.setAttribute('d',window.completionGlyphs.E0A4);event.path.dataset.smufl='E0A4';}});
+        const first=events[group[0]],last=events[group.at(-1)],y=67;
+        group.filter(index=>!events[index].gap).forEach(index=>{const x=events[index].x+11.3;const stem=document.createElementNS('http://www.w3.org/2000/svg','path');stem.setAttribute('d',`M${x} 105V${y}`);stem.setAttribute('stroke','black');stem.setAttribute('stroke-width','1.5');beamLayer.append(stem);});
+        const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.setAttribute('d',`M${first.x+11.3} ${y}H${last.x+11.3}`);line.setAttribute('stroke','black');line.setAttribute('stroke-width','4.5');beamLayer.append(line);
+      });
+      return selected;
+    }
+    function refreshGapBeams(){
+      const beamed=updateBeams();
+      gaps.forEach(gap=>{
+        if(!gap.notes.length)return;
+        const current=score?.querySelector(`.completion-gap[data-gap="${gap.index}"] .completion-notation`);
+        if(!current)return;
+        const replacement=document.createElement('div');replacement.innerHTML=renderGap(gap,beamed);
+        if(replacement.firstElementChild)current.replaceWith(replacement.firstElementChild);
+      });
+    }
+    function saveEvaluatedPattern(){
+      if(!baseSvg)return;
+      const completed=baseSvg.cloneNode(true);
+      completed.querySelectorAll('[data-gap="true"]').forEach(node=>node.remove());
+      completed.querySelectorAll('text').forEach(node=>{if(node.textContent.trim()==='?')node.remove();});
+      completed.querySelector('[data-beat-counts]')?.setAttribute('display','none');
+      const beamNotes=updateBeams();
+      gaps.forEach(gap=>{
+        if(!gap.notes.length)return;
+        const parser=new DOMParser(),notation=parser.parseFromString(renderGap(gap,beamNotes),'image/svg+xml').documentElement;
+        notation.removeAttribute('class');notation.setAttribute('x',String(gap.x));notation.setAttribute('y',String(gap.y));notation.setAttribute('width',String(gap.width));notation.setAttribute('height',String(gap.height));notation.setAttribute('preserveAspectRatio','none');notation.setAttribute('aria-hidden','true');
+        completed.append(notation);
+      });
+      if(beamLayer)Array.from(beamLayer.childNodes).forEach(node=>completed.append(node.cloneNode(true)));
+      const svg=new XMLSerializer().serializeToString(completed);
+      const key=root.dataset.patternStorageKey||'the-tree-of-music-rhythm-task5-patterns';
+      let saved=[];try{saved=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(saved))saved=[];}catch{}
+      const clapEvents=[],noteEvents=[];
+      playableBars.forEach((bar,barIndex)=>bar.gaps.forEach(gap=>{let onset=gap.onset;gap.notes.forEach(value=>{if(!value.rest){const beat=(barIndex*48+onset)/12;clapEvents.push(beat);noteEvents.push({beat,duration:value.units/12});}onset+=value.units;});}));
+      saved.push({id:`pattern-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,createdAt:new Date().toISOString(),svg,clapEvents,noteEvents,durationBeats:playableBars.length*4});
+      try{localStorage.setItem(key,JSON.stringify(saved));window.dispatchEvent(new CustomEvent('rhythm:patterns-updated',{detail:{patterns:saved,storageKey:key}}));}catch{container.querySelector('.completion-feedback')?.append(document.createTextNode(' Die Notation konnte nicht dauerhaft auf diesem Gerät gespeichert werden.'));}
+    }
+    function gapLayout(gap){
+      const occupiedSpan=gap.notes.slice(0,-1).reduce((sum,value)=>sum+value.units,0)*config.step;
+      const availableWidth=Math.max(1,gap.width-6);
+      const spacingScale=Math.min(1,availableWidth/Math.max(30,occupiedSpan+30));
+      const unit=config.step*spacingScale,positions=[];let onset=gap.onset;
+      gap.notes.forEach(value=>{positions.push({value,onset,x:3+(onset-gap.onset)*unit,scale:spacingScale});onset+=value.units;});
+      return {spacingScale,unit,positions};
+    }
+    function renderGap(gap,beamedGapNotes){
+      const {spacingScale,unit,positions}=gapLayout(gap),notes=positions.map(position=>({...position,end:position.onset+position.value.units}));
+      const groups=[];
+      notes.forEach((note,i)=>{
+        if(note.value.rest||note.value.units!==6||Math.floor(note.onset/12)!==Math.floor((note.end-1)/12))return;
+        const prev=groups.at(-1);
+        if(prev&&prev.at(-1)===i-1&&Math.floor(notes[prev[0]].onset/12)===Math.floor(note.onset/12)&&notes[prev.at(-1)].end===note.onset)prev.push(i);
+        else groups.push([i]);
+      });
+      const beamed=new Set(groups.filter(group=>group.length>1).flat());
+      let body='<path d="M0 45H'+Math.max(gap.width,notes.length*unit*0.65)+'" stroke="currentColor" stroke-width="1"/>';
+      notes.forEach((note,i)=>{
+        const x=note.x,isBeamed=beamed.has(i)||beamedGapNotes.has(`${gap.index}-${i}`),code=isBeamed?'E0A4':note.value.code||(note.value.rest?{48:'E4E3',24:'E4E4',12:'E4E5',6:'E4E6',3:'E4E7'}:{48:'E1D2',24:'E1D3',12:'E1D5',6:'E1D7',3:'E1D9'})[note.value.units];
+        body+=`<path transform="translate(${x} 64.8) scale(${.52*spacingScale} ${-.52*spacingScale})" fill="currentColor" d="${window.completionGlyphs[code]}"/>`;
+        if(isBeamed)body+=`<path d="M${x+11.3} 45V6" stroke="currentColor" stroke-width="1.5"/>`;
+      });
+      groups.filter(group=>group.length>1).forEach(group=>body+=`<path d="M${notes[group[0]].x+10.6} 6H${notes[group.at(-1)].x+12}" stroke="currentColor" stroke-width="4.5"/>`);
+      const width=gap.width;
+      return `<svg class="completion-notation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} 70" aria-hidden="true">${body}</svg>`;
+    }
+    function canFitVisually(gap,value){
+      const allNotes=[...gap.notes,value],occupiedSpan=allNotes.slice(0,-1).reduce((sum,note)=>sum+note.units,0)*config.step;
+      return (gap.width-6)/Math.max(30,occupiedSpan+30)>=.48;
+    }
+    function add(value,gap){if(!canFitVisually(gap,value)){const feedback=container.querySelector('.completion-feedback');if(feedback)feedback.textContent=`In Lücke ${gap.index+1} ist visuell kein Platz mehr für ein weiteres Zeichen.`;return;}if(isPlaying)stopBarPlayback();save();gap.notes.push(value);hasStarted=true;noteContentEdited();render();}
+    function checkBar(bar,card){
+      const feedback=card.querySelector('.completion-feedback');
+      const errors=[];
+      const expectedGapUnits=bar.gaps.reduce((sum,gap)=>sum+gap.duration,0);
+      const total=bar.gaps.reduce((sum,gap)=>sum+gap.notes.reduce((n,value)=>n+value.units,0),0)+(48-expectedGapUnits);
+      if(total<48)errors.push(`Takt ${bar.number} ist insgesamt ${formatBeats(48-total)} ${48-total===12?'Schlag':'Schläge'} zu kurz; es ergeben sich ${formatBeats(total)} statt vier Schläge.`);
+      else if(total>48)errors.push(`Takt ${bar.number} ist insgesamt ${formatBeats(total-48)} ${total-48===12?'Schlag':'Schläge'} zu lang; es ergeben sich ${formatBeats(total)} statt vier Schläge.`);
+      const offbeatQuarters=[];
+      bar.gaps.forEach(gap=>{let onset=gap.onset;gap.notes.forEach(value=>{if(!value.rest&&value.units===12&&onset%12===6)offbeatQuarters.push(`${Math.floor(onset/12)+1} &`);onset+=value.units;});});
+      if(errors.length){feedback.dataset.result='retry';feedback.textContent=errors.join(' ');}else{feedback.dataset.result='correct';feedback.textContent=`Takt ${bar.number} stimmt: vier Schläge.${offbeatQuarters.length?` Hinweis: Die Viertelnote auf ${offbeatQuarters.map(value=>`„${value}“`).join(' und ')} ist korrekt, aber auf dieser schwachen Zählzeit schwer lesbar. Ein Haltebogen macht solche Rhythmen später klarer; du lernst ihn im passenden Rhythmuskurs kennen.`:''}`;}
+      return errors;
+    }
+    function showEvaluationEffect(feedback,correct){
+      if(!feedback)return;
+      feedback.querySelectorAll('.completion-result-flake').forEach(flake=>flake.remove());
+      feedback.classList.remove('completion-result-flash-correct','completion-result-flash-wrong');
+      void feedback.offsetWidth;
+      feedback.classList.add(correct?'completion-result-flash-correct':'completion-result-flash-wrong');
+      if(correct){
+        const burst=[[-34,-24],[-20,-39],[-7,-31],[10,-40],[25,-29],[37,-17]];
+        burst.forEach(([x,y],index)=>{
+          const flake=document.createElement('span');flake.className='completion-result-flake';flake.setAttribute('aria-hidden','true');flake.textContent='✦';flake.style.setProperty('--flake-x',`${x}px`);flake.style.setProperty('--flake-y',`${y}px`);flake.style.setProperty('--flake-delay',`${index*35}ms`);feedback.append(flake);
+          window.setTimeout(()=>flake.remove(),1050);
+        });
+      }
+    }
+    function formatBeats(units){const value=units/12;return Number.isInteger(value)?String(value):String(value).replace('.',',');}
+    values.forEach((value,index)=>{
+      const button=document.createElement('button');button.type='button';
+      if(desktop){button.draggable=true;button.addEventListener('dragstart',event=>{draggingGapIndex=null;station.classList.add('is-dragging','is-palette-dragging');event.dataTransfer.setData('application/x-completion-value',String(index));event.dataTransfer.effectAllowed='copy';const icon=button.querySelector('svg');if(icon){const preview=icon.cloneNode(true);preview.setAttribute('width','48');preview.setAttribute('height','66');preview.style.cssText='position:fixed;left:-1000px;top:0;width:48px;height:66px;color:#202e31';document.body.append(preview);event.dataTransfer.setDragImage(preview,24,33);button.addEventListener('dragend',()=>preview.remove(),{once:true});}});button.addEventListener('dragend',()=>station.classList.remove('is-dragging','is-palette-dragging'));}
+      button.innerHTML=`${value.svg||`<svg viewBox="-12 -85 78 120" aria-hidden="true"><path transform="scale(.8 -.8)" d="${window.completionGlyphs[value.code]}" fill="currentColor"/></svg>`}<span>${value.name}</span>`;
+      button.addEventListener('click',()=>{if(desktop)return;const next=gaps.find(gap=>canFitVisually(gap,value));if(!next){const feedback=container.querySelector('.completion-feedback');if(feedback)feedback.textContent='In den Lücken ist visuell kein Platz mehr für dieses Zeichen.';return;}add(value,next);});palette.append(button);
+    });
+    addHelpMarker(palette,'Setze eine Note oder Pause ein: Am Computer ziehst du das gewünschte Symbol in eine Lücke. Auf Touchgeräten tippst du das Symbol an; es wird in die nächste Lücke gesetzt.');
+    render();
+  }
   function setup(root) {
   const config = window.completionExercises?.[root.dataset.completion];
   if (!config || !window.completionValues) return;
@@ -127,6 +492,7 @@
     if (config.rests) values.push({id:'rt',name:'Triolenachtelpause',units:4,triplet:true,rest:true,code:'E4E6'});
   }
   const bars = config.gaps.map(gap => ({...gap, notes:[]}));
+  let hasStarted = false;
   // Beam short notes within each quarter beat; never across a beat boundary.
   function notation(bar, requestedWidth, editable) {
     let cursor = bar.onset;
@@ -192,18 +558,26 @@
   }
 
   let active = 0;
+const dragDropEnabled = root.dataset.dragDrop === 'desktop' && window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 700px)').matches;
+root.classList.toggle('drag-drop-enabled', dragDropEnabled);
 const figure = root.previousElementSibling;
-const link = figure.querySelector('a');
+const scoreSource = figure?.querySelector('a, .score-image-wrap, img');
+const scoreImage = scoreSource?.matches('img') ? scoreSource : scoreSource?.querySelector('img');
+if (!scoreSource || !scoreImage) return;
 const score = document.createElement('div');
 score.className = 'completion-score';
-link.replaceWith(score);
-score.append(link.querySelector('img'));
+scoreSource.replaceWith(score);
+score.append(scoreImage);
 const dialog = document.createElement('dialog');
 dialog.className = 'completion-dialog bar-completion';
 dialog.setAttribute('aria-label', 'Lücke ergänzen');
 const close = document.createElement('button');
 close.type = 'button'; close.className = 'completion-close'; close.textContent = 'Fertig · Schließen ×';
-dialog.append(close, root.querySelector('.completion-palette'), root.querySelector('.completion-bars'));
+const palette = root.querySelector('.completion-palette');
+const completionBars = root.querySelector('.completion-bars');
+dialog.append(close);
+if (!dragDropEnabled) dialog.append(palette);
+dialog.append(completionBars);
 root.append(dialog);
 let opener;
 close.addEventListener('click', () => dialog.close());
@@ -214,7 +588,25 @@ const gaps = positions.map(([x,y,w,h], index) => {
   const button = document.createElement('button'); button.type = 'button'; button.className = 'completion-gap';
   button.style.cssText = `left:${x/config.width*100}%;top:${y/config.height*100}%;width:${w/config.width*100}%;height:${h/config.height*100}%;`;
   button.setAttribute('aria-haspopup','dialog');
-  button.addEventListener('click', () => {select(index); opener=button; dialog.showModal(); dialog.querySelector('.completion-palette button').focus();});
+  button.addEventListener('click', () => {
+    select(index);
+    if (dragDropEnabled && !bars[index].notes.length) { summary.textContent=`Lücke in Takt ${bars[index].bar} ausgewählt. Wähle ein Zeichen oder ziehe es hierher.`; return; }
+    opener=button; dialog.showModal();
+    (dragDropEnabled ? dialog.querySelector('[data-clear]') : dialog.querySelector('.completion-palette button'))?.focus();
+  });
+  if (dragDropEnabled) {
+    button.addEventListener('dragover', event => { event.preventDefault(); event.dataTransfer.dropEffect='copy'; button.classList.add('completion-drop-ready'); });
+    button.addEventListener('dragleave', () => button.classList.remove('completion-drop-ready'));
+    button.addEventListener('drop', event => {
+      event.preventDefault(); button.classList.remove('completion-drop-ready');
+      const value=values[Number(event.dataTransfer.getData('application/x-completion-value'))];
+      if (!value) return;
+      select(index);
+      if (bars[index].notes.length>=32) {summary.textContent='Entferne erst ein Zeichen, bevor du weitere hinzufügst.';return;}
+      bars[index].notes.push(value);hasStarted=true;render(index);
+      summary.textContent=`${value.name} in Takt ${bars[index].bar} eingesetzt.`;
+    });
+  }
   score.append(button); return button;
 });
 function updateGap(index) {
@@ -238,9 +630,11 @@ function updateGap(index) {
     active = index;
 
     container.querySelectorAll('.completion-bar').forEach((card, i) => card.hidden = i !== index);
+    gaps.forEach((gap, i) => gap.dataset.selected = String(i === index));
   }
   function render(index) {
     const bar = bars[index];
+    if (hasStarted) root.querySelector('.completion-drag-demo')?.setAttribute('hidden','');
     const card = container.children[index];
     const sequence = card.querySelector('.completion-sequence');
     sequence.replaceChildren();
@@ -308,11 +702,28 @@ if (bar.notes.length) {
   });
   values.forEach(value => {
     const button = document.createElement('button'); button.type = 'button';
+    if (dragDropEnabled) {
+      button.draggable=true;
+      button.addEventListener('dragstart', event => {
+        event.dataTransfer.setData('application/x-completion-value', String(values.indexOf(value)));
+        event.dataTransfer.effectAllowed='copy';
+        const symbol=button.querySelector('svg');
+        if (symbol) {
+          const preview=symbol.cloneNode(true);
+          preview.setAttribute('width','48'); preview.setAttribute('height','66');
+          preview.setAttribute('aria-hidden','true');
+          preview.style.cssText='position:fixed;left:-1000px;top:0;width:48px;height:66px;color:#202e31;overflow:visible;';
+          document.body.append(preview);
+          event.dataTransfer.setDragImage(preview,24,33);
+          button.addEventListener('dragend', () => preview.remove(), {once:true});
+        }
+      });
+    }
     const icon = value.svg || `<svg viewBox="-12 -85 78 120" aria-hidden="true"><path transform="scale(.8 -.8)" d="${window.completionGlyphs[value.code]}" fill="currentColor"/>${value.triplet ? '<text x="30" y="-64" text-anchor="middle" font-size="17">3</text>' : ''}</svg>`;
     button.innerHTML = `${icon}<span>${value.name}</span>`;
     button.addEventListener('click', () => {
       if (bars[active].notes.length >= 32) {summary.textContent = 'Entferne erst ein Zeichen, bevor du weitere hinzufügst.'; return;}
-      bars[active].notes.push(value); render(active);
+      bars[active].notes.push(value); hasStarted=true; render(active);
     });
     root.querySelector('.completion-palette').append(button);
   });

@@ -30,6 +30,7 @@
     'philosophie-1': estimate([], [1], 1),
     'philosophie-2': estimate([], [1], 1),
     'philosophie-3': estimate([1, 2, 3, 4], [5, 6, 8], 5),
+    'philosophie-4': estimate([1, 2, 3, 4, 5, 6, 7], [8, 10], 8),
     'rhythmus-1': estimate(range(1, 7), [8, 10, 11], 8),
     'rhythmus-2': estimate(range(1, 7), [8, 10, 11], 8),
     'rhythmus-3': estimate(range(1, 7), [8, 10, 11], 8),
@@ -59,6 +60,7 @@
   };
 
   const boardNotes = {
+    'rhythmus-6': 'Groove-Aufgaben entwickeln, innere Zeit schrittweise aufbauen und die rhythmischen Grundlagen praktisch einbinden.',
     'harmonie-1': 'Kursstruktur und Übungen ausarbeiten; die vorhandenen Tonfarb-Grafiken didaktisch einbetten.',
     'harmonie-2': 'Akkordfolgen, Hörbeispiele und praktische Aufgaben ausarbeiten.',
     'gesang-einfuehrung': 'Kursinhalte und Anatomie-Galerie sind angelegt; Übungen und praktische Überprüfung ergänzen.',
@@ -72,7 +74,9 @@
     'gitarre-5': 'Kursstruktur und konkrete Melodiespiel-Aufgaben entwickeln.',
     'gitarre-4': 'Griffwege und interaktive Grafiken überprüfen; Übergänge und Übungen redigieren.',
     'gitarre-8': 'Tonleiterakkorde und Gitarrengriffe praktisch prüfen; Hör- und Liedaufgaben ergänzen.',
-    'learning-path': 'Einstufungstests entwickeln, Antworten und Ergebnisse speichern sowie Empfehlungen nachvollziehbar mit passenden Kursen, Kapiteln und Voraussetzungen verknüpfen und praktisch prüfen.'
+    'learning-path': 'Einstufungstests entwickeln, Antworten und Ergebnisse speichern sowie Empfehlungen nachvollziehbar mit passenden Kursen, Kapiteln und Voraussetzungen verknüpfen und praktisch prüfen.',
+    'philosophie-4': 'Sechs Kapitel, Reflexionsfragen, Pflanzen-Grafik und lokal gespeichertes Leitbild sind angelegt. Kurs redigieren und mit Lernenden praktisch prüfen.',
+    'philosophie-5': 'Neun Kapitel und ein fortlaufender, lokal gespeicherter Übungsplan sind angelegt. Inhalte redigieren und die Vorlage praktisch erproben.'
   };
 
   const statusLabels = {
@@ -89,6 +93,7 @@
     return {
       status: [...initial.status],
       comments,
+      generalNote: '',
       updatedAt: null
     };
   };
@@ -128,6 +133,7 @@
     record.status = phases.map((_, index) => statusValues.includes(record.status[index]) ? record.status[index] : defaultRecordValue.status[index]);
     if (!record.comments || typeof record.comments !== 'object' || Array.isArray(record.comments)) record.comments = { ...defaultRecordValue.comments };
     else record.comments = { ...defaultRecordValue.comments, ...record.comments };
+    if (typeof record.generalNote !== 'string') record.generalNote = '';
     return record;
   };
 
@@ -209,11 +215,29 @@
     details.className = 'workboard-details';
     const detailsSummary = make('summary', '', 'Entwicklungsphasen bearbeiten');
     details.append(detailsSummary);
+    const generalNotes = make('section', 'workboard-general-notes');
+    generalNotes.append(make('h4', '', 'Allgemeine Notizen'));
+    const generalNoteLabel = make('label', 'workboard-control-label', 'Letzter Stand und nächste Schritte');
+    const generalNoteInput = document.createElement('textarea');
+    generalNoteInput.rows = 3;
+    generalNoteInput.maxLength = 3000;
+    generalNoteInput.setAttribute('aria-label', 'Allgemeine Notizen zum Kurs');
+    generalNoteInput.placeholder = 'Was hast du zuletzt bearbeitet? Was möchtest du als Nächstes tun?';
+    generalNoteInput.value = record.generalNote;
+    generalNoteLabel.append(generalNoteInput);
+    generalNotes.append(generalNoteLabel);
+    generalNoteInput.addEventListener('input', () => {
+      record.generalNote = generalNoteInput.value;
+      record.updatedAt = new Date().toISOString();
+      savedData[courseId] = record;
+      const stored = persist();
+      saveMessage.textContent = stored ? 'Änderung gespeichert.' : 'Speicherung in diesem Browser nicht verfügbar.';
+    });
     const phaseList = make('div', 'workboard-phase-list');
     const saveMessage = make('p', 'workboard-save-message');
     saveMessage.setAttribute('role', 'status');
     saveMessage.setAttribute('aria-live', 'polite');
-    details.append(phaseList, saveMessage);
+    details.append(generalNotes, phaseList, saveMessage);
 
     phases.forEach(([name, weight], index) => {
       const phase = make('section', 'workboard-phase');

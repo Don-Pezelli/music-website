@@ -17,13 +17,14 @@ legacy={
 legacy['kapitel-3/bild-222.png'][0]=['g0.5',0.5,0.5,'r0.5','g1.5',0.5]
 legacy.each do |old,bars|
  height=((bars.size+1)/2)*150
+ height=132 if old=='kapitel-3/bild-222.png'
  parts=[%(<rect width="960" height="#{height}" fill="white"/>)]
  desc=[]
  bars.each_with_index do |bar,bi|
   y=105+(bi/2)*150;start=92+(bi%2)*422;cursor=0
   raise "Bad legacy duration #{old} #{bi}" unless bar.sum{|t|t.is_a?(String) ? t[1..-1].to_f : t}==4
   parts<<%(<path d="M#{start-4} #{y-19}v38 M#{start-4} #{y}H#{start+416} M#{start+416} #{y-19}v38" stroke="black" fill="none"/>)
-  parts<<%(<text x="#{start}" y="#{y-76}" font-family="Arial" font-size="12">Takt #{bi+1}</text>)
+  parts<<%(<text x="#{start}" y="#{y-76}" font-family="Arial" font-size="12">Takt #{bi+1}</text>) unless old=='kapitel-3/bild-222.png'
   parts<<%(<text x="55" y="#{y}" font-family="Georgia" font-size="23">4</text><text x="55" y="#{y+20}" font-family="Georgia" font-size="23">4</text>) if bi==0
   timed=[];time=0
   bar.each{|t|d=t.is_a?(String) ? t[1..-1].to_f : t;timed<<[t,time];time+=d}
