@@ -1,3 +1,66 @@
+## 2026-11-22
+- Rhythmus 1, Einführung: Auf den Schlägen 2 bis 4 erscheinen zunehmend kleinere, blassere Herzen in gegeneinander versetzten Ringen. Sie pulsieren auf ihrem jeweiligen Schlag und verschwinden auf der nächsten 1.
+- Rhythmus 1, Einführung: Abstand unter Metronom und Herz zum folgenden Absatz vergrößert.
+- Rhythmus 1, Einführung: Metronom als hölzernes Pendelmetronom mit Skala und Messinggewicht gestaltet.
+- Rhythmus 1, Einführung: Der blaue Puls startet per Knopf mit einem vollständigen Puls bei 70 BPM, beschleunigt bis 1.200 BPM und kommt zur Ruhe.
+- Rhythmus 1, Einführung: Die Zählanimation oberhalb von „Die Geschwindigkeit (Tempo, BPM)“ hält beim Weiterlesen an.
+- Rhythmus 1, Einführung: Sichtbare BPM-Beschriftung am Metronom entfernt.
+- Rhythmus 1, Einführung: Das Metronom und die umliegenden Herzen erscheinen gemeinsam einen Schlag nach der letzten roten Silbe. Die Herzen pulsieren auf Schlag 1 jedes Takts.
+- Rhythmus 1, Einführung: Den hervorgehobenen Satz „Das stärkt unser Zeitgefühl.“ entfernt.
+- Rhythmus 1, Einführung: Metronomklicks mit dem Durchgang des Zeigers durch die Mitte synchronisiert.
+- Rhythmus 1, Einführung: Den einleitenden Satz zum Metronompuls größer gesetzt.
+- Rhythmus 1, Einführung: „Wir üben, diesen Puls bewusst wahrzunehmen.“ erscheint Silbe für Silbe zu den hörbaren Metronomklicks und verläuft diagonal zum Metronom.
+- Rhythmus 1, Einführung: Abstände im Abschnitt „Inneres Zeitgefühl“ vergrößert. Die animierten Silben beginnen, wenn der Satz weiter oben im Lesebereich ankommt.
+- Rhythmus 1, Einführung: Metronom und Herz mittig unter der diagonalen Wortfolge platziert.
+- Rhythmus 1, Einführung: Den Satz zur bewussten Wahrnehmung des Pulses gekürzt.
+- Rhythmus 1, Einführung: 70-BPM-Metronom bei „Inneres Zeitgefühl“ ergänzt und etwas größer dargestellt. Die Klicks sind schon beim Absatz zum unregelmäßigen Puls leise hörbar, werden beim Annähern lauter und blenden vor „Rhythmische Notation“ aus.
+- Rhythmus 1, Einführung: Zoomhinweis bei den Pausenzeichen entfernt.
+- Rhythmus 1, Einführung: Zählzeiten 1 bis 4 über jedem Takt der Notenwerte-Grafik ergänzt.
+- Rhythmus 1, Einführung: Schreibweise „Ganz-, Halb- und Viertelnoten“ übernommen.
+- Rhythmus 1, Einführung: Überschrift im Abschnitt zu den Notenwerten geändert.
+- Rhythmus 1, Einführung: Die animierte 4/4-Zählreihe bleibt nach einem Durchlauf sichtbar.
+- Rhythmus 1, Einführung: Viertelnotensymbol bei der Zählzeit und vier Viertelnoten in der Schlaggrafik ergänzt.
+- Rhythmus 1, Einführung: Einleitenden Satz zur Tondauer aus „Rhythmische Notation“ entfernt.
+- Rhythmus 1, Einführung: Gelbe Taktgrafik mit „| TAKT |“ beschriftet.
+- Rhythmus 1, Übung 1: Text der Glückwunschkarte angepasst.
+- Rhythmus 1, Übung 1: Glückwunschkarte für drei abgehakte Ziele ergänzt. Eine EKG-Linie zeichnet kurz nach dem Einblenden der Karte einen Pulsschlag, der danach sichtbar bleibt.
+- Rhythmus 1, Übung 1: Ja-/Nein-Frage „Klappt es?“ mit Tipps zum Üben mit geschlossenen Augen und einem gemeinsamen Hinweis unter beiden möglichen Rückmeldungen ergänzt.
+- Rhythmus 1, Übung 1: Startknopf zeigt im ausgeschalteten Zustand „Go!“ und einen pulsierenden Goldrahmen.
+- Rhythmus 1, Übung 1: Die kleinen blauen Dreiecke heben sich auf „&“ und bleiben bis zum nächsten Metronomschlag oben.
+- Rhythmus 1, Übung 1: Die Metronomkrone senkt sich beim Einschalten und hebt sich beim Ausschalten.
+- Rhythmus 1, Übung 1: An-/Aus-Knopf als Aufziehkrone oben am Metronom platziert und den Bügel entfernt.
+- Rhythmus 1, Übung 1: Zählanweisung um das Stampfen auf 1, 2, 3 und 4 ergänzt und mit einem Doppelpunkt abgeschlossen.
+- Rhythmus 1, Übung 1: Textanweisungen zu 12 Takten und zur Einstellung auf 50 BPM mit Fußbewegung entfernt.
+- Rhythmus 1, Übung 1: Kleine blaue Aufwärtsdreiecke ohne Beschriftung nach jedem der vier Zähldreiecke ergänzt.
+- Rhythmus 1, Übung 1: Der An-Knopf des ausgeschalteten Metronoms leuchtet als Bedienhinweis mit stärkerem Goldschein und sichtbarem Rahmen.
+- Rhythmus 1, Übung 1: Metronom im Stil einer klassischen Taschenuhr gestaltet.
+- Rhythmus 1, Übung 1: Taktanzahl am Metronom einstellbar gemacht und automatischen Stopp ergänzt.
+- Rhythmus 1, Übung 1: Vier rostrote Zähldreiecke pulsieren passend zu den Metronomschlägen.
+- Rhythmus 1, Übung 1: Einstellbares Metronom mit Ein-/Ausschalter neben der Zählübung ergänzt.
+- Rhythmus 1, Kapitel 1: Grünen Hintergrund der Fußanimation entfernt.
+- Rhythmus 1, Kapitel 1: „oben ↑“ und „hebt“ im Blau der Aufwärtsdreiecke hervorgehoben.
+- Rhythmus 1, Kapitel 1: „Abwärtsbewegung“ im Rostrot der Abwärtsdreiecke hervorgehoben.
+- Rhythmus 1, Kapitel 1: Die Dreiecke über die volle Inhaltsbreite unter den zugehörigen Wörtern der Fußanimation ausgerichtet.
+- Rhythmus 1, Kapitel 1: Die Fußbewegung auf den Schlägen und dazwischen mit rostroten Abwärts- und blauen Aufwärtsdreiecken dargestellt.
+- Rhythmus 1, Kapitel 1: Fußanimation auf 60 BPM eingestellt.
+- Rhythmus 1, Kapitel 1: Die Fußbewegung zeigt pro Durchlauf acht Schritte und wiederholt sich im gleichen Tempo.
+- Rhythmus 1, Kapitel 1: Doppeltes Fußbewegungs-Panel entfernt und „unten“ und „oben“ nacheinander eingeblendet.
+- Rhythmus 1, Kapitel 1: 60 BPM am Sekundenzeiger und das einstellbare Metronomtempo erklärt.
+- Rhythmus 1: Die blauen Tempo-Beispiele pulsieren beim Lesen und beim Zurückscrollen wieder. Das 2-BPM-Beispiel beginnt mit einem sichtbaren Puls.
+- Groove Camp, Kapitel 3: Drei Lektionen mit abwechselnd vollem Metronomtakt und einem einzelnen Klick auf der 2, 3 oder 4 ergänzt.
+
+## 2026-11-21
+- „Nur noch ein Orientierungspunkt“ aus Rhythmus 1 in Kapitel 3 des Groove Camp verschoben.
+- Rhythmus 1, Kapitel 1: Vier Übungen mit jeweils einem fehlenden Klick und eine Backbeat-Vorübung im Zweitaktwechsel ergänzt.
+- Rhythmus 1, Kapitel 1: Übung 3 in „Der Backbeat 2 und 4“ umbenannt.
+- Rhythmus 1, Kapitel 1: Übung 4 in „Klick auf 1 und 3“ umbenannt.
+- Rhythmus 1, Kapitel 1: PDF-Downloadlink aus dem Kapitelkopf entfernt.
+- Rhythmus 1, Einführung: Im Abschnitt zu Pausenzeichen die Wirkung von Stille ergänzt.
+- Rhythmus 1, Kapitel 1: Uhrsymbol neben die Überschrift „Das innere Zeitgefühl“ verschoben.
+- Rhythmus 1: Im Takteditor bleibt die Wiedergabetaste innerhalb der Notationsfläche. Die Aktionsleiste kann auf schmalen Bildschirmen umbrechen.
+- Rhythmus 1, Kapitel 2 und 3: Lektionen zu gemischten Noten- und Pausenwerten mit Lese-, Hör- und interaktiven Ergänzungsübungen für ganze, halbe und Viertelwerte ergänzt.
+- Rhythmus 1, Einführung: Drei 4/4-Takte mit ganzen, halben und Viertelnoten als Notationsgrafik ergänzt.
+
 ## 2026-11-20
 - Rhythmus 1 auf Puls, Takt sowie ganze, halbe und Viertelnoten/-pausen begrenzt; Lektionen zu Achtelnoten und Achtelpausen in Rhythmus 2 verschoben. Die folgenden Rhythmuskurse in der Übersicht auf 3–7 weitergezählt.
 - Rhythmus 1, Kapitel 1: Neben der Erklärung zu Metronom und Puls ein Uhrsymbol ergänzt.

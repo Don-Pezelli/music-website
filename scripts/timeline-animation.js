@@ -40,9 +40,11 @@
     listenForCountRestart(line, dots[dots.length - 1] || ellipsis);
   };
 
+  const restartTimers = new WeakMap();
   const restartCountAnimation = (line) => {
-    window.setTimeout(() => {
-      if (!line.isConnected) return;
+    const timer = window.setTimeout(() => {
+      restartTimers.delete(line);
+      if (!line.isConnected || line.classList.contains('is-paused')) return;
       line.classList.remove('is-animated');
       line.classList.add('wait-for-animation');
       void line.offsetWidth;
@@ -50,7 +52,8 @@
         line.classList.remove('wait-for-animation');
         line.classList.add('is-animated');
       });
-    }, 3000);
+    }, Number(line.dataset.restartDelay ?? 3000));
+    restartTimers.set(line, timer);
   };
 
   const listenForCountRestart = (line, lastBeat) => {
@@ -67,11 +70,31 @@
       const beats = element.querySelectorAll('.count-beat');
       const dots = element.querySelectorAll('.count-ellipsis-dot');
       const finalMarker = dots[dots.length - 1] || beats[beats.length - 1];
-      if (finalMarker) listenForCountRestart(element, finalMarker);
+      if (finalMarker && !element.hasAttribute('data-animate-once')) listenForCountRestart(element, finalMarker);
     }
     element.classList.remove('wait-for-animation');
     element.classList.add('is-animated');
   };
+  const stopPoints = [...animatedElements]
+    .filter((element) => element.dataset.animationStopAt)
+    .map((element) => ({ element, heading: document.getElementById(element.dataset.animationStopAt) }))
+    .filter(({ heading }) => heading);
+  if (stopPoints.length) {
+    const updateReadingPosition = () => {
+      stopPoints.forEach(({ element, heading }) => {
+        const paused = heading.getBoundingClientRect().top <= window.innerHeight * 0.4;
+        element.classList.toggle('is-paused', paused);
+        if (paused && restartTimers.has(element)) {
+          window.clearTimeout(restartTimers.get(element));
+          restartTimers.delete(element);
+        }
+      });
+    };
+    window.addEventListener('scroll', updateReadingPosition, { passive: true });
+    window.addEventListener('resize', updateReadingPosition);
+    updateReadingPosition();
+  }
+
   let observer;
   let userHasScrolled = false;
   const startVisibleOnScroll = () => {

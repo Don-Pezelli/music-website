@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="150" viewBox="0 0 960 150" role="img">
+  <title>Takt 1: Lücke. Takt 2: Lücke</title>
+  <rect width="960" height="150" fill="white"/>
+  <path d="M88 86v38 M88 105H508 M508 86v38" stroke="black" fill="none"/>
+  <text x="92" y="35" font-family="Arial" font-size="14">Takt 1</text>
+  <text x="58" y="99" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text><text x="58" y="120" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text>
+  <rect data-gap="true" x="99" y="61" width="367" height="70" rx="4" fill="white" stroke="#65706e" stroke-dasharray="5 4"/><text x="282.5" y="113" text-anchor="middle" font-family="Arial" font-size="22">?</text>
+  <path d="M510 86v38 M510 105H930 M930 86v38" stroke="black" fill="none"/>
+  <text x="514" y="35" font-family="Arial" font-size="14">Takt 2</text>
+  <rect data-gap="true" x="521" y="61" width="367" height="70" rx="4" fill="white" stroke="#65706e" stroke-dasharray="5 4"/><text x="704.5" y="113" text-anchor="middle" font-family="Arial" font-size="22">?</text>
+</svg>

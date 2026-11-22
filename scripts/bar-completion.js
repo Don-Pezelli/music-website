@@ -128,7 +128,7 @@
     const config=window.completionExercises?.[root.dataset.completion];
     if(!config||!window.completionValues||!window.completionGlyphs)return;
     const isRestCode=code=>String(code||'').startsWith('E4');
-    const values=window.completionValues.filter(value=>(config.rests||value.id.startsWith('n'))&&(config.course>1||value.units>=2))
+    const values=window.completionValues.filter(value=>(config.rests||value.id.startsWith('n'))&&(config.course>1||value.units >= (config.minUnits ?? 2)))
       .map(value=>({...value,units:value.units*3,rest:value.id.startsWith('r')}));
     const palette=root.querySelector('.completion-palette');
     if(root.dataset.completion.includes('/bild-160-paar-')&&values.length===4)palette.classList.add('completion-palette-centered');
@@ -484,7 +484,7 @@
   const config = window.completionExercises?.[root.dataset.completion];
   if (!config || !window.completionValues) return;
   const values = window.completionValues
-    .filter(value => (config.rests || value.id.startsWith('n')) && (config.course > 1 || value.units >= 2))
+    .filter(value => (config.rests || value.id.startsWith('n')) && (config.course > 1 || value.units >= (config.minUnits ?? 2)))
     .map(value => ({...value, units: value.units * 3, rest: value.id.startsWith('r')}));
   if (config.rests && config.course > 1) values.push({id:'r16', name:'Sechzehntelpause', units:3, rest:true, code:'E4E7'});
   if (config.course === 3) {

@@ -73,7 +73,7 @@
         checkpoint.nextChapter.classList.remove('is-celebrating');
         void checkpoint.nextChapter.offsetWidth;
         checkpoint.nextChapter.classList.add('is-celebrating');
-        if (checkpoint.status) checkpoint.status.textContent = 'Alle Lernziele abgehakt. Der nächste Abschnitt ist freigeschaltet.';
+        if (checkpoint.status) checkpoint.status.textContent = checkpoint.status.dataset.completeMessage || 'Alle Lernziele abgehakt. Der nächste Abschnitt ist freigeschaltet.';
         window.setTimeout(() => checkpoint.nextChapter.classList.remove('is-celebrating'), 1300);
       } else if (!complete) {
         checkpoint.nextChapter.classList.remove('is-celebrating');
