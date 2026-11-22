@@ -182,7 +182,7 @@
     if(score?.parentElement)score.parentElement.insertBefore(container,score);
     const demo=root.querySelector('.completion-drag-demo');
     let history=[],hasStarted=false,draggingGapIndex=null;
-    let playbackContext=null,playbackNodes=[],playbackTimer=null,counterTimers=[],isPlaying=false,playbackBpm=40;
+    let playbackContext=null,playbackNodes=[],playbackTimer=null,counterTimers=[],isPlaying=false,playbackBpm=Number(root.dataset.startBpm||40);
     const playbackLabel=bars.length>2?'Alle Takte':'Beide Takte';
     const playbackButton=document.createElement('button');playbackButton.type='button';playbackButton.className='completion-bar-play';playbackButton.setAttribute('aria-label',`${playbackLabel} abspielen`);playbackButton.title=`${playbackLabel} abspielen · ein Takt Metronom-Einzähler`;playbackButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
     if(root.dataset.adjustableBpm==='true'&&score?.parentElement){
@@ -192,7 +192,10 @@
       const changeBpm=(amount)=>{playbackBpm=Math.max(30,Math.min(120,playbackBpm+amount));bpmValue.textContent=`${playbackBpm} BPM`;};
       const up=document.createElement('button');up.type='button';up.className='completion-bpm-up';up.textContent='▲';up.setAttribute('aria-label','Tempo erhöhen');up.title='Tempo erhöhen';up.addEventListener('click',()=>changeBpm(5));
       const down=document.createElement('button');down.type='button';down.className='completion-bpm-down';down.textContent='▼';down.setAttribute('aria-label','Tempo verringern');down.title='Tempo verringern';down.addEventListener('click',()=>changeBpm(-5));
-      arrows.append(up,down);bpmControl.append(bpmValue,arrows);score.parentElement.insertBefore(bpmControl,score);
+      arrows.append(up,down);
+      bpmControl.append(bpmValue,arrows);
+      if(root.dataset.bpmPosition==='bottom') figure.append(bpmControl);
+      else score.before(bpmControl);
     }
     const playbackHelpMarker=addHelpMarker(score||root,`Spielt ${playbackLabel.toLowerCase()} nach einem Metronom-Einzähler ab${root.dataset.playPartial==='true'?' – auch mit leeren Feldern.':' sobald alle Takte vollständig sind.'}`);playbackHelpMarker.classList.add('completion-help-play-marker');
     const countDisplay=document.createElement('span');countDisplay.className='completion-count-display';countDisplay.hidden=true;countDisplay.setAttribute('aria-hidden','true');
@@ -268,14 +271,17 @@
     const undoHost=document.createElement('span');undoHost.className='completion-help-host';undoHost.append(undoButton);addHelpMarker(undoHost,'Macht die letzte Änderung rückgängig. Der Knopf wird aktiv, sobald du ein Zeichen eingesetzt oder entfernt hast.');
     const evaluateButton=document.createElement('button');evaluateButton.type='button';evaluateButton.className='completion-evaluate';evaluateButton.textContent='Aufgabe auswerten';
     const evaluateHost=document.createElement('span');evaluateHost.className='completion-help-host';evaluateHost.append(evaluateButton);
+    const finishLabel=root.dataset.finishLabel;
+    const transfersToChecker=root.hasAttribute('data-clap-editor-transfer');
     let evaluated=false;
     function noteContentEdited(){
-      if(!evaluated||root.dataset.evaluateClears!=='true')return;
+      if(!evaluated||(!finishLabel&&root.dataset.evaluateClears!=='true'))return;
       evaluated=false;
+      if(transfersToChecker)document.querySelector(root.dataset.nextSection)?.dispatchEvent(new CustomEvent('rhythm:editor-score'));
       evaluateButton.textContent='Aufgabe auswerten';
       evaluateButton.setAttribute('aria-label',evaluateButton.textContent);
       evaluateButton.disabled=false;
-      evaluateButton.classList.remove('completion-next-ready');
+      evaluateButton.classList.remove('completion-next-ready','completion-finish-ready');
       container.querySelectorAll('.completion-feedback').forEach(feedback=>{
         feedback.replaceChildren();
         feedback.removeAttribute('data-result');
@@ -293,7 +299,17 @@
         const nextIndex=taskIndex+1;
         if(nextIndex>=taskSequence.length){
           const target=root.dataset.nextSection?document.querySelector(root.dataset.nextSection):null;
-          if(target){if(target.id)window.history.replaceState(null,'',`#${target.id}`);target.scrollIntoView({behavior:'smooth',block:'start'});}
+          if(target){
+            if(isPlaying)stopBarPlayback();
+            if(transfersToChecker){
+              const pattern=buildEvaluatedPattern();
+              if(!pattern)return;
+              target.dispatchEvent(new CustomEvent('rhythm:editor-score',{detail:pattern}));
+            }
+            if(target.id)window.history.replaceState(null,'',`#${target.id}`);
+            if(finishLabel)target.focus({preventScroll:true});
+            target.scrollIntoView({behavior:'smooth',block:'start'});
+          }
           return;
         }
         if(isPlaying)stopBarPlayback();
@@ -321,15 +337,31 @@
         if(errors.length)allBarsCorrect=false;
         showEvaluationEffect(container.children[index].querySelector('.completion-feedback'),!errors.length);
       });
-      evaluated=true;
       refreshGapBeams();
+      if(transfersToChecker&&allBarsCorrect){
+        const values=gaps.flatMap(gap=>gap.notes);
+        const hasRequiredRests=[12,24].every(units=>values.some(value=>value.rest&&value.units===units));
+        const hasNote=values.some(value=>!value.rest);
+        if(!hasRequiredRests||!hasNote){
+          const feedback=container.lastElementChild.querySelector('.completion-feedback');
+          feedback.dataset.result='retry';
+          feedback.textContent=!hasRequiredRests
+            ? 'Setze in deine beiden Takte mindestens eine halbe Pause und eine Viertelpause.'
+            : 'Setze mindestens eine Note, die du im Rhythminator klatschen kannst.';
+          showEvaluationEffect(feedback,false);
+          return;
+        }
+        if(!baseSvg)return;
+      }
+      if(finishLabel&&!allBarsCorrect)return;
+      evaluated=true;
       if(allBarsCorrect&&root.dataset.transferTarget)saveEvaluatedPattern();
       const hasNext=taskIndex+1<taskSequence.length;
       const canContinue=Boolean(root.dataset.nextSection)&&!hasNext;
-      evaluateButton.textContent=root.dataset.evaluateClears==='true'?'Takte leeren':hasNext?'Nächste Aufgabe':canContinue?"Weiter geht's!":'Alle Aufgaben erledigt';
+      evaluateButton.textContent=root.dataset.evaluateClears==='true'?'Takte leeren':hasNext?'Nächste Aufgabe':canContinue?(finishLabel||"Weiter geht's!"):'Alle Aufgaben erledigt';
       evaluateButton.setAttribute('aria-label',evaluateButton.textContent);
       if(root.dataset.evaluateClears==='true'){evaluateButton.disabled=false;}
-      else if(hasNext||canContinue){evaluateButton.classList.add('completion-next-ready');evaluateHelp.setAttribute('aria-label',canContinue?'Hilfe: Weiter zum nächsten Aufgabenabschnitt.':'Hilfe: Klicke hier, um die nächste Aufgabe mit leerem Arbeitsfeld zu öffnen.');const tooltip=document.getElementById(evaluateHelp.getAttribute('aria-describedby'));if(tooltip)tooltip.textContent=canContinue?'Springt zum nächsten Aufgabenabschnitt.':'Öffnet die nächste Aufgabe mit leerem Arbeitsfeld.';}
+      else if(hasNext||canContinue){evaluateButton.classList.add(canContinue&&finishLabel?'completion-finish-ready':'completion-next-ready');evaluateHelp.setAttribute('aria-label',canContinue?'Hilfe: Weiter zum nächsten Aufgabenabschnitt.':'Hilfe: Klicke hier, um die nächste Aufgabe mit leerem Arbeitsfeld zu öffnen.');const tooltip=document.getElementById(evaluateHelp.getAttribute('aria-describedby'));if(tooltip)tooltip.textContent=canContinue?'Springt zum nächsten Aufgabenabschnitt.':'Öffnet die nächste Aufgabe mit leerem Arbeitsfeld.';}
       else evaluateButton.disabled=true;
     });
     finalButtons.append(undoHost,evaluateHost);evaluateWrap.append(finalButtons);root.append(evaluateWrap);
@@ -389,8 +421,8 @@
         if(replacement.firstElementChild)current.replaceWith(replacement.firstElementChild);
       });
     }
-    function saveEvaluatedPattern(){
-      if(!baseSvg)return;
+    function buildEvaluatedPattern(){
+      if(!baseSvg)return null;
       const completed=baseSvg.cloneNode(true);
       completed.querySelectorAll('[data-gap="true"]').forEach(node=>node.remove());
       completed.querySelectorAll('text').forEach(node=>{if(node.textContent.trim()==='?')node.remove();});
@@ -398,17 +430,26 @@
       const beamNotes=updateBeams();
       gaps.forEach(gap=>{
         if(!gap.notes.length)return;
-        const parser=new DOMParser(),notation=parser.parseFromString(renderGap(gap,beamNotes),'image/svg+xml').documentElement;
+        const parser=new DOMParser(),notation=parser.parseFromString(renderGap(gap,beamNotes,!transfersToChecker),'image/svg+xml').documentElement;
         notation.removeAttribute('class');notation.setAttribute('x',String(gap.x));notation.setAttribute('y',String(gap.y));notation.setAttribute('width',String(gap.width));notation.setAttribute('height',String(gap.height));notation.setAttribute('preserveAspectRatio','none');notation.setAttribute('aria-hidden','true');
         completed.append(notation);
       });
       if(beamLayer)Array.from(beamLayer.childNodes).forEach(node=>completed.append(node.cloneNode(true)));
       const svg=new XMLSerializer().serializeToString(completed);
-      const key=root.dataset.patternStorageKey||'the-tree-of-music-rhythm-task5-patterns';
-      let saved=[];try{saved=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(saved))saved=[];}catch{}
       const clapEvents=[],noteEvents=[];
       playableBars.forEach((bar,barIndex)=>bar.gaps.forEach(gap=>{let onset=gap.onset;gap.notes.forEach(value=>{if(!value.rest){const beat=(barIndex*48+onset)/12;clapEvents.push(beat);noteEvents.push({beat,duration:value.units/12});}onset+=value.units;});}));
-      saved.push({id:`pattern-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,createdAt:new Date().toISOString(),svg,clapEvents,noteEvents,durationBeats:playableBars.length*4});
+      const scoreRows=playableBars.map(bar=>{
+        const gap=bar.gaps[0];
+        return { x:gap.x+3, y:gap.y+45, step:12*gapLayout(gap).unit };
+      });
+      return {id:`pattern-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,createdAt:new Date().toISOString(),svg,clapEvents,noteEvents,durationBeats:playableBars.length*4,width:config.width,height:config.height,scoreRows,title:'Deine zwei Takte'};
+    }
+    function saveEvaluatedPattern(){
+      const pattern=buildEvaluatedPattern();
+      if(!pattern)return;
+      const key=root.dataset.patternStorageKey||'the-tree-of-music-rhythm-task5-patterns';
+      let saved=[];try{saved=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(saved))saved=[];}catch{}
+      saved.push(pattern);
       try{localStorage.setItem(key,JSON.stringify(saved));window.dispatchEvent(new CustomEvent('rhythm:patterns-updated',{detail:{patterns:saved,storageKey:key}}));}catch{container.querySelector('.completion-feedback')?.append(document.createTextNode(' Die Notation konnte nicht dauerhaft auf diesem Gerät gespeichert werden.'));}
     }
     function gapLayout(gap){
@@ -419,7 +460,7 @@
       gap.notes.forEach(value=>{positions.push({value,onset,x:3+(onset-gap.onset)*unit,scale:spacingScale});onset+=value.units;});
       return {spacingScale,unit,positions};
     }
-    function renderGap(gap,beamedGapNotes){
+    function renderGap(gap,beamedGapNotes,includeStaffLine=true){
       const {spacingScale,unit,positions}=gapLayout(gap),notes=positions.map(position=>({...position,end:position.onset+position.value.units}));
       const groups=[];
       notes.forEach((note,i)=>{
@@ -429,7 +470,7 @@
         else groups.push([i]);
       });
       const beamed=new Set(groups.filter(group=>group.length>1).flat());
-      let body='<path d="M0 45H'+Math.max(gap.width,notes.length*unit*0.65)+'" stroke="currentColor" stroke-width="1"/>';
+      let body=includeStaffLine ? '<path d="M0 45H'+Math.max(gap.width,notes.length*unit*0.65)+'" stroke="currentColor" stroke-width="1"/>' : '';
       notes.forEach((note,i)=>{
         const x=note.x,isBeamed=beamed.has(i)||beamedGapNotes.has(`${gap.index}-${i}`),code=isBeamed?'E0A4':note.value.code||(note.value.rest?{48:'E4E3',24:'E4E4',12:'E4E5',6:'E4E6',3:'E4E7'}:{48:'E1D2',24:'E1D3',12:'E1D5',6:'E1D7',3:'E1D9'})[note.value.units];
         body+=`<path transform="translate(${x} 64.8) scale(${.52*spacingScale} ${-.52*spacingScale})" fill="currentColor" d="${window.completionGlyphs[code]}"/>`;

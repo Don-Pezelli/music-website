@@ -6,6 +6,24 @@
     const melodieNav = nav.getAttribute('aria-label') === 'Kapitel und Lektionen in Melodie 1';
     const manuallyToggledChapters = new Set();
     let pendingManualChapter = null;
+    let currentGroup = null;
+    let currentCourseLink = null;
+    const courseGroups = new Map();
+    nav.querySelectorAll('.course-nav-group').forEach(group => {
+      const toggle = group.querySelector('.course-nav-toggle');
+      const link = group.querySelector('.course-nav-row > a');
+      const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      const setOpen = open => {
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+      };
+      courseGroups.set(group, { link, setOpen });
+      toggle.addEventListener('click', () => setOpen(panel.hidden));
+      link.addEventListener('click', () => {
+        courseGroups.forEach(({ setOpen: setGroupOpen }, candidate) => setGroupOpen(candidate === group));
+        keepCourseLinkVisible(link);
+      });
+    });
     if (nav.classList.contains('rhythmus-course-nav')) {
       nav.querySelectorAll('[data-chapter-subnav] > summary').forEach((summary) => {
         summary.addEventListener('click', () => {
@@ -28,7 +46,9 @@
     let scheduled = false;
     function update() {
       scheduled = false;
-      const readingLine = Math.min(170, window.innerHeight * 0.28);
+      const readingLine = courseGroups.size && window.innerWidth <= 680
+        ? Math.max(Math.min(170, window.innerHeight * 0.28), nav.clientHeight + 16)
+        : Math.min(170, window.innerHeight * 0.28);
       let current = null;
       for (const entry of entries) {
         if (entry.section.getBoundingClientRect().top <= readingLine) current = entry;
@@ -42,6 +62,19 @@
       }
       if (!current) current = entries[0];
       current.link.setAttribute('aria-current', 'location');
+      if (courseGroups.size) {
+        const group = current.link.closest('.course-nav-group');
+        const controls = courseGroups.get(group);
+        if (currentGroup !== group) {
+          courseGroups.forEach(({ setOpen }, candidate) => setOpen(candidate === group));
+        }
+        if (controls) controls.link.setAttribute('aria-current', 'location');
+        if (currentGroup !== group || currentCourseLink !== current.link) {
+          keepCourseLinkVisible(controls && currentGroup !== group ? controls.link : current.link);
+        }
+        currentGroup = group;
+        currentCourseLink = current.link;
+      }
 
       const courseChapter = current.section.closest('[data-course-chapter]');
       const chapterId = courseChapter?.getAttribute('data-course-chapter');
@@ -75,6 +108,14 @@
       if (scheduled) return;
       scheduled = true;
       requestAnimationFrame(update);
+    }
+
+    function keepCourseLinkVisible(link) {
+      if (link.closest('[hidden]') || nav.scrollHeight <= nav.clientHeight) return;
+      const viewport = nav.getBoundingClientRect();
+      const bounds = link.getBoundingClientRect();
+      if (bounds.top < viewport.top) nav.scrollTop += bounds.top - viewport.top;
+      else if (bounds.bottom > viewport.bottom) nav.scrollTop += bounds.bottom - viewport.bottom;
     }
 
     function revealChapterLessons(subnav, manualOpen = false) {

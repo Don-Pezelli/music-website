@@ -12,11 +12,12 @@ G=glyphs
 Q=[1,1,1,1]; E=[0.5,0.5]; E4=[0.5]*4; W=[4]; H=[2,2]
 scores={
 28=>[[E,2,1],['r4'],[1,E,E4],['r4'],[1,2,E],['r4'],[E,1,1,E],W],
-45=>[[E,1,1,1],['r4'],['r4'],[1,E,E4]],46=>[W,Q,['r4'],['r4']],47=>[Q,['r4'],[E4,2],['r4']],48=>[H,['r4'],[E,1,E,1],['r4']],
-72=>[[E,'r2',1],[1,'r2',1],[1,E,'r2'],['r4'],[1,'r2',E],[2,'r2'],['r2',1,E],[E4,'r2']],
-82=>[['r2',1,1],[E,'r2',1],[E4,'r2'],[E,'r2',E]],83=>[[2,'r2'],['r2',E,1],['r2',E4],[1,'r2',E]],84=>[['r2',2],[2,'r2'],[E,'r2',E],[1,1,'r2']],
-109=>[[E,'r1',E,'r1'],[E4,E,'r1'],['r1',2,E],[1,'r1',1,E]],110=>[[E4,1,1],['r1',E,1,E]],
-123=>[[E4,1,'r1'],[1,'r1',1,'r1']],124=>[[E,'r1',1,'r1'],[E,1,E,'r1']],126=>[[E,1,1,'r1'],['r1',1,E,'r1']],
+'28-grundkurs'=>[[1,2,1],['r4'],[1,1,2],['r4'],[1,2,1],['r4'],Q,W],
+45=>[Q,['r4'],['r4'],[1,1,2]],46=>[W,Q,['r4'],['r4']],47=>[Q,['r4'],H,['r4']],48=>[H,['r4'],Q,['r4']],
+72=>[[1,'r2',1],[1,'r2',1],[1,1,'r2'],['r4'],[1,'r2',1],[2,'r2'],['r2',1,1],[2,'r2']],
+82=>[['r2',1,1],[1,'r2',1],[2,'r2'],[1,'r2',1]],83=>[[2,'r2'],['r2',1,1],['r2',2],[1,'r2',1]],84=>[['r2',2],[2,'r2'],[1,'r2',1],[1,1,'r2']],
+109=>[[1,'r1',1,'r1'],[2,1,'r1'],['r1',2,1],[1,'r1',1,1]],110=>[[2,1,1],['r1',1,1,1]],
+123=>[[2,1,'r1'],[1,'r1',1,'r1']],124=>[[1,'r1',1,'r1'],[1,1,1,'r1']],126=>[[1,1,1,'r1'],['r1',1,1,'r1']],
 146=>[[E,'r0.5',0.5,'r0.5',[0.5,0.5,0.5]],[0.5,'r0.5','r0.5',0.5,E,'r0.5',0.5]],
 147=>[[E,1,'r0.5',E,'r0.5'],[E4,'r0.5',[0.5,0.5,0.5]]],
 149=>[[1,'r0.5',0.5,1,'r0.5',0.5],[[0.5,0.5],'r0.5',0.5,'r0.5',0.5,1]],
@@ -68,7 +69,16 @@ scores.each do |id,bars|
    parts<<%Q{<path d="M#{endx} #{y-19}v38" stroke="black" stroke-width="4"/>} if last
   end
  end
- parts<<'</svg>';File.write(File.join(out,"noten-#{id}.svg"),parts.join)
+ parts << '</svg>'
+ File.write(File.join(out,"noten-#{id}.svg"),parts.join)
+ if [72, '28-grundkurs'].include?(id)
+  score_body = parts[1...-1].join
+  ['1-4', '5-8'].each_with_index do |range, row|
+   title = "Leseübung · Takte #{range.sub('-', '–')}"
+   split_score = %Q{<svg xmlns="http://www.w3.org/2000/svg" width="#{width}" height="135" viewBox="0 0 #{width} 135" role="img" aria-labelledby="title"><title id="title">#{title}</title><rect width="#{width}" height="135" fill="white"/><g transform="translate(0 #{-135 * row})">#{score_body}</g></svg>}
+   File.write(File.join(out, "noten-#{id}-takte-#{range}.svg"), split_score)
+  end
+ end
 end
 # Individual rest symbols, with reference lines for whole and half rests.
 {4=>'E4E3',2=>'E4E4',1=>'E4E5',0.5=>'E4E6'}.each do |value,code|

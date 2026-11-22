@@ -1,6 +1,13 @@
 (() => {
   const text = (node) => (node?.textContent || '').replace(/\s+/g, ' ').trim();
 
+  function cloneRadioTemplate(template) {
+    const radio = template.cloneNode(true);
+    radio.querySelector('[data-radio-pattern-panel]')?.remove();
+    delete radio.dataset.radioTaskSequence;
+    return radio;
+  }
+
   function notationEvents(alt) {
     const source = String(alt || '');
     const labeledBars = [...source.matchAll(/Takt\s+\d+\s*:?\s*([\s\S]*?)(?=Takt\s+\d+\s*:?\s*|$)/gi)];
@@ -76,6 +83,13 @@
   function makeFaxOutput(radio, solutionDetails, hearingIndex) {
     if (!radio || !solutionDetails || radio.querySelector('[data-fax-output]')) return;
     const solutionBody = solutionDetails.querySelector('.solution-body');
+    const nextSection = document.getElementById(solutionDetails.dataset.nextSection || '');
+    const reference = solutionDetails.parentElement.querySelector('[data-fax-reference]');
+    const referenceImage = reference?.querySelector('img[data-marked-src]');
+    const originalReference = referenceImage && {
+      src: referenceImage.getAttribute('src'),
+      alt: referenceImage.alt
+    };
     if (!solutionBody) return;
 
     radio.classList.add('has-fax-output');
@@ -96,6 +110,10 @@
       <button type="button" class="rhythm-fax-button rhythm-fax-previous" data-fax-previous hidden>Vorige Aufgabe</button>
       <button type="button" class="rhythm-fax-button" data-fax-print aria-expanded="false">Lösung</button>`;
     fax.querySelector('[data-fax-paper]').append(solutionBody.cloneNode(true));
+    if (reference) {
+      fax.classList.add('has-score-reference');
+      fax.querySelector('.rhythm-fax-slot').before(reference);
+    }
     radio.append(fax);
     solutionDetails.remove();
 
@@ -350,6 +368,14 @@
         button.setAttribute('aria-label', showErrors ? 'Fehlermarkierungen ausblenden' : 'Lösung mit Fehlermarkierungen anzeigen');
         return;
       }
+      if (button.dataset.action === 'next-section' && nextSection) {
+        const play = radio.querySelector('[data-missing-clicks-play]');
+        if (play?.getAttribute('aria-pressed') === 'true') play.click();
+        window.history.replaceState(null, '', `#${nextSection.id}`);
+        nextSection.focus({ preventScroll: true });
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       if (button.dataset.action === 'next-lesson') {
         const lessonMatch = radio.closest('.lesson-section')?.id.match(/^k(\d+)-lektion-(\d+)$/);
         const nextId = lessonMatch ? `k${lessonMatch[1]}-lektion-${Number(lessonMatch[2]) + 1}` : '';
@@ -373,6 +399,22 @@
       if (!printed && radio.dataset.hearingSequenceStarted === 'true') return;
       fax.classList.toggle('is-printed', printed);
       button.setAttribute('aria-expanded', String(printed));
+      if (referenceImage) {
+        referenceImage.src = printed ? referenceImage.dataset.markedSrc : originalReference.src;
+        referenceImage.alt = printed ? referenceImage.dataset.markedAlt : originalReference.alt;
+        paper.setAttribute('aria-hidden', String(!printed));
+        button.textContent = printed ? 'Lösung ausblenden' : 'Lösung';
+        return;
+      }
+      if (printed && nextSection) {
+        paper.setAttribute('aria-hidden', 'false');
+        button.dataset.action = 'next-section';
+        button.classList.add('is-next-section');
+        button.removeAttribute('aria-expanded');
+        button.setAttribute('aria-label', 'Zur nächsten Aufgabe');
+        button.textContent = 'Nächste Aufgabe';
+        return;
+      }
       let queue = [];
       try { queue = JSON.parse(radio.dataset.hearingQueue || '[]'); } catch {}
       const hasNextTask = queue.length > 0;
@@ -398,7 +440,8 @@
     tasks.forEach((task) => {
       const heading = task.querySelector('h4');
       const solution = task.querySelector('details.solution');
-      const solutionImage = solution?.querySelector('.solution-body img');
+      const solutionImage = solution?.querySelector('.solution-body img[data-hearing-score]')
+        || solution?.querySelector('.solution-body img');
       const parsed = notationEvents(solutionImage?.alt);
       const existingRadio = task.querySelector('[data-missing-clicks-player]');
       const audioAside = task.querySelector(':scope > aside.drive-audio-card');
@@ -407,7 +450,7 @@
 
       let radio = existingRadio;
       if (!radio) {
-        radio = template.cloneNode(true);
+        radio = cloneRadioTemplate(template);
         radio.removeAttribute('id');
         radio.querySelectorAll('[id]').forEach(element => {
           if (!element.matches('linearGradient')) element.removeAttribute('id');
@@ -562,7 +605,7 @@
     const sourceImage = sourceFigure?.querySelector('img');
     if (!sourceFigure || !sourceImage) return;
 
-    const radio = template.cloneNode(true);
+    const radio = cloneRadioTemplate(template);
     radio.removeAttribute('id');
     radio.querySelector('[data-fax-output]')?.remove();
     radio.classList.remove('has-fax-output');
@@ -1014,13 +1057,15 @@
           clone.querySelector('.clap-help-row')?.append(nextButton);
         }
       }
-      if (lesson?.id === 'k3-lektion-2') {
+      if (['k3-lektion-1', 'k3-lektion-2'].includes(lesson?.id)) {
+        const wholeRests = lesson.id === 'k3-lektion-1';
+        const scorePath = image.getAttribute('src').replace(/\.svg$/, '');
         const splitScore = (startBeat, endBeat, title, scoreImage) => {
           const events = parsed.noteEvents
             .filter(note => note.beat >= startBeat && note.beat < endBeat)
             .map(note => ({ ...note, beat: note.beat - startBeat }));
           return {
-            id: `rhythminator-k3l2-${startBeat ? 'reading-2' : 'reading-1'}`,
+            id: `rhythminator-${wholeRests ? 'k3l1' : 'k3l2'}-${startBeat ? 'reading-2' : 'reading-1'}`,
             title,
             image: scoreImage,
             width: 960,
@@ -1030,8 +1075,8 @@
             durationBeats: endBeat - startBeat
           };
         };
-        const firstScore = splitScore(0, 16, 'Leseübung 4 · Takte 1–4', 'assets/kapitel-3/noten-72-takte-1-4.svg');
-        const secondScore = splitScore(16, 32, 'Leseübung 4 · Takte 5–8', 'assets/kapitel-3/noten-72-takte-5-8.svg');
+        const firstScore = splitScore(0, 16, wholeRests ? 'Aufgabe 1 · Takte 1–4' : 'Leseübung 4 · Takte 1–4', `${scorePath}-takte-1-4.svg`);
+        const secondScore = splitScore(16, 32, wholeRests ? 'Aufgabe 2 · Takte 5–8' : 'Leseübung 4 · Takte 5–8', `${scorePath}-takte-5-8.svg`);
         clone.dataset.clapCustomScore = JSON.stringify(firstScore);
         clone.dataset.clapNextScore = JSON.stringify(secondScore);
         const nextButton = document.createElement('button');
@@ -1040,6 +1085,10 @@
         nextButton.dataset.clapNextTask = '';
         nextButton.textContent = 'Nächste Aufgabe';
         nextButton.setAttribute('aria-label', 'Takte 5–8 anzeigen');
+        nextButton.hidden = true;
+        nextButton.dataset.clapUnlockOnSuccess = '';
+        if (!wholeRests) nextButton.dataset.clapFinishTarget = 'halbe-pause-hoeraufgaben';
+        clone.querySelector('.clap-help-row')?.classList.add('clap-help-row--guided');
         clone.querySelector('.clap-help-row')?.append(nextButton);
       }
       if ((lesson?.id === 'k2-lektion-4' || lesson?.id === 'k3-lektion-3') && /Leseübung 1/i.test(caption)) {
@@ -1130,37 +1179,53 @@
   }
 
   function addOwnRhythmChecker() {
-    const slot = document.querySelector('[data-own-rhythm-checker]');
     const template = document.getElementById('k2l2-rhythminator');
-    if (!slot || !template) return;
-    const checker = template.cloneNode(true);
-    const title = checker.querySelector('.clap-checker-heading h4');
-    const patternStorageKey = 'the-tree-of-music-rhythm-k2l5-task3-patterns';
-    checker.id = 'rhythminator-k2l5-own-rhythms';
-    checker.dataset.clapFixedScore = 'false';
-    checker.dataset.clapGuidedScore = 'false';
-    checker.dataset.clapStorageKey = patternStorageKey;
-    delete checker.dataset.clapCustomScore;
-    delete checker.dataset.clapNextScore;
-    checker.removeAttribute('data-switch-prompt');
-    checker.setAttribute('aria-label', 'The Rhythminator · Eigene Takte');
-    checker.setAttribute('aria-labelledby', 'rhythminator-k2l5-own-rhythms-title');
-    title.id = 'rhythminator-k2l5-own-rhythms-title';
-    title.textContent = 'THE RHYTHMINATOR';
-    checker.querySelector('.clap-bar-scope')?.remove();
-    checker.querySelector('[data-clap-status]').textContent = 'Schreibe deinen Rhythmus im Editor darüber und werte ihn aus. Dann kannst du ihn hier auswählen und klatschen.';
-    checker.querySelector('[data-clap-display]').dataset.state = 'idle';
-    checker.querySelector('.clap-checker-patterns')?.replaceChildren();
-    const gradient = checker.querySelector('linearGradient[id]');
-    if (gradient) {
-      const previousId = gradient.id;
-      const nextId = 'rhythminator-logo-k2l5-own-rhythms';
-      gradient.id = nextId;
-      checker.querySelectorAll('[style]').forEach(element => {
-        element.setAttribute('style', element.getAttribute('style').replaceAll(`url(#${previousId})`, `url(#${nextId})`));
-      });
-    }
-    slot.replaceWith(checker);
+    if (!template) return;
+    document.querySelectorAll('[data-own-rhythm-checker]').forEach(slot => {
+      const checker = template.cloneNode(true);
+      const title = checker.querySelector('.clap-checker-heading h4');
+      const patternStorageKey = 'the-tree-of-music-rhythm-k2l5-task3-patterns';
+      checker.id = slot.dataset.editorChecker || 'rhythminator-k2l5-own-rhythms';
+      if (slot.dataset.editorChecker) {
+        checker.hidden = true;
+        checker.tabIndex = -1;
+        checker.dataset.clapEditorScore = '';
+        checker.dataset.clapStartBpm = '70';
+        const finish = document.createElement('button');
+        finish.type = 'button';
+        finish.hidden = true;
+        finish.className = 'clap-help-button clap-next-task-button is-finish';
+        finish.dataset.clapEditorFinish = slot.dataset.finishTarget;
+        finish.textContent = 'Erledigt!';
+        const row = checker.querySelector('.clap-help-row');
+        row.classList.add('clap-help-row--guided');
+        row.append(finish);
+      }
+      checker.dataset.clapFixedScore = 'false';
+      checker.dataset.clapGuidedScore = String(Boolean(slot.dataset.editorChecker));
+      checker.dataset.clapStorageKey = patternStorageKey;
+      delete checker.dataset.clapCustomScore;
+      delete checker.dataset.clapNextScore;
+      checker.removeAttribute('data-switch-prompt');
+      checker.setAttribute('aria-label', 'The Rhythminator · Eigene Takte');
+      checker.setAttribute('aria-labelledby', `${checker.id}-title`);
+      title.id = `${checker.id}-title`;
+      title.textContent = 'THE RHYTHMINATOR';
+      checker.querySelector('.clap-bar-scope')?.remove();
+      checker.querySelector('[data-clap-status]').textContent = 'Schreibe deinen Rhythmus im Editor darüber und werte ihn aus. Dann kannst du ihn hier auswählen und klatschen.';
+      checker.querySelector('[data-clap-display]').dataset.state = 'idle';
+      checker.querySelector('.clap-checker-patterns')?.replaceChildren();
+      const gradient = checker.querySelector('linearGradient[id]');
+      if (gradient) {
+        const previousId = gradient.id;
+        const nextId = `${checker.id}-logo`;
+        gradient.id = nextId;
+        checker.querySelectorAll('[style]').forEach(element => {
+          element.setAttribute('style', element.getAttribute('style').replaceAll(`url(#${previousId})`, `url(#${nextId})`));
+        });
+      }
+      slot.replaceWith(checker);
+    });
   }
 
   function replaceMitspielAudios() {
@@ -1198,16 +1263,17 @@
         .filter(figure => figure.compareDocumentPosition(aside) & Node.DOCUMENT_POSITION_FOLLOWING);
       const relatedImage = (notationFigure || candidates[0])?.querySelector('img');
       const parsed = notationEvents(relatedImage?.alt);
-      const repeatedMitspielSet = groupIndex > 0 && heading?.dataset.rhythmRadioHeading === 'true';
-      const pattern = /auf jedem Schlag eine Viertelnote/i.test(instructionText)
-        ? fallbackPattern('Viertelnote')
-        : repeatedMitspielSet
+      const isQuarterRestSequence = lessonId === 'k3-lektion-3' && heading.dataset.rhythmRadioHeading === 'true';
+      const repeatedMitspielSet = groupIndex > 0 && heading.dataset.rhythmRadioHeading === 'true';
+      const pattern = isQuarterRestSequence || repeatedMitspielSet
         ? fallbackPattern('Viertelpause', groupIndex)
+        : /auf jedem Schlag eine Viertelnote/i.test(instructionText)
+        ? fallbackPattern('Viertelnote')
         : parsed?.noteEvents.length
           ? parsed
           : fallbackPattern(instructionText, groupIndex);
       const bars = Math.max(1, Math.round(pattern.durationBeats / 4));
-      const clone = template.cloneNode(true);
+      const clone = cloneRadioTemplate(template);
       clone.removeAttribute('data-switch-prompt');
       clone.setAttribute('aria-label', `The Rhythm Radio begleitet ${headingText}`);
       clone.dataset.pattern = 'score-notation';
@@ -1375,7 +1441,7 @@
           element.setAttribute('style', element.getAttribute('style').replaceAll(`url(#${oldId})`, `url(#${newId})`));
         });
       }
-      if (lessonId === 'k3-lektion-3' && heading?.dataset.rhythmRadioHeading === 'true') {
+      if (isQuarterRestSequence) {
         const key = `${lessonId}:${headingText}`;
         let sequence = mitspielSequences.get(key);
         if (!sequence) {
@@ -1414,6 +1480,13 @@
       const { radio, tasks } = sequence;
       let taskIndex = 0;
       const updateRadioTask = task => {
+        const noteBeats = new Set(task.events.split(',').map(event => Number(event.split(':')[0])));
+        const beats = [1, 2, 3, 4];
+        const lesson = radio.closest('.lesson-section');
+        const clap = lesson?.querySelector('[data-quarter-rest-clap]');
+        const rest = lesson?.querySelector('[data-quarter-rest-pause]');
+        if (clap) clap.textContent = `${beats.filter(beat => noteBeats.has(beat - 1)).join(' und ')} klatschen`;
+        if (rest) rest.textContent = `${beats.filter(beat => !noteBeats.has(beat - 1)).join(' und ')} als Pause spüren`;
         radio.dataset.scoreEvents = task.events || '';
         radio.dataset.durationBars = task.bars || '8';
         radio.dataset.durationLabel = task.durationLabel || `${task.bars || 8} Takte`;
@@ -1429,24 +1502,34 @@
         radio.querySelector('[data-missing-clicks-play]')?.setAttribute('aria-label', `${task.title} abspielen`);
         radio.dispatchEvent(new CustomEvent('rhythmradio:configure'));
       };
-      const nextTask = document.createElement('button');
-      nextTask.type = 'button';
-      nextTask.className = 'rhythm-radio-next-task';
-      nextTask.textContent = 'Nächster Rhythmus';
-      nextTask.setAttribute('aria-label', 'Zum nächsten Rhythmus wechseln');
-      nextTask.addEventListener('click', () => {
-        const playButton = radio.querySelector('[data-missing-clicks-play]');
-        if (playButton?.getAttribute('aria-pressed') === 'true') playButton.click();
-        taskIndex += 1;
-        if (taskIndex >= tasks.length) {
-          nextTask.remove();
-          return;
-        }
-        updateRadioTask(tasks[taskIndex]);
-        radio.setAttribute('data-switch-prompt', '');
-        if (taskIndex === tasks.length - 1) nextTask.hidden = true;
-      });
-      radio.after(nextTask);
+      const panel = document.querySelector('#k3-lektion-2 [data-radio-pattern-panel]')?.cloneNode(true);
+      if (panel) {
+        const pattern = panel.querySelector('[data-radio-click-pattern]');
+        pattern.id = 'rhythm-radio-viertelpausen-muster';
+        panel.querySelector('[data-radio-shutter-toggle]').setAttribute('aria-controls', pattern.id);
+        radio.dataset.radioCountInLamps = '';
+        radio.querySelector('.missing-clicks-radio-brand')?.after(panel);
+        const nextTask = panel.querySelector('[data-radio-next-exercise]');
+        const updateNextButton = () => {
+          const finished = taskIndex === tasks.length - 1;
+          nextTask.textContent = finished ? 'Fertig!' : 'Nächste Aufgabe';
+          nextTask.classList.toggle('is-finish', finished);
+        };
+        nextTask.addEventListener('click', () => {
+          radio.dispatchEvent(new CustomEvent('rhythmradio:stop'));
+          if (taskIndex === tasks.length - 1) {
+            const reading = document.getElementById('viertelpause-leseuebung');
+            reading?.focus({ preventScroll: true });
+            reading?.scrollIntoView({ block: 'center' });
+          } else {
+            taskIndex += 1;
+            updateRadioTask(tasks[taskIndex]);
+            updateNextButton();
+            radio.setAttribute('data-switch-prompt', '');
+          }
+        });
+        updateNextButton();
+      }
       updateRadioTask(tasks[0]);
     });
   }

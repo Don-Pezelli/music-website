@@ -18,6 +18,7 @@
   const controlPanel = root.querySelector('.clap-checker-controls');
   const helpButton = root.querySelector('[data-clap-help]');
   const nextTaskButton = root.querySelector('[data-clap-next-task]');
+  const editorFinish = root.querySelector('[data-clap-editor-finish]');
   const headphoneToggle = root.querySelector('[data-clap-headphones]');
   const auxJack = root.querySelector('[data-clap-aux-jack]');
   const infoToggle = root.querySelector('[data-clap-info-toggle]');
@@ -34,7 +35,7 @@
   try { customScoreQueue = JSON.parse(root.dataset.clapNextScoreQueue || '[]'); } catch { customScoreQueue = []; }
   const guidedScore = fixedScore || root.dataset.clapGuidedScore === 'true';
   const clapThreshold = .065;
-  let tempo = fixedScore ? 80 : 50;
+  let tempo = Number(root.dataset.clapStartBpm || (fixedScore ? 80 : 50));
   let beatMs = 60000 / tempo;
   tempoOutput.textContent = `${tempo} BPM`;
   const tolerance = .32;
@@ -168,6 +169,13 @@
     if (scoreCountLabelsLayer) scoreCountLabelsLayer.replaceChildren();
   }
   function scorePointAtBeat(beat) {
+    const layout = selected?.scoreRows;
+    if (layout?.length) {
+      const safeBeat = Math.min(selected.durationBeats - .01, beat);
+      const bar = Math.max(0, Math.floor(safeBeat / 4));
+      const row = layout[bar];
+      return { x: row.x + (safeBeat - bar * 4) * row.step, y: row.y };
+    }
     const safeBeat = Math.min(31.99, beat);
     if (safeBeat < 0) return { x: 96 + safeBeat * 51, y: 80 };
     const bar = Math.floor(safeBeat / 4);
@@ -251,7 +259,8 @@
     }
   }
   function activeBarRange() {
-    if (!fixedScore || !selectedBars.size) return { startBar: 0, barCount: 4 };
+    if (!fixedScore) return { startBar: 0, barCount: Math.ceil((selected?.durationBeats || 0) / 4) };
+    if (!selectedBars.size) return { startBar: 0, barCount: 4 };
     const bars = [...selectedBars].sort((a, b) => a - b);
     return { startBar: bars[0], barCount: bars[bars.length - 1] - bars[0] + 1 };
   }
@@ -325,6 +334,11 @@
       return;
     }
     const playbackBeat = startBeat + Math.max(0, Math.min(durationBeats - 1, Math.floor((elapsed - countInMs) / beatMs)));
+    if (selected?.scoreRows) {
+      const point = scorePointAtBeat(playbackBeat);
+      showScoreCounter(playbackBeat % 4 + 1, point.x, point.y - 52);
+      return;
+    }
     const bar = Math.floor(playbackBeat / 4);
     const beatInBar = playbackBeat % 4;
     const row = Math.floor(bar / 4);
@@ -491,6 +505,7 @@
       startButton.disabled = !stream;
       return;
     }
+    if (editorFinish) return;
     if (fixedScore) {
       patterns = [readingExercisePatterns[currentExerciseIndex]];
       selected = readingExercisePatterns[currentExerciseIndex];
@@ -543,7 +558,7 @@
         scoreCounterLayer = document.createElementNS(scoreSvgNS, 'g');
         overlay.append(scoreCountLabelsLayer, scoreErrorLayer, scoreCounterLayer);
         scoreFrame.append(image, overlay);
-        addInfoMarker(scoreFrame, 'Lies die sichtbaren vier Takte. HELP! spielt diese Takte mit Einzähler vor; mit aktivem Kopfhörermodus läuft das Metronom danach weiter.');
+        addInfoMarker(scoreFrame, 'Lies die sichtbaren Takte. HELP! spielt diese Takte mit Einzähler vor; mit aktivem Kopfhörermodus läuft das Metronom danach weiter.');
         card.append(title, scoreFrame);
         if (barScope) {
           barScope.classList.add('clap-bar-scope-in-notation');
@@ -623,8 +638,43 @@
   });
 
   if (helpButton) helpButton.addEventListener('click', playHelp);
+  if (editorFinish) {
+    root.addEventListener('rhythm:editor-score', event => {
+      if (helpRunning) void stopHelp();
+      stopMic();
+      editorFinish.hidden = true;
+      const score = event.detail;
+      customScore = score?.durationBeats === 8 && score.clapEvents?.length ? score : null;
+      selected = null;
+      patterns = [];
+      root.hidden = !customScore;
+      if (customScore) {
+        readPatterns();
+        setDisplay('Lies deine zwei Takte. Schalte dann das Mikrofon ein.', 'idle', 'notation');
+      }
+    });
+    editorFinish.addEventListener('click', () => {
+      const target = document.getElementById(editorFinish.dataset.clapEditorFinish);
+      if (!target || editorFinish.hidden || running) return;
+      if (helpRunning) void stopHelp();
+      stopMic();
+      setDisplay('Beide Takte richtig geklatscht.', 'hit', 'result');
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ block: 'start' });
+    });
+  }
   if (nextTaskButton) nextTaskButton.addEventListener('click', () => {
-    if (running) return;
+    if (running || nextTaskButton.hidden) return;
+    if (nextTaskButton.dataset.clapFinishTarget && currentExerciseIndex === 1) {
+      const target = document.getElementById(nextTaskButton.dataset.clapFinishTarget);
+      if (target) {
+        if (helpRunning) stopHelp();
+        window.history.replaceState(null, '', `#${target.id}`);
+        target.focus({ preventScroll: true });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
     const nextScore = customScoreQueue.shift() || nextCustomScore;
     if (!nextScore) return;
     if (helpRunning) stopHelp();
@@ -633,7 +683,17 @@
     patterns = [selected];
     currentExerciseIndex = 1;
     renderPatterns();
-    if (!customScoreQueue.length) nextTaskButton.remove();
+    if (!customScoreQueue.length) {
+      if (document.activeElement === nextTaskButton) helpButton?.focus();
+      if (nextTaskButton.dataset.clapFinishTarget) {
+        nextTaskButton.hidden = true;
+        nextTaskButton.textContent = 'Fertig!';
+        nextTaskButton.setAttribute('aria-label', 'Fertig! Zu den Höraufgaben');
+        nextTaskButton.classList.add('is-finish');
+      } else {
+        nextTaskButton.remove();
+      }
+    }
     startButton.disabled = !stream;
     const nextTitle = nextScore.title || 'die nächste Leseübung';
     setDisplay(stream
@@ -686,9 +746,12 @@
       return;
     }
     if (!stream || !selected) return;
+    if (editorFinish) editorFinish.hidden = true;
     if (helpRunning) await stopHelp();
     clearScoreErrors();
     clearScoreCountLabels();
+    const attemptScore = selected;
+    const attemptContext = audioContext;
     const expected = activeClapEvents();
     const attemptDurationBeats = activeDurationBeats();
     const attemptStartBeat = fixedScore ? activeBarRange().startBar * 4 : 0;
@@ -696,11 +759,13 @@
       setDisplay('Für diese Notation sind keine Klatschimpulse gespeichert.', 'error', 'start');
       return;
     }
-    try { await audioContext.resume(); }
+    try { await attemptContext.resume(); }
     catch {
+      if (attemptContext !== audioContext) return;
       setDisplay('Der Einzähler konnte nicht starten. Audiofreigabe prüfen.', 'error', 'start');
       return;
     }
+    if (attemptContext !== audioContext || attemptScore !== selected || running) return;
     claps = [];
     lastClap = -Infinity;
     liveClapCounter.textContent = `Klatscher 0 / ${expected.length}`;
@@ -755,7 +820,7 @@
         stopCapture();
         stopContinuousMetronome();
         clearScoreCounter();
-        evaluateClaps(recordStart, expected, attemptStartBeat);
+        evaluateClaps(recordStart, expected, attemptStartBeat, attemptDurationBeats);
         return;
       }
       frame = requestAnimationFrame(listen);
@@ -763,7 +828,7 @@
     frame = requestAnimationFrame(listen);
   });
 
-  function evaluateClaps(recordStart, expected, attemptStartBeat = 0) {
+  function evaluateClaps(recordStart, expected, attemptStartBeat, attemptDurationBeats) {
     const measured = claps.map(time => (time - recordStart) / beatMs);
     const pairs = [];
     if (measured.length <= expected.length) {
@@ -817,6 +882,11 @@
     startButton.setAttribute('aria-label', 'Start');
     startButton.disabled = !stream;
     if (misses === 0 && extras === 0 && timingErrors.length === 0) {
+      if (editorFinish) editorFinish.hidden = false;
+      if (nextTaskButton?.hasAttribute('data-clap-unlock-on-success') &&
+          (currentExerciseIndex === 0 || nextTaskButton.dataset.clapFinishTarget)) {
+        nextTaskButton.hidden = false;
+      }
       clearScoreErrors();
       clearScoreCountLabels();
       const completedSelection = activeBarRange();
@@ -860,13 +930,13 @@
         const beat = attemptStartBeat + expected[targetIndex];
         const place = errorLocation(beat);
         addMissedNoteMarker(beat);
-        diagnostics.push({ beat, bar: place.bar, position: place.beat, reason: 'Note hat gefehlt' });
+        diagnostics.push({ beat, bar: place.bar, position: place.beat, reason: 'fehlt' });
       });
       extraClaps.forEach(clapIndex => {
         const beat = attemptStartBeat + measured[clapIndex];
         const place = errorLocation(beat);
         addErrorNote(beat);
-        diagnostics.push({ beat, bar: place.bar, position: place.beat, reason: 'Note zu viel' });
+        diagnostics.push({ beat, bar: place.bar, position: place.beat, reason: 'zu viel' });
       });
       timingErrors.forEach(({ clapIndex, targetIndex, offset }) => {
         const targetBeat = attemptStartBeat + expected[targetIndex];
@@ -877,13 +947,8 @@
       });
       diagnostics.sort((a, b) => a.beat - b.beat);
       showStaticScoreCounts(attemptStartBeat, attemptDurationBeats);
-      const grouped = new Map();
-      diagnostics.forEach(item => {
-        if (!grouped.has(item.bar)) grouped.set(item.bar, []);
-        grouped.get(item.bar).push(`- Schlag ${item.position}: ${item.reason}`);
-      });
-      const feedback = [...grouped]
-        .map(([bar, issues]) => `Takt ${bar}:\n${issues.join('; ')}`)
+      const feedback = diagnostics
+        .map(({ bar, position, reason }) => `Takt ${bar}: Note auf Schlag ${position} ${reason}`)
         .join('\n');
       setDisplay(feedback, 'miss', 'result');
     }
@@ -913,6 +978,6 @@
   }
   if (guidedScore) setDisplay('Lesen und vorbereiten. Erst dann Mic anschalten.', 'idle', 'notation');
   if (fixedScore) updateBarScope(false);
-  readPatterns();
+  if (!editorFinish) readPatterns();
   });
 })();

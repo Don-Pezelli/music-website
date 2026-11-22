@@ -1,4 +1,92 @@
+## 2026-11-23
+- Rhythmus 1: Das mobile Inhaltsverzeichnis gibt vertikale Wischgesten an die Seite weiter, sobald sein Scrollbereich endet.
+- Rhythmus 1: Hinweis unter dem Inhaltsverzeichnis entfernt.
+- Rhythmus 1: Slogan aus der Fußzeile entfernt.
+- Rhythmus 1: Einführung und Kapitel haben Aufklapppfeile direkt in der Titelzeile und öffnen sich beim Hineinscrollen automatisch. Das Inhaltsverzeichnis klappt verlassene Abschnitte zu und bringt die aktuelle Zeile ins Sichtfeld.
+- Rhythminator: Eigene Takte werden mit genau zwei Takten gezählt und gegen die übernommene Notation ausgewertet.
+- Rhythmus 1, Kapitel 3: Eigene Takte erscheinen mit einfacher Notenlinie im Rhythminator, der bei 70 BPM startet.
+- Rhythmus 1, Kapitel 3: Schreibanleitung gekürzt und Auswertung auf halbe Pause und Viertelpause in frei gestalteten Takten abgestimmt.
+- Rhythmus 1, Kapitel 3: Eigene Takte lassen sich nach korrekter Auswertung im Rhythminator klatschen. Bei Erfolg erscheint der grün leuchtende Erledigt-Knopf.
+
 ## 2026-11-22
+- Rhythmus 1, Kapitel 3: Abschlusskarte ins Blau der Ikonen-Karte getaucht und Schreibeditor im Stil der Taktergänzung zusammengefasst.
+- Rhythmus 1: Glückwunschkarte nach Abhaken der Reflexionsziele von Kapitel 2 ergänzt.
+- Rhythmus 1, Kapitel 3: Hörvergleichsvorlage dauerhaft im Rhythm Radio platziert. Die Lösungsfunktion markiert die Vorlage rot und gibt die korrekte Notation grün gerahmt aus.
+- Rhythmus 1: Abschluss-Panel durch eine animierte Glückwunschkarte mit Abschlusstext nach Erreichen aller Abschlussziele ersetzt und das Buch der Fähigkeiten mit einem Buchsymbol verlinkt.
+- Rhythmus 1, Kapitel 3: Beschriftung „Takt 1“ im Hörvergleich entfernt und markierte Fehler sowie korrekte Notation im Lösungsblatt gezeigt.
+- Rhythmus 1, Kapitel 3: Die Taktergänzung hat einen gelben Auswerten-Knopf. Nach korrekter Lösung führt der grün leuchtende Fertig-Knopf zum Hörvergleich.
+- Rhythmus 1, Kapitel 3: Takteditor mit dunklem Gehäuse, hellem Notenfeld, Tempoanzeige unten rechts und abgesetzten Symboltasten gestaltet.
+- Rhythmus 1, Kapitel 3: Starttempo der Taktergänzung auf 50 BPM angehoben.
+- Rhythmus 1: Die vier Takte der gemischten Rhythminator-Leseübungen stehen ohne Taktbeschriftungen in einer Zeile.
+- Rhythmus 1, Kapitel 3: Drei Aufgaben zum Zuordnen von Pausenlängen in einem interaktiven Taschenrechner zusammengefasst. Nach drei richtigen Antworten folgt die Leseübung.
+- Rhythmus 1, Kapitel 3: Schwarzes und weißes Feld links neben den Übersichten zu Noten- und Pausenwerten ergänzt.
+- Rhythmus 1, Kapitel 3: Weiter-Link am Ende der Viertelpausen-Lektion entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 3: Doppelte Überschrift über dem Rhythminator entfernt.
+- Rhythmus 1, Kapitel 3, Lektion 3: Mitspielübung mit Stichpunkten, sichtbarem Einzähler, Zählzeitlampen und Augen-Rollladen gestaltet.
+- Rhythmus 1, Kapitel 3, Lektion 3: Erster Mitspielrhythmus mit Viertelnoten auf 1 und 3 und Viertelpausen auf 2 und 4.
+- Rhythmus 1, Kapitel 3, Lektion 2: Höraufgaben mit Stichpunktanleitung und Vier-Takt-Schreibvorlage ergänzt.
+- Rhythmus 1, Kapitel 3, Lektion 2: Nach der zweiten Leseaufgabe führt der grün leuchtende Fertig-Knopf zu den Höraufgaben.
+- Rhythminator: Das Display nennt pro Klatschfehler den Takt, den Schlag und die Fehlerart.
+- Rhythmus 1, Kapitel 3, Lektion 2: Der grüne Knopf zur zweiten Leseaufgabe erscheint erst nach korrekt geklatschter erster Aufgabe.
+- Rhythmus 1, Kapitel 3, Lektion 2: Anleitung und Mitspiel-Rhythmus auf den Wechsel zwischen halber Note und halber Pause abgestimmt.
+- Rhythmus 1, Kapitel 3, Lektion 2: Mitspielübung zu halben Pausen mit Einzähler, vier Takten, Zählzeitlampen und Augen-Rollladen gestaltet.
+- Rhythmus 1, Kapitel 3, Lektion 1: Ganzpausen-Leseübung in zwei Vier-Takt-Aufgaben geteilt. Der grüne Knopf zur nächsten Aufgabe erscheint nach korrektem Klatschen.
+- Rhythmus 1 und 2: Notationen der Pausenlektionen im Grundkurs auf Viertel- und Halbnoten umgestellt, Pausen beibehalten und die ursprüngliche Ganzpausen-Leseübung im Achtelkurs als Reserve ergänzt.
+- Rhythmus 1, Kapitel 3: Beispiele für ganze, halbe und Viertelpausen auf animierte weiße 4/4-Notation mit 60 BPM umgestellt.
+- Rhythmus 1, Kapitel 3: Ablaufübersicht, Audiohinweis und Weiter-Link aus dem Einstieg entfernt.
+- Rhythmus 1, Kapitel 3: Im Einstieg erklärt, warum das Klatschen während einer Pause aussetzt.
+- Rhythmus 1, Kapitel 3: Einstiegsüberschrift in „Die zweite Seite des Rhythmus“ geändert.
+- Rhythmus 1: Das Panel „Dein nächster Schritt“ am Ende von Kapitel 2 entfernt.
+- Rhythmus 1, Kapitel 2: Schreibeditor in einem Bedienfeld zusammengefasst und den Punkt zum Lösen aller Aufgaben aus der Reflexion entfernt.
+- Rhythmus 1, Kapitel 2: Der Lösungsbutton im Hörvergleich führt nach der Ausgabe als grüner Knopf zur nächsten Aufgabe.
+- Rhythmus 1, Kapitel 2: Sichtbare Beschriftung „Takt 1“ aus der Vorlage und der Lösung zum Hörvergleich entfernt.
+- Rhythmus 1, Kapitel 2: Nach korrekter Taktergänzung führt der grüne Fertig-Knopf zum Hörvergleich.
+- Rhythmus 1, Kapitel 2, Lektion 2: Anleitung zu den Höraufgaben auf fünf Stichpunkte gekürzt.
+- Rhythmus 1: Weiter-Link zu Lektion 1 aus dem Einstieg in Kapitel 2 entfernt.
+- Rhythmus 1: PDF-Downloadlinks aus Kapitel 2 und 3 entfernt.
+- Rhythmus 1: Reset-Knopf mit Bestätigung im Buch der Fähigkeiten ergänzt.
+- Rhythmus 1: Ziele und Glückwunschkarten für die Lektionen der Einführung und des dritten Kapitels ergänzt. Das Buch der Fähigkeiten zeigt jetzt auch die Einführung an.
+- Rhythmus 1, Kapitel 2 und 3: Takte und Symbolauswahl der Ergänzungsübungen in einem Bedienfeld zusammengefasst und doppelte Bildunterschriften entfernt.
+- Rhythmus 1, Kapitel 2, Lektionen 3 und 4: Animierte Notation, Körperübungen mit Taschenuhr und synchronen Klatschhänden, Mitspiel-Radios und Zielkarten ergänzt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Die ersten beiden Höraufgaben in je zwei Viertakt-Aufgaben aufgeteilt. Fünf Aufgaben mit eigenen Einzählern und Lösungsblättern sowie eine viertaktige Schreibvorlage bereitgestellt.
+- Rhythmus 1, Kapitel 2, Lektion 2: Animierte Halbnoten-Grafik bei 60 BPM, Körperübung mit Taschenuhr und Klatschen auf 1 und 3, Mitspiel-Radio mit hörbaren Halbnoten auf 1 und 3 sowie Zielkarte ergänzt.
+- Rhythmus 1: Buch der Fähigkeiten am Kursende ergänzt. Es sammelt abgehakte Ziele und Glückwunschkarten in Kursreihenfolge und speichert die Häkchen im Browser.
+- Rhythmus 1, Kapitel 2, Lektion 1: Ziel-Checkliste und Glückwunschkarte zur Ganznote ergänzt.
+- Rhythmus 1, Kapitel 2, Lektion 1: Anleitungen zur Mitspielübung auf vier Zeilen über dem Rhythm Radio gekürzt.
+- Rhythmus 1, Kapitel 2, Lektion 1: Mitspiel-Radio mit Augen-Rollladen und durchgehend hörbar markierten Zählzeiten gestaltet. Die Wiedergabe umfasst einen Einzähltakt und vier Übungstakte. Der Einzähler zählt im ersten Leuchtfeld von 1 bis 4 hoch.
+- Rhythmus 1, Kapitel 2, Lektion 1: Klatschanweisung in den Einstieg der Körperübung integriert. Die Tempoanweisung im Text entfernt.
+- Rhythmus 1, Kapitel 2, Lektion 1: Ganznoten-Erklärung mit animierter Notation und Wiedergabe bei 60 BPM gestaltet. Den Notenkopf auf der Notenlinie zentriert.
+- Rhythmus 1, Kapitel 2, Lektion 1: Taschenuhr-Metronom mit synchroner Ganznoten-Grafik und Klatschanimation in die Körperübung übernommen. Die Hände treffen beim Klick mittig unter der ganzen Note zusammen und zeigen je drei Aufprallstriche oben und unten.
+- Rhythmus 1, Kapitel 2: Dritten Schritt der Lektionsübersicht „Mitspielübung“ genannt.
+- Rhythmus 1: Anweisung zum Zusammenhalten der Hände für die Dauer der Note präzisiert.
+- Rhythmus 1, Kapitel 1: Bisheriges Abschluss-Panel durch eine Glückwunschkarte nach der Reflexion ersetzt.
+- Rhythmus 1, Kapitel 1: Reflexionsziele zum stabilen Puls bei fehlenden Klicks auf 1 und 3 beziehungsweise 2 und 4 angepasst.
+- Rhythmus 1, Kapitel 1: Einleitung zum Zeitgefühl und Puls-Panel in die Reflexion verschoben und das separate Fazit entfernt. Die Einleitung erläutert das stabile Halten des Pulses.
+- Rhythmus 1, Kapitel 1: Rote Lektionsüberschriften an die Namen im Inhaltsverzeichnis angeglichen.
+- Rhythmus 1, Kapitel 1: Im Einstieg „vier Lektionen“ formuliert.
+- Rhythmus 1, Kapitel 1: Formulierungen zur Wahrnehmung und Markierung des Pulses im Fazit angepasst. Die Überschrift beginnt mit „Fazit:“.
+- Rhythmus 1, Kapitel 1: Den Verweis auf einen späteren Aufbaukurs im Fazit entfernt.
+- Rhythmus 1, Übung 04: Wechselübung und durchgehende Klicks auf 1 und 3 im Rhythm Radio mit Rollladen, Aufgabenwechsel und Glückwunschkarte umgesetzt. Den einleitenden Erklärungssatz zur Wechselübung entfernt.
+- Rhythmus 1, Übung 03: Glückwunschkarte nach drei abgehakten Backbeat-Zielen ergänzt. Den Wiederholungshinweis darunter entfernt.
+- Rhythmus 1, Übung 03: Backbeat-Einstieg auf die Betonung von 2 und 4 sowie das Stampfen und laute Mitzählen ausgerichtet.
+- Rhythmus 1, Übung 03: Beide Backbeat-Aufgaben in einem Rhythm Radio mit Augen-Knopf, Rollladen und Aufgabenwechsel zusammengefasst. Im zweiten Takt der Wechselübung sind 1 und 3 als Punkte dargestellt. Beide Aufgaben dauern insgesamt acht Takte, gegebenenfalls mit Einzähler.
+- Rhythmus 1: Vier Aufgaben mit fehlenden Klicks in einem Radio zusammengefasst. Der Augen-Knopf startet die Wiedergabe und der Rollladen enthält „Nächste Aufgabe“. Die jeweilige Aufgabe steht im Display. In Aufgabe 4 führt der grüne Knopf „Fertig!“ ohne farblich abgesetzte Unterkante zur Ziel-Checkliste.
+- Rhythmus 1: Glückwunschkarte nach drei abgehakten Zielen in „Der Klick verschwindet teilweise“ ergänzt.
+- Rhythmus 1, Übung 2: Legende zu Zahl und Punkt entfernt.
+- Rhythmus 1, Übung 2: Hinweis zu offenen und geschlossenen Augen hervorgehoben und rechts daneben ein animiertes Gesicht platziert.
+- Rhythm Radio: Das Baumlogo leuchtet beim Abspielen entlang seiner SVG-Kontur.
+- Rhythmus 1, Übungen mit fehlenden Klicks auf 1 bis 4: Klickmuster zwischen Radiotitel und Bedienfeld über die volle Radiobreite platziert und farblich an das Radio angepasst. Beim Abspielen leuchten nur die hörbaren Klickfelder auf. Ein Augen-Knopf fährt einen Rollladen über die Felder, die bis zum rechten Innenrand reichen. Der Schriftzug auf dem Rollladen ist reliefartig gestaltet.
+- Rhythmus 1, Übung 2: Anweisung zum Stampfen auf allen vier Schlägen präzisiert.
+- Rhythmus 1, Übung 1: Standardwert am Metronom auf acht Takte geändert.
+- Rhythmus 1, Kapitel 1: Zeilenumbrüche im Absatz zur unabhängigen Fußbewegung ergänzt.
+- Rhythmus 1, Kapitel 1: Links neben der Metronom-Erklärung eine Uhr mit sanftem Ticken und ein kleines Holzmetronom ergänzt. Beide beginnen schon beim Viertelnoten- und Viertelpausenvergleich leise zu ticken und werden beim Annähern lauter. Bei der Fußanimation sind sie noch leise wahrnehmbar.
+- Rhythmus 1, Einführung: Pausenvergleich auf weißen Grafiken mit Notenlinie und 4/4-Taktangabe dargestellt. Die Vergleiche stehen in der Reihenfolge Viertel, Halbe, Ganze. Noten pulsieren bei ihrem Einsatz, Zählzahlen auf jedem Klick, und die Felder für Noten und Pausen werden für ihre Dauer grün. Die ganze Note ist größer und auf der Notenlinie zentriert.
+- Rhythmus 1, Einführung: Zählzahlen in den Hörbeispielen für halbe und ganze Noten pulsieren auf jedem Metronomschlag.
+- Rhythmus 1, Einführung: Animierte Viertelnoten-Grafik auf weißen Hintergrund umgestellt und Rahmen sowie Trennstrich entfernt. Die Notenlinie läuft zwischen den beiden Ziffern der Taktangabe.
+- Rhythmus 1, Einführung: Hörbeispiele für Viertel-, Halb- und Ganznoten mit gerahmtem Einzähler über der 4/4-Taktangabe und grüner Hervorhebung für die gespielte Notendauer gestaltet.
+- Rhythmus 1: Notenlinie durch die vier Notenköpfe in der Viertelnoten-Grafik ergänzt.
+- Rhythmus 1, Einführung: Hörbeispiele mit Einzähler für Viertel-, Halb- und Ganznoten ergänzt.
+- Rhythmus 1, Einführung: Viertel, Halbe und Ganzes unter drei aufeinanderfolgenden Überschriften als Kreise dargestellt. Die Notationsgrafik und die anschließenden Erklärungen folgen derselben Reihenfolge.
 - Rhythmus 1, Einführung: Auf den Schlägen 2 bis 4 erscheinen zunehmend kleinere, blassere Herzen in gegeneinander versetzten Ringen. Sie pulsieren auf ihrem jeweiligen Schlag und verschwinden auf der nächsten 1.
 - Rhythmus 1, Einführung: Abstand unter Metronom und Herz zum folgenden Absatz vergrößert.
 - Rhythmus 1, Einführung: Metronom als hölzernes Pendelmetronom mit Skala und Messinggewicht gestaltet.
@@ -16,7 +104,7 @@
 - Rhythmus 1, Einführung: 70-BPM-Metronom bei „Inneres Zeitgefühl“ ergänzt und etwas größer dargestellt. Die Klicks sind schon beim Absatz zum unregelmäßigen Puls leise hörbar, werden beim Annähern lauter und blenden vor „Rhythmische Notation“ aus.
 - Rhythmus 1, Einführung: Zoomhinweis bei den Pausenzeichen entfernt.
 - Rhythmus 1, Einführung: Zählzeiten 1 bis 4 über jedem Takt der Notenwerte-Grafik ergänzt.
-- Rhythmus 1, Einführung: Schreibweise „Ganz-, Halb- und Viertelnoten“ übernommen.
+- Rhythmus 1, Einführung: Formulierung „Viertel-, Halb- und Ganznoten“ übernommen.
 - Rhythmus 1, Einführung: Überschrift im Abschnitt zu den Notenwerten geändert.
 - Rhythmus 1, Einführung: Die animierte 4/4-Zählreihe bleibt nach einem Durchlauf sichtbar.
 - Rhythmus 1, Einführung: Viertelnotensymbol bei der Zählzeit und vier Viertelnoten in der Schlaggrafik ergänzt.
@@ -42,7 +130,7 @@
 - Rhythmus 1, Kapitel 1: „Abwärtsbewegung“ im Rostrot der Abwärtsdreiecke hervorgehoben.
 - Rhythmus 1, Kapitel 1: Die Dreiecke über die volle Inhaltsbreite unter den zugehörigen Wörtern der Fußanimation ausgerichtet.
 - Rhythmus 1, Kapitel 1: Die Fußbewegung auf den Schlägen und dazwischen mit rostroten Abwärts- und blauen Aufwärtsdreiecken dargestellt.
-- Rhythmus 1, Kapitel 1: Fußanimation auf 60 BPM eingestellt.
+- Rhythmus 1, Kapitel 1: Fußanimation mit den 60-BPM-Klicks synchronisiert. „Unten“ erscheint auf dem Klick, „oben“ auf dem Offbeat.
 - Rhythmus 1, Kapitel 1: Die Fußbewegung zeigt pro Durchlauf acht Schritte und wiederholt sich im gleichen Tempo.
 - Rhythmus 1, Kapitel 1: Doppeltes Fußbewegungs-Panel entfernt und „unten“ und „oben“ nacheinander eingeblendet.
 - Rhythmus 1, Kapitel 1: 60 BPM am Sekundenzeiger und das einstellbare Metronomtempo erklärt.

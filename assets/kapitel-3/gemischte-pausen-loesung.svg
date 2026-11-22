@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="540" height="150" viewBox="0 0 540 150" role="img">
-  <title>Takt 1: Viertelnote, Viertelnote, Halbe Pause</title>
+  <title>Korrekte Lösung: Viertelnote, Viertelnote, Halbe Pause</title>
   <rect width="540" height="150" fill="white"/>
   <path d="M88 86v38 M88 105H508 M508 86v38" stroke="black" fill="none"/>
-  <text x="92" y="35" font-family="Arial" font-size="14">Takt 1</text>
   <text x="58" y="99" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text><text x="58" y="120" font-family="Georgia,serif" font-weight="bold" font-size="23">4</text>
   <path data-bar="1" data-onset="0" data-duration="12" data-smufl="E1D5" transform="translate(102 125.8) scale(.52 -.52)" d="M24.2 49.2 C22.6 50.6 20.4 51.3 17.8 51.3 C7.9 51.3 0.0 44.0 0.0 36.2 C0.0 31.5 3.8 28.7 8.7 28.7 C16.7 28.7 26.6 36.2 26.6 43.8 L26.6 110.0 L24.2 110.0 Z M26.6 0.0"/>
   <path data-bar="1" data-onset="12" data-duration="12" data-smufl="E1D5" transform="translate(196 125.8) scale(.52 -.52)" d="M24.2 49.2 C22.6 50.6 20.4 51.3 17.8 51.3 C7.9 51.3 0.0 44.0 0.0 36.2 C0.0 31.5 3.8 28.7 8.7 28.7 C16.7 28.7 26.6 36.2 26.6 43.8 L26.6 110.0 L24.2 110.0 Z M26.6 0.0"/>
