@@ -1,4 +1,17 @@
 ## 2026-11-23
+- Gitarre 7: Stufenfolgen und Grundtöne für „La Bamba“ und „MMMBop“ angepasst.
+- Gesang: „Haltung“ als erstes Kapitel mit einer Übung zur Ausrichtung ergänzt. Die folgenden Kapitel neu nummeriert.
+- Gesang: Das Zusammenspiel von Kontraktion und Expansion neben der dritten Grafik erklärt.
+- Gesang: Kontraktion und Expansion farblich unterschieden und eine dritte Animation zu ihrem Zusammenspiel ergänzt. Die Grafiken stehen bei ihrer Erklärung, Kontraktion und Expansion jeweils links neben dem Absatz.
+- Gesang: Zwei Kreis-Animationen für Kontraktion und Expansion mit festem Mittelpunkt und zwei Sekunden Haltezeit ergänzt. Pfeile verdeutlichen die Bewegungsrichtung und verschwinden bei der Entspannung.
+- Gesang: Kapitel „Musikalische Grundlagen“ aus der Einführung entfernt und die verbleibenden Kapitel neu nummeriert.
+- Gesang: Repertoire-Kurse zur praktischen Anwendung der Techniken in Grundlagen und Level 1 ergänzt.
+- Gesang: Vier bestehende Kurse unter Grundlagen gruppiert. Level 1 mit Mischstimme, Mischpult, Rhythmus und Reichweite als Kursentwürfe ergänzt.
+- Gesang 1: Kapitel 3 „Das Warmup“ mit einer Abfolge aus den Übungen zu Atem, Stimme und Klangformung ergänzt.
+- Gesang 1: Inhaltsverzeichnis mit Kapitelpfeilen, automatischem Aufklappen und mitlaufender Navigation nach dem Vorbild von Rhythmus 1 gestaltet.
+- Gesang 1: Musikalische Grundlagen als Kapitel 1 und Die drei Abteilungen als Kapitel 2 nummeriert. Hinweis unter dem Inhaltsverzeichnis entfernt.
+- Gesang 1, Kapitel 4, Lektion 1: Beispiel zur Bauchanspannung gekürzt.
+- Rhythmus 1: Baustellentafel aus der Kursübersicht entfernt.
 - Rhythmus 1: Das mobile Inhaltsverzeichnis gibt vertikale Wischgesten an die Seite weiter, sobald sein Scrollbereich endet.
 - Rhythmus 1: Hinweis unter dem Inhaltsverzeichnis entfernt.
 - Rhythmus 1: Slogan aus der Fußzeile entfernt.
