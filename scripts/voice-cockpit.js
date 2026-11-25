@@ -34,7 +34,7 @@ document.querySelectorAll('[data-cockpit-pitch]').forEach(pitch => {
 
 document.querySelectorAll('[data-cockpit-power]').forEach(power => {
   const cockpit = power.closest('.voice-cockpit');
-  const inputs = cockpit.querySelectorAll('.cockpit-controls input');
+  const inputs = cockpit.querySelectorAll('.cockpit-controls input:not(:disabled)');
   const label = power.querySelector('[data-cockpit-power-label]');
 
   function setPowered(on) {

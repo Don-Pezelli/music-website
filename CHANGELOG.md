@@ -1,4 +1,7 @@
 ## 2026-11-25
+- Gesang: Übungs-Cockpits mit festen Einstellungen für Luftstrom, Stimmlippenschluss und Gaumen sowie einem bedienbaren Druckregler ergänzt.
+- Gesang: Kompaktes und volles Warm-up eingeführt. Anatomie-Galerie mit vereinfachten Rumpf-, Zwerchfell- und Vokaltraktgrafiken ergänzt.
+- Gesang: Die beiden Fauststöße der Haltungsmodelle zeitlich abgestuft und die vergrößerten Anatomiegrafiken hinter ihren Miniaturen eingeblendet.
 - Gesang: Beschriftete Kehlkopf-Draufsicht mit animiertem Stimmlippenschluss und eigenständige Übungen zu Luftstrom, Widerstand und Druck ergänzt.
 - Gesang: Ein zweites Gesangscockpit zeigt in der Stimmbox-Lektion freies Ausatmen bei Lautstärke null.
 

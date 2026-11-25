@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="69 0 461 455">
+  <title>Das Atmungssystem im Rumpf</title>
+  <style>
+    path { stroke:#793e49; stroke-width:1; stroke-linejoin:round }
+    .leader { fill:none; stroke:#74585a; opacity:.7 }
+    .labels rect { fill:#fff9f4; stroke:#d2c7bd }
+    text { fill:#3c2531; font:600 15px system-ui,sans-serif }
+  </style>
+  <rect x="69" width="461" height="455" fill="#fff"/>
+  <g>
+<defs>
+  <linearGradient id="torso-lungs">
+    <stop stop-color="#bd6c83" />
+    <stop offset=".45" stop-color="#efb2bd" />
+    <stop offset="1" stop-color="#be7489" />
+  </linearGradient>
+  <linearGradient id="torso-muscle">
+    <stop stop-color="#b66c79" />
+    <stop offset=".5" stop-color="#e39897" />
+    <stop offset="1" stop-color="#ba6b78" />
+  </linearGradient>
+</defs>
+<path fill="#f5e3d7" d="M158 13 H218 Q222 31 244 38 Q279 47 291 72
+  Q295 149 272 235 Q257 282 265 328 Q281 372 262 424 Q231 453 188 450
+  Q145 453 114 424 Q95 372 111 328 Q119 282 104 235 Q81 149 85 72
+  Q97 47 132 38 Q154 31 158 13Z" />
+<path fill="#f3cfd0" stroke-opacity=".25" d="M128 265 Q188 243 248 265
+  Q239 311 249 356 Q258 388 231 415 Q188 437 145 415 Q118 388 127 356 Q137 311 128 265Z" />
+<path id="breath-region-lungs" fill="url(#torso-lungs)" d="M169 64 Q131 61 112 112 Q94 157 110 213 Q119 246 134 246 Q147 220 172 222 Q183 216 183 183 L180 148 Q178 138 163 131 L178 120 Q187 91 169 64Z M207 64 Q245 61 264 112 Q282 157 266 213 Q257 246 242 246 Q229 223 211 224 Q197 226 192 209 Q182 184 204 171 Q210 161 196 150 Q190 141 199 134 L213 131 L198 120 Q189 91 207 64Z" />
+<path id="breath-region-ribs" fill="#e7bca0" d="M104 74 Q124 47 171 41 L170 55 Q131 61 116 82 L113 113 Q135 98 153 94 L150 106 Q117 121 109 133 L108 150 Q129 134 145 130 L143 142 Q113 156 107 169 L110 188 Q130 172 144 169 L145 180 Q121 194 113 205 L118 222 Q135 209 150 206 L155 218 Q131 231 125 243 Q111 234 103 210 Q91 170 96 131 Z M272 74 Q252 47 205 41 L206 55 Q245 61 260 82 L263 113 Q241 98 223 94 L226 106 Q259 121 267 133 L268 150 Q247 134 231 130 L233 142 Q263 156 269 169 L266 188 Q246 172 232 169 L231 180 Q255 194 263 205 L258 222 Q241 209 226 206 L221 218 Q245 231 251 243 Q265 234 273 210 Q285 170 280 131Z" />
+<path id="breath-region-trachea" fill="#a7cbd1" d="M176 21 Q188 18 200 21 L200 105 Q190 117 176 105Z" />
+<path id="breath-region-bronchi" fill="#a7cbd1" d="M176 99 L200 99 Q199 111 230 122 Q238 126 231 136 Q210 129 188 117 Q166 129 145 136 Q138 126 146 122 Q177 111 176 99Z" />
+<path id="breath-region-diaphragm" fill="url(#torso-muscle)" d="M118 251 Q149 211 183 235 Q188 238 194 235 Q227 211 258 251 L250 267 Q224 226 196 249 Q188 256 180 249 Q151 226 126 267Z" />
+<path id="breath-region-abdomen" fill="url(#torso-muscle)" d="M128 273 Q147 264 159 267 Q152 307 162 338 Q166 351 158 360 L145 374 Q132 356 128 328 Q123 295 128 273Z M248 273 Q229 264 217 267 Q224 307 214 338 Q210 351 218 360 L231 374 Q244 356 248 328 Q253 295 248 273Z" />
+<path id="breath-region-pelvis" fill="#e9c8a4" d="M129 358 Q109 350 111 370 Q113 405 144 429 Q158 440 178 436 L178 421 Q153 413 149 391 Q140 365 129 358Z M247 358 Q267 350 265 370 Q263 405 232 429 Q218 440 198 436 L198 421 Q223 413 227 391 Q236 365 247 358Z" />
+<path id="breath-region-floor" fill="#b678ab" d="M146 410 Q165 422 188 420 Q211 422 230 410 Q221 430 205 439 Q188 448 171 439 Q155 430 146 410Z" />
+<path fill="none" stroke-opacity=".35" d="M178 37H198 M178 49H198 M178 61H198
+  M178 73H198 M178 85H198 M178 97H198" />
+
+  </g>
+  <g class="labels">
+    <path class="leader" d="M188 47L316 45"/>
+    <circle cx="188" cy="47" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="31" width="204" height="28" rx="5"/>
+    <text x="326" y="50">Luftröhre</text>
+    <path class="leader" d="M273 101L316 91"/>
+    <circle cx="273" cy="101" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="77" width="204" height="28" rx="5"/>
+    <text x="326" y="96">Zwischenrippenmuskeln</text>
+    <path class="leader" d="M217 124L316 137"/>
+    <circle cx="217" cy="124" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="123" width="204" height="28" rx="5"/>
+    <text x="326" y="142">Hauptbronchien</text>
+    <path class="leader" d="M243 173L316 183"/>
+    <circle cx="243" cy="173" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="169" width="204" height="28" rx="5"/>
+    <text x="326" y="188">Lunge</text>
+    <path class="leader" d="M219 239L316 240"/>
+    <circle cx="219" cy="239" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="226" width="204" height="28" rx="5"/>
+    <text x="326" y="245">Zwerchfell</text>
+    <path class="leader" d="M230 316L316 316"/>
+    <circle cx="230" cy="316" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="302" width="204" height="28" rx="5"/>
+    <text x="326" y="321">Bauchwand</text>
+    <path class="leader" d="M248 394L316 394"/>
+    <circle cx="248" cy="394" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="380" width="204" height="28" rx="5"/>
+    <text x="326" y="399">Becken</text>
+    <path class="leader" d="M188 427L316 432"/>
+    <circle cx="188" cy="427" r="3" fill="#fff6e9" stroke="#74585a"/>
+    <rect x="316" y="418" width="204" height="28" rx="5"/>
+    <text x="326" y="437">Beckenboden</text>
+  </g>
+</svg>

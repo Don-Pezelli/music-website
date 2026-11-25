@@ -63,9 +63,9 @@ document.querySelectorAll('.anatomy-diagram').forEach(diagram => {
   });
 });
 
-const larynxDialog = document.querySelector('#larynx-preview-dialog');
-if (larynxDialog) {
-  const content = larynxDialog.querySelector('[data-anatomy-dialog-content]');
+const anatomyDialog = document.querySelector('#anatomy-preview-dialog');
+if (anatomyDialog) {
+  const content = anatomyDialog.querySelector('[data-anatomy-dialog-content]');
   let currentFigure;
   let placeholder;
   let opener;
@@ -75,18 +75,17 @@ if (larynxDialog) {
       if (currentFigure) return;
       currentFigure = document.getElementById(button.dataset.anatomyPreview);
       opener = button;
-      placeholder = document.createElement('div');
-      placeholder.className = 'anatomy-interactive';
-      placeholder.style.height = `${currentFigure.getBoundingClientRect().height}px`;
-      placeholder.setAttribute('aria-hidden', 'true');
+      placeholder = document.createComment('Anatomiegrafik');
       currentFigure.replaceWith(placeholder);
+      currentFigure.hidden = false;
       content.append(currentFigure);
-      larynxDialog.showModal();
+      anatomyDialog.showModal();
     });
   });
 
-  larynxDialog.addEventListener('close', () => {
+  anatomyDialog.addEventListener('close', () => {
     if (!currentFigure) return;
+    currentFigure.hidden = true;
     placeholder.replaceWith(currentFigure);
     currentFigure = undefined;
     opener.focus({ preventScroll: true });

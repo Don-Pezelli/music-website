@@ -163,7 +163,7 @@
     let celebrationStart;
     const displayed = { ...values, celebration: 0 };
     const pumpKeyframes = [
-      [0, 0], [260, .62], [400, 1], [540, .62], [690, 1], [830, .92], [1250, 0]
+      [0, 0], [260, .62], [500, .88], [680, .58], [790, 1], [1200, 1], [1580, 0]
     ];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 

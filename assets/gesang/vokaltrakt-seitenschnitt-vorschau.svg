@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="27 9 219 316">
+  <title>Vereinfachter Seitenschnitt durch Kopf und Hals</title>
+  <style>.vocal-tract-passage { stroke: none; }</style>
+  <g stroke="#793e49" stroke-width="1.2" stroke-linejoin="round">
+    <path fill="#fae8de" d="M58 319Q65 285 60 239Q56 211 45 184Q31 150 40 107Q46 55 81 28Q115 4 160 20
+                        Q204 34 203 77L211 91L232 113Q242 123 232 128L216 132L216 146Q229 146 227 157
+                        L220 164Q232 167 224 177L219 185Q227 199 214 210Q201 224 179 223L168 231Q164 266 174 319Z"/>
+                      <path fill="#c5d8db" d="M119 273Q133 280 146 273L150 319H116Z"/>
+                      <path fill="none" stroke-opacity=".35" d="M119 289H147M118 299H148M117 309H149"/>
+                      <path fill="#a5ccd0" d="M108 129Q111 106 130 96Q155 82 176 90Q197 93 215 109L224 122Q200 124 184 130Q154 124 126 138Z"/>
+                      <path class="vocal-tract-passage" fill="#a5ccd0" d="M102 125L115 130Q105 140 108 154Q102 169 111 187L122 217Q127 235 124 245L103 248Q100 229 93 210Q82 187 83 161Q84 139 102 125Z"/>
+                      <path class="vocal-tract-passage" fill="#a5ccd0" d="M102 151Q119 151 136 146Q167 140 205 146L218 153L219 170Q203 188 181 198Q155 209 127 200Q112 196 103 187L94 176Q89 161 102 151Z"/>
+                      <path fill="#edcea7" d="M135 139Q165 130 205 137L206 146Q168 141 136 149Z"/>
+                      <path fill="#d78599" d="M136 139Q121 137 107 147L101 155Q104 162 109 160Q122 150 136 149Z"/>
+                      <path fill="#cc8397" d="M109 181Q121 164 154 164Q176 166 191 170Q207 174 216 167Q211 184 188 193Q155 208 128 197Q114 191 109 181Z"/>
+                      <path fill="#ba6078" d="M219 150Q226 149 227 155Q226 160 218 162L215 159Z M218 166Q229 164 228 171Q226 176 216 175L212 171Z"/>
+                      <path fill="#a773a5" d="M111 232Q121 234 129 228L137 232Q137 248 154 251L149 279Q129 289 109 278L106 251Z"/>
+  </g>
+</svg>

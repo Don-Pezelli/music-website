@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 261">
+  <title>Das Zwerchfell beim Ein- und Ausatmen</title>
+  <style>
+    text { font: 600 17px system-ui, sans-serif; fill: #3c2531; text-anchor: middle; }
+    .frame { fill: #fbf3ef; stroke: #e6d8d4; }
+    .lung { fill: #eab4bd; stroke: #975e74; stroke-width: 1.5; }
+    .airway { fill: none; stroke: #975e74; stroke-linecap: round; stroke-width: 5; }
+    .diaphragm, .arrow { fill: none; stroke: #23776b; stroke-linecap: round; stroke-linejoin: round; }
+    .diaphragm { stroke-width: 6; }
+    .arrow { stroke-width: 3; }
+  </style>
+  <rect width="400" height="261" fill="#fff"/>
+  <g>
+    <rect class="frame" x="7" y="7" width="188" height="218" rx="12"/>
+    <text x="101" y="36">Einatmen</text>
+    <path class="lung" d="M87 62C64 57 42 91 40 122Q36 144 50 151Q70 146 91 148Q98 130 96 98Q97 69 87 62Z
+      M115 62C138 57 160 91 162 122Q166 144 152 151Q132 146 111 148Q104 130 106 98Q105 69 115 62Z"/>
+    <path class="airway" d="M101 53V81L81 97M101 81L121 97"/>
+    <path class="diaphragm" d="M37 176Q101 145 165 176"/>
+    <path class="arrow" d="M101 166V194M95 188L101 194L107 188"/>
+    <text x="101" y="215">senkt sich</text>
+  </g>
+  <g transform="translate(198)">
+    <rect class="frame" x="7" y="7" width="188" height="218" rx="12"/>
+    <text x="101" y="36">Ausatmen</text>
+    <path class="lung" d="M86 65C65 61 47 93 45 124Q44 139 51 145Q70 130 92 125Q96 108 95 88Q94 72 86 65Z
+      M116 65C137 61 155 93 157 124Q158 139 151 145Q132 130 110 125Q106 108 107 88Q108 72 116 65Z"/>
+    <path class="airway" d="M101 53V81L81 97M101 81L121 97"/>
+    <path class="diaphragm" d="M42 172Q101 98 160 172"/>
+    <path class="arrow" d="M101 176V149M95 155L101 149L107 155"/>
+    <text x="101" y="215">hebt sich</text>
+  </g>
+  <g>
+    <path class="diaphragm" d="M131 244H155"/>
+    <text x="214" y="250">Zwerchfell</text>
+  </g>
+</svg>

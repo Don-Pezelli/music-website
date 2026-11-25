@@ -2453,6 +2453,9 @@ html.image-viewer-open{overflow:hidden}
 .cockpit-dial input { position: absolute; width: 1px !important; height: 1px; opacity: 0; pointer-events: none; }
 .cockpit-dial:focus-within .cockpit-knob { outline: 2px solid #f1bd70; outline-offset: 3px; }
 .cockpit-knob:active { cursor: grabbing; }
+.cockpit-power:disabled,
+.cockpit-switch:has(input:disabled),
+.cockpit-dial:has(input:disabled) .cockpit-knob { cursor: default; }
 .cockpit-dials { grid-area: 2 / 1; }
 .cockpit-pitch {
   grid-area: 1 / 2 / span 2;
