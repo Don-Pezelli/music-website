@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 522">
+  <style>path{stroke:#793e49;stroke-width:1;stroke-linejoin:round}
+    .larynx-tissue{fill:url(#larynx-tissue)}.larynx-bone{fill:url(#larynx-bone)}
+    .larynx-muscle{fill:url(#larynx-muscle)}.larynx-depth{fill:#843c55}
+    .larynx-fold{fill:#f1c2a4}.larynx-rings{fill:none;opacity:.45}
+</style>
+  <rect width="100%" height="100%" fill="white"/>
+  <g transform="translate(-40 0)">
+                    <defs>
+                      <linearGradient id="larynx-tissue">
+                        <stop stop-color="#efb6b7" />
+                        <stop offset=".58" stop-color="#cc7f89" />
+                        <stop offset="1" stop-color="#a3586a" />
+                      </linearGradient>
+                      <linearGradient id="larynx-bone">
+                        <stop stop-color="#f3dfbb" />
+                        <stop offset="1" stop-color="#b59067" />
+                      </linearGradient>
+                      <linearGradient id="larynx-muscle">
+                        <stop stop-color="#ad6070" />
+                        <stop offset=".62" stop-color="#d4878b" />
+                        <stop offset="1" stop-color="#914d62" />
+                      </linearGradient>
+                    </defs>
+                    <path class="larynx-tissue" d="M84 148 Q102 129 139 136 L180 117 L219 167 Q268 184 277 224
+                      L274 315 Q270 358 273 425 L265 468 Q215 499 172 458 Q159 383 128 309 Q109 273 89 244
+                      Q67 201 84 148Z" />
+                    <path class="larynx-muscle" d="M131 272 Q167 279 213 270 L243 253 L266 251 Q246 300 253 347
+                      L263 413 Q227 420 178 433 Q165 398 153 356Z" />
+                    <path id="larynx-side-hyoid" class="larynx-bone" d="M69 186 C63 168 79 143 99 140 C97 151 86 169 79 184 Q75 191 69 186Z" />
+                    <path id="larynx-side-glosso" class="larynx-tissue" d="M124 39 Q136 64 142 97 Q151 111 181 85 L174 116 Q153 140 113 141 Q141 114 134 88Z" />
+                    <path id="larynx-side-epiglottis" class="larynx-tissue" d="M184 8 Q220 10 233 56 Q245 90 230 130 Q231 164 250 182 Q232 204 211 251 Q156 232 115 252 Q151 201 166 137 Q203 41 184 8Z" />
+                    <path id="larynx-side-aryfold" class="larynx-tissue" d="M231 124 Q234 152 256 168 Q267 182 281 164 Q272 187 251 207 L218 241 Q241 194 245 178 Q233 162 231 124Z" />
+                    <path id="larynx-side-arytenoid" class="larynx-bone" d="M269 176 Q284 154 288 172 Q291 186 278 198 L258 228 Q254 208 269 176Z" />
+                    <path id="larynx-side-vestibular" class="larynx-tissue" d="M117 253 Q162 228 218 244 Q227 245 232 250 Q186 247 174 253 Q138 260 117 257Z" />
+                    <path id="larynx-side-ventricle" class="larynx-depth" d="M122 257 Q177 253 219 250 L234 250 Q224 260 189 267 Q152 267 122 261Z" />
+                    <path id="larynx-side-vocal" class="larynx-fold" d="M122 261 Q151 266 186 264 Q219 262 236 253 Q217 275 182 278 Q149 273 122 261Z" />
+                    <path id="larynx-side-thyroid" class="larynx-bone" d="M91 246 Q111 253 130 292 L144 331 Q133 333 123 319 Q109 285 91 246Z" />
+                    <path id="larynx-side-arymuscle" class="larynx-muscle" d="M236 256 Q247 218 275 196 Q286 209 273 230 Q265 243 264 268 Q257 291 245 288 Q234 279 236 256Z" />
+                    <path id="larynx-side-ligament" class="larynx-fold" d="M132 321 Q145 330 153 357 L161 374 L148 379 Q144 353 132 321Z" />
+                    <path id="larynx-side-cricoid" class="larynx-bone" d="M148 374 Q158 367 163 379 L171 409 Q166 421 157 407 Z M260 285 Q276 268 279 299 L274 398 Q270 418 258 408 Q247 389 250 337 Q252 303 260 285Z" />
+                    <path id="larynx-side-trachea" class="larynx-muscle" d="M160 413 Q170 420 181 416 Q222 410 262 416 Q279 430 284 480 L285 512 Q235 490 174 515 Q167 484 169 462Z" />
+                    <path class="larynx-rings" d="M172 443 Q226 424 275 440 M174 461 Q230 441 279 460
+                      M176 480 Q232 459 281 480 M177 499 Q232 478 284 498" />
+
+  </g>
+</svg>

@@ -1,104 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img" aria-labelledby="title desc">
-<title id="title">C-Dur-Powerchords mit Oktave · Standardnotation und Tabulatur</title>
-<desc id="desc">Die sieben Akkordstufen erscheinen als Grundton, Quinte und Oktave, mit den passenden Griffen in Gitarrentabulatur. Stufe sieben B–F–B ist die Ausnahme mit verminderter Quinte.</desc>
-<rect width="100%" height="100%" fill="#fff"/>
-<text x="20" y="25" font-family="Arial,sans-serif" font-weight="700" font-size="18" fill="#263438">C-Dur-Powerchords · 1–5–8</text>
-<text x="20" y="45" font-family="Arial,sans-serif" font-size="11" fill="#66716d">4/4 · Grundton, Quinte und Oktave</text>
-<text x="18" y="161" font-family="serif" font-size="48" fill="#263438">𝄞</text>
-<text x="49" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#263438">4</text><text x="49" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#263438">4</text>
-<line x1="65" y1="140" x2="735" y2="140" stroke="#263438" stroke-width="1.2"/>
-<line x1="65" y1="150" x2="735" y2="150" stroke="#263438" stroke-width="1.2"/>
-<line x1="65" y1="160" x2="735" y2="160" stroke="#263438" stroke-width="1.2"/>
-<line x1="65" y1="170" x2="735" y2="170" stroke="#263438" stroke-width="1.2"/>
-<line x1="65" y1="180" x2="735" y2="180" stroke="#263438" stroke-width="1.2"/>
-<line x1="425" y1="138" x2="425" y2="184" stroke="#263438" stroke-width="1.2"/>
-<line x1="735" y1="138" x2="735" y2="184" stroke="#263438" stroke-width="1.2"/>
-<text x="100" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">C5</text>
-<line x1="88" y1="190" x2="112" y2="190" stroke="#263438" stroke-width="1.1"/>
-<ellipse cx="100" cy="190" rx="7" ry="5" transform="rotate(-20 100 190)" fill="#263438"/>
-<ellipse cx="100" cy="170" rx="7" ry="5" transform="rotate(-20 100 170)" fill="#263438"/>
-<ellipse cx="100" cy="155" rx="7" ry="5" transform="rotate(-20 100 155)" fill="#263438"/>
-<path d="M106 190V160" stroke="#263438" stroke-width="1.5"/>
-<text x="185" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">D5</text>
-<ellipse cx="185" cy="185" rx="7" ry="5" transform="rotate(-20 185 185)" fill="#263438"/>
-<ellipse cx="185" cy="165" rx="7" ry="5" transform="rotate(-20 185 165)" fill="#263438"/>
-<ellipse cx="185" cy="150" rx="7" ry="5" transform="rotate(-20 185 150)" fill="#263438"/>
-<path d="M191 185V155" stroke="#263438" stroke-width="1.5"/>
-<text x="270" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">E5</text>
-<ellipse cx="270" cy="180" rx="7" ry="5" transform="rotate(-20 270 180)" fill="#263438"/>
-<ellipse cx="270" cy="160" rx="7" ry="5" transform="rotate(-20 270 160)" fill="#263438"/>
-<ellipse cx="270" cy="145" rx="7" ry="5" transform="rotate(-20 270 145)" fill="#263438"/>
-<path d="M276 180V150" stroke="#263438" stroke-width="1.5"/>
-<text x="355" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">F5</text>
-<ellipse cx="355" cy="175" rx="7" ry="5" transform="rotate(-20 355 175)" fill="#263438"/>
-<ellipse cx="355" cy="155" rx="7" ry="5" transform="rotate(-20 355 155)" fill="#263438"/>
-<ellipse cx="355" cy="140" rx="7" ry="5" transform="rotate(-20 355 140)" fill="#263438"/>
-<path d="M361 175V145" stroke="#263438" stroke-width="1.5"/>
-<text x="465" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">G5</text>
-<ellipse cx="465" cy="170" rx="7" ry="5" transform="rotate(-20 465 170)" fill="#263438"/>
-<ellipse cx="465" cy="150" rx="7" ry="5" transform="rotate(-20 465 150)" fill="#263438"/>
-<ellipse cx="465" cy="135" rx="7" ry="5" transform="rotate(-20 465 135)" fill="#263438"/>
-<path d="M471 170V140" stroke="#263438" stroke-width="1.5"/>
-<text x="550" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">A5</text>
-<line x1="538" y1="130" x2="562" y2="130" stroke="#263438" stroke-width="1.1"/>
-<ellipse cx="550" cy="165" rx="7" ry="5" transform="rotate(-20 550 165)" fill="#263438"/>
-<ellipse cx="550" cy="145" rx="7" ry="5" transform="rotate(-20 550 145)" fill="#263438"/>
-<ellipse cx="550" cy="130" rx="7" ry="5" transform="rotate(-20 550 130)" fill="#263438"/>
-<path d="M556 165V135" stroke="#263438" stroke-width="1.5"/>
-<text x="635" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#263438">B5°*</text>
-<ellipse cx="635" cy="160" rx="7" ry="5" transform="rotate(-20 635 160)" fill="#263438"/>
-<ellipse cx="635" cy="140" rx="7" ry="5" transform="rotate(-20 635 140)" fill="#263438"/>
-<ellipse cx="635" cy="125" rx="7" ry="5" transform="rotate(-20 635 125)" fill="#263438"/>
-<path d="M641 160V130" stroke="#263438" stroke-width="1.5"/>
-<text x="18" y="278" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#263438">TAB</text>
-<line x1="65" y1="285" x2="735" y2="285" stroke="#66716d" stroke-width="1"/><text x="50" y="289" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">e</text>
-<line x1="65" y1="300" x2="735" y2="300" stroke="#66716d" stroke-width="1"/><text x="50" y="304" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">B</text>
-<line x1="65" y1="315" x2="735" y2="315" stroke="#66716d" stroke-width="1"/><text x="50" y="319" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">G</text>
-<line x1="65" y1="330" x2="735" y2="330" stroke="#66716d" stroke-width="1"/><text x="50" y="334" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">D</text>
-<line x1="65" y1="345" x2="735" y2="345" stroke="#66716d" stroke-width="1"/><text x="50" y="349" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">A</text>
-<line x1="65" y1="360" x2="735" y2="360" stroke="#66716d" stroke-width="1"/><text x="50" y="364" text-anchor="end" font-family="Arial,sans-serif" font-size="10" fill="#263438">E</text>
-<line x1="425" y1="278" x2="425" y2="368" stroke="#263438" stroke-width="1.2"/>
-<line x1="735" y1="278" x2="735" y2="368" stroke="#263438" stroke-width="1.2"/>
-<rect x="91.5" y="350" width="17" height="14" fill="#fff"/>
-<text x="100" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">8</text>
-<rect x="89.5" y="335" width="21" height="14" fill="#fff"/>
-<text x="100" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="89.5" y="320" width="21" height="14" fill="#fff"/>
-<text x="100" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="174.5" y="350" width="21" height="14" fill="#fff"/>
-<text x="185" y="361" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="174.5" y="335" width="21" height="14" fill="#fff"/>
-<text x="185" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">12</text>
-<rect x="174.5" y="320" width="21" height="14" fill="#fff"/>
-<text x="185" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">12</text>
-<rect x="261.5" y="335" width="17" height="14" fill="#fff"/>
-<text x="270" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">7</text>
-<rect x="261.5" y="320" width="17" height="14" fill="#fff"/>
-<text x="270" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">9</text>
-<rect x="261.5" y="305" width="17" height="14" fill="#fff"/>
-<text x="270" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">9</text>
-<rect x="346.5" y="335" width="17" height="14" fill="#fff"/>
-<text x="355" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">8</text>
-<rect x="344.5" y="320" width="21" height="14" fill="#fff"/>
-<text x="355" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="344.5" y="305" width="21" height="14" fill="#fff"/>
-<text x="355" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="454.5" y="335" width="21" height="14" fill="#fff"/>
-<text x="465" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="454.5" y="320" width="21" height="14" fill="#fff"/>
-<text x="465" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">12</text>
-<rect x="454.5" y="305" width="21" height="14" fill="#fff"/>
-<text x="465" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">12</text>
-<rect x="541.5" y="320" width="17" height="14" fill="#fff"/>
-<text x="550" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">7</text>
-<rect x="541.5" y="305" width="17" height="14" fill="#fff"/>
-<text x="550" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">9</text>
-<rect x="539.5" y="290" width="21" height="14" fill="#fff"/>
-<text x="550" y="301" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="626.5" y="320" width="17" height="14" fill="#fff"/>
-<text x="635" y="331" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">9</text>
-<rect x="624.5" y="305" width="21" height="14" fill="#fff"/>
-<text x="635" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">10</text>
-<rect x="624.5" y="290" width="21" height="14" fill="#fff"/>
-<text x="635" y="301" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#263438">12</text>
-<text x="20" y="402" font-family="Arial,sans-serif" font-size="11" fill="#263438">* Stufe 7: B–F–B · Die Quinte B–F ist vermindert.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-labelledby="title desc">
+  <title id="title">C-Dur-Powerchords mit Oktave · Standardnotation und Tabulatur</title>
+  <desc id="desc">Die sieben Akkordstufen erscheinen als Grundton, Quinte und Oktave, mit den passenden Griffen in Gitarrentabulatur. Stufe sieben B–F–B ist die Ausnahme mit verminderter Quinte. Sieben Viertelgriffe und eine Viertelpause in zwei 4/4-Takten.</desc>
+  <defs>
+    <path id="head" d="M7.8 30 C14.9 30 23.6 36.6 23.6 43.4 C23.6 47.4 20.4 50 15.8 50 C7 50 0 43.5 0 36.6 C0 32.5 3.4 30 7.8 30 Z"/>
+    <path id="rest" d="M6.2 37 C7.5 35.4 8.6 33.8 9.7 32.2 C9.8 31.8 10.2 31.2 10.2 31 C10.2 31 10.2 30.8 10.1 30.7 C9.9 30.4 9.6 30.3 9.2 30.3 C8.9 30.3 8.2 30.5 7.9 30.6 C7.5 30.6 7 30.8 6.6 30.8 C3.2 30.8 0.1 27.4 0.1 23.1 C0.1 19.1 3.5 15.2 9.4 10.7 C10 10.2 10.8 10 11.4 10 C12 10 12.6 10.2 12.6 10.5 C12.7 10.7 12.8 10.9 12.8 11 C12.8 11.8 12.2 12.4 11.5 13 C10.5 13 9.6 15.1 9.4 15.8 C9.2 16.5 9.1 17.2 9.1 17.9 C9.1 20.4 10.3 23.2 12.9 23.7 C13.3 23.8 13.7 23.8 14.2 23.8 C16.5 23.8 19.1 22.9 20.4 22.4 C20.5 22.4 20.6 22.3 20.6 22.3 C20.9 22.2 21 22.2 21.2 22.2 C21.4 22.2 21.6 22.3 21.6 22.6 C21.6 23.5 19.5 26.2 18.6 27.1 C15.6 30.8 13.1 33.8 13.1 38.2 C13.1 38.6 13.2 39 13.2 39.3 C13.5 43.9 16.4 47.8 18.5 51 C18.7 51.4 18.8 51.8 18.8 52.2 C18.8 53 18.5 53.8 18.5 53.8 C18.5 53.8 6.6 67.8 5.3 69.2 C4.9 69.6 4.3 69.8 3.8 69.8 C3 69.8 2.2 69.3 2.2 68.2 C2.2 67.8 2.3 67.4 2.6 66.9 C2.9 66 7.4 61.9 7.4 56.2 C7.4 53.2 6.2 49.8 2.6 46 C1.8 45.2 1.5 44.3 1.5 43.7 C1.5 42.6 2.3 41.8 2.3 41.8 Z"/>
+    <path id="time-four" data-smufl="E084" d="M14.48 -2.96 L14.48 5.6 C14.48 5.92 14.44 6.28 14 6.28 C13.64 6.28 13.44 6.2 13.2 5.92 L9.4 1.32 C9.24 1.12 9.04 0.88 9.04 0.4 L9.04 -2.96 L3.64 -2.96 C6.84 -0.24 13.24 8.84 13.36 9.28 C13.36 9.36 13.4 9.4 13.4 9.48 C13.4 9.8 13.12 10.04 12.8 10.04 C12.44 10.04 10.8 9.96 10.08 9.96 C9.36 9.96 7.56 10.04 7.24 10.04 C6.88 10.04 6.32 9.92 6.32 9.28 C6.32 4.32 2.4 -1.24 1.2 -2.92 L0.96 -3.24 C0.96 -3.28 0.92 -3.32 0.92 -3.36 C0.84 -3.52 0.8 -3.68 0.8 -3.8 C0.8 -4.2 1.12 -4.48 1.6 -4.48 L9.04 -4.48 L9.04 -7 C9.04 -8.08 8.16 -8.4 7.44 -8.4 C6.8 -8.4 6.52 -8.76 6.52 -9.16 C6.52 -9.56 6.68 -10 7.28 -10 L15.8 -10 C16.2 -10 16.6 -9.72 16.6 -9.16 C16.6 -8.6 16.12 -8.36 15.72 -8.36 C15.32 -8.36 14.48 -8.12 14.48 -6.84 L14.48 -4.48 L17.4 -4.48 C17.8 -4.48 18 -4.2 18 -3.72 C18 -3.24 17.84 -2.96 17.4 -2.96 Z"/>
+  </defs>
+  <rect width="760" height="360" fill="#fff"/>
+  <text x="20" y="25" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#263438">C-Dur-Powerchords · 1–5–8</text>
+  <text x="20" y="44" font-family="Arial,sans-serif" font-size="11" fill="#66716d">4/4 · Grundton, Quinte und Oktave</text>
+  <path d="M22 90H735 M22 100H735 M22 110H735 M22 120H735 M22 130H735 M425 90v40 M729 90v40" fill="none" stroke="#263438"/>
+  <path d="M735 90v40" stroke="#263438" stroke-width="3"/>
+  <path data-smufl="E050" transform="translate(27 123) scale(.77 -.77)" fill="#263438" d="M15.04 16.6 C14.96 17.08 15.04 17.12 15.28 17.36 C15.92 17.96 16.76 18.8 17.52 19.64 C20.88 23.32 22.88 28.08 22.88 32.6 C22.88 36.08 21.92 39.52 20.28 41.92 C19.68 42.8 18.64 43.92 18.2 43.92 C17.64 43.92 16.4 42.88 15.6 42 C12.64 38.72 11.68 33.72 11.68 29.56 C11.68 27.24 11.96 24.64 12.24 23 C12.32 22.52 12.36 22.44 11.88 22.04 C9.32 19.92 6.56 17.48 4.48 14.92 C1.72 11.48 0 7.76 0 3.48 C0 -3.48 4.76 -10.08 14.56 -10.08 C15.48 -10.08 16.52 -10 17.32 -9.84 C17.76 -9.76 17.84 -9.72 17.92 -10.2 C18.4 -12.88 19 -16.36 19 -18.24 C19 -24.16 15 -24.88 12.64 -24.88 C10.48 -24.88 9.44 -24.24 9.44 -23.72 C9.44 -23.44 9.8 -23.32 10.72 -23.04 C11.96 -22.68 13.4 -21.6 13.4 -19.28 C13.4 -17.08 12 -15.2 9.56 -15.2 C6.88 -15.2 5.28 -17.32 5.28 -19.8 C5.28 -22.4 6.84 -26.32 12.88 -26.32 C15.56 -26.32 20.76 -25.12 20.76 -18.32 C20.76 -16.04 20.04 -12.24 19.6 -9.76 C19.52 -9.28 19.56 -9.32 20.12 -9.08 C24.16 -7.48 26.84 -4.08 26.84 0.44 C26.84 5.56 23.08 10.08 17.2 10.08 C16.16 10.08 16.16 10.08 16.04 10.8 Z M18.8 37.72 C20.12 37.72 21.2 36.64 21.2 34.44 C21.2 31.68 19.88 29.12 16.76 26 C16.12 25.36 15.16 24.44 14.24 23.64 C13.96 23.4 13.8 23.44 13.72 23.96 C13.56 25 13.48 26.36 13.48 27.64 C13.48 33.88 16.36 37.72 18.8 37.72 Z M14.44 10.48 C14.56 9.72 14.56 9.76 13.84 9.52 C10.32 8.32 8.04 5.16 8.04 1.76 C8.04 -1.84 9.92 -4.4 12.64 -5.32 C12.96 -5.44 13.44 -5.56 13.72 -5.56 C14.04 -5.56 14.2 -5.36 14.2 -5.12 C14.2 -4.84 13.88 -4.72 13.6 -4.6 C11.92 -3.88 10.72 -2.16 10.72 -0.32 C10.72 1.96 12.28 3.68 14.72 4.36 C15.36 4.52 15.44 4.48 15.52 4.04 L17.52 -7.88 C17.6 -8.32 17.56 -8.32 16.96 -8.44 C16.32 -8.56 15.52 -8.64 14.72 -8.64 C7.72 -8.64 3.2 -4.76 3.2 0.8 C3.2 3.16 3.6 6.32 6.92 10.08 C9.32 12.76 11.16 14.24 13.04 15.76 C13.44 16.08 13.52 16.04 13.6 15.6 Z M17.2 4.12 C17.12 4.6 17.16 4.72 17.64 4.68 C20.88 4.4 23.56 1.68 23.56 -1.84 C23.56 -4.36 22.04 -6.4 19.8 -7.52 C19.32 -7.76 19.24 -7.76 19.16 -7.28 Z"/>
+  <use href="#time-four" transform="translate(62 100.02) scale(.998 -.998)" fill="#263438"/>
+  <use href="#time-four" transform="translate(62 120.02) scale(.998 -.998)" fill="#263438"/>
+  <path d="M54 215H735 M54 230H735 M54 245H735 M54 260H735 M54 275H735 M54 290H735" fill="none" stroke="#66716d"/>
+  <path d="M425 215v75 M729 215v75" stroke="#263438"/>
+  <path d="M735 215v75" stroke="#263438" stroke-width="3"/>
+  <text x="29" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#263438" aria-label="TAB"><tspan x="29" y="240">T</tspan><tspan x="29" y="257">A</tspan><tspan x="29" y="274">B</tspan></text>
+  <g font-family="Arial,sans-serif" font-size="11" text-anchor="end" fill="#263438">
+    <text x="48" y="219" >e</text>
+    <text x="48" y="234" >B</text>
+    <text x="48" y="249" >G</text>
+    <text x="48" y="264" >D</text>
+    <text x="48" y="279" >A</text>
+    <text x="48" y="294" >E</text>
+  </g>
+  <g fill="#263438">
+    <text x="100" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">C5</text>
+    <path d="M90 140h20" stroke="#263438"/>
+    <path d="M105.3 140V74" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(94.34 159.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(94.34 139.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(94.34 124.2) scale(.48 -.48)"/>
+    <rect x="90" y="281" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="100" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">8</text>
+    <rect x="90" y="266" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="100" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+    <rect x="90" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="100" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+  </g>
+  <g fill="#263438">
+    <text x="185" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">D5</text>
+    <path d="M179.7 100V166" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(179.34 154.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(179.34 134.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(179.34 119.2) scale(.48 -.48)"/>
+    <rect x="175" y="281" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="185" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+    <rect x="175" y="266" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="185" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">12</text>
+    <rect x="175" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="185" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">12</text>
+  </g>
+  <g fill="#263438">
+    <text x="270" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">E5</text>
+    <path d="M264.7 95V161" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(264.34 149.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(264.34 129.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(264.34 114.2) scale(.48 -.48)"/>
+    <rect x="260" y="266" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="270" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">7</text>
+    <rect x="260" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="270" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">9</text>
+    <rect x="260" y="236" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="270" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">9</text>
+  </g>
+  <g fill="#263438">
+    <text x="355" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">F5</text>
+    <path d="M349.7 90V156" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(349.34 144.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(349.34 124.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(349.34 109.2) scale(.48 -.48)"/>
+    <rect x="345" y="266" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="355" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">8</text>
+    <rect x="345" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="355" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+    <rect x="345" y="236" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="355" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+  </g>
+  <g fill="#263438">
+    <text x="465" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">G5</text>
+    <path d="M459.7 85V151" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(459.34 139.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(459.34 119.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(459.34 104.2) scale(.48 -.48)"/>
+    <rect x="455" y="266" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="465" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+    <rect x="455" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="465" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">12</text>
+    <rect x="455" y="236" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="465" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">12</text>
+  </g>
+  <g fill="#263438">
+    <text x="550" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">A5</text>
+    <path d="M540 80h20" stroke="#263438"/>
+    <path d="M544.7 80V146" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(544.34 134.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(544.34 114.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(544.34 99.2) scale(.48 -.48)"/>
+    <rect x="540" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="550" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">7</text>
+    <rect x="540" y="236" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="550" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">9</text>
+    <rect x="540" y="221" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="550" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+  </g>
+  <g fill="#263438">
+    <text x="635" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700">B5°*</text>
+    <path d="M625 80h20" stroke="#263438"/>
+    <path d="M629.7 75V141" stroke="#263438" stroke-width="1.5"/>
+    <use href="#head" transform="translate(629.34 129.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(629.34 109.2) scale(.48 -.48)"/>
+    <use href="#head" transform="translate(629.34 94.2) scale(.48 -.48)"/>
+    <rect x="625" y="251" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="635" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">9</text>
+    <rect x="625" y="236" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="635" y="249" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">10</text>
+    <rect x="625" y="221" width="20" height="15" rx="3" fill="#fff"/>
+    <text x="635" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700">12</text>
+  </g>
+  <use href="#rest" transform="translate(695 128) scale(.48 -.48)" fill="#263438"/>
+  <text x="20" y="327" font-family="Arial,sans-serif" font-size="11" fill="#263438">* Stufe 7: B–F–B · Die Quinte B–F ist vermindert.</text>
+</svg>

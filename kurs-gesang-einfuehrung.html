@@ -44,6 +44,169 @@
       font-size: 13px
     }
 
+    .anatomy-preview-button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: #fff;
+      cursor: zoom-in;
+    }
+
+    .anatomy-preview-button:hover,
+    .anatomy-preview-button:focus-visible { border-color: #99600d; }
+
+    .anatomy-preview-dialog {
+      position: fixed;
+      box-sizing: border-box;
+      width: min(94vw, 710px);
+      max-height: 90vh;
+      margin: auto;
+      padding: clamp(8px, 2vw, 16px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffaf6;
+      color: var(--ink);
+    }
+
+    .anatomy-preview-dialog::backdrop { background: rgb(33 22 28 / .64); }
+    .anatomy-preview-dialog form { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+    .anatomy-preview-dialog form button {
+      padding: 6px 12px;
+      border: 1px solid #d5bec7;
+      border-radius: 999px;
+      background: #fff;
+      color: #6d354a;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .anatomy-interactive { grid-column: 1 / -1; min-width: 0; }
+
+    .anatomy-interactive-image {
+      position: relative;
+      max-width: 555px;
+      margin-inline: auto;
+    }
+
+    .anatomy-interactive-image img { height: auto; }
+
+    .anatomy-interactive-image svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .anatomy-interactive-image .anatomy-region { fill: transparent; stroke: transparent; }
+
+    .anatomy-interactive-image .anatomy-region.is-highlighted {
+      fill: #f8ee69;
+      fill-opacity: .48;
+      stroke: #ffe845;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 4px #ffdc38);
+    }
+
+    .anatomy-interactive-image button {
+      position: absolute;
+      padding: 0;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .anatomy-interactive-image button:hover,
+    .anatomy-interactive-image button:focus-visible,
+    .anatomy-interactive-image button[aria-pressed="true"] {
+      background: rgb(255 239 112 / .27);
+      border-color: #89700e;
+    }
+
+    .anatomy-interactive-image--german { container-type: inline-size; }
+
+    .anatomy-diagram {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(8px, 2vw, 24px);
+      max-width: 580px;
+      margin-inline: auto;
+    }
+
+    .anatomy-diagram > svg:first-child { display: block; width: 100%; max-height: 480px; }
+    .anatomy-diagram path { stroke: #793e49; stroke-width: 1; stroke-linejoin: round; }
+    .anatomy-diagram .larynx-tissue { fill: url(#larynx-tissue); }
+    .anatomy-diagram .larynx-bone { fill: url(#larynx-bone); }
+    .anatomy-diagram .larynx-muscle { fill: url(#larynx-muscle); }
+    .anatomy-diagram .larynx-depth { fill: #843c55; }
+    .anatomy-diagram .larynx-fold { fill: #f1c2a4; }
+    .anatomy-diagram .larynx-rings { fill: none; opacity: .45; pointer-events: none; }
+
+    .anatomy-diagram path.is-highlighted {
+      fill: #ffdf69;
+      stroke: #99600d;
+      stroke-width: 1.8;
+      filter: drop-shadow(0 0 4px #ffc93d);
+    }
+
+    .anatomy-diagram .anatomy-diagram-leaders {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .anatomy-diagram-leaders line { stroke: #74585a; stroke-opacity: .65; }
+    .anatomy-diagram-leaders circle { fill: #fff6e9; stroke: #74585a; }
+    .anatomy-diagram-leaders .is-highlighted line { stroke: #99600d; stroke-opacity: 1; stroke-width: 2; }
+    .anatomy-diagram-leaders .is-highlighted circle { fill: #ffdf69; stroke: #99600d; }
+
+    .anatomy-diagram-labels { position: relative; display: grid; gap: 4px; }
+    :is(.anatomy-diagram-labels, .anatomy-interactive-image--german) button {
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff9f4;
+      color: var(--ink);
+      font: inherit;
+      font-size: .8rem;
+      line-height: 1.25;
+      text-align: left;
+      overflow-wrap: anywhere;
+      cursor: pointer;
+    }
+
+    :is(.anatomy-diagram-labels, .anatomy-interactive-image--german) button:hover,
+    :is(.anatomy-diagram-labels, .anatomy-interactive-image--german) button[aria-pressed="true"] {
+      background: #ffec9c;
+      border-color: #99600d;
+    }
+
+    :is(.anatomy-diagram-labels, .anatomy-interactive-image--german) button:focus-visible {
+      outline: 2px solid #99600d;
+      outline-offset: 2px;
+    }
+
+    :is(.anatomy-diagram-labels, .anatomy-interactive-image--german) .anatomy-featured-label {
+      color: #843454;
+      font-weight: 700;
+    }
+
+    .anatomy-interactive-image--german button {
+      padding: 0 clamp(2px, 1cqw, 6px);
+      font-size: clamp(8px, 2.6cqw, .8rem);
+    }
+
+    .anatomy-interactive-image--german .anatomy-label--top { text-align: center; }
+    .anatomy-interactive-image--german .anatomy-label--left { text-align: right; }
+
     .anatomy-gallery-group {
       margin: 26px 0 34px
     }
@@ -165,6 +328,7 @@
           <a href="#anatomie-galerie">Anatomie-Galerie</a>
           <a href="#stimmtypen">Stimmtypen und Reichweite</a>
           <a href="#weitergehen">Weiter im Gesangsbereich</a>
+          <a href="#gesang-lernziele">Lernziele</a>
         </nav>
       </aside>
       <article class="mock-content">
@@ -174,195 +338,590 @@
           <p>Dieser Kurs führt in das Singen als musikalische und körperliche Tätigkeit ein. Du lernst grundlegende
             Stimmtypen und Reichweiten kennen und bekommst ein erstes Modell dafür, wie Atem, Stimmapparat und Mundraum
             beim Singen zusammenarbeiten.</p>
-          <p>Die Übersicht soll dir Orientierung geben, keine Stimme festlegen. Singen ist ein Zusammenspiel aus Hören,
-            Bewegung, Atem und musikalischer Entscheidung. Du kannst die Inhalte auf deine eigene Stimme und die Musik
-            übertragen, die du gern singst.</p>
+            <p>Unser Ziel ist es eine stabile Note zu produzieren und anhand dieser eine Referenz für weitere Noten zu erzeugen. </p>
+          <p>Hier siehst du das Gesangscockpit und darauf die Regler, welche du verstehen und bedienen können musst,
+            um eine stabile Note zu produzieren.</p>
+          <div class="voice-cockpit" aria-labelledby="voice-cockpit-title">
+            <div class="cockpit-header">
+              <h3 id="voice-cockpit-title">Gesangscockpit</h3>
+              <button class="cockpit-power" type="button" role="switch" aria-label="Gesangscockpit"
+                aria-checked="false" aria-controls="voice-cockpit-controls voice-cockpit-breath" data-cockpit-power>
+                <span class="cockpit-power-rocker" aria-hidden="true"></span>
+                <span data-cockpit-power-label aria-hidden="true">Aus</span>
+              </button>
+            </div>
+            <div class="cockpit-controls" id="voice-cockpit-controls">
+              <fieldset class="cockpit-switches">
+                <legend>Körpergefühl</legend>
+                  <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Stimmlippen</span></label>
+                  <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Subglottaler Druck</span></label>
+                  <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Weicher Gaumen</span></label>
+              </fieldset>
+              <div class="cockpit-dials">
+                  <label class="cockpit-dial" data-cockpit-dial>
+                    <span>Lautstärke</span>
+                    <span class="cockpit-knob" aria-hidden="true"></span>
+                    <input type="range" min="0" max="100" value="50">
+                    <span class="cockpit-scale" aria-hidden="true"><span>Leise</span><span>Laut</span></span>
+                  </label>
+                  <label class="cockpit-dial" data-cockpit-dial>
+                    <span>Luftstrom / Luftdruck</span>
+                    <span class="cockpit-knob" aria-hidden="true"></span>
+                    <input type="range" min="0" max="100" value="50">
+                    <span class="cockpit-scale" aria-hidden="true"><span>Luftstrom</span><span>Luftdruck</span></span>
+                  </label>
+                  <label class="cockpit-dial" data-cockpit-dial>
+                    <span>Stimmsitz</span>
+                    <span class="cockpit-knob" aria-hidden="true"></span>
+                    <input type="range" min="0" max="100" value="50">
+                    <span class="cockpit-scale" aria-hidden="true"><span>SpongeBob</span><span>Patrick</span></span>
+                  </label>
+              </div>
+              <label class="cockpit-pitch">
+                <span>Pitch · Tonhöhe</span>
+                <input type="range" min="-1" max="1" step="1" value="0" data-cockpit-pitch aria-valuetext="Ausgangston">
+                <span class="cockpit-scale" aria-hidden="true"><span>Höher</span><span>Ausgangston</span><span>Tiefer</span></span>
+              </label>
+            </div>
+            <div class="cockpit-breath" id="voice-cockpit-breath">
+              <strong>Atemzyklus</strong>
+              <div class="cockpit-breath-track" aria-hidden="true"><span></span></div>
+              <div class="cockpit-breath-phases"><span>Einatmen</span><span>Ausatmen</span></div>
+            </div>
+          </div>
         </section>
 
         <section id="haltung" data-course-chapter="01">
           <p class="eyebrow">Kapitel 01</p>
           <h2>Haltung</h2>
-          <p>Eine aufgerichtete, bewegliche Haltung lässt die Muskeln und Körperbereiche, die du beim Singen brauchst,
-            gut zusammenspielen. So fällt es leichter, unnötige Spannung zu vermeiden. Nimm dir vor dem ersten Ton
-            einen Moment, um dich auszurichten und deine Aufmerksamkeit aufs Singen zu lenken.</p>
+          <p>Eine gute Haltung verhindert unnötige Spannungen und erhöht dein Selbstbewusstsein. Beides hilft beim Singen.</p>
           <section class="lesson-section" id="haltung-ausrichten">
             <h3>Die Haltung ausrichten</h3>
-            <ol class="mock-goals">
-              <li><strong>Füße.</strong> Stell deine Füße ungefähr schulterbreit auf und verteile dein Gewicht
-                gleichmäßig. Lass die Knie locker.</li>
-              <li><strong>Becken.</strong> Richte dein Becken neutral bis leicht nach vorn aus, ohne ins Hohlkreuz zu
-                gehen. Um die nötige Spannung zu spüren, drück mit beiden Händen kurz und sanft gegen eine Wand,
-                als wolltest du sie wegschieben. Atme dabei weiter. Lass los und spüre nach.</li>
-              <li><strong>Brustkorb.</strong> Stell dir am Solarplexus einen Laser vor, der schräg nach oben zur
-                Decke zeigt. Diese Vorstellung hilft dir, dich aufzurichten.</li>
-              <li><strong>Schultern.</strong> Lass sie locker sinken. Gib dem Brustkorb Platz, indem du die Schultern
-                weder nach vorn rundest noch nach hinten ziehst.</li>
-              <li><strong>Kopf.</strong> Stell dir vor, eine Schnur zieht dich am Scheitel sanft nach oben.
-                Das Kinn bleibt locker, und du blickst geradeaus.</li>
-            </ol>
+            <div class="posture-example" data-posture-model>
+              <div class="posture-model-views">
+                <img class="posture-fallback" src="assets/gesang/ausgangshaltung.png" width="600" height="900" loading="lazy"
+                  alt="Gliedermodell mit Hohlkreuz, vorgeschobenem Kopf und dem Gewicht auf einem Bein.">
+                <img data-posture-front src="assets/gesang/ausgangshaltung-vorne.png" alt="" hidden>
+                <img data-posture-aligned="front" src="assets/gesang/aufrechte-haltung-vorne.png" alt="" hidden>
+                <img data-posture-aligned="side" src="assets/gesang/aufrechte-haltung-seite.png" alt="" hidden>
+                <div class="posture-model-pair" hidden>
+                  <figure class="posture-example-model">
+                    <canvas data-posture-view="front" width="360" height="570" role="img" aria-label="Gelenkmodell von vorn"></canvas>
+                    <figcaption>Vorderansicht</figcaption>
+                  </figure>
+                  <figure class="posture-example-model">
+                    <canvas data-posture-view="side" width="360" height="570" role="img" aria-label="Gelenkmodell von der Seite"></canvas>
+                    <figcaption>Seitenansicht</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <ul class="posture-steps">
+                <li>
+                  <div class="posture-step-copy"><strong>Füße</strong>
+                    <p>Füße schulterbreit, Gewicht gleichmäßig verteilen, Knie locker lassen.</p></div>
+                  <button class="posture-adjust" type="button" data-posture-part="feet" aria-label="Füße ausrichten" aria-pressed="false" disabled>Ausrichten</button>
+                </li>
+                <li>
+                  <div class="posture-step-copy"><strong>Becken</strong>
+                    <p>Becken neutral bis leicht nach vorn, ohne Hohlkreuz. Zum Spüren mit beiden Händen sanft gegen eine Wand drücken und weiteratmen.</p></div>
+                  <button class="posture-adjust" type="button" data-posture-part="pelvis" aria-label="Becken ausrichten" aria-pressed="false" disabled>Ausrichten</button>
+                </li>
+                <li>
+                  <div class="posture-step-copy"><strong>Brustkorb</strong>
+                    <p>Richte dich auf, als würde ein Laser vom Solarplexus schräg nach oben zeigen.</p></div>
+                  <button class="posture-adjust" type="button" data-posture-part="chest" aria-label="Brustkorb ausrichten" aria-pressed="false" disabled>Ausrichten</button>
+                </li>
+                <li>
+                  <div class="posture-step-copy"><strong>Schultern</strong>
+                    <p>Schultern locker sinken lassen, ohne sie nach vorn zu runden oder nach hinten zu ziehen.</p></div>
+                  <button class="posture-adjust" type="button" data-posture-part="shoulders" aria-label="Schultern ausrichten" aria-pressed="false" disabled>Ausrichten</button>
+                </li>
+                <li>
+                  <div class="posture-step-copy"><strong>Kopf</strong>
+                    <p>Eine gedachte Schnur zieht den Scheitel sanft nach oben. Kinn locker, Blick geradeaus.</p></div>
+                  <button class="posture-adjust" type="button" data-posture-part="head" aria-label="Kopf ausrichten" aria-pressed="false" disabled>Ausrichten</button>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
 
         <section id="gesangsfirma" data-course-chapter="02">
           <p class="eyebrow">02 · Ein Lernmodell</p>
           <h2>Die drei Abteilungen der Gesangsfirma.</h2>
-          <p>Als Denkmodell teilen wir die Arbeit beim Singen in drei Bereiche ein. Sie arbeiten immer gemeinsam; die
-            Abteilungen sind keine voneinander unabhängigen Teile. Jede Abteilung bekommt eine eigene Lektion.</p>
-          <section class="lesson-section" id="gesangsfirma-abteilung-01">
+          <div class="anatomy-explanation anatomy-overview">
+            <figure class="anatomy-model">
+              <div class="anatomy-model-fallback" data-anatomy-fallback>
+                <img src="assets/gesang/aufrechte-haltung-vorne.png" alt=""
+                  width="600" height="900" loading="lazy">
+                <span class="anatomy-model--torso" aria-hidden="true"></span>
+                <span class="anatomy-model--neck" aria-hidden="true"></span>
+                <span class="anatomy-model--face" aria-hidden="true"></span>
+              </div>
+              <canvas data-anatomy-model="overview" data-posture-view="front" width="360" height="570" hidden></canvas>
+              <figcaption>Die drei Abteilungen am Körper</figcaption>
+            </figure>
+            <div class="anatomy-overview-copy">
+              <p>Als Denkmodell teilen wir die Arbeit beim Singen in drei Bereiche ein. Sie arbeiten immer gemeinsam; die
+                Abteilungen sind keine voneinander unabhängigen Teile. Jede Abteilung bekommt eine eigene Lektion.</p>
+              <ul class="anatomy-legend">
+                <li class="anatomy-model--torso">
+                  <span class="anatomy-legend-label"><strong>Pumpe</strong><span>Rumpf und Beckenboden</span></span>
+                  <span class="anatomy-legend-role">POWER</span>
+                </li>
+                <li class="anatomy-model--neck">
+                  <span class="anatomy-legend-label"><strong>Stimmbox</strong><span>Hals und Stimmapparat</span></span>
+                  <span class="anatomy-legend-role">TONHÖHE</span>
+                </li>
+                <li class="anatomy-model--face">
+                  <span class="anatomy-legend-label"><strong>Maske</strong><span>Gesicht und Mund</span></span>
+                  <span class="anatomy-legend-role">KLANG</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <section class="lesson-section voice-department" id="gesangsfirma-abteilung-01">
             <p class="eyebrow">Lektion 01 · Abteilung 01</p>
-            <h3>Die Pumpe</h3>
-            <p>Hier erkundest du Haltung, Atembewegung und die Dosierung des Ausatmens. Zwerchfell, Brustkorb, Bauch-
-              und weitere Atemmuskeln arbeiten dabei zusammen. Der Beckenboden bewegt und koordiniert sich mit der
-              Atmung; er ist aber kein einfacher Regler, der das Zwerchfell direkt steuert.</p>
-            <h4>Kontraktion, Entspannung und Expansion</h4>
-            <div class="muscle-explanation">
-              <figure class="muscle-animation muscle-animation--contraction">
-                <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
-                  aria-label="Der Kreis zieht sich zum Mittelpunkt zusammen, hält zwei Sekunden und entspannt sich wieder.">
-                  <g class="contraction-motion" aria-hidden="true">
-                    <circle class="contraction-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
-                    <path class="muscle-arrows"
-                      d="M80 48v16m-4-4 4 4 4-4M112 80H96m4-4-4 4 4 4M80 112V96m-4 4 4-4 4 4M48 80h16m-4-4 4 4-4 4" />
-                  </g>
-                  <circle cx="80" cy="80" r="4" fill="currentColor" />
-                </svg>
-                <figcaption>Kontraktion</figcaption>
+            <h3 class="voice-department-title anatomy-model--torso">Die Pumpe</h3>
+            <div class="anatomy-explanation anatomy-overview">
+              <figure class="anatomy-model anatomy-model--torso">
+                <div class="anatomy-model-fallback" data-anatomy-fallback>
+                  <img src="assets/gesang/aufrechte-haltung-vorne.png" alt=""
+                    width="600" height="900" loading="lazy">
+                </div>
+                <canvas data-anatomy-model="torso" data-posture-view="front" width="360" height="570" hidden></canvas>
+                <figcaption>Die Pumpe · Beckenboden bis Halsansatz</figcaption>
               </figure>
-              <p><strong>Kontraktion</strong> bedeutet, dass ein Muskel sich anspannt und verkürzt. Spanne einmal deinen
-                Bizeps an und lass wieder los. So kannst du Kontraktion und anschließende Entspannung direkt wahrnehmen.
-                Auch im Bauch kennst du Anspannung, etwa bei einem Sit-up.</p>
+              <div>
+                <p>Hier erkundest du Atembewegung und die Dosierung des Ausatmens. Zwerchfell, Brustkorb, Bauch-
+                  und weitere Atemmuskeln arbeiten dabei zusammen. Der Beckenboden bewegt und koordiniert sich mit der
+                  Atmung; er ist aber kein einfacher Regler, der das Zwerchfell direkt steuert.</p>
+                <p>Beim Singen erzeugt die Atemmuskulatur Druck, während die angenäherten Stimmlippen dem Luftstrom
+                  Widerstand entgegensetzen. So baut sich unter den Stimmlippen <strong>subglottaler Druck</strong> auf.
+                  Im Gesangsunterricht nennt man das Zusammenspiel, mit dem du Atemdruck und Luftstrom dosierst,
+                  oft <strong>Stütze</strong> oder <strong>Support</strong>.</p>
+              </div>
             </div>
-            <div class="muscle-explanation">
-              <figure class="muscle-animation muscle-animation--expansion">
-                <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
-                  aria-label="Der Kreis weitet sich vom Mittelpunkt aus und kehrt bei der Entspannung zur Ausgangsgröße zurück.">
-                  <g class="expansion-motion" aria-hidden="true">
-                    <circle class="expansion-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
-                    <path class="muscle-arrows"
-                      d="M80 64V48m-4 4 4-4 4 4M96 80h16m-4-4 4 4-4 4M80 96v16m-4-4 4 4 4-4M64 80H48m4-4-4 4 4 4" />
-                  </g>
-                  <circle cx="80" cy="80" r="4" fill="currentColor" />
-                </svg>
-                <figcaption>Expansion</figcaption>
-              </figure>
-              <p>Für den Bauch kannst du eine <strong>Expansion</strong> als sanftes Weiten vorstellen – ähnlich dem
-                „Babybauch“. Beim Beckenboden verwenden wir „Expansion“ als Vorstellung für ein behutsames Loslassen
-                nach unten, wie bei der Bewegungsrichtung beim Stuhlgang. Umgekehrt erinnert eine leichte
-                Beckenboden-Kontraktion an das Zurückhalten von Urin oder Darmgas. Übe diese Wahrnehmungen nur sanft,
-                ohne Pressen, Luftanhalten oder starkes Nach-unten-Drücken; nicht während des Toilettengangs.</p>
-            </div>
+            <div class="voice-lesson-card">
+              <h4>Kontraktion, Entspannung und Expansion</h4>
+              <div class="muscle-explanation">
+                <figure class="muscle-animation muscle-animation--contraction">
+                  <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
+                    aria-label="Der Kreis zieht sich zum Mittelpunkt zusammen, hält zwei Sekunden und entspannt sich wieder.">
+                    <g class="contraction-motion" aria-hidden="true">
+                      <circle class="contraction-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
+                      <path class="muscle-arrows"
+                        d="M80 48v16m-4-4 4 4 4-4M112 80H96m4-4-4 4 4 4M80 112V96m-4 4 4-4 4 4M48 80h16m-4-4 4 4-4 4" />
+                    </g>
+                    <circle cx="80" cy="80" r="4" fill="currentColor" />
+                  </svg>
+                  <figcaption>Kontraktion</figcaption>
+                </figure>
+                <p><strong>Kontraktion</strong> heißt, dass sich ein Muskel zusammenzieht. Spanne den Bizeps sanft an
+                  und lass los. Auch beim Sit-up spürst du die Anspannung im Bauch.</p>
 
-            <div class="muscle-explanation">
-              <figure class="muscle-animation">
-                <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
-                  aria-label="Kontraktion begrenzt die Expansion. Pfeile ziehen nach innen und drücken zugleich von innen gegen den Rand. Der Kreis weitet sich nur wenig.">
-                  <g class="combined-motion" aria-hidden="true">
-                    <circle class="combined-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
-                    <path class="muscle-arrows muscle-arrows--inward" transform="rotate(45 80 80)"
-                      d="M80 48v16m-4-4 4 4 4-4M112 80H96m4-4-4 4 4 4M80 112V96m-4 4 4-4 4 4M48 80h16m-4-4 4 4-4 4" />
-                    <path class="muscle-arrows muscle-arrows--against-edge"
-                      d="M80 54V31m-5 5 5-5 5 5M106 80h23m-5-5 5 5-5 5M80 106v23m-5-5 5 5 5-5M54 80H31m5-5-5 5 5 5" />
-                  </g>
-                  <circle cx="80" cy="80" r="4" fill="currentColor" />
-                </svg>
-                <figcaption>Kontraktion begrenzt Expansion</figcaption>
-              </figure>
-              <p>Wenn du für einen kräftigeren Ton einmal mehr Atemdruck einsetzen möchtest, kann sich der Rumpf stärker
-                weiten als beabsichtigt. In diesem Lernmodell kannst du dir eine leichte Kontraktion als Schutz vor
-                übermäßiger Expansion vorstellen. Setze sie nur gelegentlich und sparsam ein. Der Luftstrom bleibt dabei
-                frei.</p>
+              </div>
+              <div class="muscle-explanation">
+                <figure class="muscle-animation muscle-animation--expansion">
+                  <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
+                    aria-label="Der Kreis weitet sich vom Mittelpunkt aus und kehrt bei der Entspannung zur Ausgangsgröße zurück.">
+                    <g class="expansion-motion" aria-hidden="true">
+                      <circle class="expansion-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
+                      <path class="muscle-arrows"
+                        d="M80 64V48m-4 4 4-4 4 4M96 80h16m-4-4 4 4-4 4M80 96v16m-4-4 4 4 4-4M64 80H48m4-4-4 4 4 4" />
+                    </g>
+                    <circle cx="80" cy="80" r="4" fill="currentColor" />
+                  </svg>
+                  <figcaption>Expansion</figcaption>
+                </figure>
+                <p>Für den Bauch kannst du eine <strong>Expansion</strong> als sanftes Weiten vorstellen – ähnlich dem
+                  „Babybauch“. Beim Beckenboden verwenden wir „Expansion“ als Vorstellung für ein behutsames Loslassen
+                  nach unten, wie bei der Bewegungsrichtung beim Stuhlgang. Umgekehrt erinnert eine leichte
+                  Beckenboden-Kontraktion an das Zurückhalten von Urin oder Darmgas. Übe diese Wahrnehmungen nur sanft,
+                  ohne Pressen, Luftanhalten oder starkes Nach-unten-Drücken; nicht während des Toilettengangs.</p>
+              </div>
+
+              <div class="muscle-explanation">
+                <figure class="muscle-animation">
+                  <svg class="contraction-animation" viewBox="0 0 160 160" width="160" height="160" role="img"
+                    aria-label="Kontraktion begrenzt die Expansion. Pfeile ziehen nach innen und drücken zugleich von innen gegen den Rand. Der Kreis weitet sich nur wenig.">
+                    <g class="combined-motion" aria-hidden="true">
+                      <circle class="combined-ring" cx="80" cy="80" r="49" vector-effect="non-scaling-stroke" />
+                      <path class="muscle-arrows muscle-arrows--inward" transform="rotate(45 80 80)"
+                        d="M80 48v16m-4-4 4 4 4-4M112 80H96m4-4-4 4 4 4M80 112V96m-4 4 4-4 4 4M48 80h16m-4-4 4 4-4 4" />
+                      <path class="muscle-arrows muscle-arrows--against-edge"
+                        d="M80 54V31m-5 5 5-5 5 5M106 80h23m-5-5 5 5-5 5M80 106v23m-5-5 5 5 5-5M54 80H31m5-5-5 5 5 5" />
+                    </g>
+                    <circle cx="80" cy="80" r="4" fill="currentColor" />
+                  </svg>
+                  <figcaption>Kontraktion begrenzt Expansion</figcaption>
+                </figure>
+                <p>Wenn du für einen kräftigeren Ton einmal mehr Atemdruck einsetzen möchtest, kann sich der Rumpf stärker
+                  weiten als beabsichtigt. In diesem Lernmodell kannst du dir eine leichte Kontraktion als Schutz vor
+                  übermäßiger Expansion vorstellen. Setze sie nur gelegentlich und sparsam ein. Der Luftstrom bleibt dabei
+                  frei.</p>
+              </div>
             </div>
-            <h4>Übung 1 · Beckenboden wahrnehmen</h4>
-            <ol class="mock-goals">
-              <li>Spanne den Beckenboden leicht an und lass wieder los. Wiederhole das fünfmal, ohne die Luft
-                anzuhalten.</li>
-              <li>Stell dir nun ein sanftes Weiten und anschließendes Loslassen vor. Wiederhole auch das fünfmal, ohne
-                nach unten zu pressen.</li>
-              <li>Erkunde fünfmal beides gleichzeitig: eine leichte Beckenboden-Kontraktion und eine sanfte Weitung im
-                Bauch- oder unteren Rippenbereich. Wenn sich das gepresst oder unangenehm anfühlt, lass die Kombination
-                weg und kehre zum entspannten Atmen zurück.</li>
-            </ol>
-            <h4>Übung 2 · Luftstrom auf S und F</h4>
-            <p>Stell dir zunächst vor, du singst tief, und forme ohne Ton ein leises <strong>S</strong>. Nimm eine
-              kleine, bequeme Weitung im Rumpf wahr und halte den Luftstrom fünf Sekunden möglichst gleichmäßig.
-              Verändere den Atem nicht mit Gewalt.</p>
-            <p>Wiederhole es mit der Vorstellung einer mittleren Lage und einer etwas deutlicheren, aber weiterhin
-              bequemen Atembewegung. Danach kannst du dir eine hohe Lage vorstellen und eine leichte Rumpfstabilität
-              ergänzen. Hals, Brust und Arme bleiben möglichst frei; die Tonhöhe wird hier nur vorgestellt, nicht
-              erzwungen.</p>
-            <p>Wiederhole die drei Varianten mit einem stimmlosen <strong>F-Laut</strong> wie in „fff“. Achte darauf, ob
-              sich der Luftstrom ähnlich oder anders anfühlt als beim S.</p>
-            <h4>Übung 3 · Impulse und Ausschütteln</h4>
-            <p>Sprich <strong>P – T – K</strong> fünfmal ruhig und klar. Nimm wahr, wie der Rumpf bei den kurzen
-              Impulsen reagiert. Erkunde danach dieselben Impulse mit einer leichten Rumpfstabilität, ohne den Atem
-              festzuhalten. Wiederhole das mit den stimmlosen Lauten <strong>F – S – SCH</strong>. Schüttle anschließend
-              Arme und Schultern locker aus.</p>
-            <p class="lesson-callout"><strong>Wichtig:</strong> Die Übung soll Wahrnehmung schulen, nicht Kraft oder
-              Druck maximieren. Beende sie bei Schmerz, Schwindel oder unangenehmem Druckgefühl.</p>
+            <div class="voice-lesson-card">
+              <h4>Übung 1 · Beckenboden wahrnehmen</h4>
+              <ol class="mock-goals">
+                <li>Spanne den Beckenboden leicht an und lass wieder los. Wiederhole das fünfmal, ohne die Luft
+                  anzuhalten.</li>
+                <li>Stell dir nun ein sanftes Weiten und anschließendes Loslassen vor. Wiederhole auch das fünfmal, ohne
+                  nach unten zu pressen.</li>
+                <li>Erkunde fünfmal beides gleichzeitig: eine leichte Beckenboden-Kontraktion und eine sanfte Weitung im
+                  Bauch- oder unteren Rippenbereich. Wenn sich das gepresst oder unangenehm anfühlt, lass die Kombination
+                  weg und kehre zum entspannten Atmen zurück.</li>
+              </ol>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>Übung 2 · Luftstrom auf S und F</h4>
+              <p>Stell dir zunächst vor, du singst tief, und forme ohne Ton ein leises <strong>S</strong>. Nimm eine
+                kleine, bequeme Weitung im Rumpf wahr und halte den Luftstrom fünf Sekunden möglichst gleichmäßig.
+                Verändere den Atem nicht mit Gewalt.</p>
+              <p>Wiederhole es mit der Vorstellung einer mittleren Lage und einer etwas deutlicheren, aber weiterhin
+                bequemen Atembewegung. Danach kannst du dir eine hohe Lage vorstellen und eine leichte Rumpfstabilität
+                ergänzen. Hals, Brust und Arme bleiben möglichst frei; die Tonhöhe wird hier nur vorgestellt, nicht
+                erzwungen.</p>
+              <p>Wiederhole die drei Varianten mit einem stimmlosen <strong>F-Laut</strong> wie in „fff“. Achte darauf, ob
+                sich der Luftstrom ähnlich oder anders anfühlt als beim S.</p>
+              <details class="voice-diagram voice-airflow">
+                <summary>Luftstrom auf S oder F ansehen</summary>
+                <p class="voice-airflow-count">
+                  <strong data-airflow-phase>Einzähler · 5/4</strong>
+                  <span data-airflow-beat>1 / 5</span>
+                </p>
+                <figure>
+                  <svg viewBox="0 0 240 168" role="img" aria-label="Ein Pfeil zeigt den Luftstrom von den Lungen zum Mund.">
+                    <path class="voice-diagram-outline" d="M91 65Q113 61 115 49V28Q119 12 137 12Q155 13 159 29
+                      L167 39L160 42L159 50Q155 56 140 54L141 64Q163 69 170 82L161 147Q120 162 79 147L71 82Q75 70 91 65Z"/>
+                    <path class="voice-diagram-shape" d="M112 82Q93 68 85 104Q82 129 94 136Q113 133 114 117Z
+                      M129 82Q148 68 156 104Q159 129 147 136Q128 133 127 117Z"/>
+                    <path class="voice-airflow-route" d="M100 116Q101 104 120 98V75Q120 63 128 57V48
+                      Q130 42 146 43H204"/>
+                    <path class="voice-airflow-pulses" d="M100 116Q101 104 120 98V75Q120 63 128 57V48
+                      Q130 42 146 43H204"/>
+                    <path class="voice-airflow-route" d="M196 36L204 43L196 50"/>
+                  </svg>
+                  <div class="voice-airflow-timer" aria-hidden="true"></div>
+                  <figcaption>Fünf Sekunden gleichmäßig ausatmen</figcaption>
+                </figure>
+              </details>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>Übung 3 · Impulse und Ausschütteln</h4>
+              <p>Sprich <strong>P – T – K</strong> fünfmal ruhig und klar. Nimm wahr, wie der Rumpf bei den kurzen
+                Impulsen reagiert. Erkunde danach dieselben Impulse mit einer leichten Rumpfstabilität, ohne den Atem
+                festzuhalten. Wiederhole das mit den stimmlosen Lauten <strong>F – S – SCH</strong>. Schüttle anschließend
+                Arme und Schultern locker aus.</p>
+              <p class="lesson-callout"><strong>Wichtig:</strong> Die Übung soll Wahrnehmung schulen, nicht Kraft oder
+                Druck maximieren. Beende sie bei Schmerz, Schwindel oder unangenehmem Druckgefühl.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>Druckerzeugung · Zusammenspiel mit der Stimmbox</h4>
+              <p>Spüre zuerst bei den Übungen mit S und F, wie der Rumpf das Ausatmen trägt, während die Stimmlippen
+                geöffnet bleiben. So lernst du die Arbeit der Pumpe für sich kennen. Den Widerstand durch den
+                Stimmlippenschluss erkundest du danach in der Stimmbox.</p>
+              <p>Wenn du beides kurz verbindest, kannst du wahrnehmen, wie sich der Druck unter den Stimmlippen aufbaut
+                und beim Öffnen wieder nachlässt.
+                <a href="#stimmbox-druck">Zur Übung „Druck wahrnehmen und lösen“ ↓</a></p>
+            </div>
           </section>
-          <section class="lesson-section" id="gesangsfirma-abteilung-02">
+          <section class="lesson-section voice-department" id="gesangsfirma-abteilung-02">
             <p class="eyebrow">Lektion 02 · Abteilung 02</p>
-            <h3>Hals und Stimmapparat.</h3>
-            <p>Der Hals und der Stimmapparat helfen dir, <strong>Tonhöhen zu erzeugen und zu treffen</strong>. Im
-              Kehlkopf liegen die Stimmlippen. Die ausströmende Luft versetzt sie in Schwingung; dadurch entsteht der
-              stimmhafte Grundklang. Veränderungen ihrer Spannung, Länge und Schwingungsweise ermöglichen
-              unterschiedliche Tonhöhen.</p>
-            <p>Der Stimmapparat arbeitet mit dem Rumpf und dem Beckenboden zusammen: Die Atembewegung liefert den
-              Luftstrom und unterstützt den Klang; die Stimmlippen schwingen und regulieren den Luftstrom; Mund und
-              Rachen formen anschließend den Klang weiter. Der Hals soll dabei nicht durch Pressen den Atemdruck
-              erzeugen.</p>
-            <h4>Erkundung · Was kannst du schon?</h4>
-            <p>Probiere die folgenden Klänge zunächst in einer bequemen Lage und leiser Lautstärke aus. Es geht nicht
-              darum, besonders laut oder kräftig zu singen, sondern die Unterschiede wahrzunehmen. Wenn etwas schmerzt,
-              kratzt oder sich gepresst anfühlt, hör auf und kehre zu einer bequemen Sprechstimme zurück.</p>
-            <h4>1 · Luftstrom und Stimmton unterscheiden</h4>
-            <ol class="mock-goals">
-              <li>Atme normal ein und dann bequem durch den geöffneten Mund aus. Es entweicht Luft, aber du bildest noch
-                keinen Stimmton.</li>
-              <li>Beende das Ausatmen und nimm kurz wahr, dass gerade kein Luftstrom fließt.</li>
-              <li>„Kein Luftstrom“ ist hier der Gegenpol in unserem einfachen Modell. Die Idee von „100 % Luftdruck“ ist
-                keine reale Zieleinstellung: Verschließe nicht Mund und Nase, um dagegen zu pressen, und halte den Atem
-                nicht unter Kraft an.</li>
-            </ol>
-            <h4>2 · Weicher Stimmlippenschluss</h4>
-            <p>Beginne mit einem sanften, gehauchten <strong>„haa“</strong>: Erst hörst du den Luftstrom, dann kommt
-              ganz leicht ein bequemer Ton hinzu. Die Stimmlippen gehen dabei allmählich in die Schwingung über. Lass
-              den Ton ohne Stoß entstehen. Wiederhole das mit <strong>A, E, I, O, U</strong>. Du kannst auch die Vokale
-              flüstern und anschließend mit Stimme singen, um den Unterschied wahrzunehmen.</p>
-            <h4>3 · Deutlicher Stimmlippenschluss</h4>
-            <p>Für den Gegensatz singe ein kurzes, leichtes <strong>A</strong> und beende es direkt wieder – wie einen
-              kleinen Staccato-Ton. Die Stimmlippen schließen klar für den Toneinsatz. Das soll nicht hartes Pressen
-              bedeuten: Hals und Kiefer bleiben locker, und du stößt die Luft nicht heraus. Wenn es angenehm gelingt,
-              probiere dieselbe kurze Tonform mit <strong>E, I, O, U</strong>.</p>
-            <h4>4 · Vokale vergleichen</h4>
-            <p>Vergleiche jeden Vokal einmal mit weichem und einmal mit klarem, kurzem Stimmeinsatz. Achte darauf, wie
-              sich der Beginn anhört und anfühlt. Wähle eine bequeme Tonhöhe und geringe Lautstärke. Es gibt hier keinen
-              Klang, der „besser“ sein muss.</p>
-            <h4>5 · Vocal Fry entdecken</h4>
-            <p>Sprich in deiner bequemen Sprechstimme und gleite am Satzende sanft nach unten. Wenn dabei in einer sehr
-              tiefen Lage ein leises, knarrendes oder knisterndes Geräusch auftaucht, hast du möglicherweise
-              <strong>Vocal Fry</strong> gefunden. Erkunde es nur kurz und locker. Versuche nicht, es durch Druck oder
-              extremes Tiefersingen zu erzwingen.</p>
-            <h4>6 · Lip Rolls kennenlernen</h4>
-            <p>Lass die Lippen locker vibrieren wie bei einem entspannten <strong>„brrr“</strong>. Wenn das leicht
-              gelingt, halte den Lippen-Triller auf einem bequemen Ton und gleite anschließend nur ein kleines Stück
-              höher und tiefer. Die Lippen bleiben weich; falls der Triller nicht kommt, pausiere und probiere es später
-              erneut, ohne mehr Druck zu machen.</p>
-            <p class="lesson-callout"><strong>Zum Abschluss:</strong> Welche Stimmeinsätze, Vokale und Übungen kannst du
-              schon bequem ausführen? Notiere kurz, was leicht gelingt und was du später noch einmal erkunden möchtest.
-              Diese Bestandsaufnahme ist kein Leistungstest.</p>
+            <h3 class="voice-department-title anatomy-model--neck">Hals und Stimmapparat.</h3>
+            <div class="anatomy-explanation anatomy-overview">
+              <figure class="anatomy-model anatomy-model--neck">
+                <div class="anatomy-model-fallback" data-anatomy-fallback>
+                  <img src="assets/gesang/aufrechte-haltung-vorne.png" alt=""
+                    width="600" height="900" loading="lazy">
+                </div>
+                <canvas data-anatomy-model="neck" data-posture-view="front" width="360" height="570" hidden></canvas>
+                <figcaption>Hals und Stimmapparat</figcaption>
+              </figure>
+              <div>
+                <p>Der Hals und der Stimmapparat helfen dir, <strong>Tonhöhen zu erzeugen und zu treffen</strong>. Im
+                  Kehlkopf liegen die Stimmlippen. Die ausströmende Luft versetzt sie in Schwingung; dadurch entsteht der
+                  stimmhafte Grundklang. Veränderungen ihrer Spannung, Länge und Schwingungsweise ermöglichen
+                  unterschiedliche Tonhöhen.</p>
+                <p>Der Stimmapparat arbeitet mit dem Rumpf und dem Beckenboden zusammen: Die Atembewegung liefert den
+                  Luftstrom und unterstützt den Klang; die Stimmlippen schwingen und regulieren den Luftstrom; Mund und
+                  Rachen formen anschließend den Klang weiter. Der Hals soll dabei nicht durch Pressen den Atemdruck
+                  erzeugen.</p>
+              </div>
+            </div>
+            <div class="anatomy-figures">
+              <figure class="anatomy-figure">
+                <button class="anatomy-preview-button" type="button" aria-haspopup="dialog"
+                  aria-controls="larynx-preview-dialog" aria-label="Kehlkopf im Seitenschnitt vergrößern" data-anatomy-preview="larynx-large-side">
+                  <img src="assets/gesang/kehlkopf-seitenschnitt-vorschau.svg"
+                  alt="Farbiges Schema des Kehlkopfs im Seitenschnitt" loading="lazy">
+                </button>
+                <figcaption><strong>Kehlkopf im Seitenschnitt</strong>Vorschau der interaktiven Grafik.</figcaption>
+              </figure>
+              <figure class="anatomy-figure">
+                <button class="anatomy-preview-button" type="button" aria-haspopup="dialog"
+                  aria-controls="larynx-preview-dialog" aria-label="Kehlkopf und Stimmlippen vergrößern" data-anatomy-preview="larynx-large-front">
+                  <img src="assets/gesang/kehlkopf-vorderansicht-vorschau.svg"
+                  alt="Kehlkopf und Stimmlippen von vorn" loading="lazy">
+                </button>
+                <figcaption><strong>Kehlkopf und Stimmlippen</strong>Vorschau der interaktiven Grafik nach Cenveo
+                  via AnatomyTOOL · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                    rel="noopener noreferrer">CC BY 4.0</a></figcaption>
+              </figure>
+              <figure class="anatomy-figure"><img
+                  src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Vocal_fold_animated.gif"
+                  alt="Animation eines wiederkehrenden Schwingungszyklus der Stimmlippen" loading="lazy">
+                <figcaption><strong>Stimmlippenschwingung</strong>Animation: Reinhard; gemeinfrei gewidmet. <a
+                    href="https://commons.wikimedia.org/wiki/File:Vocal_fold_animated.gif" target="_blank"
+                    rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
+              </figure>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>Erkundung · Was kannst du schon?</h4>
+              <p>Erkunde die Unterschiede leise, ohne Kraft und in bequemer Lage. Bei Schmerz, Kratzen oder Pressen pausiere und kehre zurück
+                zu deiner bequemen Sprechstimme.</p>
+
+            </div>
+            <div class="voice-lesson-card">
+              <h4>1 · Freien Luftstrom wahrnehmen</h4>
+              <ol class="mock-goals">
+                <li>Atme ein paarmal ruhig ein und aus. Lass den Atem gleichmäßig und so tief fließen, wie es sich
+                  angenehm anfühlt.</li>
+                <li>Lass beim Ausatmen den Mund locker geöffnet. Spüre, wie die Luft frei herausströmt, ohne dass du
+                  im Hals oder Rumpf spürbar Druck aufbaust oder presst.</li>
+              </ol>
+              <p>Im Gesangscockpit entspricht das der Seite <strong>„100 % Luftstrom“</strong>. Gemeint ist freies
+                Ausatmen mit kaum spürbarem Druck. Ein Ton entsteht so nicht.</p>
+            </div>
+            <div class="voice-cockpit is-powered" aria-labelledby="airflow-cockpit-title">
+              <div class="cockpit-header">
+                <h5 id="airflow-cockpit-title">Gesangscockpit</h5>
+                <button class="cockpit-power" type="button" role="switch" aria-label="Gesangscockpit"
+                  aria-checked="true" aria-controls="airflow-cockpit-controls airflow-cockpit-breath" data-cockpit-power>
+                  <span class="cockpit-power-rocker" aria-hidden="true"></span>
+                  <span data-cockpit-power-label aria-hidden="true">An</span>
+                </button>
+              </div>
+              <div class="cockpit-controls" id="airflow-cockpit-controls">
+                <fieldset class="cockpit-switches">
+                  <legend>Körpergefühl</legend>
+                    <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Stimmlippen</span></label>
+                    <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Subglottaler Druck</span></label>
+                    <label class="cockpit-switch"><input type="checkbox" role="switch"><span class="cockpit-toggle" aria-hidden="true"></span><span>Weicher Gaumen</span></label>
+                </fieldset>
+                <div class="cockpit-dials">
+                    <label class="cockpit-dial cockpit-dial--attention" data-cockpit-dial>
+                      <span>Lautstärke</span>
+                      <span class="cockpit-knob" aria-hidden="true"></span>
+                      <input type="range" min="0" max="100" value="0">
+                      <span class="cockpit-scale" aria-hidden="true"><span>Leise</span><span>Laut</span></span>
+                    </label>
+                    <label class="cockpit-dial cockpit-dial--attention" data-cockpit-dial>
+                      <span>Luftstrom / Luftdruck</span>
+                      <span class="cockpit-knob" aria-hidden="true"></span>
+                      <input type="range" min="0" max="100" value="0">
+                      <span class="cockpit-scale" aria-hidden="true"><span>Luftstrom</span><span>Luftdruck</span></span>
+                    </label>
+                    <label class="cockpit-dial" data-cockpit-dial>
+                      <span>Stimmsitz</span>
+                      <span class="cockpit-knob" aria-hidden="true"></span>
+                      <input type="range" min="0" max="100" value="50">
+                      <span class="cockpit-scale" aria-hidden="true"><span>SpongeBob</span><span>Patrick</span></span>
+                    </label>
+                </div>
+                <label class="cockpit-pitch">
+                  <span>Pitch · Tonhöhe</span>
+                  <input type="range" min="-1" max="1" step="1" value="0" data-cockpit-pitch aria-valuetext="Ausgangston">
+                  <span class="cockpit-scale" aria-hidden="true"><span>Höher</span><span>Ausgangston</span><span>Tiefer</span></span>
+                </label>
+              </div>
+              <div class="cockpit-breath" id="airflow-cockpit-breath">
+                <strong>Atemzyklus</strong>
+                <div class="cockpit-breath-track" aria-hidden="true"><span></span></div>
+                <div class="cockpit-breath-phases"><span>Einatmen</span><span>Ausatmen</span></div>
+              </div>
+            </div>
+            <p>Die letzte Übung hat zwei Regler berührt: <strong>Luftstrom</strong> und <strong>Lautstärke</strong>.
+              Die Anzeige unten zeigt deinen Atemzyklus. Für einen Ton brauchen wir Luftdruck. In den nächsten drei
+              Übungen lernst du, die <strong>Stimmlippen</strong> zu spüren und darunter Druck aufzubauen.
+              Damit kannst du Luftstrom und Lautstärke gezielt steuern.</p>
+            <div class="voice-lesson-card">
+              <h4>Stimmlippenschluss im Alltag erkennen</h4>
+              <figure class="anatomy-figure">
+                <img src="assets/gesang/stimmlippen-draufsicht.svg" loading="lazy"
+                  alt="Animierte Draufsicht des Kehlkopfs. Beim Öffnen wird die Stimmritze zwischen den hellen Stimmlippen sichtbar. Beim Schließen treffen sich die Stimmlippen in der Mitte.">
+                <figcaption><strong>Stimmlippen von oben</strong>Beim Öffnen ist die Stimmritze sichtbar. Beim Schließen treffen sich die Stimmlippen in der Mitte.</figcaption>
+              </figure>
+              <ul class="mock-goals">
+                <li>Sag leise „Oh-oh!“ und achte auf den kurzen Stopp zwischen den Silben. Dieser kurze
+                  Stimmlippenschluss heißt <strong>Glottisschlag</strong>.</li>
+                <li>Halte den Atem für einen Moment sanft an. Mund und Nase bleiben frei.</li>
+                <li>Erinnere dich an den Moment unmittelbar vor einem Husten. Lass den Husten dabei aus.</li>
+                <li>Stell dir vor, du hebst etwas Schweres oder stößt dir den Zeh und hältst vor Schreck kurz die Luft an.
+                  Beim schweren Heben können sich zusätzlich die Taschenfalten schließen. Beide Beispiele dienen als
+                  Vorstellung.</li>
+              </ul>
+              <p>Übe mit dem leisen „Oh-oh“ oder dem sanften Atemstopp. Lass die Taschenfalten dabei locker und versuche
+                nicht, sie bewusst zu schließen.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4 id="stimmbox-widerstand">Praktische Übung · Widerstand kennenlernen</h4>
+              <ol class="mock-goals">
+                <li><strong>Öffnung.</strong> Atme bei geöffnetem Mund entspannt ein und aus.</li>
+                <li><strong>Verschluss.</strong> Halte die Luft im Hals kurz und sanft an. Lass Mund und Nase dabei frei.</li>
+                <li><strong>Wechsel.</strong> Wechsle ein paarmal zwischen freiem Atmen und diesem kurzen Verschluss.
+                  Spüre, wie der Verschluss den Luftstrom unterbricht. Atme dazwischen normal weiter.</li>
+              </ol>
+            </div>
+            <div class="voice-lesson-card">
+              <h4 id="stimmbox-druck">Praktische Übung · Druck wahrnehmen und lösen</h4>
+              <ol class="mock-goals">
+                <li><strong>Druck.</strong> Wenn der Wechsel leicht gelingt, schließe die Stimmlippen kurz und gib aus
+                  dem Rumpf einen ganz kleinen Ausatemimpuls. Nimm den leichten Druck unter den Stimmlippen wahr.</li>
+                <li><strong>Entlastung.</strong> Öffne die Stimmlippen gleich wieder und lass die Luft ruhig entweichen.</li>
+              </ol>
+              <p class="lesson-callout"><strong>Lernziel.</strong> Spüre, wie die Pumpe den Ausatemdruck erzeugt und die
+                Stimmbox den Widerstand bereitstellt. Erkunde beide Bewegungen erst einzeln und dann gemeinsam. Sobald du
+                merkst, dass du presst oder der Hals eng wird, lass los und atme ruhig weiter.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>2 · Weicher Stimmlippenschluss</h4>
+              <p>Beginne mit einem sanften, gehauchten <strong>„haa“</strong>: Erst hörst du den Luftstrom, dann kommt
+                ganz leicht ein bequemer Ton hinzu. Die Stimmlippen gehen dabei allmählich in die Schwingung über. Lass
+                den Ton ohne Stoß entstehen. Wiederhole das mit <strong>A, E, I, O, U</strong>. Du kannst auch die Vokale
+                flüstern und anschließend mit Stimme singen, um den Unterschied wahrzunehmen.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>3 · Deutlicher Stimmlippenschluss</h4>
+              <p>Für den Gegensatz singe ein kurzes, leichtes <strong>A</strong> und beende es direkt wieder – wie einen
+                kleinen Staccato-Ton. Die Stimmlippen schließen klar für den Toneinsatz. Das soll nicht hartes Pressen
+                bedeuten: Hals und Kiefer bleiben locker, und du stößt die Luft nicht heraus. Wenn es angenehm gelingt,
+                probiere dieselbe kurze Tonform mit <strong>E, I, O, U</strong>.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>4 · Vokale vergleichen</h4>
+              <p>Vergleiche jeden Vokal einmal mit weichem und einmal mit klarem, kurzem Stimmeinsatz. Achte darauf, wie
+                sich der Beginn anhört und anfühlt. Wähle eine bequeme Tonhöhe und geringe Lautstärke. Es gibt hier keinen
+                Klang, der „besser“ sein muss.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>5 · Vocal Fry entdecken</h4>
+              <p>Sprich in deiner bequemen Sprechstimme und gleite am Satzende sanft nach unten. Wenn dabei in einer sehr
+                tiefen Lage ein leises, knarrendes oder knisterndes Geräusch auftaucht, hast du möglicherweise
+                <strong>Vocal Fry</strong> gefunden. Erkunde es nur kurz und locker. Versuche nicht, es durch Druck oder
+                extremes Tiefersingen zu erzwingen.</p>
+            </div>
+            <div class="voice-lesson-card">
+              <h4>6 · Lip Rolls kennenlernen</h4>
+              <p>Lass die Lippen locker vibrieren wie bei einem entspannten <strong>„brrr“</strong>. Wenn das leicht
+                gelingt, halte den Lippen-Triller auf einem bequemen Ton und gleite anschließend nur ein kleines Stück
+                höher und tiefer. Die Lippen bleiben weich; falls der Triller nicht kommt, pausiere und probiere es später
+                erneut, ohne mehr Druck zu machen.</p>
+              <p class="lesson-callout"><strong>Zum Abschluss:</strong> Welche Stimmeinsätze, Vokale und Übungen kannst du
+                schon bequem ausführen? Notiere kurz, was leicht gelingt und was du später noch einmal erkunden möchtest.
+                Diese Bestandsaufnahme ist kein Leistungstest.</p>
+            </div>
           </section>
-          <section class="lesson-section" id="gesangsfirma-abteilung-03">
+          <section class="lesson-section voice-department" id="gesangsfirma-abteilung-03">
             <p class="eyebrow">Lektion 03 · Abteilung 03</p>
-            <h3>Maske, Gesicht und Mund.</h3>
-            <p>Lippen, Zunge, Kiefer, Gaumen und Rachenraum formen Vokale und Konsonanten. Sie verändern außerdem,
-              welche Obertöne besonders hörbar werden und wie der Klang nach außen wirkt.</p>
-            <p>Der Ausdruck <strong>„Stimmsitz“</strong> beschreibt oft eine körperliche Klangempfindung, zum Beispiel
-              ein Vibrieren im Gesicht. Der Klang sitzt dabei nicht buchstäblich in der Maske: Die Empfindung kann beim
-              Wahrnehmen und Formen des Klangs helfen, während der hörbare Klang im gesamten Vokaltrakt geformt wird.
-            </p>
+            <h3 class="voice-department-title anatomy-model--face">Maske, Gesicht und Mund.</h3>
+            <div class="anatomy-explanation anatomy-overview">
+              <figure class="anatomy-model anatomy-model--face">
+                <div class="anatomy-model-fallback" data-anatomy-fallback>
+                  <img src="assets/gesang/aufrechte-haltung-vorne.png" alt=""
+                    width="600" height="900" loading="lazy">
+                </div>
+                <canvas data-anatomy-model="face" data-posture-view="front" width="360" height="570" hidden></canvas>
+                <figcaption>Gesicht</figcaption>
+              </figure>
+              <div>
+                <p>Lippen, Zunge, Kiefer, Gaumen und Rachenraum formen Vokale und Konsonanten. Sie verändern außerdem,
+                  welche Obertöne besonders hörbar werden und wie der Klang nach außen wirkt.</p>
+                <p><strong>„Stimmsitz“</strong> beschreibt eine Klangempfindung, etwa ein Vibrieren im Gesicht. Sie
+                  kann dir beim Wahrnehmen und Formen des Klangs helfen. Der hörbare Klang entsteht durch
+                  die Form des gesamten Vokaltrakts.</p>
+
+              </div>
+            </div>
             <p class="lesson-callout"><strong>Zum Erkunden:</strong> Sprich langsam „ma – mi – mu“ und achte darauf, wie
               Lippen, Zunge und Kiefer die Form des Klangs verändern. Bleib dabei locker.</p>
+            <h4>Maske – Warm-up (2–3 Minuten)</h4>
+            <div class="voice-lesson-card">
+              <h5>1. Vokalwechsel – A E I O U</h5>
+              <p><strong>Ziel:</strong> Artikulation und Klangformung kontrollieren.</p>
+              <ul class="mock-goals">
+                <li>Einen bequemen Ton halten.</li>
+                <li>Langsam durch alle fünf Vokale wechseln.</li>
+                <li>Tonhöhe und Lautstärke konstant halten.</li>
+                <li>Veränderungen von Zunge, Lippen, Kiefer und Klang wahrnehmen.</li>
+              </ul>
+            </div>
+            <div class="voice-lesson-card">
+              <h5>2. Mmm → A (Resonanz)</h5>
+              <p><strong>Ziel:</strong> Resonanzveränderungen wahrnehmen.</p>
+              <ul class="mock-goals">
+                <li>Auf „Mmm“ einen angenehmen Ton summen.</li>
+                <li>Langsam den Mund zu „A“ öffnen.</li>
+                <li>Tonhöhe und Lautstärke möglichst beibehalten.</li>
+                <li>Veränderungen der Vibrationen und Klangfarbe beobachten.</li>
+              </ul>
+              <div class="voice-diagram-states voice-diagram-states--mouth">
+                <figure>
+                  <svg viewBox="0 0 120 78" role="img" aria-label="Geschlossene Lippen beim Summen">
+                    <path class="voice-diagram-shape" d="M25 40Q49 25 60 34Q71 25 95 40Q60 59 25 40Z"/>
+                    <path class="voice-mouth-line" d="M25 40Q60 45 95 40"/>
+                  </svg>
+                  <figcaption>Mmm · Lippen geschlossen</figcaption>
+                </figure>
+                <figure>
+                  <svg viewBox="0 0 120 78" role="img" aria-label="Geöffneter Mund beim Vokal A">
+                    <path class="voice-diagram-shape" d="M29 41Q49 16 60 23Q71 16 91 41Q76 66 60 65Q44 66 29 41Z"/>
+                    <path class="voice-mouth-opening" d="M38 41Q49 25 60 29Q71 25 82 41Q71 57 60 57Q49 57 38 41Z"/>
+                  </svg>
+                  <figcaption>A · Mund geöffnet</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="voice-lesson-card">
+              <h5>3. NG → A (Zungenposition)</h5>
+              <p><strong>Ziel:</strong> Zungenposition und Klangveränderungen koordinieren.</p>
+              <ul class="mock-goals">
+                <li>„NG“ wie am Ende von „sing“ erzeugen.</li>
+                <li>Auf derselben Tonhöhe zu „A“ wechseln.</li>
+                <li>Bewegung der Zunge und Veränderung der Resonanz wahrnehmen.</li>
+                <li>Rachen und Kiefer locker lassen.</li>
+              </ul>
+              <details class="voice-diagram">
+                <summary>Zungenbewegung von NG zu A ansehen</summary>
+                <div class="voice-diagram-states voice-diagram-states--tongue">
+                  <figure>
+                    <svg viewBox="0 0 145 105" role="img" aria-label="Bei NG berührt der Zungenrücken den weichen Gaumen.">
+                      <defs>
+                        <g id="voice-ng-profile">
+                          <path class="voice-diagram-outline" d="M34 97V29Q45 8 72 8Q102 8 111 28L124 44
+                            L113 48L116 56L109 62L114 70Q113 88 87 91L83 99H34Z"/>
+                          <path class="voice-mouth-opening" d="M106 54Q87 46 68 50Q59 53 53 62L52 79
+                            Q71 85 96 76L110 68L114 63L109 60Z"/>
+                          <path class="voice-soft-palate" d="M80 50Q64 46 54 59"/>
+                        </g>
+                        <path id="voice-ng-tongue" d="M54 61Q62 54 71 62Q82 71 103 67Q92 81 70 81Q57 81 53 74Z"/>
+                      </defs>
+                      <use href="#voice-ng-profile"/>
+                      <use href="#voice-ng-tongue" class="voice-diagram-shape"/>
+                    </svg>
+                    <figcaption>NG · Zungenrücken am weichen Gaumen</figcaption>
+                  </figure>
+                  <figure>
+                    <svg viewBox="0 0 145 105" role="img" aria-label="Bei A senkt sich der Zungenrücken und löst sich vom weichen Gaumen.">
+                      <use href="#voice-ng-profile"/>
+                      <use href="#voice-ng-tongue" class="voice-diagram-shape voice-tongue-lower"/>
+                    </svg>
+                    <figcaption>A · Zungenrücken löst sich</figcaption>
+                  </figure>
+                </div>
+              </details>
+            </div>
           </section>
           <p>Die drei Bereiche hängen zusammen: Atembewegung und Luftdruck unterstützen die Schwingung, die Stimmlippen
             erzeugen den Ton, und der Vokaltrakt formt seinen Klang. Eine Veränderung in einem Bereich kann die anderen
@@ -415,20 +974,56 @@
                     href="https://commons.wikimedia.org/wiki/File:Diaphragma.png" target="_blank"
                     rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
               </figure>
-              <figure class="anatomy-figure"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Gray404.png"
-                  alt="Anatomische Zeichnung des Beckenbodenmuskels Levator ani von innen" loading="lazy">
-                <figcaption><strong>Beckenboden · Levator ani</strong>B. V. Carter, Gray’s Anatomy (1918), gemeinfrei.
-                  <a href="https://commons.wikimedia.org/wiki/File:Gray404.png" target="_blank"
-                    rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
-              </figure>
-              <figure class="anatomy-figure"><img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/f9/1116_Muscle_of_the_Female_Perineum.png"
-                  alt="Anatomische Darstellung der weiblichen Damm- und Beckenbodenmuskulatur" loading="lazy">
-                <figcaption><strong>Weibliche Damm- und Beckenbodenmuskulatur</strong>OpenStax, <em>Anatomy and
-                    Physiology</em>. <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank"
-                    rel="noopener noreferrer">CC BY 3.0</a> · <a
-                    href="https://commons.wikimedia.org/wiki/File:1116_Muscle_of_the_Female_Perineum.png"
-                    target="_blank" rel="noopener noreferrer">Quelle ↗</a></figcaption>
+              <figure class="anatomy-figure anatomy-interactive" data-anatomy-interactive>
+                <div class="anatomy-diagram">
+                  <svg viewBox="69 0 238 455" role="img" aria-label="Rumpf von vorn, vom Halsansatz bis zum Beckenboden">
+                    <defs>
+                      <linearGradient id="torso-lungs">
+                        <stop stop-color="#bd6c83" />
+                        <stop offset=".45" stop-color="#efb2bd" />
+                        <stop offset="1" stop-color="#be7489" />
+                      </linearGradient>
+                      <linearGradient id="torso-muscle">
+                        <stop stop-color="#b66c79" />
+                        <stop offset=".5" stop-color="#e39897" />
+                        <stop offset="1" stop-color="#ba6b78" />
+                      </linearGradient>
+                    </defs>
+                    <path fill="#f5e3d7" d="M158 13 H218 Q222 31 244 38 Q279 47 291 72
+                      Q295 149 272 235 Q257 282 265 328 Q281 372 262 424 Q231 453 188 450
+                      Q145 453 114 424 Q95 372 111 328 Q119 282 104 235 Q81 149 85 72
+                      Q97 47 132 38 Q154 31 158 13Z" />
+                    <path fill="#f3cfd0" stroke-opacity=".25" d="M128 265 Q188 243 248 265
+                      Q239 311 249 356 Q258 388 231 415 Q188 437 145 415 Q118 388 127 356 Q137 311 128 265Z" />
+                    <path id="breath-region-lungs" fill="url(#torso-lungs)" d="M169 64 Q131 61 112 112 Q94 157 110 213 Q119 246 134 246 Q147 220 172 222 Q183 216 183 183 L180 148 Q178 138 163 131 L178 120 Q187 91 169 64Z M207 64 Q245 61 264 112 Q282 157 266 213 Q257 246 242 246 Q229 223 211 224 Q197 226 192 209 Q182 184 204 171 Q210 161 196 150 Q190 141 199 134 L213 131 L198 120 Q189 91 207 64Z" />
+                    <path id="breath-region-ribs" fill="#e7bca0" d="M104 74 Q124 47 171 41 L170 55 Q131 61 116 82 L113 113 Q135 98 153 94 L150 106 Q117 121 109 133 L108 150 Q129 134 145 130 L143 142 Q113 156 107 169 L110 188 Q130 172 144 169 L145 180 Q121 194 113 205 L118 222 Q135 209 150 206 L155 218 Q131 231 125 243 Q111 234 103 210 Q91 170 96 131 Z M272 74 Q252 47 205 41 L206 55 Q245 61 260 82 L263 113 Q241 98 223 94 L226 106 Q259 121 267 133 L268 150 Q247 134 231 130 L233 142 Q263 156 269 169 L266 188 Q246 172 232 169 L231 180 Q255 194 263 205 L258 222 Q241 209 226 206 L221 218 Q245 231 251 243 Q265 234 273 210 Q285 170 280 131Z" />
+                    <path id="breath-region-trachea" fill="#a7cbd1" d="M176 21 Q188 18 200 21 L200 105 Q190 117 176 105Z" />
+                    <path id="breath-region-bronchi" fill="#a7cbd1" d="M176 99 L200 99 Q199 111 230 122 Q238 126 231 136 Q210 129 188 117 Q166 129 145 136 Q138 126 146 122 Q177 111 176 99Z" />
+                    <path id="breath-region-diaphragm" fill="url(#torso-muscle)" d="M118 251 Q149 211 183 235 Q188 238 194 235 Q227 211 258 251 L250 267 Q224 226 196 249 Q188 256 180 249 Q151 226 126 267Z" />
+                    <path id="breath-region-abdomen" fill="url(#torso-muscle)" d="M128 273 Q147 264 159 267 Q152 307 162 338 Q166 351 158 360 L145 374 Q132 356 128 328 Q123 295 128 273Z M248 273 Q229 264 217 267 Q224 307 214 338 Q210 351 218 360 L231 374 Q244 356 248 328 Q253 295 248 273Z" />
+                    <path id="breath-region-pelvis" fill="#e9c8a4" d="M129 358 Q109 350 111 370 Q113 405 144 429 Q158 440 178 436 L178 421 Q153 413 149 391 Q140 365 129 358Z M247 358 Q267 350 265 370 Q263 405 232 429 Q218 440 198 436 L198 421 Q223 413 227 391 Q236 365 247 358Z" />
+                    <path id="breath-region-floor" fill="#b678ab" d="M146 410 Q165 422 188 420 Q211 422 230 410 Q221 430 205 439 Q188 448 171 439 Q155 430 146 410Z" />
+                    <path fill="none" stroke-opacity=".35" d="M178 37H198 M178 49H198 M178 61H198
+                      M178 73H198 M178 85H198 M178 97H198" />
+                  </svg>
+                  <svg class="anatomy-diagram-leaders" aria-hidden="true"></svg>
+                  <div class="anatomy-diagram-labels" role="group" aria-label="Strukturen des Rumpfs">
+                    <button type="button" aria-controls="breath-region-trachea" data-anchor="188 47" aria-pressed="false">Luftröhre</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="breath-region-ribs" data-anchor="273 101" aria-pressed="false">Zwischenrippenmuskeln</button>
+                    <button type="button" aria-controls="breath-region-bronchi" data-anchor="217 124" aria-pressed="false">Hauptbronchien</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="breath-region-lungs" data-anchor="243 173" aria-pressed="false">Lunge</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="breath-region-diaphragm" data-anchor="219 239" aria-pressed="false">Zwerchfell</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="breath-region-abdomen" data-anchor="230 316" aria-pressed="false">Bauchwand</button>
+                    <button type="button" aria-controls="breath-region-pelvis" data-anchor="248 394" aria-pressed="false">Becken</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="breath-region-floor" data-anchor="188 427" aria-pressed="false">Beckenboden</button>
+                  </div>
+                </div>
+                <figcaption><strong>Atmung im Rumpf · interaktiv</strong> Klicke auf eine Beschriftung.
+                  Eigene schematische Darstellung nach
+                  <a href="https://commons.wikimedia.org/wiki/File:Respiratory_system_complete_en.svg"
+                    target="_blank" rel="noopener noreferrer">LadyofHats</a> und
+                  <a href="https://openstax.org/books/anatomy-and-physiology/pages/11-4-axial-muscles-of-the-abdominal-wall-and-thorax"
+                    target="_blank" rel="noopener noreferrer">OpenStax</a>.</figcaption>
               </figure>
             </div>
           </div>
@@ -436,20 +1031,23 @@
             <h3>02 · Hals und Stimmapparat</h3>
             <p>Kehlkopf, Stimmlippen und die Schwingung, aus der stimmhafter Klang entsteht.</p>
             <div class="anatomy-figures">
-              <figure class="anatomy-figure"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Gray953.png"
-                  alt="Historischer anatomischer Schnitt durch Kehlkopf und oberen Teil der Luftröhre" loading="lazy">
-                <figcaption><strong>Kehlkopf im Schnitt</strong>B. V. Carter, Gray’s Anatomy (1918), gemeinfrei. <a
-                    href="https://commons.wikimedia.org/wiki/File:Gray953.png" target="_blank"
-                    rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
+              <figure class="anatomy-figure">
+                <button class="anatomy-preview-button" type="button" aria-haspopup="dialog"
+                  aria-controls="larynx-preview-dialog" aria-label="Kehlkopf im Seitenschnitt vergrößern" data-anatomy-preview="larynx-large-side">
+                  <img src="assets/gesang/kehlkopf-seitenschnitt-vorschau.svg"
+                  alt="Farbiges Schema des Kehlkopfs im Seitenschnitt" loading="lazy">
+                </button>
+                <figcaption><strong>Kehlkopf im Seitenschnitt</strong>Vorschau der interaktiven Grafik.</figcaption>
               </figure>
-              <figure class="anatomy-figure"><img
-                  src="https://upload.wikimedia.org/wikipedia/commons/0/03/Anatomytool_larynx_and_vocal_cords_English.jpg"
-                  alt="Beschriftete anatomische Zeichnung von Kehlkopf und Stimmlippen" loading="lazy">
-                <figcaption><strong>Kehlkopf und Stimmlippen</strong>Cenveo via AnatomyTOOL. <a
-                    href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY
-                    4.0</a> · <a
-                    href="https://commons.wikimedia.org/wiki/File:Anatomytool_larynx_and_vocal_cords_English.jpg"
-                    target="_blank" rel="noopener noreferrer">Quelle ↗</a></figcaption>
+              <figure class="anatomy-figure">
+                <button class="anatomy-preview-button" type="button" aria-haspopup="dialog"
+                  aria-controls="larynx-preview-dialog" aria-label="Kehlkopf und Stimmlippen vergrößern" data-anatomy-preview="larynx-large-front">
+                  <img src="assets/gesang/kehlkopf-vorderansicht-vorschau.svg"
+                  alt="Kehlkopf und Stimmlippen von vorn" loading="lazy">
+                </button>
+                <figcaption><strong>Kehlkopf und Stimmlippen</strong>Vorschau der interaktiven Grafik nach Cenveo
+                  via AnatomyTOOL · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                    rel="noopener noreferrer">CC BY 4.0</a></figcaption>
               </figure>
               <figure class="anatomy-figure"><img
                   src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Vocal_fold_animated.gif"
@@ -458,6 +1056,135 @@
                     href="https://commons.wikimedia.org/wiki/File:Vocal_fold_animated.gif" target="_blank"
                     rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
               </figure>
+              <figure class="anatomy-figure anatomy-interactive" id="larynx-large-front" data-anatomy-interactive>
+                <div class="anatomy-interactive-image anatomy-interactive-image--german">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Anatomytool_larynx_and_vocal_cords_English.jpg"
+                    width="555" height="556" alt="Kehlkopf und Stimmlippen mit deutschen Beschriftungen" loading="lazy">
+                  <svg viewBox="0 0 555 556" aria-hidden="true">
+                    <defs>
+                      <path id="larynx-front-shape-0" d="M125 51 Q132 42 140 52 Q164 85 216 114 L214 130 Q164 112 130 65 Z M379 114 Q423 91 459 62 Q472 50 478 62 Q484 75 466 83 Q425 113 380 130 Z" />
+                      <path id="larynx-front-shape-1" d="M301 42 C355 34 380 65 384 132 C388 174 361 219 328 260 C319 278 271 278 255 253 C230 220 207 175 211 132 C217 82 250 40 301 42 Z" />
+                      <path id="larynx-front-shape-2" d="M139 80 Q173 117 213 131 L210 242 L177 248 Q145 211 144 176 Z M379 129 Q433 104 462 85 L448 180 Q434 221 407 248 L383 239 Z" />
+                      <path id="larynx-front-shape-3" d="M220 159 Q232 149 237 171 Q247 214 269 260 Q273 278 262 274 Q224 239 215 201 Z M371 161 Q382 165 378 203 Q366 245 341 266 Q330 275 323 264 Q346 217 362 173 Z" />
+                      <path id="larynx-front-shape-4" d="M322 272 Q343 276 354 249 Q367 255 360 276 Q354 295 317 306 L308 300 Z M231 248 Q246 275 274 280 L291 300 L283 308 Q251 302 235 280 Q225 258 231 248 Z" />
+                      <path id="larynx-front-shape-5" d="M232 274 Q252 301 291 302 L290 333 Q270 353 253 353 L259 340 Q278 325 276 314 Q243 311 232 274 Z M360 275 Q345 306 304 302 L305 333 Q326 352 341 350 L331 337 Q315 324 318 313 Q347 309 360 275 Z" />
+                      <path id="larynx-front-shape-6" d="M319 315 Q332 310 340 318 L334 342 Q323 339 318 329 Z M252 315 Q269 308 276 319 Q269 338 254 342 Z" />
+                      <path id="larynx-front-shape-7" d="M147 165 Q161 156 167 175 Q174 217 192 246 L214 249 Q211 315 228 412 L237 445 Q203 424 188 384 Q163 306 150 247 Z M448 176 Q459 181 453 208 Q436 284 414 368 Q402 419 362 450 L365 416 Q379 366 383 248 L403 247 Q422 213 433 186 Z" />
+                      <path id="larynx-front-shape-8" d="M217 424 Q227 442 243 452 L248 485 Q217 479 212 459 Q209 445 217 424 Z M370 424 Q383 430 390 449 Q387 471 351 484 L354 451 Q366 441 370 424 Z" />
+                      <path id="larynx-front-shape-9" d="M253 484 Q299 496 344 483 L351 553 L249 553 Z" />
+                    </defs>
+                    <g fill="#fff">
+                      <rect x="62" y="0" width="138" height="28" />
+                      <rect x="240" y="0" width="122" height="28" />
+                      <rect x="0" y="93" width="129" height="61" />
+                      <rect x="0" y="199" width="129" height="63" />
+                      <rect x="454" y="240" width="101" height="43" />
+                      <rect x="0" y="292" width="129" height="63" />
+                      <rect x="454" y="287" width="101" height="68" />
+                      <rect x="0" y="380" width="129" height="68" />
+                      <rect x="454" y="384" width="101" height="65" />
+                      <rect x="454" y="488" width="101" height="43" />
+                    </g>
+                    <use class="anatomy-region" id="larynx-de-region-0" href="#larynx-front-shape-0" />
+                    <use class="anatomy-region" id="larynx-de-region-1" href="#larynx-front-shape-1" />
+                    <use class="anatomy-region" id="larynx-de-region-2" href="#larynx-front-shape-2" />
+                    <use class="anatomy-region" id="larynx-de-region-3" href="#larynx-front-shape-3" />
+                    <use class="anatomy-region" id="larynx-de-region-4" href="#larynx-front-shape-4" />
+                    <use class="anatomy-region" id="larynx-de-region-5" href="#larynx-front-shape-5" />
+                    <use class="anatomy-region" id="larynx-de-region-6" href="#larynx-front-shape-6" />
+                    <use class="anatomy-region" id="larynx-de-region-7" href="#larynx-front-shape-7" />
+                    <use class="anatomy-region" id="larynx-de-region-8" href="#larynx-front-shape-8" />
+                    <use class="anatomy-region" id="larynx-de-region-9" href="#larynx-front-shape-9" />
+                  </svg>
+                  <button type="button" class="anatomy-label--top" aria-label="Zungenbein" aria-pressed="false" aria-controls="larynx-de-region-0"
+                    style="left:11.71%;top:0.00%;width:24.32%;height:5.58%">Zungenbein</button>
+                  <button type="button" class="anatomy-label--top" aria-label="Kehldeckel" aria-pressed="false" aria-controls="larynx-de-region-1"
+                    style="left:44.14%;top:0.00%;width:20.72%;height:5.58%">Kehldeckel</button>
+                  <button type="button" class="anatomy-label--left" aria-label="Membran zwischen Schildknorpel und Zungenbein" aria-pressed="false" aria-controls="larynx-de-region-2"
+                    style="left:0.00%;top:16.55%;width:23.24%;height:11.51%">Zungenbein-<br>membran</button>
+                  <button type="button" class="anatomy-label--left" aria-label="Taschenfalten" aria-pressed="false" aria-controls="larynx-de-region-3"
+                    style="left:0.00%;top:35.43%;width:23.24%;height:12.23%">Taschenfalten</button>
+                  <button type="button" class="anatomy-label--right" aria-label="Kehlkopftasche" aria-pressed="false" aria-controls="larynx-de-region-4"
+                    style="left:81.80%;top:43.17%;width:18.20%;height:7.55%">Kehlkopftasche</button>
+                  <button type="button" class="anatomy-label--left" aria-label="Stimmlippen" aria-pressed="false" aria-controls="larynx-de-region-5"
+                    style="left:0.00%;top:52.16%;width:23.24%;height:11.69%">Stimmlippen</button>
+                  <button type="button" class="anatomy-label--right anatomy-featured-label" aria-label="Stimmmuskel" aria-pressed="false" aria-controls="larynx-de-region-6"
+                    style="left:81.80%;top:51.62%;width:18.20%;height:11.69%">Stimmmuskel</button>
+                  <button type="button" class="anatomy-label--left" aria-label="Schildknorpel" aria-pressed="false" aria-controls="larynx-de-region-7"
+                    style="left:0.00%;top:68.35%;width:23.06%;height:12.23%">Schild-<br>knorpel</button>
+                  <button type="button" class="anatomy-label--right" aria-label="Ringknorpel" aria-pressed="false" aria-controls="larynx-de-region-8"
+                    style="left:81.80%;top:68.71%;width:18.20%;height:11.69%">Ringknorpel</button>
+                  <button type="button" class="anatomy-label--right" aria-label="Luftröhre" aria-pressed="false" aria-controls="larynx-de-region-9"
+                    style="left:81.80%;top:88.13%;width:18.20%;height:7.55%">Luftröhre</button>
+                </div>
+                <figcaption><strong>Kehlkopf und Stimmlippen · Vorderansicht auf Deutsch</strong> Klicke auf eine Beschriftung.
+                  Original von Cenveo via AnatomyTOOL · <a href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank" rel="noopener noreferrer">CC BY 4.0</a> · <a
+                    href="https://commons.wikimedia.org/wiki/File:Anatomytool_larynx_and_vocal_cords_English.jpg"
+                    target="_blank" rel="noopener noreferrer">Quelle ↗</a></figcaption>
+              </figure>
+              <figure class="anatomy-figure anatomy-interactive" id="larynx-large-side" data-anatomy-interactive>
+                <div class="anatomy-diagram">
+                  <svg viewBox="53 0 249 522" role="img" aria-label="Kehlkopf im seitlichen Schnitt, Vorderseite links">
+                    <defs>
+                      <linearGradient id="larynx-tissue">
+                        <stop stop-color="#efb6b7" />
+                        <stop offset=".58" stop-color="#cc7f89" />
+                        <stop offset="1" stop-color="#a3586a" />
+                      </linearGradient>
+                      <linearGradient id="larynx-bone">
+                        <stop stop-color="#f3dfbb" />
+                        <stop offset="1" stop-color="#b59067" />
+                      </linearGradient>
+                      <linearGradient id="larynx-muscle">
+                        <stop stop-color="#ad6070" />
+                        <stop offset=".62" stop-color="#d4878b" />
+                        <stop offset="1" stop-color="#914d62" />
+                      </linearGradient>
+                    </defs>
+                    <path class="larynx-tissue" d="M84 148 Q102 129 139 136 L180 117 L219 167 Q268 184 277 224
+                      L274 315 Q270 358 273 425 L265 468 Q215 499 172 458 Q159 383 128 309 Q109 273 89 244
+                      Q67 201 84 148Z" />
+                    <path class="larynx-muscle" d="M131 272 Q167 279 213 270 L243 253 L266 251 Q246 300 253 347
+                      L263 413 Q227 420 178 433 Q165 398 153 356Z" />
+                    <path id="larynx-side-hyoid" class="larynx-bone" d="M69 186 C63 168 79 143 99 140 C97 151 86 169 79 184 Q75 191 69 186Z" />
+                    <path id="larynx-side-glosso" class="larynx-tissue" d="M124 39 Q136 64 142 97 Q151 111 181 85 L174 116 Q153 140 113 141 Q141 114 134 88Z" />
+                    <path id="larynx-side-epiglottis" class="larynx-tissue" d="M184 8 Q220 10 233 56 Q245 90 230 130 Q231 164 250 182 Q232 204 211 251 Q156 232 115 252 Q151 201 166 137 Q203 41 184 8Z" />
+                    <path id="larynx-side-aryfold" class="larynx-tissue" d="M231 124 Q234 152 256 168 Q267 182 281 164 Q272 187 251 207 L218 241 Q241 194 245 178 Q233 162 231 124Z" />
+                    <path id="larynx-side-arytenoid" class="larynx-bone" d="M269 176 Q284 154 288 172 Q291 186 278 198 L258 228 Q254 208 269 176Z" />
+                    <path id="larynx-side-vestibular" class="larynx-tissue" d="M117 253 Q162 228 218 244 Q227 245 232 250 Q186 247 174 253 Q138 260 117 257Z" />
+                    <path id="larynx-side-ventricle" class="larynx-depth" d="M122 257 Q177 253 219 250 L234 250 Q224 260 189 267 Q152 267 122 261Z" />
+                    <path id="larynx-side-vocal" class="larynx-fold" d="M122 261 Q151 266 186 264 Q219 262 236 253 Q217 275 182 278 Q149 273 122 261Z" />
+                    <path id="larynx-side-thyroid" class="larynx-bone" d="M91 246 Q111 253 130 292 L144 331 Q133 333 123 319 Q109 285 91 246Z" />
+                    <path id="larynx-side-arymuscle" class="larynx-muscle" d="M236 256 Q247 218 275 196 Q286 209 273 230 Q265 243 264 268 Q257 291 245 288 Q234 279 236 256Z" />
+                    <path id="larynx-side-ligament" class="larynx-fold" d="M132 321 Q145 330 153 357 L161 374 L148 379 Q144 353 132 321Z" />
+                    <path id="larynx-side-cricoid" class="larynx-bone" d="M148 374 Q158 367 163 379 L171 409 Q166 421 157 407 Z M260 285 Q276 268 279 299 L274 398 Q270 418 258 408 Q247 389 250 337 Q252 303 260 285Z" />
+                    <path id="larynx-side-trachea" class="larynx-muscle" d="M160 413 Q170 420 181 416 Q222 410 262 416 Q279 430 284 480 L285 512 Q235 490 174 515 Q167 484 169 462Z" />
+                    <path class="larynx-rings" d="M172 443 Q226 424 275 440 M174 461 Q230 441 279 460
+                      M176 480 Q232 459 281 480 M177 499 Q232 478 284 498" />
+                  </svg>
+                  <svg class="anatomy-diagram-leaders" aria-hidden="true"></svg>
+                  <div class="anatomy-diagram-labels" role="group" aria-label="Strukturen des Kehlkopfs">
+                    <button type="button" aria-controls="larynx-side-glosso" data-anchor="144 109" aria-pressed="false">Zungen-Kehldeckel-Falte</button>
+                    <button type="button" aria-controls="larynx-side-epiglottis" data-anchor="208 132" aria-pressed="false">Kehldeckel</button>
+                    <button type="button" aria-controls="larynx-side-hyoid" data-anchor="78 168" aria-pressed="false">Zungenbein</button>
+                    <button type="button" aria-controls="larynx-side-aryfold" data-anchor="251 184" aria-pressed="false">Kehldeckel-Stellknorpel-Falte</button>
+                    <button type="button" aria-controls="larynx-side-arytenoid" data-anchor="277 187" aria-pressed="false">Stellknorpel</button>
+                    <button type="button" class="anatomy-featured-label" aria-controls="larynx-side-arymuscle" data-anchor="260 245" aria-pressed="false">Stellknorpelmuskel</button>
+                    <button type="button" aria-controls="larynx-side-vestibular" data-anchor="163 249" aria-pressed="false">Taschenfalte</button>
+                    <button type="button" aria-controls="larynx-side-ventricle" data-anchor="194 260" aria-pressed="false">Kehlkopftasche</button>
+                    <button type="button" aria-controls="larynx-side-vocal" data-anchor="180 272" aria-pressed="false">Stimmlippe</button>
+                    <button type="button" aria-controls="larynx-side-thyroid" data-anchor="119 291" aria-pressed="false">Schildknorpel</button>
+                    <button type="button" aria-controls="larynx-side-ligament" data-anchor="148 351" aria-pressed="false">Mittleres Ring-Schildknorpel-Band</button>
+                    <button type="button" aria-controls="larynx-side-cricoid" data-anchor="264 386" aria-pressed="false">Ringknorpel</button>
+                    <button type="button" aria-controls="larynx-side-trachea" data-anchor="227 469" aria-pressed="false">Luftröhre</button>
+                  </div>
+                </div>
+                <figcaption><strong>Kehlkopf im Seitenschnitt · interaktiv</strong>
+                  Schematische Darstellung nach B. V. Carter, <em>Gray’s Anatomy</em> (1918).
+                  <a href="https://commons.wikimedia.org/wiki/File:Gray953.png" target="_blank"
+                    rel="noopener noreferrer">Vorlage ↗</a></figcaption>
+              </figure>
             </div>
           </div>
           <div class="anatomy-gallery-group">
@@ -465,19 +1192,19 @@
             <p>Der Vokaltrakt formt Vokale und beeinflusst die Klangfarbe.</p>
             <div class="anatomy-figures">
               <figure class="anatomy-figure"><img
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/20/Sagittalmouth.png"
-                  alt="Beschrifteter Längsschnitt durch Nase, Mund, Rachen und Kehlkopf" loading="lazy">
-                <figcaption><strong>Kopf- und Mundraum im Schnitt</strong>B. V. Carter, Gray’s Anatomy (1918),
-                  gemeinfrei. <a href="https://commons.wikimedia.org/wiki/File:Sagittalmouth.png" target="_blank"
-                    rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
-              </figure>
-              <figure class="anatomy-figure"><img
                   src="https://upload.wikimedia.org/wikipedia/commons/9/9d/VocalTract.svg"
                   alt="Schema des menschlichen Vokaltrakts" loading="lazy">
                 <figcaption><strong>Schema des Vokaltrakts</strong>Tavin. <a
                     href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY
                     3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:VocalTract.svg" target="_blank"
                     rel="noopener noreferrer">Quelle ↗</a></figcaption>
+              </figure>
+              <figure class="anatomy-figure"><img
+                  src="https://upload.wikimedia.org/wikipedia/commons/2/20/Sagittalmouth.png"
+                  alt="Beschrifteter Längsschnitt durch Nase, Mund, Rachen und Kehlkopf" loading="lazy">
+                <figcaption><strong>Kopf- und Mundraum im Schnitt</strong>B. V. Carter, Gray’s Anatomy (1918),
+                  gemeinfrei. <a href="https://commons.wikimedia.org/wiki/File:Sagittalmouth.png" target="_blank"
+                    rel="noopener noreferrer">Quelle und Lizenz ↗</a></figcaption>
               </figure>
             </div>
           </div>
@@ -529,6 +1256,22 @@
               ↗</a>
           </div>
         </section>
+        <section class="lesson-section" id="gesang-lernziele">
+          <h2>Lernziele</h2>
+          <fieldset class="exercise-goals">
+            <legend>Ich kann:</legend>
+            <label><input type="checkbox"><span>Meine Stimmlippen schließen und öffnen.</span></label>
+            <label><input type="checkbox"><span>Einen subglottalen Schluss herstellen und Atemdruck aufbauen.</span></label>
+            <label><input type="checkbox"><span>Eine Kontraktion erzeugen.</span></label>
+            <label><input type="checkbox"><span>Unterschiedlich starken Stimmlippenschluss spüren.</span></label>
+            <label><input type="checkbox"><span>Meinen weichen Gaumen wahrnehmen.</span></label>
+            <label><input type="checkbox"><span>Mein Warm-up selbstständig durchführen.</span></label>
+            <label><input type="checkbox"><span>Einen Ton stabil singen, ohne unnötig viel Luft entweichen zu lassen.</span></label>
+            <label><input type="checkbox"><span>Die Lautstärke auf diesem Ton variieren.</span></label>
+            <label><input type="checkbox"><span>Den Stimmsitz variieren.</span></label>
+            <label><input type="checkbox"><span>Den Ton um einen Ton nach unten und nach oben verschieben.</span></label>
+          </fieldset>
+        </section>
       </article>
     </div>
   </main>
@@ -541,7 +1284,16 @@
         <circle class="tree-note" cx="31" cy="22" r="3" />
       </svg>The Tree of Music</span><span>Dein Raum zum Lernen. Dein Zugang zur Musik.</span><a
       href="kurse.html#gesang">Zur Kursübersicht ↗</a></footer>
+  <dialog class="anatomy-preview-dialog" id="larynx-preview-dialog" aria-label="Vergrößerte Kehlkopfgrafik">
+    <form method="dialog"><button type="submit" autofocus>Schließen</button></form>
+    <div data-anatomy-dialog-content></div>
+  </dialog>
   <script src="scripts/lesson-navigation.js" defer></script>
+  <script src="scripts/voice-cockpit.js" defer></script>
+  <script src="scripts/voice-exercises.js" defer></script>
+  <script src="scripts/posture-rig.js" defer></script>
+  <script src="scripts/posture-model.js" defer></script>
+  <script src="scripts/anatomy-gallery.js" defer></script>
 </body>
 
 </html>

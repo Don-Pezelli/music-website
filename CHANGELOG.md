@@ -1,4 +1,27 @@
+## 2026-11-25
+- Gesang: Beschriftete Kehlkopf-Draufsicht mit animiertem Stimmlippenschluss und eigenständige Übungen zu Luftstrom, Widerstand und Druck ergänzt.
+- Gesang: Ein zweites Gesangscockpit zeigt in der Stimmbox-Lektion freies Ausatmen bei Lautstärke null.
+
+## 2026-11-24
+- Gesang: Kapitel zu Pumpe, Stimmbox und Maske mit farblich markierten Modellen, neuen Illustrationen und interaktiver Anatomie-Galerie gestaltet.
+- Gesang: Haltungsübung mit Laser, Schnur und Bewegung zur vollständigen Ausrichtung ergänzt.
+- Gesang: Atemanzeige, Kippschalter und vertikale Drehregler im Cockpit ergänzt. S- und F-Übung mit Einzähler und Erholungsphase animiert.
+- Gesang: Haltungsübung mit zwei synchronisierten 3D-Ansichten und fließenden Bewegungen umgesetzt.
+- Gesang: Haltungskorrekturen tauschen Bildbereiche aus zwei aufgerichteten Modellansichten aus und führen den Übergang an der Hüfte um die Arme herum.
+- Gesang: Die fünf Haltungsmerkmale lassen sich an einem Gelenkmodell in Vorder- und Seitenansicht einzeln ausrichten. Beide Ansichten verwenden das ursprüngliche einfarbige Gliedermodell als Vorlage.
+- Gesang: Figur zur unausgeglichenen Ausgangshaltung neben der Haltungsübung ergänzt.
+- Gesang: Unter „Die Pumpe“ den Zusammenhang zwischen subglottalem Druck und Stütze ergänzt.
+- Gesangscockpit: Drehknöpfe direkt greifbar gemacht und den Tonhöhen-Fader senkrecht rechts über beide Bedienreihen platziert.
+- Gesang: Bedienbares Gesangscockpit in der Einführung und zehn Lernziele am Kursende ergänzt.
+- Gesang: Drei Warm-up-Übungen in der bestehenden Masken-Lektion ergänzt.
+- Gesang: Absatz zur Orientierung aus der Einführung entfernt.
+
 ## 2026-11-23
+- Gitarre 7: 4/4-Angaben in allen überarbeiteten Notationsgrafiken an den fünf Notenlinien ausgerichtet.
+- Gitarre 7: Notation und Tabulatur beider C-Dur-Powerchordfolgen an das neue Notenbild angepasst.
+- Gitarre 7: „Bruder Jakob“ in beiden Oktaven mit einheitlichem Noten- und Tabulaturbild gesetzt.
+- Gitarre 7: „Alle meine Entchen“ in beiden Oktaven mit korrigierten Notenwerten und einheitlichem Noten- und Tabulaturbild gesetzt.
+- Gitarre 7: Rhythmus und Taktstriche von „Hänschen klein“ in beiden Oktaven korrigiert und mit Bravura-Notenglyphen gesetzt. Violinschlüssel fein ausgerichtet und TAB senkrecht gesetzt.
 - Gitarre 7: Stufenfolgen und Grundtöne für „La Bamba“ und „MMMBop“ angepasst.
 - Gesang: „Haltung“ als erstes Kapitel mit einer Übung zur Ausrichtung ergänzt. Die folgenden Kapitel neu nummeriert.
 - Gesang: Das Zusammenspiel von Kontraktion und Expansion neben der dritten Grafik erklärt.

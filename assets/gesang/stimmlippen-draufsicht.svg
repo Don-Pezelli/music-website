@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-78 0 496 282">
+  <title>Stimmlippen von oben: offen und geschlossen</title>
+  <style>
+    .vocal-static { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .vocal-motion { display: none; }
+      .vocal-static { display: inline; }
+    }
+  </style>
+  <defs>
+    <radialGradient id="tissue">
+      <stop stop-color="#b36d83"/>
+      <stop offset="1" stop-color="#f3babb"/>
+    </radialGradient>
+  </defs>
+  <rect x="-78" width="496" height="282" fill="#fffaf6"/>
+  <g stroke="#82485a" stroke-width="1.5" stroke-linejoin="round">
+    <path fill="url(#tissue)" d="M170 44C111 37 72 66 75 123C77 171 100 219 136 245Q170 261 204 245C240 219 263 171 265 123C268 66 229 37 170 44Z"/>
+    <path fill="#ab6c7d" d="M170 84C124 76 101 103 107 146Q115 207 146 226Q170 241 194 226Q225 207 233 146C239 103 216 76 170 84Z"/>
+    <path class="vocal-static" fill="#523344" d="M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z"/>
+    <path class="vocal-motion" fill="#523344" d="M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite" keyTimes="0;.30;.45;.75;.90;1"
+        values="M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z;M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z;M170 105Q170 147 170 192Q170 203 170 208Q170 203 170 192Q170 147 170 105Z;M170 105Q170 147 170 192Q170 203 170 208Q170 203 170 192Q170 147 170 105Z;M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z;M170 105Q152 147 135 192Q145 223 170 225Q195 223 205 192Q188 147 170 105Z"/>
+    </path>
+    <path class="vocal-static" fill="#f8ede0" d="M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z"/>
+    <path class="vocal-motion" fill="#f8ede0" d="M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite" keyTimes="0;.30;.45;.75;.90;1"
+        values="M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z;M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z;M170 105Q156 118 134 146Q116 174 123 191Q150 209 170 207Q170 151 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q190 209 170 207Q170 151 170 105Z;M170 105Q156 118 134 146Q116 174 123 191Q150 209 170 207Q170 151 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q190 209 170 207Q170 151 170 105Z;M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z;M170 105Q156 118 134 146Q116 174 123 191Q128 198 135 192Q155 147 170 105Z M170 105Q184 118 206 146Q224 174 217 191Q212 198 205 192Q185 147 170 105Z"/>
+    </path>
+    <path fill="#dfa0aa" d="M166 102Q138 95 113 119Q94 145 110 173Q112 181 119 184Q114 166 137 137Z
+      M174 102Q202 95 227 119Q246 145 230 173Q228 181 221 184Q226 166 203 137Z"/>
+    <path fill="#e7a0aa" d="M104 80Q109 48 139 49Q170 55 201 49Q231 48 236 80Q218 90 194 87Q170 82 146 87Q122 90 104 80Z"/>
+    <ellipse cx="128" cy="207" rx="14" ry="11" fill="#e1a9ab"/>
+    <ellipse cx="212" cy="207" rx="14" ry="11" fill="#e1a9ab"/>
+  </g>
+  <g fill="none" stroke="#654554" stroke-width="1.4">
+    <path d="M170 70L242 54H282M108 135H58M205 163H282M171 190L236 231H282M125 207L60 220H58"/>
+  </g>
+  <g fill="#fffaf6" stroke="#654554">
+    <circle cx="170" cy="70" r="3"/><circle cx="108" cy="135" r="3"/>
+    <circle cx="205" cy="163" r="3"/><circle cx="171" cy="190" r="3"/><circle cx="125" cy="207" r="3"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#3c2531">
+    <text x="291" y="59">Kehldeckel</text>
+    <text x="49" y="140" text-anchor="end">Taschenfalten</text>
+    <text x="291" y="168">Stimmlippen</text>
+    <text x="291" y="236">Stimmritze</text>
+    <text x="49" y="225" text-anchor="end">Stellknorpel</text>
+  </g>
+  <g font-family="system-ui, sans-serif" text-anchor="middle" font-size="16" font-weight="700" fill="#3c2531">
+    <text class="vocal-static" x="170" y="22">Offen</text>
+    <text class="vocal-motion" x="170" y="22">Offen
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" calcMode="discrete"
+        keyTimes="0;.30;.45;.75;.90;1" values="1;0;0;0;1;1"/>
+    </text>
+    <text class="vocal-motion" x="170" y="22" opacity="0">Geschlossen
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" calcMode="discrete"
+        keyTimes="0;.30;.45;.75;.90;1" values="0;0;1;0;0;0"/>
+    </text>
+  </g>
+</svg>
