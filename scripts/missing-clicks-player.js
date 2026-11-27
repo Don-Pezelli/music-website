@@ -611,8 +611,8 @@
       sequenceCycleBeats = scoreBeats + gapBars * 4;
       noteHz = Number(player.dataset.noteHz || (isScoreNotation ? 392 : 0));
       scoreEvents = (player.dataset.scoreEvents || '').split(',').map(event => {
-        const [beat, duration] = event.split(':').map(Number);
-        return { beat, duration };
+        const [beat, duration, accent] = event.split(':').map(Number);
+        return { beat, duration, accent: accent === 1 };
       }).filter(event => Number.isFinite(event.beat) && Number.isFinite(event.duration));
       durationLabel = player.dataset.durationLabel || '1:12';
     };
@@ -765,14 +765,14 @@
             scoreEvents.forEach(note => {
               if (note.beat < 0 || note.beat >= scoreBeats) return;
               const beat = countInBeats + repeat * sequenceCycleBeats + note.beat;
-              scheduleSustainedTone(startAt + beat * beatDuration, note.duration * beatDuration, 0.14);
+              scheduleSustainedTone(startAt + beat * beatDuration, note.duration * beatDuration, note.accent ? 0.22 : 0.14);
             });
           }
         } else if (isScoreNotation) {
           scoreEvents.forEach(note => {
             if (note.beat < 0 || note.beat >= scoreBeats) return;
             const noteStart = startAt + (countInBeats + note.beat) * beatDuration;
-            scheduleSustainedTone(noteStart, note.duration * beatDuration, 0.1);
+            scheduleSustainedTone(noteStart, note.duration * beatDuration, note.accent ? 0.17 : 0.1);
           });
         }
         playing = true;

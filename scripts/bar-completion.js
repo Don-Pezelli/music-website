@@ -9,15 +9,15 @@
   function setupRhythmBuilder(root) {
     if (!window.completionValues || !window.completionGlyphs) return;
     const capacity=48,barWidth=480,barStart=58,scoreWidth=1030;
-    const bars=[[],[]],ties=new Set(),accents=new Set();const accentEnabled=root.hasAttribute("data-accents"),dotEnabled=root.hasAttribute("data-dotting");let selectedPosition=null,selectedTieNote=null,nextId=1;
+    const bars=[[],[]],ties=new Set(),accents=new Set();const straightOnly=root.hasAttribute('data-straight-only');const accentEnabled=root.hasAttribute("data-accents"),dotEnabled=root.hasAttribute("data-dotting");let selectedPosition=null,selectedTieNote=null,nextId=1;
     const available=window.completionValues.filter(value=>['n4','n2','n1','n8','n16','r4','r2','r1','r8'].includes(value.id))
       .map(value=>({...value,units:value.units*3,rest:value.id.startsWith('r')}));
     available.push({id:'r16',name:'Sechzehntelpause',units:3,rest:true,code:'E4E7'});
     if(dotEnabled)available.push({id:'n2d',name:'Punktierte halbe Note',units:36,rest:false,code:'E1D3',dotted:true},{id:'n1d',name:'Punktierte Viertelnote',units:18,rest:false,code:'E1D5',dotted:true},{id:'n8d',name:'Punktierte Achtelnote',units:9,rest:false,code:'E1D7',dotted:true});
     const glyphCode=value=>value.code||(value.rest?{48:'E4E3',24:'E4E4',12:'E4E5',6:'E4E6',3:'E4E7'}:{48:'E1D2',24:'E1D3',12:'E1D5',6:'E1D7',3:'E1D9'})[value.units];
-    root.innerHTML=`<p>Wähle zuerst im Takt einen Schlag und eine Unterteilung. Klicke danach auf den gewünschten Notenwert oder die Pause.${dotEnabled?' Auch punktierte halbe, Viertel- und Achtelnoten kannst du direkt aus der Notenpalette einsetzen.':''} An einer bereits belegten Position ersetzt der neue Wert das vorhandene Zeichen. An den Positionen tri und ol werden Achtelnote und Achtelpause automatisch als Triolenwerte gesetzt. Zeichen dürfen sich nicht überlappen; jeder Takt umfasst höchstens vier Schläge.</p><div class="builder-score-wrap"><div class="builder-score"></div></div><div class="builder-position-bars" aria-label="Schlag und Unterteilung wählen"></div><p class="builder-selection" role="status" aria-live="polite">Wähle zuerst eine Position im Takt.</p><div class="builder-palette" role="group" aria-label="${accentEnabled?'Notenwerte, Pausen, Haltebogen und Akzentzeichen einsetzen':'Notenwerte, Pausen und Haltebogen einsetzen'}"></div><section class="builder-ties"><h4>Haltebögen</h4><p>Klicke oben eine Note als Anfang an. Klicke dann auf das Haltebogen-Symbol in der Palette, um sie mit der direkt folgenden Note zu verbinden. Erneutes Klicken entfernt den Bogen. Das funktioniert auch über den Taktstrich hinweg.</p></section>${accentEnabled?'<section class="builder-accents"><h4>Akzentzeichen</h4><p>Klicke oben eine Note an und dann auf das Akzentzeichen. Es hebt die Note hervor, ohne ihre Dauer zu verändern. Erneutes Klicken entfernt den Akzent.</p></section>':''}<div class="builder-playback"><button type="button" data-builder-play>▶ Rhythmus abspielen</button><span data-builder-play-status role="status" aria-live="polite">40 BPM · Metronom und gehaltener Ton</span></div><div class="builder-actions"><button type="button" data-builder-clear>Alles löschen</button><span class="builder-status" role="status" aria-live="polite"></span></div><noscript>Aktiviere JavaScript, um eigene Rhythmen und Haltebögen zu setzen.</noscript>`;
+    root.innerHTML=`<p>Wähle zuerst im Takt einen Schlag und eine Unterteilung. Klicke danach auf den gewünschten Notenwert oder die Pause.${dotEnabled?' Auch punktierte halbe, Viertel- und Achtelnoten kannst du direkt aus der Notenpalette einsetzen.':''} An einer bereits belegten Position ersetzt der neue Wert das vorhandene Zeichen. ${straightOnly?'':'An den Positionen tri und ol werden Achtelnote und Achtelpause automatisch als Triolenwerte gesetzt.'} Zeichen dürfen sich nicht überlappen; jeder Takt umfasst höchstens vier Schläge.</p><div class="builder-score-wrap"><div class="builder-score"></div></div><div class="builder-position-bars" aria-label="Schlag und Unterteilung wählen"></div><p class="builder-selection" role="status" aria-live="polite">Wähle zuerst eine Position im Takt.</p><div class="builder-palette" role="group" aria-label="${accentEnabled?'Notenwerte, Pausen, Haltebogen und Akzentzeichen einsetzen':'Notenwerte, Pausen und Haltebogen einsetzen'}"></div><section class="builder-ties"><h4>Haltebögen</h4><p>Klicke oben eine Note als Anfang an. Klicke dann auf das Haltebogen-Symbol in der Palette, um sie mit der direkt folgenden Note zu verbinden. Erneutes Klicken entfernt den Bogen. Das funktioniert auch über den Taktstrich hinweg.</p></section>${accentEnabled?'<section class="builder-accents"><h4>Akzentzeichen</h4><p>Klicke oben eine Note an und dann auf das Akzentzeichen. Es hebt die Note hervor, ohne ihre Dauer zu verändern. Erneutes Klicken entfernt den Akzent.</p></section>':''}<div class="builder-playback"><button type="button" data-builder-play>▶ Rhythmus abspielen</button><span data-builder-play-status role="status" aria-live="polite">40 BPM · Metronom und gehaltener Ton</span></div><div class="builder-actions"><button type="button" data-builder-clear>Alles löschen</button><span class="builder-status" role="status" aria-live="polite"></span></div><noscript>Aktiviere JavaScript, um eigene Rhythmen und Haltebögen zu setzen.</noscript>`;
     const score=root.querySelector('.builder-score'),positionBars=root.querySelector('.builder-position-bars'),palette=root.querySelector('.builder-palette'),status=root.querySelector('.builder-status'),selection=root.querySelector('.builder-selection'),ns='http://www.w3.org/2000/svg';
-    const subdivisions=[{offset:0,label:'1',spoken:'Zahl 1'},{offset:3,label:'e',spoken:'e'},{offset:4,label:'tri',spoken:'tri'},{offset:6,label:'&',spoken:'und'},{offset:8,label:'ol',spoken:'ol'},{offset:9,label:'a',spoken:'a'}];
+    const subdivisions=[{offset:0,label:'1',spoken:'Zahl 1'},{offset:3,label:'e',spoken:'e'},{offset:4,label:'tri',spoken:'tri'},{offset:6,label:'&',spoken:'und'},{offset:8,label:'ol',spoken:'ol'},{offset:9,label:'a',spoken:'a'}].filter(position=>!straightOnly||position.offset%3===0);
     const playButton=root.querySelector('[data-builder-play]'),playStatus=root.querySelector('[data-builder-play-status]');
     let audioContext=null,scheduledSounds=[],playTimer=null,playing=false;
     function stopPlayback(){scheduledSounds.forEach(sound=>{try{sound.stop();}catch{}});scheduledSounds=[];if(playTimer)clearTimeout(playTimer);playTimer=null;playing=false;playButton.textContent='▶ Rhythmus abspielen';playStatus.textContent='40 BPM · Metronom und gehaltener Ton';}
@@ -116,6 +116,61 @@
       const beatCount=units=>{const whole=Math.floor(units/12),rem=units%12,part={3:'¼',4:'⅓',6:'½',8:'⅔',9:'¾'}[rem]||(rem?`${rem}/12`:'');return `${whole||''}${part}`||'0';};
       const used=bars.map(events=>events.reduce((sum,event)=>sum+event.value.units,0));status.textContent=`Takt 1: ${beatCount(used[0])} von 4 Schlägen belegt · Takt 2: ${beatCount(used[1])} von 4 Schlägen belegt.`;
     }
+    if (root.dataset.builderChecker) {
+      const transfer = document.createElement('button');
+      transfer.type = 'button';
+      transfer.className = 'completion-evaluate completion-finish-ready';
+      transfer.textContent = 'Im Rhythminator klatschen';
+      root.querySelector('.builder-actions').prepend(transfer);
+      transfer.addEventListener('click', () => {
+        const complete = bars.every(events => {
+          let end = 0;
+          for (const event of [...events].sort((a, b) => a.onset - b.onset)) {
+            if (event.onset !== end) return false;
+            end += event.value.units;
+          }
+          return end === capacity;
+        });
+        if (!complete) {
+          status.textContent = 'Fülle beide Takte lückenlos mit Noten oder Pausen.';
+          return;
+        }
+        const notes = allEvents().filter(event => !event.value.rest);
+        const linked = new Map([...ties].map(tie => tie.split('|')));
+        const tiedStarts = new Set(linked.values());
+        const byId = new Map(notes.map(note => [note.id, note]));
+        const noteEvents = notes.filter(note => !tiedStarts.has(note.id)).map(note => {
+          let last = note;
+          while (linked.has(last.id)) last = byId.get(linked.get(last.id));
+          return {
+            beat: note.absolute / 12,
+            duration: (last.absolute + last.value.units - note.absolute) / 12,
+            accent: accents.has(note.id)
+          };
+        });
+        if (!noteEvents.length) {
+          status.textContent = 'Setze mindestens eine Note, die du klatschen kannst.';
+          return;
+        }
+        const checker = document.getElementById(root.dataset.builderChecker);
+        if (!checker) return;
+        selectedPosition = null;
+        drawScore();
+        const preview = score.querySelector('svg').cloneNode(true);
+        preview.querySelectorAll('[role="button"]').forEach(hit => hit.remove());
+        checker.dispatchEvent(new CustomEvent('rhythm:editor-score', {
+          detail: {
+            id: checker.id + '-score', title: 'Deine zwei Takte',
+            svg: new XMLSerializer().serializeToString(preview),
+            width: scoreWidth, height: 150, durationBeats: 8,
+            clapEvents: noteEvents.map(note => note.beat), noteEvents,
+            scoreRows: [0, 1].map(bar => ({ x: barStart + bar * barWidth + 10, y: 22, step: 120 }))
+          }
+        }));
+        checker.focus({ preventScroll: true });
+        checker.scrollIntoView({ block: 'center' });
+      });
+    }
     root.querySelector('[data-builder-clear]').addEventListener('click',()=>{stopPlayback();bars[0].length=0;bars[1].length=0;ties.clear();accents.clear();selectedPosition=null;selectedTieNote=null;selection.textContent='Wähle zuerst eine Position im Takt.';drawPositions();drawScore();});
     drawPositions();drawScore();
   }
@@ -128,8 +183,9 @@
     const config=window.completionExercises?.[root.dataset.completion];
     if(!config||!window.completionValues||!window.completionGlyphs)return;
     const isRestCode=code=>String(code||'').startsWith('E4');
-    const values=window.completionValues.filter(value=>(config.rests||value.id.startsWith('n'))&&(config.course>1||value.units >= (config.minUnits ?? 2)))
+    const values=window.completionValues.filter(value=>(config.rests||value.id.startsWith('n'))&&(config.course>1||value.units >= (root.dataset.minValueUnits ?? config.minUnits ?? 2)))
       .map(value=>({...value,units:value.units*3,rest:value.id.startsWith('r')}));
+    if (config.rests && config.course === 2) values.push({id:'r16',name:'Sechzehntelpause',units:3,rest:true,code:'E4E7',svg:`<svg viewBox="-12 -85 78 120" aria-hidden="true"><path d="${window.completionGlyphs.E4E7}" transform="scale(.8 -.8)" fill="currentColor"/></svg>`});
     const palette=root.querySelector('.completion-palette');
     if(root.dataset.completion.includes('/bild-160-paar-')&&values.length===4)palette.classList.add('completion-palette-centered');
     let gaps=config.gaps.map((gap,index)=>({...gap,index,notes:[]}));
@@ -273,6 +329,7 @@
     const evaluateHost=document.createElement('span');evaluateHost.className='completion-help-host';evaluateHost.append(evaluateButton);
     const finishLabel=root.dataset.finishLabel;
     const transfersToChecker=root.hasAttribute('data-clap-editor-transfer');
+    const requiredRestUnits=(root.dataset.requiredRestUnits ?? '12 24').split(/\s+/).filter(Boolean).map(Number);
     let evaluated=false;
     function noteContentEdited(){
       if(!evaluated||(!finishLabel&&root.dataset.evaluateClears!=='true'))return;
@@ -340,13 +397,13 @@
       refreshGapBeams();
       if(transfersToChecker&&allBarsCorrect){
         const values=gaps.flatMap(gap=>gap.notes);
-        const hasRequiredRests=[12,24].every(units=>values.some(value=>value.rest&&value.units===units));
+        const hasRequiredRests=requiredRestUnits.every(units=>values.some(value=>value.rest&&value.units===units));
         const hasNote=values.some(value=>!value.rest);
         if(!hasRequiredRests||!hasNote){
           const feedback=container.lastElementChild.querySelector('.completion-feedback');
           feedback.dataset.result='retry';
           feedback.textContent=!hasRequiredRests
-            ? 'Setze in deine beiden Takte mindestens eine halbe Pause und eine Viertelpause.'
+            ? (root.dataset.requiredRestHint || 'Setze in deine beiden Takte mindestens eine halbe Pause und eine Viertelpause.')
             : 'Setze mindestens eine Note, die du im Rhythminator klatschen kannst.';
           showEvaluationEffect(feedback,false);
           return;

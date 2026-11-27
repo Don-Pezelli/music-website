@@ -1,4 +1,30 @@
+## 2026-11-26
+- Philosophie: Neun Musikepochen als horizontalen, bebilderten Zeitstrahl mit Kapitelverweisen ergänzt.
+- Philosophie: Musikgeschichte mit durchscrollbaren Kapiteln und dem Inhaltsverzeichnis aus Rhythmus 1 ausgestattet.
+- Rhythmus: Sechzehntel- und Triolenkurs mit Rhythm Radio, Rhythminator, Takteditor und Metronom ausgestattet. Bisherige Aufnahmen und Lösungen bleiben verfügbar.
+- Rhythmus 2: In der ersten Körperübung die Und-Zählzeiten mit der Aufwärtsbewegung des Fußes markieren.
+- Rhythmus 2: Achtelkurs mit Rhythm Radio, Rhythminator, Takteditor, Metronom, Pausenrechner und Lernfortschritt aus den Grundlagen ausgestattet. Bisherige Höraufgaben und Lösungen bleiben verfügbar.
+- Gesang: Übung zu Atemimpulsen um zwei aufklappbare schematische Diagramme zu Druck, Luftstrom und Muskelaktivität ergänzt.
+- Gesang: Druckwahrnehmung bei S und F, Übergang zum Vokalsingen und Lernziel der Pumpe präzisiert.
+- Gesang: Übungsziele in Lektionsfarben gestaltet, Ausführung darunter gestrafft und mit Schaubildern ergänzt.
+- Gesang: Blaue Wellenfront vom Info-Knopf aktiviert die Hilfepunkte beim Auftreffen.
+- Gesang: Hilfslinien im Mischpult mit Wellen am Ursprung und kurzem Aufleuchten am Ziel animiert.
+- Gesang: Mischpult-Display reagiert mit Statusmeldungen, Lautstärkeskala und farbigem Druckbalken auf die Bedienung.
+- Gesang: Mischpult-Hilfe als hellblaue Linien mit außenliegenden Markierungen, Erklärungen und Übungslinks gestaltet.
+- Gesang: Horizontalen M/A-Kippschalter im Mischpult der Einführung ergänzt.
+- Gesang: Atemzyklus in allen Mischpulten direkt unter dem Display angeordnet.
+- Gesang: Beschriftung „Körpergefühl“ ausgeblendet und Pitch-Fader an den linken Bedienreihen ausgerichtet.
+- Gesang: Retro-Display mit passender Anzeige in allen Mischpulten ergänzt.
+- Gesang: Der silberne Schriftzug leuchtet bei allen Mischpulten nur im eingeschalteten Zustand.
+- Gesang: Gelbe Markierungen an Stimmlippen und Hals auf dieselbe sichtbare Größe gebracht.
+- Gesang: Titelleiste des Mischpults mit dunkler, fein strukturierter Oberfläche und sanft leuchtender, silberfarbener Beschriftung an das Gehäuse angepasst.
+- Gesang: Mischpult in der Einführung und den Übungen in „Des Sängers Mischpult“ umbenannt.
+- Philosophie: „Finding my tradition“ mit Liedsammlung, persönlichem Traditionsprofil und Auswahlkriterien für Begleitlieder ergänzt.
+
 ## 2026-11-25
+- Gesang: Zweck, Ziel und Ablauf direkt in die Übungen integriert und doppelte Anweisungen zusammengeführt.
+- Gesang: Stimmtypen aus der Einführung nach „Reichweite erhöhen“ verschoben und Übungen zu bequemer Stimmlage und Tonumfang ergänzt.
+- Gesang: Lernziele mit Glückwunschkarten nach jeder Lektion und ein Buch der Fähigkeiten mit gespeichertem Fortschritt ergänzt.
 - Gesang: Übungs-Cockpits mit festen Einstellungen für Luftstrom, Stimmlippenschluss und Gaumen sowie einem bedienbaren Druckregler ergänzt.
 - Gesang: Kompaktes und volles Warm-up eingeführt. Anatomie-Galerie mit vereinfachten Rumpf-, Zwerchfell- und Vokaltraktgrafiken ergänzt.
 - Gesang: Die beiden Fauststöße der Haltungsmodelle zeitlich abgestuft und die vergrößerten Anatomiegrafiken hinter ihren Miniaturen eingeblendet.

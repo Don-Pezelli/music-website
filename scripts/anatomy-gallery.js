@@ -83,6 +83,14 @@ if (anatomyDialog) {
     });
   });
 
+  anatomyDialog.addEventListener('click', event => {
+    if (event.target !== anatomyDialog) return;
+    const { left, right, top, bottom } = anatomyDialog.getBoundingClientRect();
+    if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) {
+      anatomyDialog.close();
+    }
+  });
+
   anatomyDialog.addEventListener('close', () => {
     if (!currentFigure) return;
     currentFigure.hidden = true;

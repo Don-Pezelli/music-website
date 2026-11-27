@@ -2,6 +2,8 @@
   <title>Stimmlippen von oben: offen und geschlossen</title>
   <style>
     .vocal-static { display: none; }
+    .featured-label { fill: #843454; font-weight: 700; }
+    .featured-leader { stroke: #843454; stroke-width: 2; }
     @media (prefers-reduced-motion: reduce) {
       .vocal-motion { display: none; }
       .vocal-static { display: inline; }
@@ -34,17 +36,18 @@
     <ellipse cx="212" cy="207" rx="14" ry="11" fill="#e1a9ab"/>
   </g>
   <g fill="none" stroke="#654554" stroke-width="1.4">
-    <path d="M170 70L242 54H282M108 135H58M205 163H282M171 190L236 231H282M125 207L60 220H58"/>
+    <path d="M170 70L242 54H282M108 135H58M125 207L60 220H58"/>
+    <path class="featured-leader" d="M205 163H282M171 190L236 231H282"/>
   </g>
   <g fill="#fffaf6" stroke="#654554">
     <circle cx="170" cy="70" r="3"/><circle cx="108" cy="135" r="3"/>
-    <circle cx="205" cy="163" r="3"/><circle cx="171" cy="190" r="3"/><circle cx="125" cy="207" r="3"/>
+    <circle class="featured-leader" cx="205" cy="163" r="3"/><circle class="featured-leader" cx="171" cy="190" r="3"/><circle cx="125" cy="207" r="3"/>
   </g>
   <g font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#3c2531">
     <text x="291" y="59">Kehldeckel</text>
     <text x="49" y="140" text-anchor="end">Taschenfalten</text>
-    <text x="291" y="168">Stimmlippen</text>
-    <text x="291" y="236">Stimmritze</text>
+    <text class="featured-label" x="291" y="168">Stimmlippen</text>
+    <text class="featured-label" x="291" y="236">Stimmritze</text>
     <text x="49" y="225" text-anchor="end">Stellknorpel</text>
   </g>
   <g font-family="system-ui, sans-serif" text-anchor="middle" font-size="16" font-weight="700" fill="#3c2531">

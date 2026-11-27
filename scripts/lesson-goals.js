@@ -3,14 +3,15 @@
   if (skillsBook) setupSkillsBook(skillsBook);
 
   function setupSkillsBook(book) {
-    const storageKey = 'music-method-rhythmus-1-goals-v1';
+    const storageKey = book.dataset.skillsBookStorage || 'music-method-rhythmus-1-goals-v1';
+    const courseName = book.dataset.skillsBookCourse || 'Rhythmus 1';
     const emptyMessage = book.querySelector('[data-skills-book-empty]');
     const summary = book.querySelector('[data-skills-book-summary]');
     const entries = book.querySelector('[data-skills-book-entries]');
     const course = book.closest('article');
     const readLessons = (container, selector) => [...container.querySelectorAll(selector)].map((lesson) => ({
       id: lesson.id,
-      title: lesson.querySelector('h2')?.textContent.trim() || '',
+      title: (lesson.querySelector('h2') || lesson.querySelector('h3'))?.textContent.trim() || '',
       achievement: lesson.querySelector('[data-complete-message]')?.dataset.completeMessage,
       goals: [...lesson.querySelectorAll('.exercise-goals input[type="checkbox"][id]')].map((input) => ({
         input,
@@ -18,11 +19,12 @@
       }))
     })).filter((lesson) => lesson.goals.length);
     const chapters = [
-      { heading: 'Einführung', lessons: readLessons(course, ':scope > .lesson-section') },
+      { heading: 'Einführung', lessons: readLessons(course, ':scope > .lesson-section:not([data-skills-book-course-goals])') },
       ...[...course.querySelectorAll('[data-course-chapter]')].map((chapter) => ({
-        heading: `Kapitel ${Number(chapter.dataset.courseChapter)} · ${chapter.querySelector('.lesson-heading h2').textContent.trim().replace(/\.$/, '')}`,
+        heading: `Kapitel ${Number(chapter.dataset.courseChapter)} · ${(chapter.querySelector('.lesson-heading h2') || chapter.querySelector('h2')).textContent.trim().replace(/\.$/, '')}`,
         lessons: readLessons(chapter, '.lesson-section')
-      }))
+      })),
+      { heading: 'Kursabschluss', lessons: readLessons(course, '[data-skills-book-course-goals]') }
     ];
 
     function readCheckedIds() {
@@ -99,7 +101,7 @@
     });
     const resetStatus = book.querySelector('[data-skills-book-reset-status]');
     book.querySelector('[data-skills-book-reset]').addEventListener('click', () => {
-      if (!window.confirm('Möchtest du alle abgehakten Ziele in Rhythmus 1 zurücksetzen?')) return;
+      if (!window.confirm(`Möchtest du alle abgehakten Ziele für „${courseName}“ zurücksetzen?`)) return;
       try {
         localStorage.setItem(storageKey, '[]');
       } catch {

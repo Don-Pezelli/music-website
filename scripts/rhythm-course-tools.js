@@ -1,4 +1,10 @@
 (() => {
+  const advancedTools = document.body.hasAttribute('data-advanced-rhythm-tools');
+  const keepSourceExercises = document.body.hasAttribute('data-keep-rhythm-sources');
+  const radioTemplate = () => document.querySelector('#rhythm-radio-template')?.content.firstElementChild
+    || document.querySelector('[data-missing-clicks-player]');
+  const checkerTemplate = () => document.querySelector('#rhythminator-template')?.content.firstElementChild
+    || document.getElementById('k2l2-rhythminator');
   const text = (node) => (node?.textContent || '').replace(/\s+/g, ' ').trim();
 
   function cloneRadioTemplate(template) {
@@ -57,6 +63,58 @@
     return { noteEvents, durationBeats: bars.length * 4 };
   }
 
+  function readScore(image) {
+    if (!image?.hasAttribute('data-rhythm-beats')) return notationEvents(image?.alt);
+    const noteEvents = image.dataset.rhythmEvents.split(',').filter(Boolean).map(token => {
+      const [beat, duration, accent] = token.split(':').map(Number);
+      return { beat, duration, accent: accent === 1 };
+    });
+    return { noteEvents, durationBeats: Number(image.dataset.rhythmBeats) };
+  }
+
+  const encodeEvents = notes => notes.map(({ beat, duration, accent }) =>
+    `${beat}:${duration}${accent ? ':1' : ''}`).join(',');
+
+  function addOriginalRecordingRadios() {
+    const template = radioTemplate();
+    if (!template) return;
+
+    function wrapRecording(recording, title, solution, index) {
+      if (!recording?.querySelector('iframe')) return;
+      const radio = cloneRadioTemplate(template);
+      radio.removeAttribute('data-missing-clicks-player');
+      radio.classList.add('rhythm-radio-original');
+      radio.setAttribute('aria-label', title);
+      radio.querySelector('.missing-clicks-screen strong').textContent = title;
+      radio.querySelector('.missing-clicks-screen').lastElementChild.textContent = 'Originalaufnahme';
+      radio.querySelector('.missing-clicks-radio-controls')?.remove();
+      radio.querySelector('.missing-clicks-tuning-scale')?.remove();
+      radio.querySelector('linearGradient')?.setAttribute('id', `rhythm-original-logo-${index}`);
+      recording.before(radio);
+      radio.append(recording);
+      if (solution) makeFaxOutput(radio, solution, index);
+    }
+
+    let index = 0;
+    document.querySelectorAll('[data-rhythm-original-mitspiel]').forEach(heading => {
+      let sibling = heading.nextElementSibling;
+      while (sibling && !sibling.matches('h2,h3,h4')) {
+        if (sibling.matches('.exercise-audio, .chapter-resource') && sibling.querySelector('iframe')) {
+          wrapRecording(sibling, 'Mitspielübung', null, ++index);
+          break;
+        }
+        sibling = sibling.nextElementSibling;
+      }
+    });
+
+    document.querySelectorAll('.hearing-task').forEach(task => {
+      const title = text(task.querySelector('h4'));
+      if (!/Fehler/i.test(title)) return;
+      const audio = task.querySelector(':scope > .exercise-audio, :scope > .chapter-resource');
+      wrapRecording(audio, title, task.querySelector('details.solution'), ++index);
+    });
+  }
+
   function repeatedPattern(notesPerBar, duration = 1, bars = 8) {
     const noteEvents = [];
     for (let bar = 0; bar < bars; bar += 1) {
@@ -84,7 +142,7 @@
     if (!radio || !solutionDetails || radio.querySelector('[data-fax-output]')) return;
     const solutionBody = solutionDetails.querySelector('.solution-body');
     const nextSection = document.getElementById(solutionDetails.dataset.nextSection || '');
-    const reference = solutionDetails.parentElement.querySelector('[data-fax-reference]');
+    const reference = solutionDetails.parentElement?.querySelector('[data-fax-reference]');
     const referenceImage = reference?.querySelector('img[data-marked-src]');
     const originalReference = referenceImage && {
       src: referenceImage.getAttribute('src'),
@@ -115,7 +173,7 @@
       fax.querySelector('.rhythm-fax-slot').before(reference);
     }
     radio.append(fax);
-    solutionDetails.remove();
+    if (!keepSourceExercises) solutionDetails.remove();
 
     const preprinted = radio.dataset.faxPreprinted === 'true';
     const paper = fax.querySelector('[data-fax-paper]');
@@ -433,7 +491,7 @@
 
   function replaceHearingTasks() {
     const tasks = [...document.querySelectorAll('.hearing-task')];
-    const template = document.querySelector('[data-missing-clicks-player]');
+    const template = radioTemplate();
     if (!template || !tasks.length) return;
     let converted = 0;
 
@@ -441,10 +499,12 @@
       const heading = task.querySelector('h4');
       const solution = task.querySelector('details.solution');
       const solutionImage = solution?.querySelector('.solution-body img[data-hearing-score]')
+        || solution?.querySelector('.solution-body .score-figure img')
         || solution?.querySelector('.solution-body img');
-      const parsed = notationEvents(solutionImage?.alt);
+      if (advancedTools && /Fehler/i.test(text(heading))) return;
+      const parsed = readScore(solutionImage);
       const existingRadio = task.querySelector('[data-missing-clicks-player]');
-      const audioAside = task.querySelector(':scope > aside.drive-audio-card');
+      const audioAside = task.querySelector(advancedTools ? ':scope > .exercise-audio, :scope > .chapter-resource' : ':scope > aside.drive-audio-card');
       const placeholder = task.querySelector(':scope > [data-hearing-radio]');
       if (!solution || !parsed || (!existingRadio && !audioAside && !placeholder)) return;
 
@@ -464,7 +524,8 @@
             element.setAttribute('style', element.getAttribute('style').replaceAll(`url(#${oldId})`, `url(#${newId})`));
           });
         }
-        if (audioAside) audioAside.replaceWith(radio);
+        if (audioAside && keepSourceExercises) audioAside.before(radio);
+        else if (audioAside) audioAside.replaceWith(radio);
         else placeholder.replaceWith(radio);
       }
 
@@ -472,7 +533,7 @@
       radio.classList.remove('has-fax-output');
       radio.setAttribute('aria-label', `The Rhythm Radio spielt ${taskName}`);
       radio.dataset.pattern = 'score-notation';
-      radio.dataset.scoreEvents = parsed.noteEvents.map(note => `${note.beat}:${note.duration}`).join(',');
+      radio.dataset.scoreEvents = encodeEvents(parsed.noteEvents);
       radio.dataset.countIn = '4';
       const bars = Math.max(1, Math.round(parsed.durationBeats / 4));
       radio.dataset.durationBars = String(bars);
@@ -515,7 +576,9 @@
       if (bars === 1 && !task.querySelector('.hearing-duration-note')) {
         const note = document.createElement('p');
         note.className = 'hearing-duration-note';
-        note.textContent = 'Diese Höraufgabe enthält einen Takt. Er wird viermal gespielt; dazwischen hörst du jeweils einen Takt lang nur das Metronom.';
+        note.textContent = radio.dataset.continuousMetronome === 'true'
+          ? 'Höre denselben Takt viermal zum laufenden Metronom.'
+          : 'Diese Höraufgabe enthält einen Takt. Er wird viermal gespielt; dazwischen hörst du jeweils einen Takt lang nur das Metronom.';
         radio.before(note);
       }
 
@@ -523,6 +586,7 @@
       converted += 1;
     });
 
+    if (keepSourceExercises) return;
     ['k2-lektion-2', 'k2-lektion-3', 'k2-lektion-4', 'k3-lektion-1', 'k3-lektion-2', 'k3-lektion-3', 'k3-lektion-4'].forEach(lessonId => {
       const lessonTasks = tasks.filter(task => task.closest('.lesson-section')?.id === lessonId);
       if (lessonTasks.length < 2) return;
@@ -558,7 +622,7 @@
 
   function addErrorFindingRadio() {
     const slot = document.querySelector('[data-error-finding-radio]');
-    const template = document.querySelector('[data-missing-clicks-player]');
+    const template = radioTemplate();
     const lesson = slot?.closest('.lesson-section');
     if (!slot || !template || !['k2-lektion-5', 'k3-lektion-5'].includes(lesson?.id)) return;
     const isK3 = lesson.id === 'k3-lektion-5';
@@ -592,6 +656,7 @@
     const taskFigures = isK3 ? k3SourceFigures.map((figure, index) => {
       if (!figure) return null;
       const clone = figure.cloneNode(true);
+      clone.removeAttribute('id');
       const caption = document.createElement('figcaption');
       caption.textContent = `Aufgabe ${index + 1} · Fehlerhafte Notation`;
       clone.append(caption);
@@ -973,7 +1038,7 @@
       });
     }
     slot.replaceWith(radio);
-    if (isK3) {
+    if (isK3 && !keepSourceExercises) {
       k3SourceFigures.forEach(figure => {
         const solution = figure?.nextElementSibling;
         if (solution?.matches('details.solution')) solution.remove();
@@ -985,13 +1050,13 @@
   }
 
   function addReadingCheckers() {
-    const template = document.getElementById('k2l2-rhythminator');
+    const template = checkerTemplate();
     if (!template) return;
-    const createChecker = (node, id) => {
-      const caption = text(node.querySelector('figcaption'));
+    const createChecker = (node, id, sourceHeading) => {
+      const caption = text(node.querySelector('figcaption')) || (advancedTools ? text(sourceHeading) : '');
       if (!/Leseübung/i.test(caption)) return null;
       const image = node.querySelector('img');
-      const parsed = notationEvents(image?.alt);
+      const parsed = readScore(image);
       if (!image || !parsed || !parsed.noteEvents.length) return null;
 
       const clone = template.cloneNode(true);
@@ -999,6 +1064,7 @@
       clone.id = id;
       clone.dataset.clapFixedScore = 'false';
       clone.dataset.clapGuidedScore = 'true';
+      if (advancedTools) clone.dataset.clapStartBpm = '40';
       clone.dataset.clapCustomScore = JSON.stringify({
         id, title: caption, image: image.getAttribute('src'),
         width: Number(image.getAttribute('width')) || 960,
@@ -1017,6 +1083,7 @@
       const patterns = clone.querySelector('[data-clap-patterns]');
       patterns.replaceChildren();
 
+      if (keepSourceExercises) return clone;
       const lesson = node.closest('.lesson-section');
       if (lesson?.id === 'k3-lektion-4' && /Leseübung 1/i.test(caption)) {
         const readingFigures = [...lesson.querySelectorAll('figure.score-figure')]
@@ -1141,9 +1208,11 @@
     let instance = 0;
     const nodes = [...document.querySelectorAll('h2,h3,h4,section.clap-checker,figure.score-figure')];
     let checkerSinceHeading = false;
+    let currentHeading;
     for (const node of nodes) {
       if (!node.isConnected) continue;
       if (/^H[234]$/.test(node.tagName)) {
+        currentHeading = node;
         checkerSinceHeading = false;
         continue;
       }
@@ -1153,14 +1222,14 @@
       }
       if (!node.matches('figure.score-figure') || node.closest('details.solution') || checkerSinceHeading) continue;
       const lesson = node.closest('.lesson-section');
-      if (lesson?.id === 'k2-lektion-4' && /Leseübung 2/i.test(text(node.querySelector('figcaption')))) {
+      if (!keepSourceExercises && lesson?.id === 'k2-lektion-4' && /Leseübung 2/i.test(text(node.querySelector('figcaption')))) {
         const solution = node.nextElementSibling;
         if (solution?.matches('details.solution')) solution.remove();
         node.remove();
         checkerSinceHeading = true;
         continue;
       }
-      const checker = createChecker(node, `rhythminator-reading-${++instance}`);
+      const checker = createChecker(node, `rhythminator-reading-${++instance}`, currentHeading);
       if (!checker) continue;
       node.before(checker);
       const removeAfterReadingTool = node.hasAttribute('data-remove-after-rhythminator')
@@ -1169,7 +1238,7 @@
         || node.closest('.lesson-section')?.id === 'k3-lektion-2'
         || node.closest('.lesson-section')?.id === 'k3-lektion-3'
         || node.closest('.lesson-section')?.id === 'k3-lektion-4';
-      if (removeAfterReadingTool) {
+      if (removeAfterReadingTool && !keepSourceExercises) {
         const solution = node.nextElementSibling;
         if (solution?.matches('details.solution') && solution.querySelector('aside.drive-audio-card')) solution.remove();
         node.remove();
@@ -1179,7 +1248,7 @@
   }
 
   function addOwnRhythmChecker() {
-    const template = document.getElementById('k2l2-rhythminator');
+    const template = checkerTemplate();
     if (!template) return;
     document.querySelectorAll('[data-own-rhythm-checker]').forEach(slot => {
       const checker = template.cloneNode(true);
@@ -1229,7 +1298,7 @@
   }
 
   function replaceMitspielAudios() {
-    const template = document.querySelector('[data-missing-clicks-player]');
+    const template = radioTemplate();
     if (!template) return;
     document.querySelectorAll('h3,h4').forEach(heading => {
       if (/Mitspiel-MP3/i.test(text(heading))) {
@@ -1254,14 +1323,14 @@
       groupCounts.set(headingText, groupIndex + 1);
       const instructionText = `${headingText} ${text(aside.previousElementSibling)}`;
       const lessonId = heading.closest('.lesson-section')?.id || '';
-      const isEveryEighthPositions = lessonId === 'k2-lektion-4' && /Mitspielübung\s*1\b|Jede Achtelposition/i.test(headingText);
+      const isEveryEighthPositions = !keepSourceExercises && lessonId === 'k2-lektion-4' && /Mitspielübung\s*1\b|Jede Achtelposition/i.test(headingText);
       const notationFigure = isEveryEighthPositions && aside.nextElementSibling?.matches('figure.score-figure')
         ? aside.nextElementSibling
         : null;
       const candidates = [...document.querySelectorAll('figure.score-figure')]
         .filter(figure => !figure.closest('details.solution'))
         .filter(figure => figure.compareDocumentPosition(aside) & Node.DOCUMENT_POSITION_FOLLOWING);
-      const relatedImage = (notationFigure || candidates[0])?.querySelector('img');
+      const relatedImage = (notationFigure || (keepSourceExercises ? aside.nextElementSibling : candidates[0]))?.querySelector('img');
       const parsed = notationEvents(relatedImage?.alt);
       const isQuarterRestSequence = lessonId === 'k3-lektion-3' && heading.dataset.rhythmRadioHeading === 'true';
       const repeatedMitspielSet = groupIndex > 0 && heading.dataset.rhythmRadioHeading === 'true';
@@ -1459,6 +1528,8 @@
           durationLabel: clone.dataset.durationLabel,
           position: clone.dataset.coursePosition
         });
+      } else if (keepSourceExercises) {
+        aside.before(clone);
       } else {
         aside.replaceWith(clone);
       }
@@ -1536,7 +1607,8 @@
 
   replaceHearingTasks();
   addErrorFindingRadio();
-  replaceMitspielAudios();
+  if (advancedTools) addOriginalRecordingRadios();
+  else replaceMitspielAudios();
   addReadingCheckers();
   addOwnRhythmChecker();
 })();

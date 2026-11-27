@@ -451,7 +451,7 @@
       selected.noteEvents?.forEach(note => {
         const localBeat = note.beat - helpStartBeat;
         if (localBeat < 0 || localBeat >= durationBeats) return;
-        addSound(startAt + (4 + localBeat) * beatSeconds, 392, note.duration * beatSeconds, .11);
+        addSound(startAt + (4 + localBeat) * beatSeconds, 392, note.duration * beatSeconds, note.accent ? .18 : .11);
       });
       helpRunning = true;
       helpStartedAt = performance.now() + 120;
